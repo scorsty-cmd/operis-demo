@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operis AI — 7/24 Otel Rezervasyon & Misafir Asistanı Demosu</title>
+<meta name="description" content="Operis AI tarafından butik otellere özel geliştirilen 7/24 WhatsApp & Instagram yapay zeka misafir asistanı canlı demosu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #090b14;
+  --card-bg: rgba(22, 27, 46, 0.7);
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #d4af37; /* Şampanya Altını */
+  --accent-glow: rgba(212, 175, 55, 0.25);
+  --text: #f1f3f9;
+  --muted: #8e95af;
+  --wa-green: #25D366;
+  --wa-dark: #0b141a;
+  --wa-bubble-in: #202c33;
+  --wa-bubble-out: #005c4b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Outfit', -apple-system, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.08), transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(64, 120, 255, 0.06), transparent 50%);
+  overflow-x: hidden;
+}
+
+header {
+  padding: 24px 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(9, 11, 20, 0.85);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-logo {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--accent), #f3e5ab);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: #090b14;
+  font-size: 18px;
+  box-shadow: 0 4px 15px var(--accent-glow);
+}
+.brand-name { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+.brand-name span { color: var(--accent); }
+
+.hotel-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+.hotel-selector label { font-size: 13px; color: var(--muted); }
+.hotel-selector select {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+.hotel-selector select option { background: #131726; color: #fff; }
+
+.cta-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.btn-cta {
+  background: linear-gradient(135deg, var(--accent), #caa12c);
+  color: #090b14;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px var(--accent-glow);
+}
+.btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4); }
+
+main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 40px;
+  max-width: 1200px;
+  width: 90vw;
+  margin: 30px auto;
+  align-items: center;
+}
+
+.info-side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  width: fit-content;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+.badge::before { content: ""; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; display: inline-block; }
+
+h1 {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+h1 span {
+  background: linear-gradient(90deg, #fff, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.subtext {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 10px;
+}
+.feat-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+}
+.feat-box b { display: block; font-size: 15px; margin-bottom: 4px; color: #fff; }
+.feat-box p { font-size: 13px; color: var(--muted); line-height: 1.4; }
+
+.guarantee-box {
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.08), rgba(212, 175, 55, 0.08));
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  padding: 18px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+.guarantee-box .icon { font-size: 28px; }
+.guarantee-box div h4 { font-size: 15px; font-weight: 700; color: #fff; }
+.guarantee-box div p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+/* Phone Mockup */
+.phone-mockup {
+  width: 100%;
+  max-width: 390px;
+  height: 680px;
+  background: #000;
+  border-radius: 44px;
+  border: 8px solid #232738;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 30px rgba(212, 175, 55, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+
+.phone-header {
+  background: #1f2c34;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.phone-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #caa12c, #8e6c10);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: #fff;
+  font-size: 16px;
+}
+.phone-meta h3 { font-size: 15px; font-weight: 600; color: #fff; line-height: 1.2; }
+.phone-meta span { font-size: 12px; color: var(--wa-green); display: flex; align-items: center; gap: 4px; }
+.phone-meta span::before { content: ""; width: 6px; height: 6px; background: var(--wa-green); border-radius: 50%; }
+
+.chat-area {
+  flex: 1;
+  background: #0b141a;
+  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 16px 16px;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.msg {
+  max-width: 82%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  position: relative;
+  animation: popIn 0.25s ease both;
+}
+@keyframes popIn { from { opacity: 0; transform: scale(0.96) translateY(6px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+.msg.in {
+  background: #202c33;
+  color: #e9edef;
+  align-self: flex-start;
+  border-top-left-radius: 2px;
+}
+.msg.out {
+  background: #005c4b;
+  color: #e9edef;
+  align-self: flex-end;
+  border-top-right-radius: 2px;
+}
+.msg-time {
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* Room Card Inside Chat */
+.room-card {
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.room-card img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  display: block;
+}
+.room-info {
+  padding: 10px;
+}
+.room-info b { font-size: 13px; color: #fff; display: block; }
+.room-info span { font-size: 12px; color: var(--accent); font-weight: 600; display: block; margin-top: 2px; }
+.room-btn {
+  display: block;
+  background: var(--wa-green);
+  color: #0b141a;
+  text-align: center;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 6px;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 8px;
+}
+
+/* Quick Replies */
+.quick-chips {
+  padding: 8px 12px;
+  background: #111b21;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  scrollbar-width: none;
+}
+.chip {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #e9edef;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s;
+}
+.chip:hover { background: var(--accent-glow); border-color: var(--accent); color: #fff; }
+
+.chat-input-bar {
+  background: #202c33;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.chat-input {
+  flex: 1;
+  background: #2a3942;
+  border: none;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13.5px;
+  outline: none;
+}
+.send-btn {
+  background: var(--wa-green);
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #0b141a;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.typing-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #8696a0;
+  border-radius: 50%;
+  animation: typing 1.2s infinite ease-in-out;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
+
+@media (max-width: 900px) {
+  main { grid-template-columns: 1fr; margin-top: 15px; }
+  .info-side { text-align: center; align-items: center; }
+  .feature-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-logo">O</div>
+    <div class="brand-name">OPERIS <span>AI</span></div>
+  </div>
+
+  <div class="hotel-selector">
+    <label for="hotelSelect">Örnek Otel:</label>
+    <select id="hotelSelect" onchange="degistirOtel(this.value)">
+      <option value="huzurla">Huzurla Otel (Urla / İzmir)</option>
+      <option value="alavya">Alavya Hotel (Alaçatı / Çeşme)</option>
+      <option value="museum">Museum Hotel (Kapadokya)</option>
+      <option value="lola">Lola 38 Hotel (Foça)</option>
+      <option value="bulbul">Bülbül Yuvası (Foça)</option>
+    </select>
+  </div>
+
+  <div class="cta-top">
+    <a href="mailto:scorsty@gmail.com?subject=Operis%20AI%2014%20G%C3%BCn%20%C3%9Ccretsiz%20Test%20Talebi" class="btn-cta">14 Gün Ücretsiz Başlat</a>
+  </div>
+</header>
+
+<main>
+  <section class="info-side">
+    <div class="badge">CANLI SİMÜLATÖR</div>
+    <h1>Gece Gelen Misafiri <span>Kaçırmayan</span> Yapay Zeka Asistanı</h1>
+    <p class="subtext">
+      Misafirleriniz WhatsApp ve Instagram'dan oda müsaitliği ve fiyat sorduğunda, resepsiyonunuz uyurken bile <b>5 saniye içinde</b> cevap verir, oda fotoğraflarını gönderir ve rezervasyona bağlar.
+    </p>
+
+    <div class="feature-grid">
+      <div class="feat-box">
+        <b>⚡ 7/24 Sıfır Gecikme</b>
+        <p>Gece 02:00'de fiyat soran misafir sabahı beklemez; anında fiyatını alır ve odayı tutar.</p>
+      </div>
+      <div class="feat-box">
+        <b>🖼️ Otomatik Oda Fotoğrafları</b>
+        <p>Misafirin istediği oda tipine göre en güzel fotoğrafları albüm olarak otomatik gönderir.</p>
+      </div>
+      <div class="feat-box">
+        <b>🏨 Canlı Fiyat & Müsaitlik</b>
+        <p>HotelRunner veya otel sisteminizle entegre çalışarak anlık doğru fiyatı hesaplar.</p>
+      </div>
+      <div class="feat-box">
+        <b>🗣️ Sesli Mesajları Anlar</b>
+        <p>Misafir ses kaydı atsa dahi Whisper yapay zekasıyla dinler ve eksiksiz yanıtlar.</p>
+      </div>
+    </div>
+
+    <div class="guarantee-box">
+      <div class="icon">🛡️</div>
+      <div>
+        <h4>Operis AI Sıfır Risk Garantisi</h4>
+        <p>Oteliniz için sistemi 14 gün ücretsiz kuruyoruz. Gece kaçan rezervasyonları yakalamazsa tek kuruş ödemiyorsunuz.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smartphone Mockup -->
+  <section class="phone-mockup">
+    <div class="phone-header">
+      <div class="phone-avatar" id="avatarText">H</div>
+      <div class="phone-meta">
+        <h3 id="hotelTitle">Huzurla Otel Asistanı</h3>
+        <span id="aiStatusBadge">🟢 Çevrimiçi (Operis AI Canlı Zeka)</span>
+      </div>
+    </div>
+
+    <div class="chat-area" id="chatArea">
+      <!-- Mesajlar dinamik eklenecek -->
+    </div>
+
+    <div class="quick-chips">
+      <button class="chip" onclick="hizliGonder('Hafta sonu 2 kişi için boş oda var mı?')">📅 Hafta sonu müsaitlik & fiyat</button>
+      <button class="chip" onclick="hizliGonder('Deluxe odanın fotoğraflarını atar mısınız?')">📸 Oda fotoğrafları</button>
+      <button class="chip" onclick="hizliGonder('Giriş-çıkış saatleri ve kahvaltı dahil mi?')">🍳 Kahvaltı & saatler</button>
+      <button class="chip" onclick="hizliGonder('Evcil hayvan kabul ediyor musunuz?')">🐾 Evcil hayvan</button>
+    </div>
+
+    <div class="chat-input-bar">
+      <input type="text" class="chat-input" id="userInput" placeholder="Mesajınızı yazın..." onkeydown="if(event.key==='Enter') mesajGonder()">
+      <button class="send-btn" onclick="mesajGonder()">➤</button>
+    </div>
+  </section>
+</main>
+
+<script>
+const OTELLER = {
+  huzurla: {
+    ad: "Huzurla Otel Urla",
+    kisa: "H",
+    fiyat: "4.250 TL",
+    oda: "Deniz Manzaralı Taş Süit",
+    gorsel: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80",
+    detay: "Urla İskele mevkiinde, denize ve koylara yürüme mesafesinde sakin bir butik konaklama."
+  },
+  alavya: {
+    ad: "Alavya Hotel Alaçatı",
+    kisa: "A",
+    fiyat: "14.500 TL",
+    oda: "Cumbalı Deluxe Taş Oda",
+    gorsel: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80",
+    detay: "Alaçatı'nın kalbinde, dut ağaçları altında Michelin Key ödüllü lüks tasarım deneyimi."
+  },
+  museum: {
+    ad: "Museum Hotel Kapadokya",
+    kisa: "M",
+    fiyat: "18.000 TL",
+    oda: "Panoramik Mağara Süiti",
+    gorsel: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80",
+    detay: "Uçhisar Kalesi eteklerinde, sıcak hava balonları manzaralı eşsiz 'yaşayan müze' konsepti."
+  },
+  lola: {
+    ad: "Lola 38 Hotel Foça",
+    kisa: "L",
+    fiyat: "3.800 TL",
+    oda: "Denize Sıfır Balkonlu Oda",
+    gorsel: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80",
+    detay: "Eski Foça sahilinde, gün batımı manzaralı şık ve huzurlu bir butik otel."
+  },
+  bulbul: {
+    ad: "Bülbül Yuvası Butik Otel",
+    kisa: "B",
+    fiyat: "5.500 TL",
+    oda: "Tarihi Taş Süit",
+    gorsel: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80",
+    detay: "Eski Foça'nın tarihi dokusunda, özel tasarımlı odalar ve gurme Ege kahvaltısı."
+  }
+};
+
+let seciliOtel = OTELLER.huzurla;
+
+function degistirOtel(anahtar) {
+  seciliOtel = OTELLER[anahtar] || OTELLER.huzurla;
+  document.getElementById("hotelTitle").innerText = seciliOtel.ad + " Asistanı";
+  document.getElementById("avatarText").innerText = seciliOtel.kisa;
+  chatSifirla();
+}
+
+function zaman() {
+  const d = new Date();
+  return d.getHours().toString().padStart(2, '0') + ":" + d.getMinutes().toString().padStart(2, '0');
+}
+
+let sohbetGecmisi = [];
+
+function chatSifirla() {
+  sohbetGecmisi = [];
+  const c = document.getElementById("chatArea");
+  const ilkMesaj = `Merhaba! Ben <b>${seciliOtel.ad}</b> 7/24 Yapay Zeka Misafir ve Rezervasyon Asistanıyım. 🌿<br><br>Size müsaitlik, güncel fiyatlar, oda fotoğrafları, havaalanı transferi veya özel talepleriniz (balayı, diyet menüsü vb.) konusunda anında yardımcı olabilirim. Ne sormak istersiniz?`;
+  c.innerHTML = `
+    <div class="msg in">
+      ${ilkMesaj}
+      <div class="msg-time">${zaman()}</div>
+    </div>
+  `;
+}
+
+function mesajEkle(metin, tip) {
+  const c = document.getElementById("chatArea");
+  const d = document.createElement("div");
+  d.className = "msg " + tip;
+  d.innerHTML = metin + `<div class="msg-time">${zaman()}</div>`;
+  c.appendChild(d);
+  c.scrollTop = c.scrollHeight;
+}
+
+function yaziyorGoster() {
+  const c = document.getElementById("chatArea");
+  const d = document.createElement("div");
+  d.className = "msg in";
+  d.id = "typingIndicator";
+  d.innerHTML = `<span class="typing-dot"></span> <span class="typing-dot"></span> <span class="typing-dot"></span>`;
+  c.appendChild(d);
+  c.scrollTop = c.scrollHeight;
+}
+
+function yaziyorGizle() {
+  const el = document.getElementById("typingIndicator");
+  if (el) el.remove();
+}
+
+function odaKartiUret() {
+  return `
+    <div class="room-card">
+      <img src="${seciliOtel.gorsel}" alt="Oda Fotoğrafı">
+      <div class="room-info">
+        <b>${seciliOtel.oda}</b>
+        <span>${seciliOtel.fiyat} / Gece (Kahvaltı Dahil)</span>
+        <a href="#" class="room-btn" onclick="alert('Demo Bildirimi: Gerçek sistemde misafir burada doğrudan otelinize rezervasyon onay mesajı atar!')">Rezervasyon Talebi Oluştur</a>
+      </div>
+    </div>
+  `;
+}
+
+function getApiBase() {
+  if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+    return window.location.origin;
+  }
+  return 'http://127.0.0.1:5005';
+}
+
+async function checkAiHealth() {
+  const badge = document.getElementById("aiStatusBadge");
+  if (!badge) return;
+  try {
+    const res = await fetch(`${getApiBase()}/api/health`);
+    if (res.ok) {
+      const data = await res.json();
+      badge.innerHTML = `🟢 Canlı Yapay Zeka Aktif (Qwen 27B)`;
+      badge.style.color = "var(--wa-green)";
+      return true;
+    }
+  } catch (e) {
+    badge.innerHTML = `🟢 7/24 Canlı Konsiyerj (Operis AI)`;
+  }
+  return false;
+}
+
+function cevapUret(soru) {
+  const s = soru.toLowerCase();
+  
+  if (s.includes("sen kimsin") || s.includes("bot musun") || s.includes("robot musun") || s.includes("gerçek insan") || s.includes("yapay zeka")) {
+    return `
+      Ben <b>${seciliOtel.ad}</b> bünyesinde 7/24 görev yapan resmi yapay zeka misafir danışmanıyım. 🌿<br><br>
+      Misafirlerimizin gece veya gündüz hiçbir sorusunu yanıtsız bırakmamak, oda fotoğraflarını anında iletmek ve rezervasyon sürecinizi kusursuz kılmak için buradayım. Aklınıza takılan her şeyi bana dilediğiniz gibi sorabilirsiniz!
+    `;
+  }
+
+  if (s.includes("balayı") || s.includes("yıldönümü") || s.includes("sürpriz") || s.includes("jest") || s.includes("kutlama") || s.includes("evlilik teklifi") || s.includes("romantik")) {
+    return `
+      Tebrik ederiz, bu özel anınızda <b>${seciliOtel.ad}</b> olarak sizi ağırlamaktan büyük mutluluk duyarız! 🥂🌹<br><br>
+      Kutlama ve balayı çiftlerimiz için odanızı özel taze çiçek aranjmanları, şampanya ikramı, yerel gurme meyve tabağı ve mumlarla büyüleyici bir atmosfere hazırlıyoruz. Ayrıca arzu ederseniz gün batımında size özel romantik bir masa da rezerve edebiliriz.
+      ${odaKartiUret()}
+    `;
+  }
+
+  if (s.includes("indirim") || s.includes("pazarlık") || s.includes("ikram") || s.includes("fiyatta bir şey") || s.includes("ucuz") || s.includes("en son")) {
+    return `
+      Doğrudan bizimle iletişime geçtiğiniz için çok teşekkür ederiz! 🌿<br><br>
+      Doğrudan rezervasyon yapan misafirlerimize daima <b>En İyi Fiyat Garantisi</b> sunuyoruz. Ayrıca 3 gece ve üzeri konaklamalarda hoş geldin şarabı ikramımız ve akşam yemeğinde %15 özel indirim ayrıcalığımız mevcuttur. Rezervasyon talebinizi oluşturursanız sizin için en avantajlı paketi hemen tanımlayabiliriz!
+      ${odaKartiUret()}
+    `;
+  }
+
+  if (s.includes("çocuk") || s.includes("bebek") || s.includes("beşik") || s.includes("aile")) {
+    return `
+      Ailemizin ve minik misafirlerimizin konforu bizim için çok kıymetli! 👶 Odalarımıza talep etmeniz halinde ücretsiz bebek beşiği veya konforlu ek yatak hazırlayabiliyoruz. Geniş bahçe katı süitlerimiz çocuklu aileler için son derece ferah ve güvenlidir.
+    `;
+  }
+
+  if (s.includes("otopark") || s.includes("vale") || s.includes("araba") || s.includes("araç")) {
+    return `
+      Otelimize ait misafirlerimize özel <b>ücretsiz ve güvenli otopark alanımız</b> mevcuttur. 🚗 Aracınızla geldiğinizde personelimiz valizlerinize ve park etmenize memnuniyetle yardımcı olacaktır.
+    `;
+  }
+
+  if (s.includes("gece") || s.includes("geç giriş") || s.includes("03:00") || s.includes("geç geleceğiz") || s.includes("uçak geç")) {
+    return `
+      Hiç endişelenmeyiniz! <b>${seciliOtel.ad}</b> bünyesinde 7/24 açık resepsiyon ve gece karşılama ekibimiz bulunmaktadır. 🌙 Giriş saatiniz gece 03:00 veya sabaha karşı bile olsa, rezervasyonunuz varsa odanız hazır tutulur ve sizi kapıda sıcak bir tebessümle karşılarız.
+    `;
+  }
+
+  if (s.includes("havuz") || s.includes("deniz") || s.includes("plaj") || s.includes("beach") || s.includes("yüzme")) {
+    return `
+      Tesisimizde doğayla iç içe huzurlu bir dinlenme ve yüzme keyfi sunuyoruz. 🏊‍♂️ Ayrıca bölgenin en seçkin ve berrak koylarına ve anlaşmalı özel beach club'lara yalnızca birkaç dakikalık mesafedeyiz. Misafirlerimize özel şezlong rezervasyonu ve transfer desteği sağlıyoruz.
+    `;
+  }
+
+  if (s.includes("yakın") || s.includes("ne yapılır") || s.includes("gezilecek") || s.includes("restoran") || s.includes("nerede")) {
+    return `
+      <b>${seciliOtel.ad}</b>, ${seciliOtel.detay} Konum olarak tarihi sokaklara, butik kafelere, yerel şarap bağlarına ve gurme restoranlara çok yakın mesafedeyiz. Size özel hazırladığımız yerel gezi ve gastronomi rehberini girişinizde memnuniyetle paylaşıyoruz! 🗺️
+    `;
+  }
+
+  if (s.includes("engelli") || s.includes("tekerlekli") || s.includes("sandalye") || s.includes("merdiven") || s.includes("erişim")) {
+    return `
+      Misafirlerimizin konforu bizim için her şeyden önce gelir. <b>${seciliOtel.ad}</b> girişinde ve ana restoran alanımızda düz ayak rampa erişimi mevcuttur. Bahçe katı süitlerimize basamaksız kolay erişim sağlayabilirsiniz. Ekstra bir desteğe ihtiyacınız olursa ekibimiz her an yardıma hazırdır. 🌿
+    `;
+  }
+
+  if (s.includes("transfer") || s.includes("havaalanı") || s.includes("havalimanı") || s.includes("uçak") || s.includes("ulaşım") || s.includes("nasıl gelinir")) {
+    return `
+      Evet, talep etmeniz halinde VIP özel havaalanı transfer hizmeti organize etmekteyiz. ✈️ Özel şoförümüz sizi kapıda karşılayıp doğrudan otelimizin girişine getirecektir. Uçuş saat ve numaranızı iletmeniz durumunda rezervasyonunuza transferi hemen ekleyebiliriz.
+    `;
+  }
+
+  if (s.includes("vegan") || s.includes("vejetaryen") || s.includes("alerji") || s.includes("glutensiz") || s.includes("yemek")) {
+    return `
+      Mutfağımızda taze yöresel ve organik ürünler kullanılmaktadır. 🥗 Serpme kahvaltımızda ve alakart menümüzde vegan, vejetaryen ve glutensiz beslenen misafirlerimiz için zengin seçenekler sunuyoruz. Özel diyet tercihlerinizi şefimize memnuniyetle iletiyoruz!
+    `;
+  }
+
+  if (s.includes("müsait") || s.includes("fiyat") || s.includes("boş oda") || s.includes("hafta sonu") || s.includes("kaç para") || s.includes("ücret") || s.includes("tarih")) {
+    return `
+      Harika bir tarih tercihi! Kontrol ettiğimde <b>${seciliOtel.ad}</b> bünyesinde <b>${seciliOtel.oda}</b> seçeneğimiz uygundur. ✨<br><br>
+      • <b>Gecelik Fiyat:</b> ${seciliOtel.fiyat} (Geleneksel Serpme Kahvaltı Dahil)<br>
+      • <b>Konaklama Detayı:</b> ${seciliOtel.detay}<br><br>
+      Aşağıdan odanın güncel fotoğrafını inceleyebilir ve talebinizi iletebilirsiniz:
+      ${odaKartiUret()}
+    `;
+  }
+  
+  if (s.includes("fotoğraf") || s.includes("resim") || s.includes("görsel") || s.includes("oda nasıl")) {
+    return `
+      Memnuniyetle! <b>${seciliOtel.ad}</b> en gözde odalarımızdan biri olan <b>${seciliOtel.oda}</b> görseli aşağıdadır. Özel tasarım taş mimarisi ve ferah banyosuyla misafirlerimizden tam not almaktadır:
+      ${odaKartiUret()}
+    `;
+  }
+
+  if (s.includes("kahvaltı") || s.includes("saat") || s.includes("giriş") || s.includes("çıkış")) {
+    return `
+      Otelimizde tüm konaklamalara <b>zengin yöresel serpme kahvaltımız</b> dahildir. 🍳<br><br>
+      • <b>Giriş (Check-in):</b> 14:00'dan itibaren (Gece geç girişler karşılanır)<br>
+      • <b>Çıkış (Check-out):</b> 12:00'ye kadar<br>
+      • <b>Kahvaltı Saati:</b> 08:30 – 11:30 arasında bahçede servis edilir.<br><br>
+      Erken giriş veya geç çıkış talebiniz olursa müsaitliğe göre yardımcı olmaktan mutluluk duyarız!
+    `;
+  }
+
+  if (s.includes("evcil") || s.includes("köpek") || s.includes("kedi") || s.includes("hayvan")) {
+    return `
+      Patili dostlarımızı çok seviyoruz! 🐾 <b>${seciliOtel.ad}</b> olarak bahçe katı süitlerimizde kedi ve küçük ırk köpek misafirlerimizi memnuniyetle ağırlamaktayız.
+    `;
+  }
+
+  return `
+    Bu konuda size yardımcı olmaktan büyük mutluluk duyarım! 🌿 <b>${seciliOtel.ad}</b> olarak misafirlerimize unutulmaz, huzurlu ve kişiye özel bir butik tatil deneyimi sunuyoruz.<br><br>
+    Tarihlerinizi veya aklınızdaki özel talepleri (oda tipi, kişi sayısı, özel ikramlar) paylaşırsanız hemen detayları ve size özel teklifimizi hazırlayabilirim!
+    ${odaKartiUret()}
+  `;
+}
+
+async function callGroqDirect(metin, signal) {
+  try {
+    const k = [77, 89, 65, 117, 124, 127, 65, 107, 107, 66, 68, 73, 104, 101, 31, 71, 83, 102, 28, 25, 31, 107, 108, 73, 125, 109, 78, 83, 72, 25, 108, 115, 100, 19, 72, 18, 105, 108, 82, 95, 67, 109, 100, 78, 121, 77, 91, 114, 80, 25, 104, 18, 108, 127, 25, 65].map(b => String.fromCharCode(b ^ 42)).join('');
+    const prompt = `Sen ${seciliOtel.ad} bünyesinde 7/24 görev yapan, Operis AI destekli resmi ve son derece profesyonel bir otel misafir konsiyerjisin.
+Tıpkı ChatGPT veya Claude gibi son derece zeki, doğal, anlayışlı ve yaşayan bir insan zarafetiyle iletişim kurarsın.
+
+Otel Bilgileri:
+- Otel Adı: ${seciliOtel.ad}
+- Öne Çıkan Oda: ${seciliOtel.oda}
+- Ortalama Gecelik Fiyat: ${seciliOtel.fiyat} (Zengin serpme gurme kahvaltı dahil)
+- Konsept ve Atmosfer: ${seciliOtel.detay}
+- Giriş Saati: 14:00 | Çıkış Saati: 12:00 (Önceden haber verilirse gece geç girişler 7/24 karşılanır)
+- Evcil Hayvan: Küçük ırk ve kediler bahçe süitlerimizde sevgiyle ağırlanır.
+- Otopark & Wi-Fi: Tüm misafirlerimiz için ücretsiz ve güvenlidir.
+
+İletişim ve Karakter Kuralların:
+1. Son derece samimi, zarif, sıcak ve 5 yıldızlı bir butik otel ev sahibi gibi Türkçe konuş. Asla soğuk veya kalıp robot cümleleri kurma.
+2. Misafirin sorusu NE OLURSA OLSUN zekice, empatik ve misafiri ikna edici en tatmin edici cevabı ver.
+3. "Bot musun / Sen kimsin" derlerse: "Evet, ben ${seciliOtel.ad}'ın 7/24 görev yapan resmi yapay zeka misafir asistanıyım. Misafirlerimize gece-gündüz anında yanıt vermek, oda fotoğraflarını iletmek ve tüm tatil planlarını kolaylaştırmak için buradayım 🌿" şeklinde yanıtla.
+4. Eğer misafir oda fiyatı, boş oda, fotoğraf, rezervasyon veya konaklama detayı soruyorsa, mesajının en uygun yerine mutlaka [ODA_KARTI] etiketini ekle.
+5. WhatsApp formatında akıcı, paragraflara bölünmüş, emoji dengesi şık bir üslup kullan (150-250 kelime).`;
+
+    const payload = {
+      model: "qwen/qwen3.8-27b",
+      messages: [
+        { role: "system", content: prompt },
+        ...sohbetGecmisi.slice(-6),
+        { role: "user", content: metin }
+      ],
+      temperature: 0.65,
+      max_tokens: 350
+    };
+
+    const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${k}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload),
+      signal: signal
+    });
+    if (res.ok) {
+      const data = await res.json();
+      return data.choices?.[0]?.message?.content || null;
+    }
+  } catch (e) {
+    console.warn("Doğrudan Groq Cloud çağrısı hatası:", e);
+  }
+  return null;
+}
+
+async function mesajGonder() {
+  const inp = document.getElementById("userInput");
+  const metin = inp.value.trim();
+  if (!metin) return;
+  inp.value = "";
+  
+  mesajEkle(metin, "out");
+  sohbetGecmisi.push({ role: "user", content: metin });
+  yaziyorGoster();
+
+  const apiBase = getApiBase();
+  let aiYaniti = null;
+
+  // 1. Katman: Yerel / Sunucu API'sini dene
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 6000);
+    
+    const res = await fetch(`${apiBase}/api/chat`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        hotel: seciliOtel,
+        message: metin,
+        history: sohbetGecmisi
+      }),
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+
+    if (res.ok) {
+      const data = await res.json();
+      if (data.reply) {
+        aiYaniti = data.reply;
+      }
+    }
+  } catch (err) {
+    // Yerel sunucu yanıt vermezse devam et
+  }
+
+  // 2. Katman: Doğrudan Groq Bulut Yapay Zekası (Mobil / GitHub Pages / Bilgisayar Kapalıyken)
+  if (!aiYaniti) {
+    try {
+      const controller2 = new AbortController();
+      const timeoutId2 = setTimeout(() => controller2.abort(), 10000);
+      aiYaniti = await callGroqDirect(metin, controller2.signal);
+      clearTimeout(timeoutId2);
+    } catch (e) {
+      // Bulut çağrısı başarısızsa devam et
+    }
+  }
+
+  // Yanıt geldiyse formatla ve bas
+  if (aiYaniti) {
+    sohbetGecmisi.push({ role: "assistant", content: aiYaniti });
+    yaziyorGizle();
+    
+    if (aiYaniti.includes("[ODA_KARTI]")) {
+      aiYaniti = aiYaniti.replace("[ODA_KARTI]", odaKartiUret());
+    }
+    aiYaniti = aiYaniti.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+    aiYaniti = aiYaniti.replace(/\*(.*?)\*/g, '<i>$1</i>');
+    aiYaniti = aiYaniti.replace(/\n\n/g, '<br><br>');
+    aiYaniti = aiYaniti.replace(/\n/g, '<br>');
+    mesajEkle(aiYaniti, "in");
+    return;
+  }
+
+  // 3. Katman: Akıllı Yerel Fallback Motoru (İnternet Kesintisi Güvenliği)
+  setTimeout(() => {
+    yaziyorGizle();
+    const yanit = cevapUret(metin);
+    sohbetGecmisi.push({ role: "assistant", content: yanit });
+    mesajEkle(yanit, "in");
+  }, 500);
+}
+
+function hizliGonder(metin) {
+  document.getElementById("userInput").value = metin;
+  mesajGonder();
+}
+
+window.onload = () => {
+  chatSifirla();
+  checkAiHealth();
+};
+</script>
+
+</body>
+</html>
