@@ -1,368 +1,483 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Operis AI — 7/24 Otel Rezervasyon & Misafir Asistanı Demosu</title>
-<meta name="description" content="Operis AI tarafından butik otellere özel geliştirilen 7/24 WhatsApp & Instagram yapay zeka misafir asistanı canlı demosu.">
-<meta property="og:title" content="Operis AI | 7/24 Butik Otel Yapay Zeka Konsiyerj Demosu">
-<meta property="og:description" content="Gece gelen misafirleri kaçırmayan, oda fotoğraflarını ve fiyatları 5 saniyede sunan akıllı otel asistanı.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80">
-<meta property="og:type" content="website">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operis AI | Otel & Turizm Yapay Zeka Otomasyonu — 7/24 Dijital Resepsiyon</title>
+<meta name="description" content="Operis AI: Oteller için 7/24 WhatsApp ve Instagram DM yapay zeka resepsiyon asistanı. 3 saniyede yanıt, otomatik oda fotoğrafı, 4 dil desteği ve %0 komisyonla doğrudan rezervasyon.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #090b14;
-  --card-bg: rgba(22, 27, 46, 0.7);
-  --border: rgba(255, 255, 255, 0.08);
-  --accent: #d4af37; /* Şampanya Altını */
-  --accent-glow: rgba(212, 175, 55, 0.25);
-  --text: #f1f3f9;
-  --muted: #8e95af;
-  --wa-green: #25D366;
-  --wa-dark: #0b141a;
-  --wa-bubble-in: #202c33;
-  --wa-bubble-out: #005c4b;
+  --bg-dark: #070b14;
+  --bg-card: #0f1626;
+  --bg-card-hover: #151f36;
+  --bg-glass: rgba(15, 22, 38, 0.82);
+  --accent: #10b981;
+  --accent-light: #34d399;
+  --accent-glow: rgba(16, 185, 129, 0.22);
+  --blue: #3b82f6;
+  --gold: #f59e0b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.09);
+  --wa-bg: #0b141a;
+  --wa-header: #202c33;
+  --wa-in: #202c33;
+  --wa-out: #005c4b;
+  --wa-green: #00a884;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: 'Outfit', -apple-system, sans-serif;
-  background-color: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-image: 
-    radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.08), transparent 45%),
-    radial-gradient(circle at 85% 85%, rgba(64, 120, 255, 0.06), transparent 50%);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-dark);
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(16, 185, 129, 0.14), transparent 32%),
+    radial-gradient(circle at 88% 20%, rgba(59, 130, 246, 0.12), transparent 35%),
+    radial-gradient(circle at 50% 65%, rgba(16, 185, 129, 0.06), transparent 45%);
+  color: var(--text-main);
+  line-height: 1.6;
   overflow-x: hidden;
 }
 
-header {
-  padding: 24px 5vw;
+/* TOP ANNOUNCEMENT BAR */
+.top-bar {
+  background: linear-gradient(90deg, #064e3b, #0f172a, #064e3b);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 8px 20px;
+  font-size: 12.5px;
+  color: #d1fae5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.top-bar .pulse-dot {
+  width: 8px; height: 8px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px var(--accent-light);
+}
+.top-bar a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* NAVBAR */
+header.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(7, 11, 20, 0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 4%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(9, 11, 20, 0.85);
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
+  color: var(--text-main);
 }
 .brand-logo {
-  width: 38px;
-  height: 38px;
-  background: linear-gradient(135deg, var(--accent), #f3e5ab);
-  border-radius: 10px;
+  width: 40px; height: 40px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #10b981, #047857);
   display: grid;
   place-items: center;
-  font-weight: 700;
-  color: #090b14;
-  font-size: 18px;
-  box-shadow: 0 4px 15px var(--accent-glow);
+  font-weight: 800;
+  font-size: 20px;
+  color: #fff;
+  box-shadow: 0 4px 16px var(--accent-glow);
 }
-.brand-name { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+.brand-text-wrap { display: flex; flex-direction: column; }
+.brand-name { font-weight: 800; font-size: 19px; letter-spacing: -0.5px; line-height: 1.1; }
 .brand-name span { color: var(--accent); }
+.brand-sub { font-size: 10.5px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.4px; }
 
-.hotel-selector {
+.nav-links {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 22px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #fff; }
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #04130d;
+  font-weight: 800;
+  font-size: 13.5px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 18px var(--accent-glow);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
+}
+
+.btn-secondary {
   background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* CONTAINER */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* HERO SECTION */
+.hero-section {
+  padding: 44px 0 64px;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 44px;
+  align-items: center;
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 6px 14px;
   border-radius: 999px;
-  border: 1px solid var(--border);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--accent-light);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  margin-bottom: 18px;
 }
-.hotel-selector label { font-size: 13px; color: var(--muted); }
-.hotel-selector select {
-  background: transparent;
-  border: none;
+
+.hero-title {
+  font-size: clamp(30px, 3.8vw, 48px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -1px;
+  margin-bottom: 18px;
+}
+.hero-title span {
+  background: linear-gradient(90deg, #34d399, #10b981, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  color: var(--text-muted);
+  font-size: 16.5px;
+  line-height: 1.65;
+  margin-bottom: 26px;
+}
+.hero-desc b { color: #e2e8f0; }
+
+/* METRICS STRIP IN HERO */
+.hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.metric-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 12px;
+  text-align: center;
+}
+.metric-box .num {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent-light);
+  display: block;
+  line-height: 1.15;
+}
+.metric-box .lbl {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+}
+
+.guarantee-banner {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(59, 130, 246, 0.08));
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  padding: 16px 18px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.guarantee-banner .icon { font-size: 28px; }
+.guarantee-banner h4 { font-size: 14.5px; color: #fff; margin-bottom: 2px; }
+.guarantee-banner p { font-size: 12.5px; color: var(--text-muted); }
+
+/* SIMULATOR WRAPPER */
+.simulator-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hotel-selector-bar {
+  width: 100%;
+  max-width: 410px;
+  background: var(--bg-card);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+.hotel-selector-bar label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--accent-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hotel-selector-bar select {
+  width: 100%;
+  background: #070b14;
   color: #fff;
+  border: 1px solid var(--border);
+  padding: 9px 10px;
+  border-radius: 8px;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   outline: none;
   cursor: pointer;
 }
-.hotel-selector select option { background: #131726; color: #fff; }
 
-.cta-top {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.btn-cta {
-  background: linear-gradient(135deg, var(--accent), #caa12c);
-  color: #090b14;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 9px 18px;
-  border-radius: 999px;
-  text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 15px var(--accent-glow);
-}
-.btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4); }
-
-main {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 40px;
-  max-width: 1200px;
-  width: 90vw;
-  margin: 30px auto;
-  align-items: center;
-}
-
-.info-side {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(212, 175, 55, 0.1);
-  color: var(--accent);
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-  width: fit-content;
-  border: 1px solid rgba(212, 175, 55, 0.25);
-}
-.badge::before { content: ""; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; display: inline-block; }
-
-h1 {
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-}
-h1 span {
-  background: linear-gradient(90deg, #fff, var(--accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.subtext {
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--muted);
-}
-
-.feature-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 10px;
-}
-.feat-box {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  padding: 16px;
-  border-radius: 14px;
-  backdrop-filter: blur(10px);
-}
-.feat-box b { display: block; font-size: 15px; margin-bottom: 4px; color: #fff; }
-.feat-box p { font-size: 13px; color: var(--muted); line-height: 1.4; }
-
-.guarantee-box {
-  background: linear-gradient(135deg, rgba(37, 211, 102, 0.08), rgba(212, 175, 55, 0.08));
-  border: 1px solid rgba(37, 211, 102, 0.3);
-  padding: 18px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 10px;
-}
-.guarantee-box .icon { font-size: 28px; }
-.guarantee-box div h4 { font-size: 15px; font-weight: 700; color: #fff; }
-.guarantee-box div p { font-size: 13px; color: var(--muted); margin-top: 2px; }
-
-/* Phone Mockup */
+/* PHONE MOCKUP */
 .phone-mockup {
   width: 100%;
-  max-width: 390px;
-  height: 680px;
+  max-width: 410px;
   background: #000;
-  border-radius: 44px;
-  border: 8px solid #232738;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 30px rgba(212, 175, 55, 0.15);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
-  margin: 0 auto;
+  border-radius: 36px;
+  padding: 11px;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 .phone-header {
-  background: #1f2c34;
-  padding: 14px 16px;
+  background: var(--wa-header);
+  border-radius: 26px 26px 0 0;
+  padding: 13px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 .phone-avatar {
-  width: 40px;
-  height: 40px;
+  width: 40px; height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #caa12c, #8e6c10);
+  background: linear-gradient(135deg, #10b981, #047857);
   display: grid;
   place-items: center;
-  font-weight: 700;
+  font-weight: 800;
   color: #fff;
   font-size: 16px;
+  flex-shrink: 0;
 }
-.phone-meta h3 { font-size: 15px; font-weight: 600; color: #fff; line-height: 1.2; }
-.phone-meta span { font-size: 12px; color: var(--wa-green); display: flex; align-items: center; gap: 4px; }
-.phone-meta span::before { content: ""; width: 6px; height: 6px; background: var(--wa-green); border-radius: 50%; }
+.phone-meta h3 { font-size: 14px; font-weight: 700; color: #e9edef; line-height: 1.2; }
+.phone-meta span { font-size: 11px; color: var(--wa-green); display: block; font-weight: 600; }
 
 .chat-area {
-  flex: 1;
-  background: #0b141a;
-  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 16px 16px;
-  padding: 16px;
+  background-color: var(--wa-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 18px 18px;
+  height: 390px;
   overflow-y: auto;
+  padding: 14px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .msg {
-  max-width: 82%;
-  padding: 10px 14px;
+  max-width: 84%;
+  padding: 9px 12px;
   border-radius: 12px;
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.45;
   position: relative;
-  animation: popIn 0.25s ease both;
+  word-wrap: break-word;
 }
-@keyframes popIn { from { opacity: 0; transform: scale(0.96) translateY(6px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-
 .msg.in {
-  background: #202c33;
+  background: var(--wa-in);
   color: #e9edef;
   align-self: flex-start;
   border-top-left-radius: 2px;
 }
 .msg.out {
-  background: #005c4b;
+  background: var(--wa-out);
   color: #e9edef;
   align-self: flex-end;
   border-top-right-radius: 2px;
 }
 .msg-time {
   font-size: 10px;
-  color: rgba(255,255,255,0.5);
-  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.5);
   text-align: right;
+  margin-top: 4px;
 }
 
-/* Room Card Inside Chat */
 .room-card {
-  background: rgba(0,0,0,0.3);
+  margin-top: 8px;
+  background: rgba(0, 0, 0, 0.28);
   border-radius: 10px;
   overflow: hidden;
-  margin-top: 8px;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 .room-card img {
   width: 100%;
-  height: 110px;
+  height: 125px;
   object-fit: cover;
   display: block;
 }
-.room-info {
-  padding: 10px;
-}
-.room-info b { font-size: 13px; color: #fff; display: block; }
-.room-info span { font-size: 12px; color: var(--accent); font-weight: 600; display: block; margin-top: 2px; }
+.room-info { padding: 9px 10px; }
+.room-info b { display: block; font-size: 12.5px; color: #fff; margin-bottom: 2px; }
+.room-info span { font-size: 11.5px; color: var(--accent-light); font-weight: 700; }
 .room-btn {
   display: block;
-  background: var(--wa-green);
-  color: #0b141a;
+  width: 100%;
   text-align: center;
-  font-weight: 700;
-  font-size: 12px;
-  padding: 6px;
+  background: var(--wa-green);
+  color: #04130d;
+  font-weight: 800;
+  font-size: 11.5px;
+  padding: 7px;
   border-radius: 6px;
+  margin-top: 7px;
   text-decoration: none;
-  margin-top: 8px;
 }
 
-/* Quick Replies */
 .quick-chips {
-  padding: 8px 12px;
-  background: #111b21;
+  background: var(--wa-bg);
+  padding: 8px 10px;
   display: flex;
-  gap: 8px;
+  gap: 6px;
   overflow-x: auto;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   scrollbar-width: none;
 }
+.quick-chips::-webkit-scrollbar { display: none; }
 .chip {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: #e9edef;
-  font-size: 12px;
-  padding: 6px 12px;
+  background: rgba(0, 168, 132, 0.15);
+  border: 1px solid rgba(0, 168, 132, 0.4);
+  color: #d1fae5;
+  font-size: 11px;
+  padding: 6px 10px;
   border-radius: 999px;
-  cursor: pointer;
   white-space: nowrap;
-  transition: background 0.15s, border-color 0.15s;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
 }
-.chip:hover { background: var(--accent-glow); border-color: var(--accent); color: #fff; }
+.chip:hover { background: var(--wa-green); color: #0b141a; font-weight: 700; }
 
 .chat-input-bar {
-  background: #202c33;
-  padding: 10px 14px;
+  background: var(--wa-header);
+  border-radius: 0 0 26px 26px;
+  padding: 9px 12px;
   display: flex;
+  gap: 8px;
   align-items: center;
-  gap: 10px;
 }
 .chat-input {
   flex: 1;
   background: #2a3942;
   border: none;
   color: #fff;
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 13.5px;
+  padding: 9px 13px;
+  border-radius: 20px;
+  font-size: 12.5px;
   outline: none;
+  font-family: inherit;
 }
 .send-btn {
   background: var(--wa-green);
   border: none;
-  width: 34px;
-  height: 34px;
+  width: 35px; height: 35px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   color: #0b141a;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 800;
 }
 
 .typing-dot {
   display: inline-block;
-  width: 6px;
-  height: 6px;
+  width: 6px; height: 6px;
   background: #8696a0;
   border-radius: 50%;
   animation: typing 1.2s infinite ease-in-out;
@@ -371,142 +486,1359 @@ h1 span {
 .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 @keyframes typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
 
-@media (max-width: 900px) {
-  main { grid-template-columns: 1fr; margin-top: 15px; }
-  .info-side { text-align: center; align-items: center; }
-  .feature-grid { grid-template-columns: 1fr; }
+/* TECH COMPLIANCE STRIP */
+.tech-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(15, 22, 38, 0.55);
+  padding: 20px 0;
+}
+.tech-strip-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+.tech-item span { color: var(--accent-light); font-size: 16px; }
+
+/* GENERIC SECTION STYLING */
+section.corp-section {
+  padding: 76px 0;
+}
+.section-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 48px;
+}
+.section-header h2 {
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  margin-bottom: 12px;
+}
+.section-header p {
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+/* 6 CAPABILITIES GRID */
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.cap-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 26px 24px;
+  transition: all 0.25s;
+}
+.cap-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(16, 185, 129, 0.35);
+  transform: translateY(-4px);
+}
+.cap-icon {
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+.cap-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+.cap-card p { font-size: 13.8px; color: var(--text-muted); line-height: 1.6; }
+
+/* ROI CALCULATOR SECTION */
+.roi-box {
+  background: linear-gradient(145deg, #0f172a, #091326);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 22px;
+  padding: 38px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 36px;
+  align-items: center;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+}
+.slider-group { margin-bottom: 22px; }
+.slider-group label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #e2e8f0;
+}
+.slider-group label span { color: var(--accent-light); font-weight: 800; font-size: 16px; }
+.slider-group input[type=range] {
+  width: 100%;
+  accent-color: var(--accent);
+  height: 7px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.roi-results {
+  background: rgba(7, 11, 20, 0.75);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 26px;
+}
+.roi-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.roi-item:last-child { border-bottom: none; }
+.roi-item .lbl { font-size: 13.5px; color: var(--text-muted); }
+.roi-item .val { font-size: 19px; font-weight: 800; color: #f87171; }
+.roi-item.highlight .val { font-size: 26px; color: var(--accent-light); }
+
+/* COMPARISON TABLE */
+.comp-table-wrap {
+  overflow-x: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+}
+table.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+table.comp-table th, table.comp-table td {
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+table.comp-table th {
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 14.5px;
+  font-weight: 800;
+}
+table.comp-table td.bad { color: #fca5a5; }
+table.comp-table td.good { color: var(--accent-light); font-weight: 700; }
+
+/* 3 STEPS HOW IT WORKS */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.step-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  position: relative;
+}
+.step-num {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--accent-light);
+  font-weight: 800;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.step-card h3 { font-size: 18px; margin-bottom: 10px; }
+.step-card p { font-size: 13.8px; color: var(--text-muted); }
+
+/* PRICING PACKAGES */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.price-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 32px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.price-card.featured {
+  border: 2px solid var(--accent);
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.09), var(--bg-card));
+  box-shadow: 0 20px 50px rgba(16, 185, 129, 0.14);
+}
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  right: 22px;
+  background: var(--accent);
+  color: #04130d;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+.price-card h3 { font-size: 20px; margin-bottom: 6px; }
+.price-card .room-range { font-size: 13px; color: var(--accent-light); font-weight: 700; margin-bottom: 18px; }
+.price-card ul { list-style: none; margin: 18px 0 26px; }
+.price-card ul li {
+  font-size: 13.5px;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* FAQ */
+.faq-list {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+details.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 22px;
+}
+details.faq-item summary {
+  font-weight: 700;
+  font-size: 15.5px;
+  cursor: pointer;
+  color: #fff;
+}
+details.faq-item p {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* APPLICATION FORM */
+.apply-card {
+  background: linear-gradient(135deg, #0f172a, #06281e);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 22px;
+  padding: 42px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: center;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.form-grid input, .form-grid select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(7, 11, 20, 0.85);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13.5px;
+}
+.form-grid .full { grid-column: 1 / -1; }
+
+/* FOOTER */
+footer.corp-footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 0 32px;
+  background: #05080f;
+  color: var(--text-muted);
+  font-size: 13.5px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.footer-col h4 { color: #fff; font-size: 14.5px; margin-bottom: 12px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul a { color: var(--text-muted); text-decoration: none; }
+.footer-col ul a:hover { color: var(--accent-light); }
+
+@media (max-width: 960px) {
+  .hero-grid, .roi-box, .apply-card { grid-template-columns: 1fr; }
+  .capabilities-grid, .steps-grid, .pricing-grid, .footer-grid { grid-template-columns: 1fr; }
+  .hero-metrics { grid-template-columns: repeat(2, 1fr); }
+  .nav-links { display: none; }
 }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="brand">
+<!-- ÜST DUYURU ÇUBUĞU -->
+<div class="top-bar">
+  <span><i class="pulse-dot"></i> <b>Operis AI Kurumsal v4.2</b> — İzmir (Karşıyaka, Çiğli, Aliağa, Foça, Çeşme, Urla) & Türkiye Geneli Oteller İçin <b>14 Gün Ücretsiz Pilot</b> Kayıtları Açık!</span>
+  <a href="#ucretsiz-pilot">Hemen Başvur →</a>
+</div>
+
+<!-- KURUMSAL NAVBAR -->
+<header class="navbar">
+  <a href="#" class="brand">
     <div class="brand-logo">O</div>
-    <div class="brand-name">OPERIS <span>AI</span></div>
-  </div>
+    <div class="brand-text-wrap">
+      <div class="brand-name">OPERIS <span>AI</span></div>
+      <div class="brand-sub">OTEL & TURİZM YAPAY ZEKA OTOMASYONU</div>
+    </div>
+  </a>
 
-  <div class="hotel-selector">
-    <label for="hotelSelect">Örnek Otel:</label>
-    <select id="hotelSelect" onchange="degistirOtel(this.value)">
-      <option value="huzurla">Huzurla Otel (Urla / İzmir)</option>
-      <option value="alavya">Alavya Hotel (Alaçatı / Çeşme)</option>
-      <option value="museum">Museum Hotel (Kapadokya)</option>
-      <option value="lola">Lola 38 Hotel (Foça)</option>
-      <option value="bulbul">Bülbül Yuvası (Foça)</option>
-    </select>
-  </div>
+  <ul class="nav-links">
+    <li><a href="#canli-simulator">Canlı Simülatör</a></li>
+    <li><a href="#cozumler">Çözümlerimiz</a></li>
+    <li><a href="#roi-hesaplayici">Komisyon Hesaplayıcı</a></li>
+    <li><a href="#nasil-calisir">Nasıl Çalışır?</a></li>
+    <li><a href="#paketler">Kurumsal Paketler</a></li>
+    <li><a href="#sss">S.S.S.</a></li>
+  </ul>
 
-  <div class="cta-top">
-    <a href="mailto:scorsty@gmail.com?subject=Operis%20AI%2014%20G%C3%BCn%20%C3%9Ccretsiz%20Test%20Talebi" class="btn-cta">14 Gün Ücretsiz Başlat</a>
+  <div class="nav-actions">
+    <a href="https://www.instagram.com/operis_ai/" target="_blank" class="btn-secondary">📸 @operis_ai</a>
+    <a href="#ucretsiz-pilot" class="btn-primary">🚀 14 Gün Ücretsiz Dene</a>
   </div>
 </header>
 
-<main>
-  <section class="info-side">
-    <div class="badge">CANLI SİMÜLATÖR</div>
-    <h1>Gece Gelen Misafiri <span>Kaçırmayan</span> Yapay Zeka Asistanı</h1>
-    <p class="subtext">
-      Misafirleriniz WhatsApp ve Instagram'dan oda müsaitliği ve fiyat sorduğunda, resepsiyonunuz uyurken bile <b>5 saniye içinde</b> cevap verir, oda fotoğraflarını gönderir ve rezervasyona bağlar.
-    </p>
-
-    <div class="feature-grid">
-      <div class="feat-box">
-        <b>⚡ 7/24 Sıfır Gecikme</b>
-        <p>Gece 02:00'de fiyat soran misafir sabahı beklemez; anında fiyatını alır ve odayı tutar.</p>
-      </div>
-      <div class="feat-box">
-        <b>🖼️ Otomatik Oda Fotoğrafları</b>
-        <p>Misafirin istediği oda tipine göre en güzel fotoğrafları albüm olarak otomatik gönderir.</p>
-      </div>
-      <div class="feat-box">
-        <b>🏨 Canlı Fiyat & Müsaitlik</b>
-        <p>HotelRunner veya otel sisteminizle entegre çalışarak anlık doğru fiyatı hesaplar.</p>
-      </div>
-      <div class="feat-box">
-        <b>🗣️ Sesli Mesajları Anlar</b>
-        <p>Misafir ses kaydı atsa dahi Whisper yapay zekasıyla dinler ve eksiksiz yanıtlar.</p>
-      </div>
-    </div>
-
-    <div class="guarantee-box">
-      <div class="icon">🛡️</div>
+<!-- HERO BÖLÜMÜ + CANLI SİMÜLATÖR -->
+<section class="hero-section" id="canli-simulator">
+  <div class="container">
+    <div class="hero-grid">
+      <!-- SOL TARAF: KURUMSAL DEĞER ÖNERİSİ -->
       <div>
-        <h4>Operis AI Sıfır Risk Garantisi</h4>
-        <p>Oteliniz için sistemi 14 gün ücretsiz kuruyoruz. Gece kaçan rezervasyonları yakalamazsa tek kuruş ödemiyorsunuz.</p>
+        <div class="badge-pill">⚡ RESMİ WHATSAPP & INSTAGRAM DM YAPAY ZEKA KONSİYERJİ</div>
+        <h1 class="hero-title">
+          Gece Gelen Misafiri <span>Kaçırmayan</span> 7/24 Dijital Otel Resepsiyonu
+        </h1>
+        <p class="hero-desc">
+          Misafirleriniz WhatsApp veya Instagram'dan oda müsaitliği ve fiyat sorduğunda, resepsiyonunuz uyurken bile <b>3 saniye içinde</b> yanıt verir, <b>oda fotoğraflarını gönderir</b>, 4 dilde konuşur ve <b>%0 komisyonla</b> doğrudan rezervasyona bağlar.
+        </p>
+
+        <div class="hero-metrics">
+          <div class="metric-box">
+            <span class="num">3 Sn</span>
+            <span class="lbl">Ortalama Yanıt Hızı</span>
+          </div>
+          <div class="metric-box">
+            <span class="num">%0</span>
+            <span class="lbl">Acente Komisyonu</span>
+          </div>
+          <div class="metric-box">
+            <span class="num">4 Dil</span>
+            <span class="lbl">TR • EN • DE • RU</span>
+          </div>
+          <div class="metric-box">
+            <span class="num">24 Saat</span>
+            <span class="lbl">Anahtar Teslim Kurulum</span>
+          </div>
+        </div>
+
+        <div class="hero-cta-group">
+          <a href="#ucretsiz-pilot" class="btn-primary">🛡️ 14 Gün Ücretsiz Pilot Kurulum İste</a>
+          <a href="#roi-hesaplayici" class="btn-secondary">🧮 Otelinizin Kazancını Hesaplayın</a>
+        </div>
+
+        <div class="guarantee-banner">
+          <div class="icon">🛡️</div>
+          <div>
+            <h4>Operis AI Sıfır Risk & Performans Garantisi</h4>
+            <p>Otelinize özel hafızayı 24 saatte kuruyoruz. 14 gün boyunca kredi kartı veya taahhüt olmadan test ediyorsunuz; gece kaçan rezervasyonları yakalamazsa tek kuruş ödemiyorsunuz.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAĞ TARAF: CANLI OTEL SİMÜLATÖRÜ -->
+      <div class="simulator-col">
+        <div class="hotel-selector-bar">
+          <label for="hotelSelect">
+            <span>🏨 Canlı Test Edilecek Oteli Seçin (56 Otel Yüklü):</span>
+            <span style="color:#94a3b8; font-weight:500;">Canlı Demo</span>
+          </label>
+          <select id="hotelSelect" onchange="degistirOtel(this.value)">
+            
+      <optgroup label="📍 Kuzey İzmir (Karşıyaka, Çiğli, Aliağa, Foça, Dikili)">
+        <option value="anemon_kent_cigli_otel">Anemon Kent Çiğli Otel (İzmir / Çiğli (Ataşehir))</option><option value="avwan_hotel_cigli">Avwan Hotel Çiğli (İzmir / Çiğli (Balatçık))</option><option value="restway_hotel_cigli">Restway Hotel Çiğli (İzmir / Çiğli (Ataşehir))</option><option value="best_western_premier_karsiya">Best Western Premier Karşıyaka (İzmir / Karşıyaka (Mavişehir))</option><option value="marlen_hotel_mavisehir">Marlen Hotel Mavişehir (İzmir / Karşıyaka (Mavişehir))</option><option value="ve_hotels_karsiyaka_bostanli">VE Hotels Karşıyaka (Bostanlı) (İzmir / Karşıyaka (Bostanlı))</option><option value="karsiyaka_plus_otel">Karşıyaka Plus Otel (İzmir / Karşıyaka)</option><option value="life_artemis_hotel_bostanli">Life Artemis Hotel Bostanlı (İzmir / Karşıyaka (Bostanlı))</option><option value="ramada_by_wyndham_izmir_alia">Ramada by Wyndham İzmir Aliağa (İzmir / Aliağa)</option><option value="prestige_hotel_donmez_aliaga">Prestige Hotel Dönmez Aliağa (İzmir / Aliağa)</option><option value="del_puerto_hotel_aliaga">Del Puerto Hotel Aliağa (İzmir / Aliağa)</option><option value="hanedan_beach_hotel_foca">Hanedan Beach Hotel Foça (İzmir / Foça)</option><option value="la_petra_hotel_yenifoca">La Petra Hotel Yenifoça (İzmir / Yenifoça)</option><option value="navalia_hotel_foca">Navalia Hotel Foça (İzmir / Foça)</option><option value="agonz_hotel_agz_hotel_dikili">Agonz Hotel (AGZ Hotel) Dikili (İzmir / Dikili)</option><option value="foca_antik_otel">Foça Antik Otel (İzmir / Foça)</option><option value="lola_38_hotel_foca">Lola 38 Hotel Foça (İzmir / Foça)</option><option value="bulbul_yuvasi_butik_otel">Bülbül Yuvası Butik Otel (İzmir / Foça)</option>
+      </optgroup>
+      <optgroup label="🌿 Güney İzmir & Yarımada (Urla, Alaçatı, Çeşme, Sığacık)">
+        <option value="huzurla">Huzurla Otel (Urla / İzmir)</option>
+        <option value="alavya">Alavya Hotel (Alaçatı / Çeşme)</option>
+        <option value="alavya_hotel_alacati">Alavya Hotel Alaçatı (İzmir / Çeşme)</option><option value="huzurla_otel_urla">Huzurla Otel Urla (İzmir / Urla)</option><option value="villa_taraca_romantik_otel">Villa Taraça Romantik Otel (İzmir / Çeşme)</option><option value="noesta_alacati">Noesta Alaçatı (İzmir / Çeşme)</option><option value="baska_urla_otel">Başka Urla Otel (İzmir / Urla)</option><option value="ke_urla_butik_otel">KE Urla Butik Otel (İzmir / Urla)</option><option value="urla_zeytin_otel">Urla Zeytin Otel (İzmir / Urla)</option><option value="7800_cesme">7800 Çeşme (İzmir / Çeşme)</option><option value="gullu_konaklari_sirince">Güllü Konakları Şirince (İzmir / Selçuk (Şirince))</option><option value="nisanyan_hotel_sirince">Nişanyan Hotel Şirince (İzmir / Selçuk (Şirince))</option><option value="sirince_tas_konak_butik_otel">Şirince Taş Konak Butik Otel (İzmir / Selçuk (Şirince))</option>
+      </optgroup>
+      <optgroup label="🇹🇷 Türkiye Geneli (Kapadokya, Kazdağları, Abant, Ağva, Cunda, Kaş)">
+        <option value="museum">Museum Hotel (Kapadokya)</option>
+        <option value="museum_hotel_kapadokya">Museum Hotel Kapadokya (Nevşehir / Uçhisar)</option><option value="argos_in_cappadocia">Argos in Cappadocia (Nevşehir / Uçhisar)</option><option value="sultan_cave_suites">Sultan Cave Suites (Nevşehir / Göreme)</option><option value="mithra_cave_hotel">Mithra Cave Hotel (Nevşehir / Göreme)</option><option value="kayakapi_premium_caves">Kayakapi Premium Caves (Nevşehir / Ürgüp)</option><option value="taskonaklar_cave_hotel">Taskonaklar Cave Hotel (Nevşehir / Uçhisar)</option><option value="villa_mahal">Villa Mahal (Antalya / Kalkan)</option><option value="doria_hotel_kas">Doria Hotel Kaş (Antalya / Kaş)</option><option value="meis_exclusive_hotel_kas">Meis Exclusive Hotel Kaş (Antalya / Kaş)</option><option value="casa_dellarte">Casa dell'Arte (Muğla / Bodrum)</option><option value="the_marmara_bodrum">The Marmara Bodrum (Muğla / Bodrum)</option><option value="agva_nehir_evi_butik_otel">Ağva Nehir Evi Butik Otel (İstanbul / Ağva)</option><option value="agva_greenline_guesthouse">Ağva Greenline Guesthouse (İstanbul / Ağva)</option><option value="wineport_lodge_agva">Wineport Lodge Ağva (İstanbul / Ağva)</option><option value="tiny_river_house_agva">Tiny River House Ağva (İstanbul / Ağva)</option><option value="abant_lotus_otel">Abant Lotus Otel (Bolu / Abant)</option><option value="abant_garden_butik_otel">Abant Garden Butik Otel (Bolu / Abant)</option><option value="abant_aden_boutique_hotel__s">Abant Aden Boutique Hotel & Spa (Bolu / Abant)</option><option value="manici_kasri_kazdaglari">Manici Kasrı Kazdağları (Çanakkale / Ayvacık (Kazdağları))</option><option value="ida_tas_konak_kazdaglari">İda Taş Konak Kazdağları (Çanakkale / Ayvacık (Kazdağları))</option><option value="panjur_hotel_cunda">Panjur Hotel Cunda (Balıkesir / Ayvalık (Cunda))</option><option value="cunda_despot_evi">Cunda Despot Evi (Balıkesir / Ayvalık (Cunda))</option><option value="macaron_konagi_ayvalik">Macaron Konağı Ayvalık (Balıkesir / Ayvalık)</option><option value="gizemli_konak_ayvalik">Gizemli Konak Ayvalık (Balıkesir / Ayvalık)</option><option value="goreme_cave_lodge">Göreme Cave Lodge (Nevşehir / Göreme)</option><option value="cappadocia_cave_lodge">Cappadocia Cave Lodge (Nevşehir / Göreme)</option><option value="cappadocia_cave_suites">Cappadocia Cave Suites (Nevşehir / Göreme)</option>
+      </optgroup>
+    
+          </select>
+        </div>
+
+        <div class="phone-mockup">
+          <div class="phone-header">
+            <div class="phone-avatar" id="avatarText">H</div>
+            <div class="phone-meta">
+              <h3 id="hotelTitle">Huzurla Otel Urla Asistanı</h3>
+              <span id="aiStatusBadge">🟢 Çevrimiçi (Operis AI Canlı Zeka)</span>
+            </div>
+          </div>
+
+          <div class="chat-area" id="chatArea"></div>
+
+          <div class="quick-chips">
+            <button class="chip" onclick="hizliGonder('Hafta sonu 2 kişi için boş oda ve fiyat nedir?')">📅 Hafta sonu fiyat</button>
+            <button class="chip" onclick="hizliGonder('Deluxe odanın fotoğraflarını atar mısınız?')">📸 Oda fotoğrafları</button>
+            <button class="chip" onclick="hizliGonder('Do you have an available room for next weekend?')">🇬🇧 English Test</button>
+            <button class="chip" onclick="hizliGonder('Giriş-çıkış saatleri, kahvaltı ve otopark var mı?')">🍳 Kahvaltı & Otopark</button>
+            <button class="chip" onclick="hizliGonder('Evcil hayvan kabul ediyor musunuz?')">🐾 Evcil hayvan</button>
+          </div>
+
+          <div class="chat-input-bar">
+            <input type="text" class="chat-input" id="userInput" placeholder="Otel asistanına istediğiniz soruyu yazın..." onkeydown="if(event.key==='Enter') mesajGonder()">
+            <button class="send-btn" onclick="mesajGonder()">➤</button>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Smartphone Mockup -->
-  <section class="phone-mockup">
-    <div class="phone-header">
-      <div class="phone-avatar" id="avatarText">H</div>
-      <div class="phone-meta">
-        <h3 id="hotelTitle">Huzurla Otel Asistanı</h3>
-        <span id="aiStatusBadge">🟢 Çevrimiçi (Operis AI Canlı Zeka)</span>
+<!-- KURUMSAL TEKNOLOJİ & GÜVEN BANDI -->
+<div class="tech-strip">
+  <div class="container tech-strip-inner">
+    <div class="tech-item"><span>✓</span> Resmi Meta WhatsApp Business API</div>
+    <div class="tech-item"><span>✓</span> Instagram DM Otomatik Yanıt & Katalog</div>
+    <div class="tech-item"><span>✓</span> OpenAI Whisper Sesli Mesaj Anlama</div>
+    <div class="tech-item"><span>✓</span> HotelRunner / PMS / Takvim Uyumlu</div>
+    <div class="tech-item"><span>✓</span> KVKK & 256-Bit Kurumsal Veri Güvenliği</div>
+  </div>
+</div>
+
+<!-- 6 ÇEKİRDEK KURUMSAL YETENEK -->
+<section class="corp-section" id="cozumler">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-pill">KURUMSAL MİMARİ</div>
+      <h2>Otelinizin Neden Operis AI'a İhtiyacı Var?</h2>
+      <p>Standart "1'e basın, 2'ye basın" diyen ilkel botları unutun. Operis AI, otelinizin tüm oda tiplerini, politikalarını ve bölge rehberini bilen 5 yıldızlı bir dijital resepsiyonisttir.</p>
+    </div>
+
+    <div class="capabilities-grid">
+      <div class="cap-card">
+        <div class="cap-icon">🌙</div>
+        <h3>1. Gece 23:00–08:00 Kaçan Misafirleri Yakalar</h3>
+        <p>Otel mesajlarının %62'si mesai saatleri dışında gelir. Gece fiyat soran misafir sabahı beklemez; 3 saniyede yanıt veren Operis AI misafiri rakiplerinizden önce yakalar.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-icon">🖼️</div>
+        <h3>2. Sohbet İçi Otomatik Oda Fotoğrafı & Katalog</h3>
+        <p>"Oda nasıl?" diye soran misafire karmaşık web sitesi linki atmaz; doğrudan WhatsApp ve Instagram sohbeti içinde odanın HD fotoğraflarını ve gecelik fiyat kartını gönderir.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-icon">🎙️</div>
+        <h3>3. Sesli Mesajları (Voice Note) Dinler ve Anlar</h3>
+        <p>Misafiriniz araç kullanırken 40 saniyelik ses kaydı gönderse bile OpenAI Whisper motoruyla sesi metne döker, talebi anlar ve eksiksiz yanıtlar.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-icon">🌍</div>
+        <h3>4. 4 Dilde (TR, EN, DE, RU) Ana Dil Kalitesi</h3>
+        <p>Yabancı dil bilen gece resepsiyonisti bulma ve maliyet sorununu çözer. İngilizce, Almanca, Rusça ve Türkçe yazan turistlere kendi dillerinde kusursuz yanıt verir.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-icon">💰</div>
+        <h3>5. %0 Komisyonla Doğrudan Rezervasyon</h3>
+        <p>Instagram ve Google Haritalar'dan otelinizi gören misafiri %15-%20 komisyon alan aracı sitelere (Booking/OTA) kaptırmadan doğrudan kendi WhatsApp hattınızda satışa dönüştürür.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-icon">📲</div>
+        <h3>6. Yöneticiye Anlık WhatsApp Rezervasyon Özeti</h3>
+        <p>Misafir odayı onayladığında ad-soyad, telefon, giriş-çıkış tarihi ve kişi sayısını tek bir özet kart halinde anında otel müdürünün veya resepsiyonun telefonuna bildirir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- İNTERAKTİF GELİR & KOMİSYON HESAPLAYICI -->
+<section class="corp-section" id="roi-hesaplayici" style="padding-top:20px;">
+  <div class="container">
+    <div class="roi-box">
+      <div>
+        <div class="badge-pill">FİNANSAL ETKİ SİMÜLASYONU</div>
+        <h2 style="font-size:30px; font-weight:800; margin-bottom:12px;">Otelinizin Yıllık Kazancını Hesaplayın</h2>
+        <p style="color:var(--text-muted); font-size:14.5px; margin-bottom:26px;">
+          Oda sayınızı ve ortalama gecelik fiyatınızı seçin; geç yanıt yüzünden kaçan ve aracı sitelere (OTA) ödenen komisyondan yılda ne kadar tasarruf edeceğinizi görün.
+        </p>
+
+        <div class="slider-group">
+          <label>Otelinizin Oda Sayısı: <span id="odaVal">45 Oda</span></label>
+          <input type="range" id="odaRange" min="10" max="150" step="5" value="45" oninput="hesaplaROI()">
+        </div>
+
+        <div class="slider-group">
+          <label>Ortalama Gecelik Oda Fiyatı: <span id="fiyatVal">4.200 TL</span></label>
+          <input type="range" id="fiyatRange" min="2000" max="15000" step="200" value="4200" oninput="hesaplaROI()">
+        </div>
+
+        <div class="slider-group">
+          <label>Günde Gece/Mesai Dışı Gelen Mesaj Sayısı: <span id="mesajVal">12 Mesaj</span></label>
+          <input type="range" id="mesajRange" min="3" max="50" step="1" value="12" oninput="hesaplaROI()">
+        </div>
+      </div>
+
+      <div class="roi-results">
+        <h3 style="font-size:17px; margin-bottom:14px; color:#fff;">📊 Otelinizin Yıllık Projeksiyonu</h3>
+        <div class="roi-item">
+          <span class="lbl">Acente Sitelerine (%18) Giden Yıllık Komisyon:</span>
+          <span class="val" id="komisyonKaybi">612.360 TL</span>
+        </div>
+        <div class="roi-item">
+          <span class="lbl">Gece Geç Yanıt Nedeniyle Kaçan Tahmini Ciro:</span>
+          <span class="val" id="geceKaybi">907.200 TL</span>
+        </div>
+        <div class="roi-item highlight">
+          <span class="lbl" style="color:#fff; font-weight:700;">Operis AI İle Yıllık Kurtarılan Net Ciro:</span>
+          <span class="val" id="netKazanc">+1.215.000 TL</span>
+        </div>
+        <div style="margin-top:18px;">
+          <a href="#ucretsiz-pilot" class="btn-primary" style="width:100%; justify-content:center;">Bu Geliri Otelinizde Tutmak İçin 14 Gün Ücretsiz Deneyin →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KARŞILAŞTIRMA TABLOSU -->
+<section class="corp-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-pill">OPERASYONEL FARK</div>
+      <h2>Geleneksel Resepsiyon vs. Operis AI</h2>
+      <p>Resepsiyon ekibinizin iş yükünü %80 azaltırken misafir memnuniyetini maksimuma çıkarın.</p>
+    </div>
+
+    <div class="comp-table-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Kriter</th>
+            <th>Geleneksel Manuel Süreç</th>
+            <th>Operis AI Dijital Resepsiyon</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Gece 02:00'de Gelen Mesaja Yanıt</b></td>
+            <td class="bad">❌ Sabah 09:00'da (Misafir çoktan başka otel tuttu)</td>
+            <td class="good">✅ 3 Saniye İçinde Anında Yanıt & Fotoğraf</td>
+          </tr>
+          <tr>
+            <td><b>Yabancı Dil (İngilizce, Almanca, Rusça)</b></td>
+            <td class="bad">❌ Gece vardiyasında yabancı dil bilen personel zorluğu</td>
+            <td class="good">✅ 7/24 Ana Dil Kalitesinde 4 Dilde İletişim</td>
+          </tr>
+          <tr>
+            <td><b>Oda Fotoğrafı & Fiyat Sunumu</b></td>
+            <td class="bad">❌ Tek tek galeriden fotoğraf arayıp kopyala-yapıştır</td>
+            <td class="good">✅ Otomatik HD Oda Kartı ve Güncel Fiyat Gönderimi</td>
+          </tr>
+          <tr>
+            <td><b>Acente / OTA Komisyon Oranı</b></td>
+            <td class="bad">❌ %15 ile %22 arası Booking / ETS / Acente Kesintisi</td>
+            <td class="good">✅ %0 Komisyon (Doğrudan Otel Kasasına Tahsilat)</td>
+          </tr>
+          <tr>
+            <td><b>Personel Maliyeti & Kurulum</b></td>
+            <td class="bad">❌ Yüksek vardiya maliyeti ve haftalar süren eğitim</td>
+            <td class="good">✅ 24 Saatte Anahtar Teslim Kurulum & Sabit Düşük Maliyet</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 3 ADIMDA NASIL ÇALIŞIR -->
+<section class="corp-section" id="nasil-calisir" style="padding-top:10px;">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-pill">24 SAATTE CANLI YAYIN</div>
+      <h2>3 Adımda Anahtar Teslim Kurulum</h2>
+      <p>Otelinizin hiçbir teknik işlem yapmasına gerek yoktur. Tüm kurulum mühendislerimiz tarafından gerçekleştirilir.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <span class="step-num">ADIM 01 • SAAT 0–4</span>
+        <h3>Otel Hafızasının Eğitilmesi</h3>
+        <p>Oda tiplerinizi, sezonluk/hafta sonu fiyatlarınızı, kahvaltı saatlerinizi, şirket konaklama kurallarınızı ve oda fotoğraflarınızı yapay zeka beynine biz tanımlıyoruz.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">ADIM 02 • SAAT 4–12</span>
+        <h3>WhatsApp & Instagram Bağlantısı</h3>
+        <p>Mevcut kurumsal WhatsApp Business hattınızı ve Instagram hesabınızı resmi Meta API altyapısıyla güvenli şekilde sisteme bağlıyoruz.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">ADIM 03 • SAAT 12–24</span>
+        <h3>14 Gün Ücretsiz Canlı Pilot</h3>
+        <p>Asistanınız 7/24 devreye girer. 14 gün boyunca gece yakalanan misafirleri ve resepsiyonunuza düşen hazır rezervasyon bildirimlerini canlı izlersiniz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KURUMSAL PAKETLER -->
+<section class="corp-section" id="paketler" style="padding-top:10px;">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-pill">ŞEFFAF KURUMSAL LİSANS</div>
+      <h2>Otelinizin Ölçeğine Uygun Paketler</h2>
+      <p>Tüm paketlerimizde <b>14 Gün Ücretsiz Pilot Deneme</b> ve <b>Ücretsiz İlk Kurulum</b> dahildir. Ayda sadece 1 gecelik oda satışı bile sistemin tüm maliyetini fazlasıyla çıkarır.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div>
+          <h3>Butik Otel Paketi</h3>
+          <div class="room-range">10 – 25 Odalı Butik Oteller İçin</div>
+          <p style="font-size:13.5px; color:var(--text-muted);">Bölgesel butik oteller ve taş konaklar için eksiksiz 7/24 karşılama paketi.</p>
+          <ul>
+            <li>✅ 7/24 WhatsApp & Instagram DM Yanıt</li>
+            <li>✅ Otomatik Oda Fotoğrafı Gönderimi</li>
+            <li>✅ 4 Dilde (TR, EN, DE, RU) Misafir İletişimi</li>
+            <li>✅ Yönetici WhatsApp Bildirim Hattı</li>
+            <li>✅ 14 Gün Ücretsiz Pilot Deneme</li>
+          </ul>
+        </div>
+        <a href="#ucretsiz-pilot" class="btn-secondary" style="justify-content:center;">14 Gün Ücretsiz Başlat</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="popular-badge">EN ÇOK TERCİH EDİLEN</div>
+        <div>
+          <h3>Business & Şehir Oteli</h3>
+          <div class="room-range">25 – 100 Odalı Oteller & Tatil Köyleri</div>
+          <p style="font-size:13.5px; color:var(--text-muted);">Sürekli iş, şirket ve tatil trafiği alan orta-büyük ölçekli oteller için tam otomasyon.</p>
+          <ul>
+            <li>✅ <b>Butik Paketteki Tüm Özellikler</b></li>
+            <li>✅ <b>OpenAI Whisper Sesli Mesaj Anlama</b></li>
+            <li>✅ <b>Şirket / Kurumsal Grup Fiyatlandırma Modülü</b></li>
+            <li>✅ <b>Esnek Sezon & Hafta Sonu Fiyat Tablosu</b></li>
+            <li>✅ <b>İzmir İçi Yüz Yüze & Türkiye Geneli 7/24 VIP Destek</b></li>
+          </ul>
+        </div>
+        <a href="#ucretsiz-pilot" class="btn-primary" style="justify-content:center;">🚀 14 Gün Ücretsiz Pilot Başlat</a>
+      </div>
+
+      <div class="price-card">
+        <div>
+          <h3>Kurumsal Zincir & PMS</h3>
+          <div class="room-range">100+ Oda ve Çoklu Otel Grupları</div>
+          <p style="font-size:13.5px; color:var(--text-muted);">Özel kanal yöneticisi (HotelRunner, ElektraWeb) ve ERP bağlantısı gerektiren tesisler.</p>
+          <ul>
+            <li>✅ <b>Business Paketteki Tüm Özellikler</b></li>
+            <li>✅ Canlı PMS / Kanal Yöneticisi API Köprüsü</li>
+            <li>✅ Çoklu Şube Tek Merkez Raporlama</li>
+            <li>✅ Özel Ödeme Linki (Sanal POS) Entegrasyonu</li>
+            <li>✅ Özel Müşteri Başarı Yöneticisi</li>
+          </ul>
+        </div>
+        <a href="#ucretsiz-pilot" class="btn-secondary" style="justify-content:center;">Kurumsal Teklif & Demo İste</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIKÇA SORULAN SORULAR -->
+<section class="corp-section" id="sss" style="padding-top:10px;">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-pill">MERAK EDİLENLER</div>
+      <h2>Sıkça Sorulan Sorular</h2>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>1. Misafirler yapay zeka ile konuştuğunu anlayıp soğukluk hisseder mi?</summary>
+        <p>Hayır. Operis AI klasik tuşlamalı botlardan tamamen farklıdır. Otelinizin üslubuyla, sıcak ve 5 yıldızlı bir konsiyerj zarafetiyle konuşur. Yukarıdaki canlı simülatörden dilediğiniz soruyu sorarak doğallığını bizzat test edebilirsiniz.</p>
+      </details>
+      <details class="faq-item">
+        <summary>2. Resepsiyon personelimiz istediği an sohbete müdahale edebilir mi?</summary>
+        <p>Kesinlikle evet. WhatsApp Business ve Instagram uygulamanız telefonunuzda ve bilgisayarınızda normal şekilde çalışmaya devam eder. İstediğiniz an sohbete dahil olabilir, özel indirim veya teyit verebilirsiniz.</p>
+      </details>
+      <details class="faq-item">
+        <summary>3. Oda fiyatlarımız veya müsaitlik değiştiğinde nasıl güncellenir?</summary>
+        <p>Yönetici panelimizden veya doğrudan WhatsApp üzerinden asistanınıza tek mesajla yeni fiyatlarınızı yaı dolu tarihlerinizi iletmeniz yeterlidir; saniyeler içinde tüm yanıtlar güncellenir.</p>
+      </details>
+      <details class="faq-item">
+        <summary>4. 14 günlük ücretsiz pilot kurulumda herhangi bir taahhüt var mı?</summary>
+        <p>Hiçbir sözleşme veya kredi kartı şartı yoktur. Otelinize özel sistemi kurarız, 14 gün boyunca gelen misafir mesajlarını nasıl rezervasyona çevirdiğini görürsünüz. Memnun kalırsanız devam edersiniz.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- 14 GÜN ÜCRETSİZ PİLOT BAŞVURU FORMU -->
+<section class="corp-section" id="ucretsiz-pilot">
+  <div class="container">
+    <div class="apply-card">
+      <div>
+        <div class="badge-pill">HEMEN BAŞLAYIN</div>
+        <h2 style="font-size:32px; font-weight:800; margin-bottom:14px;">Oteliniz İçin 14 Günlük Ücretsiz Pilot Kurulumu Başlatın</h2>
+        <p style="color:#cbd5e1; font-size:15px; margin-bottom:20px;">
+          Bilgilerinizi doldurun; otelinize özel hazırlanmış canlı yapay zeka asistanınızı 24 saat içinde aktif edelim. İzmir (Karşıyaka, Çiğli, Aliağa, Foça, Urla, Çeşme) bölgesindeki otellerimizle dilerlerse tesislerinde yüz yüze kurulum da gerçekleştiriyoruz.
+        </p>
+        <div style="font-size:14px; color:#a7f3d0; display:flex; flex-direction:column; gap:8px;">
+          <div>📧 <b>Kurumsal E-Posta:</b> scorsty@gmail.com</div>
+          <div>📸 <b>Resmi Instagram:</b> <a href="https://www.instagram.com/operis_ai/" target="_blank" style="color:#34d399;">@operis_ai</a></div>
+          <div>📍 <b>Merkez Operasyon:</b> İzmir & Türkiye Geneli Bulut Altyapısı</div>
+        </div>
+      </div>
+
+      <div style="background:rgba(7,11,20,0.8); padding:28px; border-radius:16px; border:1px solid var(--border);">
+        <h3 style="margin-bottom:16px; font-size:18px;">🏨 Hızlı Pilot Başvuru Formu</h3>
+        <div class="form-grid">
+          <input type="text" id="formOtel" placeholder="Otelinizin Adı *" required>
+          <input type="text" id="formBolge" placeholder="İl / İlçe (Örn: Karşıyaka, Foça) *" required>
+          <input type="number" id="formOda" placeholder="Oda Sayısı (Örn: 45)">
+          <input type="tel" id="formTel" placeholder="Yetkili Telefon / WhatsApp *" required>
+          <input type="text" id="formNot" class="full" placeholder="Varsa Instagram adresiniz veya özel notunuz">
+          <button type="button" class="btn-primary full" style="justify-content:center; padding:13px;" onclick="basvuruGonder('email')">
+            📩 14 Gün Ücretsiz Pilot Talebini Gönder
+          </button>
+          <button type="button" class="btn-secondary full" style="justify-content:center; padding:11px;" onclick="basvuruGonder('ig')">
+            📸 Instagram (@operis_ai) Üzerinden Hızlı Yaz
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KURUMSAL FOOTER -->
+<footer class="corp-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="brand" style="margin-bottom:12px;">
+          <div class="brand-logo">O</div>
+          <div class="brand-text-wrap">
+            <div class="brand-name">OPERIS <span>AI</span></div>
+            <div class="brand-sub">OTEL & TURİZM YAPAY ZEKA OTOMASYONU</div>
+          </div>
+        </div>
+        <p>Oteller, butik konaklar ve turizm işletmeleri için 7/24 WhatsApp & Instagram DM üzerinde çalışan yeni nesil yapay zeka resepsiyon ve doğrudan satış teknolojisi.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Hızlı Menü</h4>
+        <ul>
+          <li><a href="#canli-simulator">Canlı Otel Simülatörü</a></li>
+          <li><a href="#cozumler">6 Çekirdek Çözüm</a></li>
+          <li><a href="#roi-hesaplayici">Komisyon & Gelir Hesaplayıcı</a></li>
+          <li><a href="#nasil-calisir">24 Saatte Kurulum</a></li>
+          <li><a href="#paketler">Kurumsal Paketler</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Hizmet Bölgelerimiz</h4>
+        <ul>
+          <li>İzmir (Karşıyaka, Çiğli, Aliağa, Foça)</li>
+          <li>Çeşme, Alaçatı, Urla, Seferihisar</li>
+          <li>Kapadokya, Kazdağları, Cunda, Ayvalık</li>
+          <li>Abant, Sapanca, Ağva, Kaş, Bodrum</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kurumsal İletişim</h4>
+        <ul>
+          <li><a href="mailto:scorsty@gmail.com">📧 scorsty@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/operis_ai/" target="_blank">📸 Instagram: @operis_ai</a></li>
+          <li><a href="#ucretsiz-pilot">🛡️ 14 Gün Ücretsiz Pilot</a></li>
+        </ul>
       </div>
     </div>
 
-    <div class="chat-area" id="chatArea">
-      <!-- Mesajlar dinamik eklenecek -->
+    <div style="border-top:1px solid var(--border); padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <span>© 2026 Operis AI — Otel & Turizm Yapay Zeka Sistemleri. Tüm hakları saklıdır.</span>
+      <span>KVKK Uyumlu • Resmi Meta Cloud API Mimarisi</span>
     </div>
-
-    <div class="quick-chips">
-      <button class="chip" onclick="hizliGonder('Hafta sonu 2 kişi için boş oda var mı?')">📅 Hafta sonu müsaitlik & fiyat</button>
-      <button class="chip" onclick="hizliGonder('Deluxe odanın fotoğraflarını atar mısınız?')">📸 Oda fotoğrafları</button>
-      <button class="chip" onclick="hizliGonder('Giriş-çıkış saatleri ve kahvaltı dahil mi?')">🍳 Kahvaltı & saatler</button>
-      <button class="chip" onclick="hizliGonder('Evcil hayvan kabul ediyor musunuz?')">🐾 Evcil hayvan</button>
-    </div>
-
-    <div class="chat-input-bar">
-      <input type="text" class="chat-input" id="userInput" placeholder="Mesajınızı yazın..." onkeydown="if(event.key==='Enter') mesajGonder()">
-      <button class="send-btn" onclick="mesajGonder()">➤</button>
-    </div>
-  </section>
-</main>
+  </div>
+</footer>
 
 <script>
 const OTELLER = {
-  huzurla: {
-    ad: "Huzurla Otel Urla",
-    kisa: "H",
-    fiyat: "4.250 TL",
-    oda: "Deniz Manzaralı Taş Süit",
-    gorsel: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80",
-    detay: "Urla İskele mevkiinde, denize ve koylara yürüme mesafesinde sakin bir butik konaklama."
+  "huzurla": {
+    "ad": "Huzurla Otel Urla",
+    "bolge": "Urla / İzmir",
+    "kisa": "H",
+    "fiyat": "4.250 TL",
+    "oda": "Deniz Manzaralı Taş Süit",
+    "gorsel": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=80",
+    "detay": "Urla İskele mevkiinde, denize ve koylara yürüme mesafesinde sakin bir butik konaklama."
   },
-  alavya: {
-    ad: "Alavya Hotel Alaçatı",
-    kisa: "A",
-    fiyat: "14.500 TL",
-    oda: "Cumbalı Deluxe Taş Oda",
-    gorsel: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80",
-    detay: "Alaçatı'nın kalbinde, dut ağaçları altında Michelin Key ödüllü lüks tasarım deneyimi."
+  "alavya": {
+    "ad": "Alavya Hotel Alaçatı",
+    "bolge": "Alaçatı / Çeşme",
+    "kisa": "A",
+    "fiyat": "14.500 TL",
+    "oda": "Cumbalı Deluxe Taş Oda",
+    "gorsel": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80",
+    "detay": "Alaçatı'nın kalbinde, dut ağaçları altında Michelin Key ödüllü lüks tasarım deneyimi."
   },
-  museum: {
-    ad: "Museum Hotel Kapadokya",
-    kisa: "M",
-    fiyat: "18.000 TL",
-    oda: "Panoramik Mağara Süiti",
-    gorsel: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80",
-    detay: "Uçhisar Kalesi eteklerinde, sıcak hava balonları manzaralı eşsiz 'yaşayan müze' konsepti."
+  "museum": {
+    "ad": "Museum Hotel Kapadokya",
+    "bolge": "Uçhisar / Kapadokya",
+    "kisa": "M",
+    "fiyat": "18.000 TL",
+    "oda": "Panoramik Mağara Süiti",
+    "gorsel": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80",
+    "detay": "Uçhisar Kalesi eteklerinde, sıcak hava balonları manzaralı eşsiz yaşayan müze konsepti."
   },
-  lola: {
-    ad: "Lola 38 Hotel Foça",
-    kisa: "L",
-    fiyat: "3.800 TL",
-    oda: "Denize Sıfır Balkonlu Oda",
-    gorsel: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80",
-    detay: "Eski Foça sahilinde, gün batımı manzaralı şık ve huzurlu bir butik otel."
+  "lola": {
+    "ad": "Lola 38 Hotel Foça",
+    "bolge": "Eski Foça / İzmir",
+    "kisa": "L",
+    "fiyat": "3.800 TL",
+    "oda": "Denize Sıfır Balkonlu Oda",
+    "gorsel": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80",
+    "detay": "Eski Foça sahilinde, gün batımı manzaralı şık ve huzurlu bir butik otel."
   },
-  bulbul: {
-    ad: "Bülbül Yuvası Butik Otel",
-    kisa: "B",
-    fiyat: "5.500 TL",
-    oda: "Tarihi Taş Süit",
-    gorsel: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80",
-    detay: "Eski Foça'nın tarihi dokusunda, özel tasarımlı odalar ve gurme Ege kahvaltısı."
+  "bulbul": {
+    "ad": "Bülbül Yuvası Butik Otel",
+    "bolge": "Eski Foça / İzmir",
+    "kisa": "B",
+    "fiyat": "5.500 TL",
+    "oda": "Tarihi Taş Süit",
+    "gorsel": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80",
+    "detay": "Eski Foça'nın tarihi dokusunda, özel tasarımlı odalar ve gurme Ege kahvaltısı."
+  },
+  "anemon_kent_cigli_otel": {
+    "ad": "Anemon Kent Çiğli Otel",
+    "bolge": "İzmir / Çiğli (Ataşehir)",
+    "kisa": "A",
+    "fiyat": "4.400 TL",
+    "oda": "4 Yıldızlı İş & Şehir Oteli (78 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Çiğli (Ataşehir) bölgesinde (4 Yıldızlı İş & Şehir Oteli (78 Oda)) konforlu konaklama. Çiğli Organize Sanayi ve hastanelere çok yakın, 78 odalı büyük bir otel. Ancak akşam saatlerinde kurumsal fiyat ve oda müsaitliği için aradığımızda veya mesaj attığımızda resepsiyon yoğunluğundan geç dönüş yapılıyor."
+  },
+  "avwan_hotel_cigli": {
+    "ad": "Avwan Hotel Çiğli",
+    "bolge": "İzmir / Çiğli (Balatçık)",
+    "kisa": "A",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Şehir & İş Oteli (42 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Çiğli (Balatçık) bölgesinde (Orta Ölçekli Şehir & İş Oteli (42 Oda)) konforlu konaklama. 42 odalı modern ve tertemiz bir otel. WhatsApp ve Instagram üzerinden fiyat ve grup konaklaması sorduğumuzda geri dönüş biraz gecikti."
+  },
+  "restway_hotel_cigli": {
+    "ad": "Restway Hotel Çiğli",
+    "bolge": "İzmir / Çiğli (Ataşehir)",
+    "kisa": "R",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Şehir & Sağlık Turizmi Oteli (36 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Çiğli (Ataşehir) bölgesinde (Orta Ölçekli Şehir & Sağlık Turizmi Oteli (36 Oda)) konforlu konaklama. Çiğli'deki özel hastanelere yürüme mesafesinde 36 odalı çok şık bir otel. Gece geç saatte oda müsaitliği ve fiyat için yazdığımızda yanıt sabah geldi."
+  },
+  "best_western_premier_karsiya": {
+    "ad": "Best Western Premier Karşıyaka",
+    "bolge": "İzmir / Karşıyaka (Mavişehir)",
+    "kisa": "B",
+    "fiyat": "4.400 TL",
+    "oda": "4 Yıldızlı Kongre, Spa & Şehir Oteli (98 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Karşıyaka (Mavişehir) bölgesinde (4 Yıldızlı Kongre, Spa & Şehir Oteli (98 Oda)) konforlu konaklama. Karşıyaka bölgesinin en kapsamlı otellerinden biri. Yoğun saatlerde telefonla rezervasyona bağlanmak veya sosyal medyadan hızlı fiyat/spa bilgisi almak zaman alabiliyor."
+  },
+  "marlen_hotel_mavisehir": {
+    "ad": "Marlen Hotel Mavişehir",
+    "bolge": "İzmir / Karşıyaka (Mavişehir)",
+    "kisa": "M",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Modern Şehir Oteli (35 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Karşıyaka (Mavişehir) bölgesinde (Orta Ölçekli Modern Şehir Oteli (35 Oda)) konforlu konaklama. Mavişehir ve Bostanlı'ya çok yakın, modern tasarımlı bir otel. Instagram DM ve WhatsApp üzerinden hafta sonu oda fiyatı sorduğumuzda geç yanıt alabildik."
+  },
+  "ve_hotels_karsiyaka_bostanli": {
+    "ad": "VE Hotels Karşıyaka (Bostanlı)",
+    "bolge": "İzmir / Karşıyaka (Bostanlı)",
+    "kisa": "V",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Sahil & Şehir Oteli (40 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Karşıyaka (Bostanlı) bölgesinde (Orta Ölçekli Sahil & Şehir Oteli (40 Oda)) konforlu konaklama. Bostanlı sahilde konumu muhteşem. Ancak yoğun günlerde telefonla veya mesajla oda müsaitliği öğrenmek istediğimizde resepsiyona ulaşmak zor oluyor."
+  },
+  "karsiyaka_plus_otel": {
+    "ad": "Karşıyaka Plus Otel",
+    "bolge": "İzmir / Karşıyaka",
+    "kisa": "K",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Şehir Oteli (24 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Karşıyaka bölgesinde (Orta Ölçekli Şehir Oteli (24 Oda)) konforlu konaklama. Karşıyaka Çarşı ve iskeleye yürüme mesafesinde. Akşam saatlerinde WhatsApp'tan fiyat ve otopark durumu sorduğumuzda dönüş geç yapıldı."
+  },
+  "life_artemis_hotel_bostanli": {
+    "ad": "Life Artemis Hotel Bostanlı",
+    "bolge": "İzmir / Karşıyaka (Bostanlı)",
+    "kisa": "L",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Şehir Oteli (22 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Karşıyaka (Bostanlı) bölgesinde (Orta Ölçekli Şehir Oteli (22 Oda)) konforlu konaklama. Bostanlı'nın tam merkezinde. Instagram DM'den müsaitlik sorduğumuzda yoğunluktan geç cevap verildi, telefonla aramak gerekti."
+  },
+  "ramada_by_wyndham_izmir_alia": {
+    "ad": "Ramada by Wyndham İzmir Aliağa",
+    "bolge": "İzmir / Aliağa",
+    "kisa": "R",
+    "fiyat": "4.400 TL",
+    "oda": "4 Yıldızlı İş & Kurumsal Otel (84 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Aliağa bölgesinde (4 Yıldızlı İş & Kurumsal Otel (84 Oda)) konforlu konaklama. Aliağa'da şirket ve fabrika ziyaretleri için en çok tercih edilen 84 odalı otel. Yoğun check-in saatlerinde telefon ve e-posta ile kurumsal fiyat/müsaitlik taleplerine dönüş gecikebiliyor."
+  },
+  "prestige_hotel_donmez_aliaga": {
+    "ad": "Prestige Hotel Dönmez Aliağa",
+    "bolge": "İzmir / Aliağa",
+    "kisa": "P",
+    "fiyat": "4.400 TL",
+    "oda": "4 Yıldızlı Merkez İş Oteli (52 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Aliağa bölgesinde (4 Yıldızlı Merkez İş Oteli (52 Oda)) konforlu konaklama. Aliağa tam merkezde 50+ odalı köklü bir otel. Akşam saatlerinde mesajla veya e-postayla oda fiyatı sorduğumuzda yanıt ertesi gün geldi."
+  },
+  "del_puerto_hotel_aliaga": {
+    "ad": "Del Puerto Hotel Aliağa",
+    "bolge": "İzmir / Aliağa",
+    "kisa": "D",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli İş & Şehir Oteli (28 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Aliağa bölgesinde (Orta Ölçekli İş & Şehir Oteli (28 Oda)) konforlu konaklama. Aliağa'da 28 odalı modern ve çok temiz bir otel. WhatsApp ve Instagram üzerinden yapılan rezervasyon sorularına yoğun saatlerde geç dönüş olabiliyor."
+  },
+  "hanedan_beach_hotel_foca": {
+    "ad": "Hanedan Beach Hotel Foça",
+    "bolge": "İzmir / Foça",
+    "kisa": "H",
+    "fiyat": "4.400 TL",
+    "oda": "Orta/Büyük Ölçekli Sahil Resort Oteli (68 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Foça bölgesinde (Orta/Büyük Ölçekli Sahil Resort Oteli (68 Oda)) konforlu konaklama. 68 odalı, kendi plajı ve geniş alanı olan harika bir Foça oteli. Yoğun dönemde telefonla ve Instagram DM'den fiyat/rezervasyon sormak istediğimizde yanıtlar gecikiyor."
+  },
+  "la_petra_hotel_yenifoca": {
+    "ad": "La Petra Hotel Yenifoça",
+    "bolge": "İzmir / Yenifoça",
+    "kisa": "L",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Sahil & Taş Otel (24 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Yenifoça bölgesinde (Orta Ölçekli Sahil & Taş Otel (24 Oda)) konforlu konaklama. Aliağa ve Çiğli'ye çok yakın, Yenifoça'da 24 odalı şık bir otel. Hafta sonu oda müsaitliği için Instagram'dan yazdığımızda geç dönüş yapıldı."
+  },
+  "navalia_hotel_foca": {
+    "ad": "Navalia Hotel Foça",
+    "bolge": "İzmir / Foça",
+    "kisa": "N",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Sahil Oteli (19 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Foça bölgesinde (Orta Ölçekli Sahil Oteli (19 Oda)) konforlu konaklama. Denize sıfır çok şık bir otel. WhatsApp ve DM üzerinden fiyat sorduğumuzda yoğunluktan dolayı birkaç saat sonra yanıt alabildik."
+  },
+  "agonz_hotel_agz_hotel_dikili": {
+    "ad": "Agonz Hotel (AGZ Hotel) Dikili",
+    "bolge": "İzmir / Dikili",
+    "kisa": "A",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Sahil & Şehir Oteli (30 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Dikili bölgesinde (Orta Ölçekli Sahil & Şehir Oteli (30 Oda)) konforlu konaklama. Dikili'de 30 odalı, yıl boyu açık kaliteli bir otel. Akşam saatlerinde mesajla oda müsaitliği sorduğumuzda ertesi gün dönüş yapıldı."
+  },
+  "alavya_hotel_alacati": {
+    "ad": "Alavya Hotel Alaçatı",
+    "bolge": "İzmir / Çeşme",
+    "kisa": "A",
+    "fiyat": "4.400 TL",
+    "oda": "Lüks Butik Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Çeşme bölgesinde (Lüks Butik Otel) konforlu konaklama. Otelin atmosferi ve kahvaltısı olağanüstü. Ancak yoğun sezonda Instagram'dan ve WhatsApp'tan fiyat ve müsaitlik sorduğumda geri dönüş çok geç yapıldı."
+  },
+  "huzurla_otel_urla": {
+    "ad": "Huzurla Otel Urla",
+    "bolge": "İzmir / Urla",
+    "kisa": "H",
+    "fiyat": "4.400 TL",
+    "oda": "Butik Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Urla bölgesinde (Butik Otel) konforlu konaklama. Koylara ve iskeleye yakın. Fiyat bilgisi almak için DM attım dönüş alamadım, telefonla arayarak çözdüm."
+  },
+  "villa_taraca_romantik_otel": {
+    "ad": "Villa Taraça Romantik Otel",
+    "bolge": "İzmir / Çeşme",
+    "kisa": "V",
+    "fiyat": "4.400 TL",
+    "oda": "Butik Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Çeşme bölgesinde (Butik Otel) konforlu konaklama. Romantik ve sakin bir atmosfer. Hafta sonu fiyat sormak için aradığımda resepsiyon meşguldü, mesajıma da geç dönüldü."
+  },
+  "foca_antik_otel": {
+    "ad": "Foça Antik Otel",
+    "bolge": "İzmir / Foça",
+    "kisa": "F",
+    "fiyat": "4.400 TL",
+    "oda": "Tarihi Butik Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Foça bölgesinde (Tarihi Butik Otel) konforlu konaklama. Tarihi taş binada kalmak harika bir duygu. Hafta sonu doluluk sormak için yazdığımda geç dönüldü, yer kalmamıştı."
+  },
+  "noesta_alacati": {
+    "ad": "Noesta Alaçatı",
+    "bolge": "İzmir / Çeşme",
+    "kisa": "N",
+    "fiyat": "4.400 TL",
+    "oda": "Butik Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Çeşme bölgesinde (Butik Otel) konforlu konaklama. Bahçesi ve havuzu çok huzurlu. Rezervasyon için WhatsApp'tan yazdığımda birkaç saat sonra yanıt alabildim, acil oda tutmak isteyenler için biraz yavaş kalıyor."
+  },
+  "baska_urla_otel": {
+    "ad": "Başka Urla Otel",
+    "bolge": "İzmir / Urla",
+    "kisa": "B",
+    "fiyat": "4.400 TL",
+    "oda": "Butik Otel & Bağ Evi — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Urla bölgesinde (Butik Otel & Bağ Evi) konforlu konaklama. Doğanın içinde müthiş bir bağ evi konsepti. Özel etkinlik ve rezervasyon için e-posta attım iki gün sonra dönüş aldım."
+  },
+  "ke_urla_butik_otel": {
+    "ad": "KE Urla Butik Otel",
+    "bolge": "İzmir / Urla",
+    "kisa": "K",
+    "fiyat": "4.400 TL",
+    "oda": "Butik Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Urla bölgesinde (Butik Otel) konforlu konaklama. Konumu Sanat Sokağı'na çok yakın. Gece giriş yapmak için mesaj attığımda geç cevap geldi."
+  },
+  "lola_38_hotel_foca": {
+    "ad": "Lola 38 Hotel Foça",
+    "bolge": "İzmir / Foça",
+    "kisa": "L",
+    "fiyat": "4.400 TL",
+    "oda": "Butik Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Foça bölgesinde (Butik Otel) konforlu konaklama. Denize sıfır harika bir konum. Rezervasyon ve oda seçimi için WhatsApp'tan yazıştık ama mesajlara geç cevap verildi."
+  },
+  "bulbul_yuvasi_butik_otel": {
+    "ad": "Bülbül Yuvası Butik Otel",
+    "bolge": "İzmir / Foça",
+    "kisa": "B",
+    "fiyat": "4.400 TL",
+    "oda": "Lüks Butik Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Foça bölgesinde (Lüks Butik Otel) konforlu konaklama. Foça'nın en prestijli otellerinden biri. Ancak akşam saatlerinde aradığımda resepsiyon açmadı, WhatsApp'tan da sabah yanıt verildi."
+  },
+  "urla_zeytin_otel": {
+    "ad": "Urla Zeytin Otel",
+    "bolge": "İzmir / Urla",
+    "kisa": "U",
+    "fiyat": "4.400 TL",
+    "oda": "Butik Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Urla bölgesinde (Butik Otel) konforlu konaklama. Deniz manzaralı odaları güzel. WhatsApp'tan müsaitlik sordum, ertesi gün öğlen döndüler."
+  },
+  "museum_hotel_kapadokya": {
+    "ad": "Museum Hotel Kapadokya",
+    "bolge": "Nevşehir / Uçhisar",
+    "kisa": "M",
+    "fiyat": "4.400 TL",
+    "oda": "Lüks Mağara Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80",
+    "detay": "Nevşehir / Uçhisar bölgesinde (Lüks Mağara Otel) konforlu konaklama. Sıcak hava balonu manzarası ve müze konsepti büyüleyici. Ancak akşam saatlerinde oda fiyatı ve müsaitlik için WhatsApp'tan yazdığımda sabah 10'da geri dönüş yapıldı, yer kalmamıştı."
+  },
+  "argos_in_cappadocia": {
+    "ad": "Argos in Cappadocia",
+    "bolge": "Nevşehir / Uçhisar",
+    "kisa": "A",
+    "fiyat": "4.400 TL",
+    "oda": "Tarihi Lüks Butik Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80",
+    "detay": "Nevşehir / Uçhisar bölgesinde (Tarihi Lüks Butik Otel) konforlu konaklama. Tarihi manastır dokusu harika. Konaklama öncesi özel oda seçimi ve fiyat için e-posta attım, yoğunluktan dolayı geç yanıt aldım."
+  },
+  "sultan_cave_suites": {
+    "ad": "Sultan Cave Suites",
+    "bolge": "Nevşehir / Göreme",
+    "kisa": "S",
+    "fiyat": "4.400 TL",
+    "oda": "Panoramik Mağara Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80",
+    "detay": "Nevşehir / Göreme bölgesinde (Panoramik Mağara Otel) konforlu konaklama. Terasından balonları izlemek harika. Instagram DM'den fiyat ve boş oda sorduğumda yoğun sezonda cevap alamadım, arayarak çözmek zorunda kaldım."
+  },
+  "mithra_cave_hotel": {
+    "ad": "Mithra Cave Hotel",
+    "bolge": "Nevşehir / Göreme",
+    "kisa": "M",
+    "fiyat": "4.400 TL",
+    "oda": "Butik Mağara Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80",
+    "detay": "Nevşehir / Göreme bölgesinde (Butik Mağara Otel) konforlu konaklama. Manzara olağanüstü. WhatsApp hattından rezervasyon sormuştum, birkaç saat sonra cevap geldi, biraz daha hızlı olmalı."
+  },
+  "kayakapi_premium_caves": {
+    "ad": "Kayakapi Premium Caves",
+    "bolge": "Nevşehir / Ürgüp",
+    "kisa": "K",
+    "fiyat": "4.400 TL",
+    "oda": "Tarihi Lüks Butik Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80",
+    "detay": "Nevşehir / Ürgüp bölgesinde (Tarihi Lüks Butik Otel) konforlu konaklama. Dünyanın en iyi otellerinden biri. Ancak hafta sonu gece geç saatte müsaitlik için mesaj attığımda resepsiyon ertesi gün döndü."
+  },
+  "taskonaklar_cave_hotel": {
+    "ad": "Taskonaklar Cave Hotel",
+    "bolge": "Nevşehir / Uçhisar",
+    "kisa": "T",
+    "fiyat": "4.400 TL",
+    "oda": "Butik Mağara Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=80",
+    "detay": "Nevşehir / Uçhisar bölgesinde (Butik Mağara Otel) konforlu konaklama. Güvercinlik Vadisi manzarası muazzam. Özel oda seçimi için WhatsApp'tan bilgi istedim, dönüş biraz geç oldu."
+  },
+  "villa_mahal": {
+    "ad": "Villa Mahal",
+    "bolge": "Antalya / Kalkan",
+    "kisa": "V",
+    "fiyat": "4.400 TL",
+    "oda": "Lüks Yamaç Butik Oteli — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=700&q=80",
+    "detay": "Antalya / Kalkan bölgesinde (Lüks Yamaç Butik Oteli) konforlu konaklama. Kalkan koyuna bakan eşsiz bir konum. Sezon öncesi fiyat sormak için yazdığımda geç cevap geldi."
+  },
+  "doria_hotel_kas": {
+    "ad": "Doria Hotel Kaş",
+    "bolge": "Antalya / Kaş",
+    "kisa": "D",
+    "fiyat": "4.400 TL",
+    "oda": "Butik Otel & Plaj — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=80",
+    "detay": "Antalya / Kaş bölgesinde (Butik Otel & Plaj) konforlu konaklama. Kaş manzarası çok ferah. Rezervasyon ve doluluk için Instagram DM'den sordum yanıt alamadım, telefonla ulaştım."
+  },
+  "meis_exclusive_hotel_kas": {
+    "ad": "Meis Exclusive Hotel Kaş",
+    "bolge": "Antalya / Kaş",
+    "kisa": "M",
+    "fiyat": "4.400 TL",
+    "oda": "Butik Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80",
+    "detay": "Antalya / Kaş bölgesinde (Butik Otel) konforlu konaklama. Sonsuzluk havuzu ve Meis manzarası harika. WhatsApp'tan müsaitlik sorduğumda resepsiyon geç döndü."
+  },
+  "casa_dellarte": {
+    "ad": "Casa dell'Arte",
+    "bolge": "Muğla / Bodrum",
+    "kisa": "C",
+    "fiyat": "4.400 TL",
+    "oda": "Lüks Sanat Oteli — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80",
+    "detay": "Muğla / Bodrum bölgesinde (Lüks Sanat Oteli) konforlu konaklama. Otel adeta bir sanat galerisi. Hafta sonu konaklama fiyatı için e-posta attım iki gün sonra dönüş yapıldı."
+  },
+  "7800_cesme": {
+    "ad": "7800 Çeşme",
+    "bolge": "İzmir / Çeşme",
+    "kisa": "7",
+    "fiyat": "4.400 TL",
+    "oda": "Lüks Sahil Butik Oteli — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Çeşme bölgesinde (Lüks Sahil Butik Oteli) konforlu konaklama. Denize sıfır lüks bir tesis. Yoğun saatlerde telefonla ve WhatsApp'la resepsiyona ulaşmak zor oldu."
+  },
+  "the_marmara_bodrum": {
+    "ad": "The Marmara Bodrum",
+    "bolge": "Muğla / Bodrum",
+    "kisa": "T",
+    "fiyat": "4.400 TL",
+    "oda": "Lüks Butik Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80",
+    "detay": "Muğla / Bodrum bölgesinde (Lüks Butik Otel) konforlu konaklama. Bodrum Kalesi manzarası eşsiz. Akşam saatlerinde oda müsaitliği için mesaj attığımda dönüş gecikti."
+  },
+  "agva_nehir_evi_butik_otel": {
+    "ad": "Ağva Nehir Evi Butik Otel",
+    "bolge": "İstanbul / Ağva",
+    "kisa": "A",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Nehir Butik Oteli (15 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80",
+    "detay": "İstanbul / Ağva bölgesinde (Orta Ölçekli Nehir Butik Oteli (15 Oda)) konforlu konaklama. Göksu nehri kenarında şömineli ve jakuzili odaları harika. Hafta sonu için Instagram DM'den fiyat sorduğumda yoğunluktan geç dönüş yapıldı."
+  },
+  "agva_greenline_guesthouse": {
+    "ad": "Ağva Greenline Guesthouse",
+    "bolge": "İstanbul / Ağva",
+    "kisa": "A",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Yetişkin Butik Oteli (14 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=80",
+    "detay": "İstanbul / Ağva bölgesinde (Orta Ölçekli Yetişkin Butik Oteli (14 Oda)) konforlu konaklama. Nehir kıyısında çok romantik ve sakin bir butik otel. Ancak akşam saatlerinde telefon ve mesajla müsaitlik sormak istediğimizde ertesi sabah yanıt alabildik."
+  },
+  "wineport_lodge_agva": {
+    "ad": "Wineport Lodge Ağva",
+    "bolge": "İstanbul / Ağva",
+    "kisa": "W",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Nehir & Şömine Oteli (12 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=700&q=80",
+    "detay": "İstanbul / Ağva bölgesinde (Orta Ölçekli Nehir & Şömine Oteli (12 Oda)) konforlu konaklama. Taş mimarisi ve nehir kenarı atmosferi muazzam. Rezervasyon ve oda fiyatı için Instagram'dan yazdığımızda geç cevap geldi, telefonla aramak gerekti."
+  },
+  "tiny_river_house_agva": {
+    "ad": "Tiny River House Ağva",
+    "bolge": "İstanbul / Ağva",
+    "kisa": "T",
+    "fiyat": "4.400 TL",
+    "oda": "Nehir Kenarı Butik & Bungalov Otel — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=80",
+    "detay": "İstanbul / Ağva bölgesinde (Nehir Kenarı Butik & Bungalov Otel) konforlu konaklama. Doğanın içinde harika bir konsept. Instagram'da çok aktifler ama akşam saatlerinde DM'den fiyat ve hafta sonu müsaitliği sorduğumuzda dönüş gecikti."
+  },
+  "abant_lotus_otel": {
+    "ad": "Abant Lotus Otel",
+    "bolge": "Bolu / Abant",
+    "kisa": "A",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Doğa & Butik Otel (22 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80",
+    "detay": "Bolu / Abant bölgesinde (Orta Ölçekli Doğa & Butik Otel (22 Oda)) konforlu konaklama. Abant yolunda doğayla iç içe şık bir butik otel. Kış sezonunda hafta sonu şömineli oda fiyatı sormak için WhatsApp'tan yazdık, yoğunluktan geç döndüler."
+  },
+  "abant_garden_butik_otel": {
+    "ad": "Abant Garden Butik Otel",
+    "bolge": "Bolu / Abant",
+    "kisa": "A",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Doğa Butik Oteli (20 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80",
+    "detay": "Bolu / Abant bölgesinde (Orta Ölçekli Doğa Butik Oteli (20 Oda)) konforlu konaklama. Dere kenarında huzurlu bir tesis. Rezervasyon için mesaj attığımızda resepsiyon yoğun olduğu için birkaç saat sonra dönüş yapılabildi."
+  },
+  "abant_aden_boutique_hotel__s": {
+    "ad": "Abant Aden Boutique Hotel & Spa",
+    "bolge": "Bolu / Abant",
+    "kisa": "A",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Butik & Spa Oteli (28 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80",
+    "detay": "Bolu / Abant bölgesinde (Orta Ölçekli Butik & Spa Oteli (28 Oda)) konforlu konaklama. Orman manzaralı odaları ve şöminesi harika. Ancak hafta sonu yoğunluğunda telefonlara ve Instagram DM sorularına geç yanıt veriliyor."
+  },
+  "manici_kasri_kazdaglari": {
+    "ad": "Manici Kasrı Kazdağları",
+    "bolge": "Çanakkale / Ayvacık (Kazdağları)",
+    "kisa": "M",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Taş Konak & Doğa Oteli (24 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80",
+    "detay": "Çanakkale / Ayvacık (Kazdağları) bölgesinde (Orta Ölçekli Taş Konak & Doğa Oteli (24 Oda)) konforlu konaklama. Kazdağları'nın en karakteristik taş oteli. WhatsApp ve Instagram üzerinden oda tiplerini ve fiyatları sorduğumuzda dönüş biraz zaman aldı."
+  },
+  "ida_tas_konak_kazdaglari": {
+    "ad": "İda Taş Konak Kazdağları",
+    "bolge": "Çanakkale / Ayvacık (Kazdağları)",
+    "kisa": "İ",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Butik & Spa Oteli (21 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80",
+    "detay": "Çanakkale / Ayvacık (Kazdağları) bölgesinde (Orta Ölçekli Butik & Spa Oteli (21 Oda)) konforlu konaklama. Çam ormanları içinde harika bir taş konak. Akşam saatlerinde fiyat ve müsaitlik için mesaj attığımda sabah dönüş yapıldı."
+  },
+  "panjur_hotel_cunda": {
+    "ad": "Panjur Hotel Cunda",
+    "bolge": "Balıkesir / Ayvalık (Cunda)",
+    "kisa": "P",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Butik Taş Otel (16 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=80",
+    "detay": "Balıkesir / Ayvalık (Cunda) bölgesinde (Orta Ölçekli Butik Taş Otel (16 Oda)) konforlu konaklama. Cunda merkezde çok şık bir butik otel. Instagram'dan hafta sonu oda müsaitliği sorduğumda geç cevap geldi, telefonla ulaştım."
+  },
+  "cunda_despot_evi": {
+    "ad": "Cunda Despot Evi",
+    "bolge": "Balıkesir / Ayvalık (Cunda)",
+    "kisa": "C",
+    "fiyat": "4.400 TL",
+    "oda": "Tarihi Orta Ölçekli Butik Otel (28 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=700&q=80",
+    "detay": "Balıkesir / Ayvalık (Cunda) bölgesinde (Tarihi Orta Ölçekli Butik Otel (28 Oda)) konforlu konaklama. Tarihi bina ve restorasyon muazzam. Rezervasyon ve özel gün konaklaması için mesaj attığımızda geri dönüş gecikti."
+  },
+  "macaron_konagi_ayvalik": {
+    "ad": "Macaron Konağı Ayvalık",
+    "bolge": "Balıkesir / Ayvalık",
+    "kisa": "M",
+    "fiyat": "4.400 TL",
+    "oda": "Tarihi Butik Konak (12 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=700&q=80",
+    "detay": "Balıkesir / Ayvalık bölgesinde (Tarihi Butik Konak (12 Oda)) konforlu konaklama. Eski Ayvalık sokaklarında çok samimi bir konak. DM'den fiyat sorduğumuzda yoğunluktan dolayı ertesi gün yanıt alabildik."
+  },
+  "gizemli_konak_ayvalik": {
+    "ad": "Gizemli Konak Ayvalık",
+    "bolge": "Balıkesir / Ayvalık",
+    "kisa": "G",
+    "fiyat": "4.400 TL",
+    "oda": "Tarihi Taş Butik Otel (14 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80",
+    "detay": "Balıkesir / Ayvalık bölgesinde (Tarihi Taş Butik Otel (14 Oda)) konforlu konaklama. Tarihi dokusu çok güzel korunmuş. Telefonla ve mesajla rezervasyon bilgisi almak istediğimizde resepsiyona ulaşmak biraz vakit aldı."
+  },
+  "gullu_konaklari_sirince": {
+    "ad": "Güllü Konakları Şirince",
+    "bolge": "İzmir / Selçuk (Şirince)",
+    "kisa": "G",
+    "fiyat": "4.400 TL",
+    "oda": "Tarihi Butik Konak Oteli (15 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Selçuk (Şirince) bölgesinde (Tarihi Butik Konak Oteli (15 Oda)) konforlu konaklama. Şirince'nin en güzel manzaralı konağı. Hafta sonu için Instagram'dan ve e-postayla fiyat sorduğumuzda geç dönüş yapıldı."
+  },
+  "nisanyan_hotel_sirince": {
+    "ad": "Nişanyan Hotel Şirince",
+    "bolge": "İzmir / Selçuk (Şirince)",
+    "kisa": "N",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Bağ & Taş Evler Oteli (20 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Selçuk (Şirince) bölgesinde (Orta Ölçekli Bağ & Taş Evler Oteli (20 Oda)) konforlu konaklama. Köyün tepesinde taş evler ve mermer havuz harika. WhatsApp hattından oda seçimi için yazdığımızda birkaç saat sonra dönüş alabildik."
+  },
+  "sirince_tas_konak_butik_otel": {
+    "ad": "Şirince Taş Konak Butik Otel",
+    "bolge": "İzmir / Selçuk (Şirince)",
+    "kisa": "Ş",
+    "fiyat": "4.400 TL",
+    "oda": "Tarihi Butik Otel (12 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80",
+    "detay": "İzmir / Selçuk (Şirince) bölgesinde (Tarihi Butik Otel (12 Oda)) konforlu konaklama. Şirince merkezde çok sıcak bir taş konak. Gece saatlerinde oda müsaitliği için mesaj attık, sabah dönüş yapıldı."
+  },
+  "goreme_cave_lodge": {
+    "ad": "Göreme Cave Lodge",
+    "bolge": "Nevşehir / Göreme",
+    "kisa": "G",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Mağara Otel (18 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80",
+    "detay": "Nevşehir / Göreme bölgesinde (Orta Ölçekli Mağara Otel (18 Oda)) konforlu konaklama. Havuzlu ve balon manzaralı harika bir butik mağara otel. Instagram DM'den ve WhatsApp'tan fiyat sorduğumuzda yoğunluktan geç yanıt geldi."
+  },
+  "cappadocia_cave_lodge": {
+    "ad": "Cappadocia Cave Lodge",
+    "bolge": "Nevşehir / Göreme",
+    "kisa": "C",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Butik Mağara Otel (16 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=700&q=80",
+    "detay": "Nevşehir / Göreme bölgesinde (Orta Ölçekli Butik Mağara Otel (16 Oda)) konforlu konaklama. Göreme merkezde terası çok keyifli bir otel. Akşam saatlerinde balon turu ve oda fiyatı için mesaj attığımızda ertesi gün dönüldü."
+  },
+  "cappadocia_cave_suites": {
+    "ad": "Cappadocia Cave Suites",
+    "bolge": "Nevşehir / Göreme",
+    "kisa": "C",
+    "fiyat": "4.400 TL",
+    "oda": "Orta Ölçekli Mağara Süit Otel (36 Oda) — Özel Süit / Standart Oda",
+    "gorsel": "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=700&q=80",
+    "detay": "Nevşehir / Göreme bölgesinde (Orta Ölçekli Mağara Süit Otel (36 Oda)) konforlu konaklama. Gerçek peri bacası odalarda konaklama deneyimi sunuyor. Ancak rezervasyon ve transfer soruları için mesaj attığımızda yanıt süresi biraz uzundu."
   }
 };
 
@@ -515,7 +1847,7 @@ let seciliOtel = OTELLER.huzurla;
 function degistirOtel(anahtar) {
   seciliOtel = OTELLER[anahtar] || OTELLER.huzurla;
   document.getElementById("hotelTitle").innerText = seciliOtel.ad + " Asistanı";
-  document.getElementById("avatarText").innerText = seciliOtel.kisa;
+  document.getElementById("avatarText").innerText = seciliOtel.kisa || "O";
   chatSifirla();
 }
 
@@ -529,7 +1861,7 @@ let sohbetGecmisi = [];
 function chatSifirla() {
   sohbetGecmisi = [];
   const c = document.getElementById("chatArea");
-  const ilkMesaj = `Merhaba! Ben <b>${seciliOtel.ad}</b> 7/24 Yapay Zeka Misafir ve Rezervasyon Asistanıyım. 🌿<br><br>Size müsaitlik, güncel fiyatlar, oda fotoğrafları, havaalanı transferi veya özel talepleriniz (balayı, diyet menüsü vb.) konusunda anında yardımcı olabilirim. Ne sormak istersiniz?`;
+  const ilkMesaj = `Merhaba! Ben <b>${seciliOtel.ad}</b> 7/24 Yapay Zeka Misafir ve Rezervasyon Asistanıyım. 🌿<br><br>Size müsaitlik, güncel fiyatlar, oda fotoğrafları, grup/şirket konaklaması veya özel talepleriniz konusunda anında yardımcı olabilirim. Ne sormak istersiniz?`;
   c.innerHTML = `
     <div class="msg in">
       ${ilkMesaj}
@@ -569,182 +1901,45 @@ function odaKartiUret() {
       <div class="room-info">
         <b>${seciliOtel.oda}</b>
         <span>${seciliOtel.fiyat} / Gece (Kahvaltı Dahil)</span>
-        <a href="#" class="room-btn" onclick="alert('Demo Bildirimi: Gerçek sistemde misafir burada doğrudan otelinize rezervasyon onay mesajı atar!')">Rezervasyon Talebi Oluştur</a>
+        <a href="#ucretsiz-pilot" class="room-btn" onclick="alert('Canlı Demo Bildirimi: Gerçek sistemde misafir burada doğrudan otelinize komisyonsuz rezervasyon onayını gönderir!')">Rezervasyon Talebi Oluştur (%0 Komisyon)</a>
       </div>
     </div>
   `;
 }
 
-function getApiBase() {
-  if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
-    return window.location.origin;
-  }
-  return 'http://127.0.0.1:5005';
-}
-
-async function checkAiHealth() {
-  const badge = document.getElementById("aiStatusBadge");
-  if (!badge) return;
-  try {
-    const res = await fetch(`${getApiBase()}/api/health`);
-    if (res.ok) {
-      const data = await res.json();
-      badge.innerHTML = `🟢 Canlı Yapay Zeka Aktif (Qwen 27B)`;
-      badge.style.color = "var(--wa-green)";
-      return true;
-    }
-  } catch (e) {
-    badge.innerHTML = `🟢 7/24 Canlı Konsiyerj (Operis AI)`;
-  }
-  return false;
-}
-
 function cevapUret(soru) {
   const s = soru.toLowerCase();
-  
-  if (s.includes("sen kimsin") || s.includes("bot musun") || s.includes("robot musun") || s.includes("gerçek insan") || s.includes("yapay zeka")) {
-    return `
-      Ben <b>${seciliOtel.ad}</b> bünyesinde 7/24 görev yapan resmi yapay zeka misafir danışmanıyım. 🌿<br><br>
-      Misafirlerimizin gece veya gündüz hiçbir sorusunu yanıtsız bırakmamak, oda fotoğraflarını anında iletmek ve rezervasyon sürecinizi kusursuz kılmak için buradayım. Aklınıza takılan her şeyi bana dilediğiniz gibi sorabilirsiniz!
-    `;
+  if (s.includes("available") || s.includes("room") || s.includes("price") || s.includes("english")) {
+    return `Hello and welcome to <b>${seciliOtel.ad}</b>! 🌿<br><br>Yes, our <b>${seciliOtel.oda}</b> is available for your dates. The nightly rate is <b>${seciliOtel.fiyat}</b> including our rich local breakfast and free parking. Here is a photo of our room:${odaKartiUret()}`;
   }
-
-  if (s.includes("balayı") || s.includes("yıldönümü") || s.includes("sürpriz") || s.includes("jest") || s.includes("kutlama") || s.includes("evlilik teklifi") || s.includes("romantik")) {
-    return `
-      Tebrik ederiz, bu özel anınızda <b>${seciliOtel.ad}</b> olarak sizi ağırlamaktan büyük mutluluk duyarız! 🥂🌹<br><br>
-      Kutlama ve balayı çiftlerimiz için odanızı özel taze çiçek aranjmanları, şampanya ikramı, yerel gurme meyve tabağı ve mumlarla büyüleyici bir atmosfere hazırlıyoruz. Ayrıca arzu ederseniz gün batımında size özel romantik bir masa da rezerve edebiliriz.
-      ${odaKartiUret()}
-    `;
+  if (s.includes("müsait") || s.includes("fiyat") || s.includes("boş oda") || s.includes("hafta sonu") || s.includes("ücret")) {
+    return `Harika bir tarih tercihi! Kontrol ettiğimde <b>${seciliOtel.ad}</b> bünyesinde <b>${seciliOtel.oda}</b> seçeneğimiz uygundur. ✨<br><br>• <b>Gecelik Fiyat:</b> ${seciliOtel.fiyat} (Kahvaltı Dahil)<br>• <b>Detay:</b> ${seciliOtel.detay}${odaKartiUret()}`;
   }
-
-  if (s.includes("indirim") || s.includes("pazarlık") || s.includes("ikram") || s.includes("fiyatta bir şey") || s.includes("ucuz") || s.includes("en son")) {
-    return `
-      Doğrudan bizimle iletişime geçtiğiniz için çok teşekkür ederiz! 🌿<br><br>
-      Doğrudan rezervasyon yapan misafirlerimize daima <b>En İyi Fiyat Garantisi</b> sunuyoruz. Ayrıca 3 gece ve üzeri konaklamalarda hoş geldin şarabı ikramımız ve akşam yemeğinde %15 özel indirim ayrıcalığımız mevcuttur. Rezervasyon talebinizi oluşturursanız sizin için en avantajlı paketi hemen tanımlayabiliriz!
-      ${odaKartiUret()}
-    `;
+  if (s.includes("fotoğraf") || s.includes("resim") || s.includes("görsel")) {
+    return `Memnuniyetle! <b>${seciliOtel.ad}</b> bünyesindeki <b>${seciliOtel.oda}</b> görselimiz ve güncel fiyatımız aşağıdadır:${odaKartiUret()}`;
   }
-
-  if (s.includes("çocuk") || s.includes("bebek") || s.includes("beşik") || s.includes("aile")) {
-    return `
-      Ailemizin ve minik misafirlerimizin konforu bizim için çok kıymetli! 👶 Odalarımıza talep etmeniz halinde ücretsiz bebek beşiği veya konforlu ek yatak hazırlayabiliyoruz. Geniş bahçe katı süitlerimiz çocuklu aileler için son derece ferah ve güvenlidir.
-    `;
+  if (s.includes("kahvaltı") || s.includes("saat") || s.includes("otopark")) {
+    return `Otelimizde tüm konaklamalara zengin kahvaltımız ve ücretsiz güvenli otoparkımız dahildir. 🍳🚗<br>• Giriş: 14:00 (7/24 gece geç giriş karşılanır)<br>• Çıkış: 12:00`;
   }
-
-  if (s.includes("otopark") || s.includes("vale") || s.includes("araba") || s.includes("araç")) {
-    return `
-      Otelimize ait misafirlerimize özel <b>ücretsiz ve güvenli otopark alanımız</b> mevcuttur. 🚗 Aracınızla geldiğinizde personelimiz valizlerinize ve park etmenize memnuniyetle yardımcı olacaktır.
-    `;
-  }
-
-  if (s.includes("gece") || s.includes("geç giriş") || s.includes("03:00") || s.includes("geç geleceğiz") || s.includes("uçak geç")) {
-    return `
-      Hiç endişelenmeyiniz! <b>${seciliOtel.ad}</b> bünyesinde 7/24 açık resepsiyon ve gece karşılama ekibimiz bulunmaktadır. 🌙 Giriş saatiniz gece 03:00 veya sabaha karşı bile olsa, rezervasyonunuz varsa odanız hazır tutulur ve sizi kapıda sıcak bir tebessümle karşılarız.
-    `;
-  }
-
-  if (s.includes("havuz") || s.includes("deniz") || s.includes("plaj") || s.includes("beach") || s.includes("yüzme")) {
-    return `
-      Tesisimizde doğayla iç içe huzurlu bir dinlenme ve yüzme keyfi sunuyoruz. 🏊‍♂️ Ayrıca bölgenin en seçkin ve berrak koylarına ve anlaşmalı özel beach club'lara yalnızca birkaç dakikalık mesafedeyiz. Misafirlerimize özel şezlong rezervasyonu ve transfer desteği sağlıyoruz.
-    `;
-  }
-
-  if (s.includes("yakın") || s.includes("ne yapılır") || s.includes("gezilecek") || s.includes("restoran") || s.includes("nerede")) {
-    return `
-      <b>${seciliOtel.ad}</b>, ${seciliOtel.detay} Konum olarak tarihi sokaklara, butik kafelere, yerel şarap bağlarına ve gurme restoranlara çok yakın mesafedeyiz. Size özel hazırladığımız yerel gezi ve gastronomi rehberini girişinizde memnuniyetle paylaşıyoruz! 🗺️
-    `;
-  }
-
-  if (s.includes("engelli") || s.includes("tekerlekli") || s.includes("sandalye") || s.includes("merdiven") || s.includes("erişim")) {
-    return `
-      Misafirlerimizin konforu bizim için her şeyden önce gelir. <b>${seciliOtel.ad}</b> girişinde ve ana restoran alanımızda düz ayak rampa erişimi mevcuttur. Bahçe katı süitlerimize basamaksız kolay erişim sağlayabilirsiniz. Ekstra bir desteğe ihtiyacınız olursa ekibimiz her an yardıma hazırdır. 🌿
-    `;
-  }
-
-  if (s.includes("transfer") || s.includes("havaalanı") || s.includes("havalimanı") || s.includes("uçak") || s.includes("ulaşım") || s.includes("nasıl gelinir")) {
-    return `
-      Evet, talep etmeniz halinde VIP özel havaalanı transfer hizmeti organize etmekteyiz. ✈️ Özel şoförümüz sizi kapıda karşılayıp doğrudan otelimizin girişine getirecektir. Uçuş saat ve numaranızı iletmeniz durumunda rezervasyonunuza transferi hemen ekleyebiliriz.
-    `;
-  }
-
-  if (s.includes("vegan") || s.includes("vejetaryen") || s.includes("alerji") || s.includes("glutensiz") || s.includes("yemek")) {
-    return `
-      Mutfağımızda taze yöresel ve organik ürünler kullanılmaktadır. 🥗 Serpme kahvaltımızda ve alakart menümüzde vegan, vejetaryen ve glutensiz beslenen misafirlerimiz için zengin seçenekler sunuyoruz. Özel diyet tercihlerinizi şefimize memnuniyetle iletiyoruz!
-    `;
-  }
-
-  if (s.includes("müsait") || s.includes("fiyat") || s.includes("boş oda") || s.includes("hafta sonu") || s.includes("kaç para") || s.includes("ücret") || s.includes("tarih")) {
-    return `
-      Harika bir tarih tercihi! Kontrol ettiğimde <b>${seciliOtel.ad}</b> bünyesinde <b>${seciliOtel.oda}</b> seçeneğimiz uygundur. ✨<br><br>
-      • <b>Gecelik Fiyat:</b> ${seciliOtel.fiyat} (Geleneksel Serpme Kahvaltı Dahil)<br>
-      • <b>Konaklama Detayı:</b> ${seciliOtel.detay}<br><br>
-      Aşağıdan odanın güncel fotoğrafını inceleyebilir ve talebinizi iletebilirsiniz:
-      ${odaKartiUret()}
-    `;
-  }
-  
-  if (s.includes("fotoğraf") || s.includes("resim") || s.includes("görsel") || s.includes("oda nasıl")) {
-    return `
-      Memnuniyetle! <b>${seciliOtel.ad}</b> en gözde odalarımızdan biri olan <b>${seciliOtel.oda}</b> görseli aşağıdadır. Özel tasarım taş mimarisi ve ferah banyosuyla misafirlerimizden tam not almaktadır:
-      ${odaKartiUret()}
-    `;
-  }
-
-  if (s.includes("kahvaltı") || s.includes("saat") || s.includes("giriş") || s.includes("çıkış")) {
-    return `
-      Otelimizde tüm konaklamalara <b>zengin yöresel serpme kahvaltımız</b> dahildir. 🍳<br><br>
-      • <b>Giriş (Check-in):</b> 14:00'dan itibaren (Gece geç girişler karşılanır)<br>
-      • <b>Çıkış (Check-out):</b> 12:00'ye kadar<br>
-      • <b>Kahvaltı Saati:</b> 08:30 – 11:30 arasında bahçede servis edilir.<br><br>
-      Erken giriş veya geç çıkış talebiniz olursa müsaitliğe göre yardımcı olmaktan mutluluk duyarız!
-    `;
-  }
-
-  if (s.includes("evcil") || s.includes("köpek") || s.includes("kedi") || s.includes("hayvan")) {
-    return `
-      Patili dostlarımızı çok seviyoruz! 🐾 <b>${seciliOtel.ad}</b> olarak bahçe katı süitlerimizde kedi ve küçük ırk köpek misafirlerimizi memnuniyetle ağırlamaktayız.
-    `;
-  }
-
-  return `
-    Bu konuda size yardımcı olmaktan büyük mutluluk duyarım! 🌿 <b>${seciliOtel.ad}</b> olarak misafirlerimize unutulmaz, huzurlu ve kişiye özel bir butik tatil deneyimi sunuyoruz.<br><br>
-    Tarihlerinizi veya aklınızdaki özel talepleri (oda tipi, kişi sayısı, özel ikramlar) paylaşırsanız hemen detayları ve size özel teklifimizi hazırlayabilirim!
-    ${odaKartiUret()}
-  `;
+  return `Memnuniyetle yardımcı olurum! 🌿 <b>${seciliOtel.ad}</b> (${seciliOtel.bolge}) olarak size en konforlu konaklama deneyimini sunuyoruz.${odaKartiUret()}`;
 }
 
 async function callGroqDirect(metin, signal) {
   try {
     const k = [77, 89, 65, 117, 124, 127, 65, 107, 107, 66, 68, 73, 104, 101, 31, 71, 83, 102, 28, 25, 31, 107, 108, 73, 125, 109, 78, 83, 72, 25, 108, 115, 100, 19, 72, 18, 105, 108, 82, 95, 67, 109, 100, 78, 121, 77, 91, 114, 80, 25, 104, 18, 108, 127, 25, 65].map(b => String.fromCharCode(b ^ 42)).join('');
-    const prompt = `Sen ${seciliOtel.ad} bünyesinde 7/24 görev yapan, Operis AI destekli resmi ve son derece profesyonel bir otel misafir konsiyerjisin.
-Tıpkı ChatGPT veya Claude gibi son derece zeki, doğal, anlayışlı ve yaşayan bir insan zarafetiyle iletişim kurarsın.
-
+    const prompt = `Sen ${seciliOtel.ad} (${seciliOtel.bolge}) bünyesinde 7/24 görev yapan, Operis AI destekli resmi ve son derece profesyonel bir otel misafir konsiyerjisin.
 Otel Bilgileri:
 - Otel Adı: ${seciliOtel.ad}
 - Öne Çıkan Oda: ${seciliOtel.oda}
-- Ortalama Gecelik Fiyat: ${seciliOtel.fiyat} (Zengin serpme gurme kahvaltı dahil)
-- Konsept ve Atmosfer: ${seciliOtel.detay}
-- Giriş Saati: 14:00 | Çıkış Saati: 12:00 (Önceden haber verilirse gece geç girişler 7/24 karşılanır)
-- Evcil Hayvan: Küçük ırk ve kediler bahçe süitlerimizde sevgiyle ağırlanır.
-- Otopark & Wi-Fi: Tüm misafirlerimiz için ücretsiz ve güvenlidir.
+- Ortalama Gecelik Fiyat: ${seciliOtel.fiyat} (Kahvaltı dahil)
+- Konsept: ${seciliOtel.detay}
+- Giriş: 14:00 | Çıkış: 12:00 (Gece geç girişler 7/24 karşılanır)
+- Otopark & Wi-Fi: Ücretsiz.
 
-İletişim ve Karakter Kuralların:
-1. Son derece samimi, zarif, sıcak ve 5 yıldızlı bir butik otel ev sahibi gibi Türkçe konuş. Asla soğuk veya kalıp robot cümleleri kurma.
-2. Misafirin sorusu NE OLURSA OLSUN zekice, empatik ve misafiri ikna edici en tatmin edici cevabı ver.
-3. "Bot musun / Sen kimsin" derlerse: "Evet, ben ${seciliOtel.ad}'ın 7/24 görev yapan resmi yapay zeka misafir asistanıyım. Misafirlerimize gece-gündüz anında yanıt vermek, oda fotoğraflarını iletmek ve tüm tatil planlarını kolaylaştırmak için buradayım 🌿" şeklinde yanıtla.
-4. Eğer misafir oda fiyatı, boş oda, fotoğraf, rezervasyon veya konaklama detayı soruyorsa, mesajının en uygun yerine mutlaka [ODA_KARTI] etiketini ekle.
-5. WhatsApp formatında akıcı, paragraflara bölünmüş, emoji dengesi şık bir üslup kullan (150-250 kelime).`;
-
-    const payload = {
-      model: "qwen/qwen3.8-27b",
-      messages: [
-        { role: "system", content: prompt },
-        ...sohbetGecmisi.slice(-6),
-        { role: "user", content: metin }
-      ],
-      temperature: 0.65,
-      max_tokens: 350
-    };
+Kurallar:
+1. Misafir hangi dilde yazarsa (Türkçe, İngilizce, Almanca, Rusça) o dilde çok zarif, sıcak ve ikna edici yanıt ver.
+2. Eğer oda fiyatı, müsaitlik, fotoğraf veya rezervasyon soruluyorsa mesajın sonuna mutlaka [ODA_KARTI] etiketini ekle.
+3. Kısa, net ve WhatsApp okumasına uygun paragraflar kullan (maksimum 140 kelime).`;
 
     const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
@@ -752,7 +1947,16 @@ Otel Bilgileri:
         "Authorization": `Bearer ${k}`,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({
+        model: "qwen/qwen3.8-27b",
+        messages: [
+          { role: "system", content: prompt },
+          ...sohbetGecmisi.slice(-6),
+          { role: "user", content: metin }
+        ],
+        temperature: 0.65,
+        max_tokens: 320
+      }),
       signal: signal
     });
     if (res.ok) {
@@ -760,7 +1964,7 @@ Otel Bilgileri:
       return data.choices?.[0]?.message?.content || null;
     }
   } catch (e) {
-    console.warn("Doğrudan Groq Cloud çağrısı hatası:", e);
+    console.warn("Groq Cloud çağrısı hatası:", e);
   }
   return null;
 }
@@ -770,76 +1974,37 @@ async function mesajGonder() {
   const metin = inp.value.trim();
   if (!metin) return;
   inp.value = "";
-  
+
   mesajEkle(metin, "out");
   sohbetGecmisi.push({ role: "user", content: metin });
   yaziyorGoster();
 
-  const apiBase = getApiBase();
   let aiYaniti = null;
-
-  // 1. Katman: Yerel / Sunucu API'sini dene
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 6000);
-    
-    const res = await fetch(`${apiBase}/api/chat`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        hotel: seciliOtel,
-        message: metin,
-        history: sohbetGecmisi
-      }),
-      signal: controller.signal
-    });
+    const timeoutId = setTimeout(() => controller.abort(), 9000);
+    aiYaniti = await callGroqDirect(metin, controller.signal);
     clearTimeout(timeoutId);
+  } catch (e) {}
 
-    if (res.ok) {
-      const data = await res.json();
-      if (data.reply) {
-        aiYaniti = data.reply;
-      }
-    }
-  } catch (err) {
-    // Yerel sunucu yanıt vermezse devam et
-  }
-
-  // 2. Katman: Doğrudan Groq Bulut Yapay Zekası (Mobil / GitHub Pages / Bilgisayar Kapalıyken)
-  if (!aiYaniti) {
-    try {
-      const controller2 = new AbortController();
-      const timeoutId2 = setTimeout(() => controller2.abort(), 10000);
-      aiYaniti = await callGroqDirect(metin, controller2.signal);
-      clearTimeout(timeoutId2);
-    } catch (e) {
-      // Bulut çağrısı başarısızsa devam et
-    }
-  }
-
-  // Yanıt geldiyse formatla ve bas
   if (aiYaniti) {
     sohbetGecmisi.push({ role: "assistant", content: aiYaniti });
     yaziyorGizle();
-    
     if (aiYaniti.includes("[ODA_KARTI]")) {
       aiYaniti = aiYaniti.replace("[ODA_KARTI]", odaKartiUret());
     }
     aiYaniti = aiYaniti.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-    aiYaniti = aiYaniti.replace(/\*(.*?)\*/g, '<i>$1</i>');
-    aiYaniti = aiYaniti.replace(/\n\n/g, '<br><br>');
-    aiYaniti = aiYaniti.replace(/\n/g, '<br>');
+    aiYaniti = aiYaniti.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
     mesajEkle(aiYaniti, "in");
     return;
   }
 
-  // 3. Katman: Akıllı Yerel Fallback Motoru (İnternet Kesintisi Güvenliği)
   setTimeout(() => {
     yaziyorGizle();
     const yanit = cevapUret(metin);
     sohbetGecmisi.push({ role: "assistant", content: yanit });
     mesajEkle(yanit, "in");
-  }, 500);
+  }, 450);
 }
 
 function hizliGonder(metin) {
@@ -847,11 +2012,69 @@ function hizliGonder(metin) {
   mesajGonder();
 }
 
+function hesaplaROI() {
+  const oda = parseInt(document.getElementById("odaRange").value);
+  const fiyat = parseInt(document.getElementById("fiyatRange").value);
+  const mesaj = parseInt(document.getElementById("mesajRange").value);
+
+  document.getElementById("odaVal").innerText = oda + " Oda";
+  document.getElementById("fiyatVal").innerText = fiyat.toLocaleString('tr-TR') + " TL";
+  document.getElementById("mesajVal").innerText = mesaj + " Mesaj/Gece";
+
+  // Yıllık OTA komisyon kaybı tahmini (%60 doluluk, %35 OTA payı, %18 komisyon)
+  const yillikOtaKomisyon = Math.round(oda * 365 * 0.55 * 0.30 * fiyat * 0.18);
+  // Gece gelen mesajların %12'sinin 2 gecelik satışa dönmesi
+  const yillikGeceKurtarilan = Math.round(mesaj * 365 * 0.08 * fiyat * 1.6);
+  const toplamKazanc = Math.round((yillikOtaKomisyon * 0.45) + yillikGeceKurtarilan);
+
+  document.getElementById("komisyonKaybi").innerText = yillikOtaKomisyon.toLocaleString('tr-TR') + " TL";
+  document.getElementById("geceKaybi").innerText = yillikGeceKurtarilan.toLocaleString('tr-TR') + " TL";
+  document.getElementById("netKazanc").innerText = "+" + toplamKazanc.toLocaleString('tr-TR') + " TL";
+}
+
+function basvuruGonder(kanal) {
+  const otel = document.getElementById("formOtel").value.trim() || "Otelimiz";
+  const bolge = document.getElementById("formBolge").value.trim() || "Türkiye";
+  const oda = document.getElementById("formOda").value.trim() || "-";
+  const tel = document.getElementById("formTel").value.trim() || "-";
+  const not = document.getElementById("formNot").value.trim() || "-";
+
+  if (kanal === 'ig') {
+    window.open("https://ig.me/m/operis_ai", "_blank");
+    return;
+  }
+
+  const konu = encodeURIComponent(`Operis AI 14 Gün Ücretsiz Pilot Başvurusu - ${otel} (${bolge})`);
+  const govde = encodeURIComponent(
+`Merhaba Operis AI Ekibi,
+
+Otelimiz için 14 Günlük Ücretsiz Pilot Kurulum başvurusu yapmak istiyoruz:
+
+• Otel Adı: ${otel}
+• Bölge / Şehir: ${bolge}
+• Oda Sayısı: ${oda}
+• Yetkili Telefon / WhatsApp: ${tel}
+• Ek Not / Instagram: ${not}
+
+Bizimle iletişime geçmenizi rica ederiz.`
+  );
+  window.location.href = `mailto:scorsty@gmail.com?subject=${konu}&body=${govde}`;
+}
+
 window.onload = () => {
-  chatSifirla();
-  checkAiHealth();
+  const params = new URLSearchParams(window.location.search);
+  const qOtel = params.get("otel");
+  const sel = document.getElementById("hotelSelect");
+  if (qOtel && OTELLER[qOtel]) {
+    sel.value = qOtel;
+    degistirOtel(qOtel);
+  } else if (sel && sel.value) {
+    degistirOtel(sel.value);
+  } else {
+    chatSifirla();
+  }
+  hesaplaROI();
 };
 </script>
-
 </body>
 </html>
