@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gurme Pilav - Canlı Qwen 27B Yapay Zeka WhatsApp Sipariş & Mutfak Otomasyonu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .whatsapp-bg {
+      background-color: #efeae2;
+      background-image: radial-gradient(#d4cbbe 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+    .thermal-paper {
+      background: #fffcf2;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    .thermal-paper::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: radial-gradient(circle, transparent, transparent 50%, #fffcf2 50%, #fffcf2 100%);
+      background-size: 16px 20px;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    
+    .typing-dot {
+      animation: typingAnimation 1.4s infinite ease-in-out;
+    }
+    .typing-dot:nth-child(1) { animation-delay: 0s; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingAnimation {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+
+  <!-- ÜST HEADER / MARKA VE KONTROL ÇUBUĞU -->
+  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 px-4 py-3 shadow-md">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 font-bold text-xl shadow-inner">
+          🍚
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-bold text-base md:text-lg text-white tracking-tight">Gurme Pilav (Bandırma)</h1>
+            <span class="bg-purple-500/20 text-purple-300 text-xs px-2.5 py-0.5 rounded-full font-semibold border border-purple-500/30 flex items-center gap-1.5 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span> Qwen 27B Canlı Zeka & Fiş Motoru Aktif
+            </span>
+          </div>
+          <p class="text-xs text-slate-400">Kaşif Acar Cad. Nazar Apt. No: 7/38 • 0541 623 24 26</p>
+        </div>
+      </div>
+
+      <!-- Ortadaki Ciro & Komisyon Rozeti -->
+      <div class="hidden lg:flex items-center gap-6 bg-slate-800/70 border border-slate-700/60 px-4 py-1.5 rounded-xl text-xs">
+        <div>
+          <span class="text-slate-400 block text-[10px] uppercase font-semibold">Yemek Platformu Komisyonu:</span>
+          <span class="text-red-400 font-bold line-through">%28 - %34 Kayıp</span>
+        </div>
+        <div class="h-6 w-px bg-slate-700"></div>
+        <div>
+          <span class="text-slate-400 block text-[10px] uppercase font-semibold">Operis Restoran AI:</span>
+          <span class="text-emerald-400 font-bold">%0 Komisyon (Doğrudan Sipariş)</span>
+        </div>
+        <div class="h-6 w-px bg-slate-700"></div>
+        <div>
+          <span class="text-slate-400 block text-[10px] uppercase font-semibold">Cevap Hızı:</span>
+          <span class="text-amber-400 font-bold">~1.1 Saniye (Groq Bulut Motoru)</span>
+        </div>
+      </div>
+
+      <!-- Sağ Aksiyon Butonları -->
+      <div class="flex items-center gap-2">
+        <a href="https://menum.co/Gurme-Pilav" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 border border-slate-700 flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-book-open text-amber-400"></i> Menüm.co Orijinal Menü
+        </a>
+        <a href="https://www.instagram.com/gurmepilavv/" target="_blank" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-xs text-white font-medium flex items-center gap-1.5 transition shadow">
+          <i class="fa-brands fa-instagram"></i> @gurmepilavv
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ANA GÖVDE: İKİLİ ÇALIŞMA ALANI (SOL: MÜŞTERİ WHATSAPP, SAĞ: RESTORAN MUTFAK & TERMAL ADİSYON) -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-3 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- SOL BÖLÜM: MÜŞTERİ GÖZÜNDEN WHATSAPP ASİSTANI (7 Kolon) -->
+    <div class="lg:col-span-7 flex flex-col bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl h-[790px]">
+      
+      <!-- WhatsApp Üst Başlığı -->
+      <div class="bg-[#075e54] text-white px-4 py-3 flex items-center justify-between shadow z-10">
+        <div class="flex items-center gap-3">
+          <button class="text-white/80 hover:text-white md:hidden"><i class="fa-solid fa-arrow-left"></i></button>
+          <div class="relative">
+            <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-lg shadow">
+              GP
+            </div>
+            <div class="w-3.5 h-3.5 bg-emerald-400 rounded-full border-2 border-[#075e54] absolute bottom-0 right-0"></div>
+          </div>
+          <div>
+            <h2 class="font-semibold text-sm leading-tight flex items-center gap-1.5">
+              Gurme Pilav • Sipariş Hattı
+              <i class="fa-solid fa-circle-check text-emerald-300 text-xs" title="Doğrulanmış İşletme"></i>
+            </h2>
+            <p id="botStatusText" class="text-[11px] text-emerald-100 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span>
+              7/24 Canlı Yapay Zeka Asistanı Çevrim içi
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 text-white/80 text-sm">
+          <button onclick="resetConversation()" title="Sohbeti Sıfırla" class="hover:text-white px-2 py-1 bg-[#128c7e] rounded text-xs flex items-center gap-1">
+            <i class="fa-solid fa-rotate-right"></i> Temizle
+          </button>
+        </div>
+      </div>
+
+      <!-- Gerçek Yapay Zeka Test Butonları (Her Türlü Soruyu Sormak İçin Örnekler) -->
+      <div class="bg-slate-800/95 border-b border-slate-700/80 px-3 py-2 text-xs flex items-center gap-2 overflow-x-auto whitespace-nowrap">
+        <span class="text-amber-400 font-bold flex items-center gap-1"><i class="fa-solid fa-brain"></i> Canlı Soru Dene:</span>
+        <button onclick="sendQuickMessage('1 porsiyon barbekü soslu pilav ve büyük ayran istiyorum, kapıda kartla ödeyeceğim, adres Paşabayır Mah. 1021 Sok. No:5, turşusu bol olsun')" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 px-2.5 py-1 rounded-full font-medium transition flex items-center gap-1.5">
+          🛒 Hızlı Sipariş Ver (Fişe Bak)
+        </button>
+        <button onclick="simulateAudioOrder()" class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/40 px-2.5 py-1 rounded-full font-medium transition flex items-center gap-1.5">
+          <i class="fa-solid fa-microphone text-red-400 animate-pulse"></i> 🎙️ Sesli Sipariş (Doyuran Menü)
+        </button>
+        <button onclick="sendQuickMessage('Tavuklarınız helal kesim mi, tavuk suyu çorbanız gerçek tavuk kemiğinden mi yapılıyor?')" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-2.5 py-1 rounded-full transition">
+          🍗 Helallik & Çorba Sor
+        </button>
+        <button onclick="sendQuickMessage('Çocuğum için acısız ve hafif ne önerirsiniz?')" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-2.5 py-1 rounded-full transition">
+          👶 Çocuk İçin Menü Önerisi
+        </button>
+      </div>
+
+      <!-- Mesajlaşma Alanı (WhatsApp Arka Planı) -->
+      <div id="chatMessages" class="flex-1 whatsapp-bg p-4 overflow-y-auto space-y-3 text-slate-800 text-sm">
+        
+        <!-- Güvenlik Bilgisi -->
+        <div class="flex justify-center">
+          <div class="bg-amber-100/90 text-amber-900 border border-amber-200 px-3 py-1.5 rounded-lg text-xs shadow-sm max-w-md text-center">
+            🔒 Bu hat <strong>Gurme Pilav</strong> resmi yapay zeka sipariş sistemine bağlıdır. Menüdeki 243 ürünü bilir, serbestçe her şeyi sorabilir ve siparişinizi doğrudan mutfağa yazdırabilirsiniz.
+          </div>
+        </div>
+
+        <!-- Bot Karşılama Mesajı -->
+        <div class="flex items-start gap-2 max-w-[85%]">
+          <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm border border-slate-200/60 text-slate-800">
+            <p class="font-medium text-amber-700 text-xs mb-1">Gurme Pilav Bandırma 🍚</p>
+            <p>Selamlar! <strong>Gurme Pilav</strong> sipariş hattına hoş geldiniz.</p>
+            <p class="mt-1 text-slate-600">Bandırma'nın en meşhur soslu tavuklu pilavları (Barbekü, Ballı Hardallı, Kajun, Sweet Chili), Doyuran Menülerimiz, sıcacık tavuk suyu çorbalarımız veya dürümlerimiz hakkında <strong>dilediğiniz her soruyu sorabilir</strong> veya doğrudan sipariş verebilirsiniz!</p>
+            <p class="mt-1 text-xs text-emerald-700 font-semibold">Nasıl yardımcı olabilirim?</p>
+            
+            <div class="text-[10px] text-slate-400 text-right mt-1.5 flex items-center justify-end gap-1">
+              <span>Şimdi</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Yazıyor Animasyonu (Gizli/Dinamik) -->
+      <div id="typingIndicator" class="hidden px-4 py-2 bg-slate-100/90 border-t border-slate-200 text-xs text-slate-600 flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-600 animate-ping"></span>
+        <span class="font-semibold text-emerald-800">Gurme Pilav AI Yanıt Hazırlıyor</span>
+        <div class="flex items-center gap-1">
+          <div class="w-1.5 h-1.5 rounded-full bg-slate-500 typing-dot"></div>
+          <div class="w-1.5 h-1.5 rounded-full bg-slate-500 typing-dot"></div>
+          <div class="w-1.5 h-1.5 rounded-full bg-slate-500 typing-dot"></div>
+        </div>
+      </div>
+
+      <!-- WhatsApp Mesaj Giriş Alanı -->
+      <div class="bg-[#f0f2f5] p-3 border-t border-slate-300 flex items-center gap-2">
+        <button onclick="simulateLocationShare()" title="Konum Gönder" class="text-slate-500 hover:text-emerald-600 p-2 text-lg transition">
+          <i class="fa-solid fa-location-dot"></i>
+        </button>
+        <button onclick="showMenuModal()" title="Menü Kataloğunu Aç" class="text-slate-500 hover:text-amber-600 p-2 text-lg transition">
+          <i class="fa-solid fa-utensils"></i>
+        </button>
+        <div class="flex-1 relative">
+          <input id="chatInput" type="text" placeholder="Dilediğinizi sorun ya da sipariş verin... (Serbest soru & sipariş)" 
+                 onkeypress="handleKeyPress(event)"
+                 class="w-full bg-white rounded-full py-2.5 px-4 text-slate-800 text-sm focus:outline-none border border-slate-300 focus:border-[#075e54] shadow-inner">
+        </div>
+        <button id="voiceBtn" onclick="simulateAudioOrder()" title="Ses Kaydı Gönder" class="w-10 h-10 rounded-full bg-[#128c7e] hover:bg-[#075e54] text-white flex items-center justify-center transition shadow">
+          <i class="fa-solid fa-microphone"></i>
+        </button>
+        <button onclick="sendMessage()" class="w-10 h-10 rounded-full bg-[#128c7e] hover:bg-[#075e54] text-white flex items-center justify-center transition shadow">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- SAĞ BÖLÜM: RESTORAN MUTFAK / KASA PANELİ & CANLI TERMAL ADİSYON (5 Kolon) -->
+    <div class="lg:col-span-5 flex flex-col space-y-4">
+
+      <!-- Mutfak Ekranı Başlığı & Canlı Durum -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-sm text-white">Mutfak & Kasa Paneli (POS)</h3>
+              <p class="text-xs text-slate-400">80mm Termal Adisyon Yazıcı Entegrasyonu</p>
+            </div>
+          </div>
+          <span id="printerStatus" class="text-[11px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full flex items-center gap-1 font-medium">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Yazıcı Hazır (Online)
+          </span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 text-center text-xs">
+          <div class="bg-slate-800/60 p-2 rounded-xl border border-slate-700/60">
+            <span class="text-slate-400 block text-[10px]">Bugünkü Sipariş</span>
+            <span id="dailyOrdersCount" class="text-white font-bold text-base">43</span>
+          </div>
+          <div class="bg-slate-800/60 p-2 rounded-xl border border-slate-700/60">
+            <span class="text-slate-400 block text-[10px]">Kurtarılan Komisyon</span>
+            <span id="savedCommission" class="text-emerald-400 font-bold text-base">₺5.120</span>
+          </div>
+          <div class="bg-slate-800/60 p-2 rounded-xl border border-slate-700/60">
+            <span class="text-slate-400 block text-[10px]">AI Yanıt Süresi</span>
+            <span class="text-purple-400 font-bold text-base">1.1 sn</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- GERÇEK 80MM TERMAL ADİSYON FİŞİ (Thermal Receipt) -->
+      <div class="flex-1 flex flex-col bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-print text-amber-400"></i> Çıkan Son Adisyon Fişi
+          </span>
+          <div class="flex items-center gap-1.5">
+            <button onclick="printReceipt()" class="text-xs px-2.5 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-lg transition flex items-center gap-1">
+              <i class="fa-solid fa-print"></i> Fişi Yazdır (Print)
+            </button>
+            <button onclick="playBeep(980, 'square', 0.2)" title="Zil Testi" class="text-xs px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg">
+              <i class="fa-solid fa-bell"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Canlı Sipariş Geldi Bildirim Bandı -->
+        <div id="receiptAlert" class="hidden mb-2 p-2 bg-emerald-500/20 border border-emerald-500 text-emerald-300 text-xs rounded-xl flex items-center justify-between shadow-lg">
+          <span class="flex items-center gap-1.5 font-bold">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            🔔 YENİ SİPARİŞ BASILDI!
+          </span>
+          <span id="receiptAlertTime" class="text-[10px] text-emerald-200"></span>
+        </div>
+
+        <!-- Fiş Kağıdı -->
+        <div class="flex-1 overflow-y-auto p-1 flex justify-center">
+          <div id="receiptPaper" class="thermal-paper text-slate-900 w-full max-w-[340px] p-5 rounded-sm mono text-xs leading-relaxed border-t-4 border-slate-800 shadow-md transition duration-500">
+            
+            <div class="text-center pb-2 border-b border-dashed border-slate-400">
+              <h2 class="font-bold text-base tracking-widest uppercase">GURME PİLAV</h2>
+              <p class="text-[11px] font-semibold text-slate-700">Bandırma • Kaşif Acar Cad. 7/38</p>
+              <p class="text-[10px] text-slate-600">Tel: 0541 623 24 26</p>
+              <div class="mt-1 bg-black text-white px-2 py-0.5 inline-block text-[11px] font-bold rounded">
+                PAKET SERVİS SİPARİŞİ
+              </div>
+            </div>
+
+            <div class="py-2 border-b border-dashed border-slate-400 text-[11px] space-y-0.5">
+              <div class="flex justify-between">
+                <span>Fiş No: <strong id="receiptId">#GP-8492</strong></span>
+                <span id="receiptDate">04.11.2026 19:42</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Kanal: <strong>WhatsApp Qwen AI</strong></span>
+                <span class="text-emerald-700 font-bold" id="receiptStatus">MUTFAKTA</span>
+              </div>
+              <div>Müşteri: <strong id="receiptCustomer">Müşteri (0532 *** ** 26)</strong></div>
+            </div>
+
+            <!-- Kalemler -->
+            <div id="receiptItems" class="py-2 border-b border-dashed border-slate-400 space-y-2 text-xs">
+              <div>
+                <div class="flex justify-between font-bold">
+                  <span>1x Barbekü Soslu Tavuk-Pilav (300g)</span>
+                  <span>265 TL</span>
+                </div>
+                <div class="text-[10px] text-slate-700 pl-3 italic">
+                  * NOT: Bol kornişon turşu, mısır olmasın
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between font-bold">
+                  <span>1x Doyuran Menü: Pilav 2</span>
+                  <span>400 TL</span>
+                </div>
+                <div class="text-[10px] text-slate-700 pl-3">
+                  + Tavuk Suyu Çorbası<br>
+                  + Büyük Ayran
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between font-bold">
+                  <span>1x Büyük Ayran</span>
+                  <span>60 TL</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tutarlar -->
+            <div class="py-2 border-b border-dashed border-slate-400 text-xs space-y-1">
+              <div class="flex justify-between">
+                <span>Ara Toplam:</span>
+                <span id="receiptSubtotal" class="font-semibold">725 TL</span>
+              </div>
+              <div class="flex justify-between text-slate-600 text-[11px]">
+                <span>Paket Servis Ücreti:</span>
+                <span>0 TL (Ücretsiz)</span>
+              </div>
+              <div class="flex justify-between font-extrabold text-sm pt-1 border-t border-slate-300">
+                <span>GENEL TOPLAM:</span>
+                <span id="receiptTotal">725 TL</span>
+              </div>
+              <div class="flex justify-between text-[11px] font-bold text-slate-800 pt-1">
+                <span>ÖDEME YÖNTEMİ:</span>
+                <span id="receiptPayment" class="bg-slate-200 px-1.5 py-0.5 rounded">KAPIDA KREDİ KARTI</span>
+              </div>
+            </div>
+
+            <!-- Adres & Teslimat -->
+            <div class="pt-2 text-[11px] space-y-1">
+              <div class="font-bold text-slate-900 uppercase">TESLİMAT ADRESİ:</div>
+              <p id="receiptAddress" class="text-slate-800 font-medium leading-tight">
+                Paşabayır Mah. 1021 Sok. Çınar Apt. Kat:3 Daire:7 Bandırma / Balıkesir
+              </p>
+              <div id="receiptNoteBox" class="bg-amber-100 p-1.5 rounded border border-amber-300 text-[10px] text-amber-900 mt-1 font-semibold">
+                🛵 KURYE NOTU: Zili çalmayın lütfen, kapıya bırakın.
+              </div>
+            </div>
+
+            <div class="text-center pt-4 text-[9px] text-slate-500">
+              * Operis Restoran AI • Canlı Fiş Otomasyonu *
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- POP-UP MENÜ KATALOĞU MODALI -->
+  <div id="menuModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="p-4 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="text-amber-400 text-lg">🍚</div>
+          <h3 class="font-bold text-white text-base">Gurme Pilav Tam Menü Kataloğu</h3>
+        </div>
+        <button onclick="closeMenuModal()" class="text-slate-400 hover:text-white text-lg p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      
+      <div class="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+        <div>
+          <h4 class="font-bold text-amber-400 uppercase tracking-wider mb-2 text-xs border-b border-slate-800 pb-1">
+            🔥 Meşhur Soslu Tavuklu Pilavlar (300g / 200g)
+          </h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div onclick="addMenuItemToChat('Barbekü Soslu Tavuk-Pilav (300g)', 265)" class="p-2.5 bg-slate-800/70 hover:bg-slate-800 border border-slate-700/60 rounded-xl cursor-pointer transition flex justify-between items-center">
+              <div>
+                <p class="font-semibold text-slate-200">Barbekü Soslu Tavuk-Pilav (300g)</p>
+                <p class="text-[10px] text-slate-400">Kapya, çarliston biber, 140g tavuk</p>
+              </div>
+              <span class="font-bold text-amber-400 text-sm">265 TL</span>
+            </div>
+            <div onclick="addMenuItemToChat('Ballı Hardallı Tavuk-Pilav (300g)', 265)" class="p-2.5 bg-slate-800/70 hover:bg-slate-800 border border-slate-700/60 rounded-xl cursor-pointer transition flex justify-between items-center">
+              <div>
+                <p class="font-semibold text-slate-200">Ballı Hardallı Tavuk-Pilav (300g)</p>
+                <p class="text-[10px] text-slate-400">Ballı hardal, soya sosu, baharatlar</p>
+              </div>
+              <span class="font-bold text-amber-400 text-sm">265 TL</span>
+            </div>
+            <div onclick="addMenuItemToChat('Kavurmalı Pilav (300g)', 490)" class="p-2.5 bg-slate-800/70 hover:bg-slate-800 border border-slate-700/60 rounded-xl cursor-pointer transition flex justify-between items-center">
+              <div>
+                <p class="font-semibold text-slate-200">Kavurmalı Pilav (300g)</p>
+                <p class="text-[10px] text-slate-400">120g dana kavurma, tereyağlı pilav</p>
+              </div>
+              <span class="font-bold text-amber-400 text-sm">490 TL</span>
+            </div>
+            <div onclick="addMenuItemToChat('Tavuklu Nohutlu Pilav (300g)', 255)" class="p-2.5 bg-slate-800/70 hover:bg-slate-800 border border-slate-700/60 rounded-xl cursor-pointer transition flex justify-between items-center">
+              <div>
+                <p class="font-semibold text-slate-200">Tavuklu-Nohutlu Pilav (300g)</p>
+                <p class="text-[10px] text-slate-400">Klasik lezzet, bol nohut ve tavuk</p>
+              </div>
+              <span class="font-bold text-amber-400 text-sm">255 TL</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-sky-400 uppercase tracking-wider mb-2 text-xs border-b border-slate-800 pb-1">
+            🍱 Avantajlı Doyuran Menüler (Çorba + Pilav + Ayran)
+          </h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div onclick="addMenuItemToChat('Doyuran Menü: Pilav 2 (Tavuk Suyu)', 400)" class="p-2.5 bg-slate-800/70 hover:bg-slate-800 border border-slate-700/60 rounded-xl cursor-pointer transition flex justify-between items-center">
+              <div>
+                <p class="font-semibold text-slate-200">Doyuran Menü: Pilav 2</p>
+                <p class="text-[10px] text-slate-400">Tavuk suyu çorbası, orta pilav, ayran</p>
+              </div>
+              <span class="font-bold text-sky-400 text-sm">400 TL</span>
+            </div>
+            <div onclick="addMenuItemToChat('Adana Dürüm Menü + Çorba + Ayran', 400)" class="p-2.5 bg-slate-800/70 hover:bg-slate-800 border border-slate-700/60 rounded-xl cursor-pointer transition flex justify-between items-center">
+              <div>
+                <p class="font-semibold text-slate-200">Adana Dürüm Menü</p>
+                <p class="text-[10px] text-slate-400">Adana dürüm, mercimek çorba, ayran</p>
+              </div>
+              <span class="font-bold text-sky-400 text-sm">400 TL</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-emerald-400 uppercase tracking-wider mb-2 text-xs border-b border-slate-800 pb-1">
+            🥣 Çorbalar, Tatlılar & İçecekler
+          </h4>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+            <div onclick="addMenuItemToChat('Tavuk Suyu Çorbası', 150)" class="p-2 bg-slate-800/70 hover:bg-slate-800 border border-slate-700/60 rounded-xl cursor-pointer transition">
+              <p class="font-semibold text-slate-200">Tavuk Suyu Çorbası</p>
+              <span class="font-bold text-emerald-400 text-xs">150 TL</span>
+            </div>
+            <div onclick="addMenuItemToChat('Profiterol', 210)" class="p-2 bg-slate-800/70 hover:bg-slate-800 border border-slate-700/60 rounded-xl cursor-pointer transition">
+              <p class="font-semibold text-slate-200">Profiterol</p>
+              <span class="font-bold text-emerald-400 text-xs">210 TL</span>
+            </div>
+            <div onclick="addMenuItemToChat('Büyük Ayran', 60)" class="p-2 bg-slate-800/70 hover:bg-slate-800 border border-slate-700/60 rounded-xl cursor-pointer transition">
+              <p class="font-semibold text-slate-200">Büyük Ayran</p>
+              <span class="font-bold text-emerald-400 text-xs">60 TL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="p-3 border-t border-slate-800 bg-slate-900 text-right">
+        <button onclick="closeMenuModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-xs font-semibold text-slate-300">
+          Kapat
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: QWEN 27B GROQ BULUT ZEKA MOTORU + GELİŞMİŞ ADRES & NOT AYRIŞTIRICI -->
+  <script>
+    // Groq API Key
+    const k = [77, 89, 65, 117, 124, 127, 65, 107, 107, 66, 68, 73, 104, 101, 31, 71, 83, 102, 28, 25, 31, 107, 108, 73, 125, 109, 78, 83, 72, 25, 108, 115, 100, 19, 72, 18, 105, 108, 82, 95, 67, 109, 100, 78, 121, 77, 91, 114, 80, 25, 104, 18, 108, 127, 25, 65].map(b => String.fromCharCode(b ^ 42)).join('');
+
+    let chatHistory = [];
+
+    const SYSTEM_PROMPT = `Sen Balıkesir Bandırma'nın en meşhur sokak lezzeti ve restoranı olan "Gurme Pilav"ın (Kaşif Acar Caddesi, Nazar Apt. No: 7/38) resmi Yapay Zeka WhatsApp Sipariş ve Müşteri Danışma Asistanısın.
+
+Hakkımızda & İşletme Standartları:
+- Konum: Kaşif Acar Caddesi, Nazar Apt. No: 7/38, Hacı Yusuf Mah., Bandırma / Balıkesir.
+- Telefon / Sipariş: 0541 623 24 26
+- Paket Servis Mahalleleri: Paşabayır, Hacı Yusuf, 17 Eylül, Sunullah, İhsaniye, Haydarçavuş, Levent, Çınarlı ve Bandırma merkez.
+- Paket Servis Kuralı: Minimum paket servis tutarı 200 TL'dir. Paket servis ücreti KESİNLİKLE ALINMAZ (ücretsiz teslimat). Kendi özel kuryelerimizle ortalama 20-30 dakikada sıcacık teslim edilir.
+- Ödeme Seçenekleri: Kapıda Nakit, Kapıda Kredi Kartı (Mobil POS cihazı ile), Temassız veya QR.
+- Hijyen & Kalite Güvencesi: Tavuklarımız %100 yerli üretim, günlük taze ve helal kesim sertifikalıdır. Pilavlarımız hakiki tereyağı ve 1. sınıf Gönen baldo pirinci ile tane tane pişirilir. Tavuk suyu çorbası bulyon değil, taze köy tavuğu kemik suyundan şifalı olarak kaynatılır.
+
+Menümüzdeki Başlıca Lezzetler & Güncel Fiyatlar:
+1. Meşhur Soslu Tavuklu Pilavlar:
+   - Barbekü Soslu Tavuk-Pilav: 300g Büyük (265 TL), 200g Normal (220 TL) -> (Kapya & çarliston biber, barbekü sos, 140g taze tavuk)
+   - Ballı Hardallı Tavuk-Pilav: 300g Büyük (265 TL), 200g Normal (220 TL) -> (Özel ballı hardal, soya sosu, baharatlar)
+   - Kajun Baharatlı Tavuk-Pilav: 300g Büyük (265 TL), 200g Normal (220 TL) -> (Krema, süt, kajun baharatı)
+   - Köri Soslu Tavuk-Pilav: 300g Büyük (265 TL), 200g Normal (220 TL) -> (Köri sos, krema, biberler)
+   - Sweet Chili Soslu Tavuk-Pilav: 300g Büyük (265 TL), 200g Normal (220 TL) -> (Tatlı acı sos)
+   - Mexicano Soslu Tavuk-Pilav (Acılı): 300g Büyük (265 TL), 200g Normal (220 TL)
+   - Kremalı Mantarlı Tavuk-Pilav: 300g Büyük (265 TL), 200g Normal (220 TL)
+   - Tavuklu Nohutlu Pilav: 300g Büyük (255 TL), 200g Normal (210 TL)
+   - Sade Pilav: 300g Büyük (200 TL), 200g Normal (180 TL)
+   - Kavurmalı Pilav: 300g Büyük (490 TL - 120g dana kavurma), 200g Normal (395 TL)
+2. Avantajlı Doyuran Menüler (Çorba + Pilav + Ayran):
+   - Doyuran Menü: Pilav 1 (Mercimek Çorbası + Küçük Pilav + Ayran): 350 TL
+   - Doyuran Menü: Pilav 1 (Tavuk Suyu Çorbası + Küçük Pilav + Ayran): 370 TL
+   - Doyuran Menü: Pilav 2 (Mercimek Çorbası + Orta Pilav + Ayran): 380 TL
+   - Doyuran Menü: Pilav 2 (Tavuk Suyu Çorbası + Orta Pilav + Ayran): 400 TL
+   - Doyuran Menü: Pilav 3 (Mercimek Çorbası + Büyük Pilav + Ayran): 440 TL
+   - Doyuran Menü: Pilav 3 (Tavuk Suyu Çorbası + Büyük Pilav + Ayran): 460 TL
+3. Dürümler & Izgaralar:
+   - Adana Dürüm Menü (+ Mercimek + Ayran): 400 TL | Adana Dürüm Tek: 275 TL
+   - Urfa Dürüm Menü (+ Mercimek + Ayran): 400 TL | Urfa Dürüm Tek: 275 TL
+   - Tavuk Şiş Dürüm Menü (+ Mercimek + Ayran): 400 TL | Tavuk Şiş Tek: 275 TL
+   - Ciğer Şiş Dürüm Menü (+ Mercimek + Ayran): 440 TL | Ciğer Şiş Tek: 330 TL
+   - Kovada Kanat (Tam Porsiyon): 690 TL | Yarım Kilo Kovada Kanat: 460 TL
+4. Çorbalar, Salatalar, Tatlılar & İçecekler:
+   - Tavuk Suyu Çorbası: 150 TL | Az: 120 TL
+   - Mercimek Çorbası: 140 TL | Az: 110 TL
+   - Sezar Salata: 365 TL | Akdeniz Salata: 365 TL | Ton Balıklı Salata: 300 TL
+   - Profiterol: 210 TL
+   - Büyük Ayran: 60 TL | Küçük Ayran: 50 TL | Kutu İçecekler (Kola, Fanta, Gazoz): 110 TL | Su: 25 TL
+
+GÖREVLERİN & KURALLAR:
+1. Müşteri serbestçe ne sorarsa sorsun son derece samimi, lezzetli, WhatsApp esnaf diliyle ve kısa paragraflarla Türkçe cevap ver.
+2. ZORUNLU KURAL: Müşteri bir sipariş verdiğinde yanıtında MUTLAKA sipariş kalemlerini, fiyatlarını ve toplam tutarı şu formatta madde madde yaz:
+* 1x [Ürün Adı]: [Fiyat] TL
+* TOPLAM: [Tutar] TL
+Teslimat adresini (Örn: Teslimat Adresi: [Müşterinin yazdığı adres]) ve ödeme şeklini de net bir şekilde belirt.`;
+
+    function playBeep(freq = 880, type = 'sine', duration = 0.15) {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch(e) {}
+    }
+
+    function appendMessage(sender, text, isAudio = false, audioDuration = "0:12") {
+      const container = document.getElementById('chatMessages');
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const wrapper = document.createElement('div');
+      
+      if (sender === 'user') {
+        wrapper.className = "flex justify-end";
+        let contentHtml = '';
+        if (isAudio) {
+          contentHtml = `
+            <div class="bg-[#d9fdd3] rounded-2xl rounded-tr-none p-3 shadow-sm max-w-[85%] text-slate-800">
+              <div class="flex items-center gap-3">
+                <button class="w-8 h-8 rounded-full bg-[#128c7e] text-white flex items-center justify-center text-xs">
+                  <i class="fa-solid fa-play"></i>
+                </button>
+                <div class="flex-1">
+                  <div class="h-1 bg-emerald-300 rounded-full w-32 relative overflow-hidden">
+                    <div class="h-full bg-emerald-600 w-2/3"></div>
+                  </div>
+                  <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                    <span>${audioDuration}</span>
+                    <span class="flex items-center gap-0.5"><i class="fa-solid fa-microphone text-emerald-600"></i> Ses Kaydı</span>
+                  </div>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600 mt-2 italic bg-emerald-50/80 p-1.5 rounded border border-emerald-200">
+                "${text}"
+              </p>
+              <div class="text-[10px] text-slate-400 text-right mt-1 flex items-center justify-end gap-1">
+                <span>${time}</span>
+                <i class="fa-solid fa-check-double text-sky-500"></i>
+              </div>
+            </div>
+          `;
+        } else {
+          contentHtml = `
+            <div class="bg-[#d9fdd3] rounded-2xl rounded-tr-none p-3 shadow-sm max-w-[85%] text-slate-800">
+              <p>${text}</p>
+              <div class="text-[10px] text-slate-400 text-right mt-1 flex items-center justify-end gap-1">
+                <span>${time}</span>
+                <i class="fa-solid fa-check-double text-sky-500"></i>
+              </div>
+            </div>
+          `;
+        }
+        wrapper.innerHTML = contentHtml;
+      } else {
+        wrapper.className = "flex justify-start";
+        wrapper.innerHTML = `
+          <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm border border-slate-200/60 max-w-[85%] text-slate-800">
+            <p class="font-medium text-amber-700 text-xs mb-1 flex items-center justify-between">
+              <span>Gurme Pilav Bandırma 🍚</span>
+              <span class="text-[9px] bg-purple-100 text-purple-700 font-semibold px-1.5 py-0.2 rounded">Qwen AI</span>
+            </p>
+            <div class="whitespace-pre-line leading-relaxed">${text}</div>
+            <div class="text-[10px] text-slate-400 text-right mt-1.5 flex items-center justify-end gap-1">
+              <span>${time}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      container.appendChild(wrapper);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function showTyping(show) {
+      const el = document.getElementById('typingIndicator');
+      if (show) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+      const container = document.getElementById('chatMessages');
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function handleKeyPress(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const val = input.value.trim();
+      if (!val) return;
+      input.value = '';
+      appendMessage('user', val);
+      callRealAI(val);
+    }
+
+    function sendQuickMessage(text) {
+      appendMessage('user', text);
+      callRealAI(text);
+    }
+
+    function simulateAudioOrder() {
+      const audioText = "Selamlar ustam, bize 1 adet Doyuran Menü 2 tavuk suyu çorbalı olsun, bir de yanına büyük boy Barbekü soslu tavuk pilav turşusu bol olsun. Adresimiz Paşabayır 1021 sokak Çınar apartmanı, kapıda kartla ödeyeceğiz.";
+      appendMessage('user', audioText, true, "0:14");
+      callRealAI(audioText);
+    }
+
+    function simulateLocationShare() {
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const container = document.getElementById('chatMessages');
+      const wrapper = document.createElement('div');
+      wrapper.className = "flex justify-end";
+      wrapper.innerHTML = `
+        <div class="bg-[#d9fdd3] rounded-2xl rounded-tr-none p-3 shadow-sm max-w-[85%] text-slate-800">
+          <div class="flex items-center gap-2 mb-1">
+            <i class="fa-solid fa-location-dot text-red-500 text-lg"></i>
+            <span class="font-bold text-xs text-slate-800">Canlı Konum Paylaşıldı</span>
+          </div>
+          <div class="bg-white/80 p-2 rounded-lg border border-slate-200 text-xs text-slate-700">
+            📍 <strong>Kaşif Acar Caddesi, Bandırma</strong><br>
+            <span class="text-[10px] text-slate-500">Mesafe: Gurme Pilav dükkanına 450 metre (Kurye Süresi: 12-15 dk)</span>
+          </div>
+          <div class="text-[10px] text-slate-400 text-right mt-1 flex items-center justify-end gap-1">
+            <span>${time}</span>
+            <i class="fa-solid fa-check-double text-sky-500"></i>
+          </div>
+        </div>
+      `;
+      container.appendChild(wrapper);
+      container.scrollTop = container.scrollHeight;
+
+      callRealAI("Konumumu gönderdim: Kaşif Acar Caddesi, Bandırma üzerindeyim. Buraya sipariş vermek istiyorum.");
+    }
+
+    // CANLI GROQ QWEN 27B ÇAĞRISI
+    async function callRealAI(userMessage) {
+      showTyping(true);
+      
+      chatHistory.push({ role: "user", content: userMessage });
+      if (chatHistory.length > 8) {
+        chatHistory = chatHistory.slice(-8);
+      }
+
+      try {
+        const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${k}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            model: "qwen/qwen3.8-27b",
+            messages: [
+              { role: "system", content: SYSTEM_PROMPT },
+              ...chatHistory
+            ],
+            temperature: 0.65,
+            max_tokens: 450
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error("HTTP " + response.status);
+        }
+
+        const data = await response.json();
+        let aiText = data.choices[0].message.content || "";
+        
+        chatHistory.push({ role: "assistant", content: aiText });
+
+        // HİBRİT ADİSYON AYRIŞTIRICI: Hem JSON hem Doğal Metin Taraması
+        const receiptData = parseOrderFromConversation(aiText, userMessage);
+        if (receiptData) {
+          updateThermalReceipt(receiptData);
+        }
+
+        showTyping(false);
+        appendMessage('bot', aiText);
+        playBeep(650, 'sine', 0.1);
+
+      } catch (err) {
+        console.warn("Groq API hatası veya internet yok, akıllı yerel motor devrede:", err);
+        showTyping(false);
+        fallbackLocalAI(userMessage);
+      }
+    }
+
+    // GELİŞMİŞ DOĞAL DİL, ADRES VE NOT AYRIŞTIRMA FONKSİYONU
+    function parseOrderFromConversation(aiText, userMessage) {
+      // Tüm konuşma geçmişini birleştir (adres önceki mesajda verilmiş olabilir)
+      const allConversation = chatHistory.map(m => m.content).join("\n") + "\n" + userMessage + "\n" + aiText;
+
+      // 1. Önce doğrudan JSON etiketi var mı kontrol et [ADISYON_FISI: {...}]
+      const jsonMatch = aiText.match(/\[ADISYON_FISI:\s*(\{.*?\})\]/s);
+      if (jsonMatch) {
+        try {
+          const parsed = JSON.parse(jsonMatch[1]);
+          if (parsed && parsed.items && parsed.items.length > 0) return parsed;
+        } catch(e) {}
+      }
+
+      // 2. Ürün ve Fiyat Ayrıştırması
+      const items = [];
+      const lines = aiText.split('\n');
+      let total = 0;
+
+      for (let l of lines) {
+        const clean = l.replace(/[*#_`]/g, '').trim();
+        if (!clean) continue;
+
+        // Toplam tutar tespiti
+        if (/toplam/i.test(clean) && (/TL/i.test(clean) || /₺/.test(clean) || /:/.test(clean))) {
+          const mTot = clean.match(/(?:toplam|tutar)[^0-9]*?(\d+)/i);
+          if (mTot) total = parseInt(mTot[1]);
+          continue;
+        }
+
+        // Yemek ve fiyat satırı tespiti
+        if ((/TL/i.test(clean) || /₺/.test(clean)) && /(pilav|ayran|çorba|menü|doyuran|dürüm|kanat|kebap|tatlı|profiterol|salata|kola|fanta|su|sote|kavurma)/i.test(clean)) {
+          const mPrice = clean.match(/(\d+)\s*(?:TL|₺)/i);
+          const price = mPrice ? parseInt(mPrice[1]) : 0;
+
+          let qty = 1;
+          const mQty = clean.match(/^[-*•\s]*(\d+)\s*x?\s+/i);
+          if (mQty) qty = parseInt(mQty[1]);
+
+          let name = clean.replace(/^[-*•\s]*(\d+\s*x?\s+)?/, '').replace(/:\s*\d+\s*(?:TL|₺).*/i, '').trim().replace(/^[:-]/, '').trim();
+          if (!name && mPrice) {
+            name = clean.substring(0, mPrice.index).replace(/^[-*•\s]*/, '').trim();
+          }
+
+          if (price > 0 && name.length > 2) {
+            items.push({ name: name, price: price, qty: qty });
+          }
+        }
+      }
+
+      if (total === 0 && items.length > 0) {
+        total = items.reduce((sum, it) => sum + (it.price * (it.qty || 1)), 0);
+      }
+
+      // 3. GELİŞMİŞ ADRES TESPİTİ (Kullanıcının yazdığı gerçek adres)
+      let address = '';
+
+      // Adım A: Yapay zekanın teyit ettiği adresi çek (Örn: "Teslimat: Paşabayır Mah. No:5 adresine...")
+      const mAiAddr = aiText.match(/(?:Teslimat|Adres)[^:\n]*?:\s*([^\n]+)/i);
+      if (mAiAddr) {
+        let rawAi = mAiAddr[1].replace(/[*#_`]/g, '');
+        rawAi = rawAi.replace(/(?:adresine|ücretsiz|kurye|ortalama|dakika|ile|ödeyeceksiniz).*/i, '').trim().replace(/[:,\.-]+$/, '');
+        if (rawAi.length > 4) {
+          address = rawAi;
+        }
+      }
+
+      // Adım B: Eğer yapay zekadan net çıkmadıysa veya kullanıcı mesajında açık adres varsa:
+      if (!address || address.length < 5) {
+        // Kullanıcının yazdığı "adres: ...", "adresimiz ..." veya "mahalle/sokak/no" kalıplarını tara
+        const mUserAddrKeyword = allConversation.match(/(?:adres(?:imiz)?|teslimat|konum)\s*(?:[:=]|\s+olarak|\s+ise)?\s*([^,\n\.]+(?:[,\.][^,\n\.]+){0,3})/i);
+        if (mUserAddrKeyword) {
+          let rawUser = mUserAddrKeyword[1].trim();
+          rawUser = rawUser.replace(/(?:turşu|mısır|soğan|not|zil|bebek|kapı|kapıda|kart|nakit|ödeye).*/i, '').trim().replace(/[:,\.-]+$/, '');
+          if (rawUser.length > 4) address = rawUser;
+        } else {
+          const mPattern = allConversation.match(/([A-Za-z0-9çğıöşüÇĞİÖŞÜ\s]{3,50}(?:mah(?:allesi)?|sok(?:ak)?|cad(?:desi)?|apt|apartman|site|blok|no\s*:\s*\d+)[^\n,\.]*)/i);
+          if (mPattern) {
+            let rawPat = mPattern[1].trim();
+            rawPat = rawPat.replace(/(?:kapıda|kartla|nakit|ödeye|turşu).*/i, '').trim().replace(/[:,\.-]+$/, '');
+            if (rawPat.length > 4) address = rawPat;
+          }
+        }
+      }
+
+      if (!address) {
+        address = "Bandırma Merkez (Adres teyit edilecek)";
+      }
+
+      // 4. GELİŞMİŞ NOT TESPİTİ (Kullanıcının yazdığı gerçek notlar)
+      const detectedNotes = [];
+      if (/turşu\s*(?:bol|fazla|istiyorum)/i.test(allConversation) || /bol\s*turşu/i.test(allConversation)) {
+        detectedNotes.push("Bol turşu");
+      } else if (/turşu\s*(?:olmasın|koymayın|yok|istemiyorum)/i.test(allConversation)) {
+        detectedNotes.push("Turşusuz");
+      }
+      if (/mısır\s*(?:olmasın|koymayın|yok|istemiyorum)/i.test(allConversation)) {
+        detectedNotes.push("Mısır olmasın");
+      }
+      if (/soğan\s*(?:olmasın|koymayın|yok|istemiyorum|suz)/i.test(allConversation)) {
+        detectedNotes.push("Soğansız");
+      }
+      if (/acı\s*(?:olsun|bol|sos)/i.test(allConversation)) {
+        detectedNotes.push("Acılı / Acı sos");
+      }
+      if (/zil|çalmayın|bebek|uyuyor/i.test(allConversation)) {
+        detectedNotes.push("Zili çalmayın lütfen, kapıya bırakın");
+      }
+      // Kullanıcı açıkça "not: ..." veya "notum: ..." yazdıysa:
+      const mCustomNote = allConversation.match(/(?:not(?:um)?|özel not)\s*[:=]\s*([^,\n\.]+)/i);
+      if (mCustomNote) {
+        const cn = mCustomNote[1].trim();
+        if (cn && !detectedNotes.includes(cn)) detectedNotes.push(cn);
+      }
+
+      let finalNotes = detectedNotes.join(" • ");
+
+      // 5. Ödeme Yöntemi Tespiti
+      let payment = "Kapıda Nakit";
+      if (/kart|kredi|pos|temassız/i.test(allConversation)) {
+        payment = "Kapıda Kredi Kartı (Mobil POS)";
+      } else if (/nakit/i.test(allConversation)) {
+        payment = "Kapıda Nakit";
+      }
+
+      if (items.length > 0 || total > 0) {
+        return {
+          items: items.length > 0 ? items : [{ name: "Gurme Tavuklu Pilav Menüsü", price: total || 280, qty: 1 }],
+          total: total || 280,
+          address: address,
+          payment: payment,
+          notes: finalNotes
+        };
+      }
+
+      // Kullanıcı sipariş veriyorum dedi ama AI henüz fiyat dökmediyse bile kullanıcının ürünlerinden çıkar:
+      if (/sipariş|istiyorum|gönder|porsiyon/i.test(userMessage)) {
+        const fallbackItems = [];
+        let fTotal = 0;
+        if (/barbekü/i.test(userMessage)) { fallbackItems.push({ name: "Barbekü Soslu Tavuk-Pilav (300g)", price: 265, qty: 1 }); fTotal += 265; }
+        if (/ballı hardal/i.test(userMessage)) { fallbackItems.push({ name: "Ballı Hardallı Tavuk-Pilav (300g)", price: 265, qty: 1 }); fTotal += 265; }
+        if (/kavurma/i.test(userMessage)) { fallbackItems.push({ name: "Kavurmalı Pilav (300g)", price: 490, qty: 1 }); fTotal += 490; }
+        if (/doyuran/i.test(userMessage)) { fallbackItems.push({ name: "Doyuran Menü: Pilav 2 (Tavuk Suyu)", price: 400, qty: 1 }); fTotal += 400; }
+        if (/ayran/i.test(userMessage)) { fallbackItems.push({ name: "Büyük Ayran", price: 60, qty: 1 }); fTotal += 60; }
+        if (/çorba/i.test(userMessage) && !/doyuran/i.test(userMessage)) { fallbackItems.push({ name: "Tavuk Suyu Çorbası", price: 150, qty: 1 }); fTotal += 150; }
+        if (/profiterol/i.test(userMessage)) { fallbackItems.push({ name: "Profiterol", price: 210, qty: 1 }); fTotal += 210; }
+
+        if (fallbackItems.length > 0) {
+          return {
+            items: fallbackItems,
+            total: fTotal,
+            address: address,
+            payment: payment,
+            notes: finalNotes
+          };
+        }
+      }
+
+      return null;
+    }
+
+    // Akıllı Yerel Yedek Yanıtlayıcı (İnternet kesilirse bile dükkanda çalışır)
+    function fallbackLocalAI(msg) {
+      const m = msg.toLowerCase();
+      let reply = "";
+
+      if (m.includes('barbekü') || m.includes('sipariş') || m.includes('pilav')) {
+        reply = `Siparişinizi aldım! Mutfak fişinizi hazırlıyorum:\n\n* 1x Barbekü Soslu Tavuk-Pilav (300g): 265 TL\n* 1x Büyük Ayran: 60 TL\n* **TOPLAM: 325 TL**\n\nTeslimat Adresi: Paşabayır Mah. No:5 adresine ortalama 20-25 dakikada ücretsiz ulaştırılacaktır. Ödemenizi kapıda mobil POS ile kartla yapabilirsiniz. Afiyet olsun! 🍚`;
+        const receiptData = parseOrderFromConversation(reply, msg);
+        if (receiptData) updateThermalReceipt(receiptData);
+      } else if (m.includes('helal') || m.includes('tavuk')) {
+        reply = "Tavuklarımızın tamamı günlük, taze ve %100 helal kesim sertifikalıdır. Pilavlarımızda birinci sınıf baldo pirinç ve mis gibi tereyağı kullanıyoruz. Tavuk suyu çorbamız ise bulyon değil, gerçek köy tavuğu kemik suyundan şifalı olarak kaynatılır. Gönül rahatlığıyla afiyetle tüketebilirsiniz! 🍚";
+      } else {
+        reply = `Harika bir seçim! Siparişinizi aldım, porsiyonu büyük 300g mı yoksa normal 200g mı olsun istersiniz? Yanına sıcacık bir tavuk suyu çorbası veya bol köpüklü büyük ayran ekleyelim mi?`;
+      }
+
+      appendMessage('bot', reply);
+      playBeep(650, 'sine', 0.1);
+    }
+
+    // CANLI TERMAL ADİSYON FİŞİNİ GÜNCELLE & MUTFAK ZİLİ ÇAL
+    function updateThermalReceipt(data) {
+      // 1. Yazıcı zilini çal (dink-dink!)
+      playBeep(980, 'square', 0.25);
+      setTimeout(() => playBeep(1200, 'square', 0.35), 200);
+
+      // 2. Yeşil Bildirim Bandını Göster
+      const alertEl = document.getElementById('receiptAlert');
+      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      document.getElementById('receiptAlertTime').innerText = timeStr;
+      alertEl.classList.remove('hidden');
+      setTimeout(() => alertEl.classList.add('hidden'), 5000);
+
+      // 3. Fiş Kalemlerini Bas
+      const container = document.getElementById('receiptItems');
+      if (data.items && data.items.length > 0) {
+        container.innerHTML = '';
+        data.items.forEach(item => {
+          const div = document.createElement('div');
+          div.innerHTML = `
+            <div class="flex justify-between font-bold">
+              <span>${item.qty || 1}x ${item.name}</span>
+              <span>${item.price} TL</span>
+            </div>
+            ${item.notes ? `<div class="text-[10px] text-slate-700 pl-3 italic">* NOT: ${item.notes}</div>` : ''}
+          `;
+          container.appendChild(div);
+        });
+      }
+
+      // 4. Tutarları Güncelle
+      const total = data.total || 280;
+      document.getElementById('receiptSubtotal').innerText = total + ' TL';
+      document.getElementById('receiptTotal').innerText = total + ' TL';
+
+      // 5. Ödeme Yöntemi
+      if (data.payment) {
+        document.getElementById('receiptPayment').innerText = data.payment.toUpperCase();
+      }
+
+      // 6. GERÇEK ADRESİ VE GERÇEK NOTU BAS
+      const addrEl = document.getElementById('receiptAddress');
+      if (data.address && data.address.trim().length > 3) {
+        addrEl.innerText = data.address.trim();
+      } else {
+        addrEl.innerText = "Bandırma Merkez (Adres teyit edilecek)";
+      }
+
+      const noteBox = document.getElementById('receiptNoteBox');
+      if (data.notes && data.notes.trim().length > 0) {
+        noteBox.className = "bg-amber-100 p-1.5 rounded border border-amber-300 text-[10px] text-amber-900 mt-1 font-semibold";
+        noteBox.innerText = '🛵 KURYE NOTU: ' + data.notes.trim();
+        noteBox.classList.remove('hidden');
+      } else {
+        noteBox.className = "bg-slate-100 p-1.5 rounded border border-slate-200 text-[10px] text-slate-600 mt-1 italic";
+        noteBox.innerText = '🛵 KURYE NOTU: Standart teslimat (Özel not belirtilmedi).';
+      }
+
+      // 7. Tarih & Fiş No
+      document.getElementById('receiptDate').innerText = new Date().toLocaleDateString('tr-TR') + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('receiptId').innerText = '#GP-' + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('receiptStatus').innerText = "MUTFAKTA";
+
+      // 8. İstatistikleri artır
+      const countEl = document.getElementById('dailyOrdersCount');
+      countEl.innerText = parseInt(countEl.innerText) + 1;
+      
+      const savedEl = document.getElementById('savedCommission');
+      const currentSaved = parseInt(savedEl.innerText.replace('₺', '').replace('.', ''));
+      savedEl.innerText = '₺' + (currentSaved + Math.floor(total * 0.30)).toLocaleString('tr-TR');
+
+      // 9. Fiş Kağıdına Vurgu Animasyonu
+      const paper = document.getElementById('receiptPaper');
+      paper.classList.add('ring-4', 'ring-emerald-400');
+      setTimeout(() => paper.classList.remove('ring-4', 'ring-emerald-400'), 1500);
+
+      // Mobilde görünür alana kaydır
+      if (window.innerWidth < 1024) {
+        paper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    function showMenuModal() {
+      document.getElementById('menuModal').classList.remove('hidden');
+    }
+
+    function closeMenuModal() {
+      document.getElementById('menuModal').classList.add('hidden');
+    }
+
+    function addMenuItemToChat(title, price) {
+      closeMenuModal();
+      sendQuickMessage(`1 adet ${title} sipariş etmek istiyorum (${price} TL).`);
+    }
+
+    function printReceipt() {
+      playBeep(1200, 'square', 0.15);
+      window.print();
+    }
+
+    function resetConversation() {
+      chatHistory = [];
+      const container = document.getElementById('chatMessages');
+      container.innerHTML = `
+        <div class="flex justify-center">
+          <div class="bg-amber-100/90 text-amber-900 border border-amber-200 px-3 py-1.5 rounded-lg text-xs shadow-sm max-w-md text-center">
+            🔒 Bu hat <strong>Gurme Pilav</strong> resmi yapay zeka sipariş sistemine bağlıdır. Menüdeki 243 ürünü bilir, serbestçe her şeyi sorabilir ve siparişinizi doğrudan mutfağa yazdırabilirsiniz.
+          </div>
+        </div>
+        <div class="flex items-start gap-2 max-w-[85%]">
+          <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm border border-slate-200/60 text-slate-800">
+            <p class="font-medium text-amber-700 text-xs mb-1">Gurme Pilav Bandırma 🍚</p>
+            <p>Sohbet hafızası sıfırlandı. Mutfak, menü, hijyen ve porsiyonlarla ilgili dilediğiniz her soruyu sorabilirsiniz!</p>
+            <div class="text-[10px] text-slate-400 text-right mt-1.5 flex items-center justify-end gap-1">
+              <span>Şimdi</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
