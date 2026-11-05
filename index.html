@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Operis AI | Otel & Turizm Yapay Zeka Otomasyonu — 7/24 Dijital Resepsiyon</title>
 <meta name="description" content="Operis AI: Oteller için 7/24 WhatsApp ve Instagram DM yapay zeka resepsiyon asistanı. 3 saniyede yanıt, otomatik oda fotoğrafı, 4 dil desteği ve %0 komisyonla doğrudan rezervasyon.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -96,15 +97,15 @@ header.navbar {
   color: var(--text-main);
 }
 .brand-logo {
-  width: 40px; height: 40px;
-  border-radius: 11px;
-  background: linear-gradient(135deg, #10b981, #047857);
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  font-size: 20px;
-  color: #fff;
-  box-shadow: 0 4px 16px var(--accent-glow);
+  width: 42px; height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 14px rgba(24, 181, 141, 0.4));
+}
+.brand-logo img {
+  width: 100%; height: 100%;
+  object-fit: contain;
 }
 .brand-text-wrap { display: flex; flex-direction: column; }
 .brand-name { font-weight: 800; font-size: 19px; letter-spacing: -0.5px; line-height: 1.1; }
@@ -797,9 +798,9 @@ footer.corp-footer {
 <!-- KURUMSAL NAVBAR -->
 <header class="navbar">
   <a href="#" class="brand">
-    <div class="brand-logo">O</div>
+    <div class="brand-logo"><img src="assets/operis_emblem_dark.png" alt="operisAI"></div>
     <div class="brand-text-wrap">
-      <div class="brand-name">OPERIS <span>AI</span></div>
+      <div class="brand-name">operis<span>AI</span></div>
       <div class="brand-sub">OTEL & TURİZM YAPAY ZEKA OTOMASYONU</div>
     </div>
   </a>
@@ -1244,9 +1245,9 @@ footer.corp-footer {
     <div class="footer-grid">
       <div class="footer-col">
         <div class="brand" style="margin-bottom:12px;">
-          <div class="brand-logo">O</div>
+          <div class="brand-logo"><img src="assets/operis_emblem_dark.png" alt="operisAI"></div>
           <div class="brand-text-wrap">
-            <div class="brand-name">OPERIS <span>AI</span></div>
+            <div class="brand-name">operis<span>AI</span></div>
             <div class="brand-sub">OTEL & TURİZM YAPAY ZEKA OTOMASYONU</div>
           </div>
         </div>
