@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuzey Pınar Su & Dağıtım — 7/24 WhatsApp Yapay Zeka Sipariş & Kurye Sevkiyat Otomasyonu</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .whatsapp-bg {
+      background-color: #efeae2;
+      background-image: radial-gradient(#d4cbbe 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+    .thermal-paper {
+      background: #fffdf5;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    .thermal-paper::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: radial-gradient(circle, transparent, transparent 50%, #fffdf5 50%, #fffdf5 100%);
+      background-size: 16px 20px;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    
+    .typing-dot {
+      animation: typingAnimation 1.4s infinite ease-in-out;
+    }
+    .typing-dot:nth-child(1) { animation-delay: 0s; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingAnimation {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+    
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.3; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .water-ripple {
+      animation: pulse-ring 3s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-sky-500 selection:text-white">
+
+  <!-- ÜST HEADER / MARKA VE KONTROL ÇUBUĞU -->
+  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 px-4 py-3 shadow-md">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-sky-500/20 border border-sky-500/40 flex items-center justify-center text-sky-400 font-bold text-xl shadow-inner">
+          💧
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-bold text-base md:text-lg text-white tracking-tight">Kuzey Pınar Su & Dağıtım</h1>
+            <span class="bg-sky-500/20 text-sky-300 text-xs px-2.5 py-0.5 rounded-full font-semibold border border-sky-500/30 flex items-center gap-1.5 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span> 7/24 WhatsApp Su AI & Kurye Fiş Motoru
+            </span>
+          </div>
+          <p class="text-xs text-slate-400">Damacana Su, Cam Damacana, Maden Suyu & Tüp Sevkiyatı • 0.8 sn Yanıt</p>
+        </div>
+      </div>
+
+      <!-- Ortadaki Metrikler (Bayi Kazancı) -->
+      <div class="hidden lg:flex items-center gap-6 bg-slate-800/70 border border-slate-700/60 px-4 py-1.5 rounded-xl text-xs">
+        <div>
+          <span class="text-slate-400 block text-[10px] uppercase font-semibold">Cevapsız Kalan Sipariş:</span>
+          <span class="text-red-400 font-bold line-through">Günde 15-20 Müşteri Kaybı</span>
+        </div>
+        <div class="h-6 w-px bg-slate-700"></div>
+        <div>
+          <span class="text-slate-400 block text-[10px] uppercase font-semibold">Operis Su AI İle:</span>
+          <span class="text-emerald-400 font-bold">%0 Kayıp • 0 Saniye Gecikme</span>
+        </div>
+        <div class="h-6 w-px bg-slate-700"></div>
+        <div>
+          <span class="text-slate-400 block text-[10px] uppercase font-semibold">Tek Tuşla Sipariş:</span>
+          <span class="text-sky-400 font-bold">Kayıtlı Adrese 5 Saniyede</span>
+        </div>
+      </div>
+
+      <!-- Sağ Aksiyon Butonları -->
+      <div class="flex items-center gap-2">
+        <a href="hub.html" class="px-2.5 py-1.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900/60 text-xs text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5 transition">
+          <img src="assets/operis_emblem_dark.png" class="w-4 h-4 object-contain">
+          <span class="font-bold">operis<span class="text-[#18b58d]">AI</span></span>
+        </a>
+        <button onclick="showPricingModal()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-sky-300 border border-slate-700 flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-list-check text-sky-400"></i> Fiyat & Ürün Kataloğu
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ANA GÖVDE: İKİLİ ÇALIŞMA ALANI (SOL: MÜŞTERİ WHATSAPP, SAĞ: KURYE / DAĞITIM TERMAL FİŞİ) -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-3 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- SOL BÖLÜM: MÜŞTERİ GÖZÜNDEN WHATSAPP ASİSTANI (7 Kolon) -->
+    <div class="lg:col-span-7 flex flex-col bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl h-[790px]">
+      
+      <!-- WhatsApp Üst Başlığı -->
+      <div class="bg-[#075e54] text-white px-4 py-3 flex items-center justify-between shadow z-10">
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <div class="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center text-white font-bold text-lg shadow">
+              💧
+            </div>
+            <div class="w-3.5 h-3.5 bg-emerald-400 rounded-full border-2 border-[#075e54] absolute bottom-0 right-0"></div>
+          </div>
+          <div>
+            <h2 class="font-semibold text-sm leading-tight flex items-center gap-1.5">
+              Kuzey Pınar Su & Dağıtım
+              <i class="fa-solid fa-circle-check text-emerald-300 text-xs" title="Doğrulanmış İşletme"></i>
+            </h2>
+            <p id="botStatusText" class="text-[11px] text-emerald-100 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span>
+              7/24 Canlı Su Asistanı Çevrim içi
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 text-white/80 text-sm">
+          <button onclick="resetConversation()" title="Sohbeti Sıfırla" class="hover:text-white px-2.5 py-1 bg-[#128c7e] rounded text-xs flex items-center gap-1">
+            <i class="fa-solid fa-rotate-right"></i> Temizle
+          </button>
+        </div>
+      </div>
+
+      <!-- Canlı Hızlı Senaryo Butonları (Bayi Sahiplerine Gösterilecek Sihirli Butonlar) -->
+      <div class="bg-slate-800/95 border-b border-slate-700/80 px-3 py-2 text-xs flex items-center gap-2 overflow-x-auto whitespace-nowrap">
+        <span class="text-sky-400 font-bold flex items-center gap-1"><i class="fa-solid fa-bolt"></i> Test Senaryoları:</span>
+        <button onclick="sendQuickMessage('2 damacana su alabilir miyiz, boşumuz var, kapıda kartla ödeyeceğiz. Adres Paşabayır Mah. 1021 Sok. No:5 Daire:4 (3. Kat asansör var)')" class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/40 px-2.5 py-1 rounded-full font-medium transition flex items-center gap-1.5">
+          💧 2 Damacana Sipariş (Fişe Bak)
+        </button>
+        <button onclick="simulateAudioOrder()" class="bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 px-2.5 py-1 rounded-full font-medium transition flex items-center gap-1.5">
+          <i class="fa-solid fa-microphone text-red-400 animate-pulse"></i> 🎙️ Sesli Sipariş Simülatörü
+        </button>
+        <button onclick="sendQuickMessage('Aynı adrese geçen haftaki gibi 1 damacana su lütfen')" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 px-2.5 py-1 rounded-full font-medium transition flex items-center gap-1.5">
+          ⚡ Tek Tıkla Tekrar Sipariş
+        </button>
+        <button onclick="sendQuickMessage('Yeni taşındık elimizde boş damacana yok, depozito dahil 1 damacana ne kadar tutar?')" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-2.5 py-1 rounded-full transition">
+          🆕 Boş Damacanam Yok (Depozito Sor)
+        </button>
+        <button onclick="sendQuickMessage('Suyunuzun pH değeri kaç, doğal kaynak suyu mu arıtma mı?')" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-2.5 py-1 rounded-full transition">
+          🔬 pH Değeri & Kaynak Sor
+        </button>
+      </div>
+
+      <!-- Mesajlaşma Alanı (WhatsApp Arka Planı) -->
+      <div id="chatMessages" class="flex-1 whatsapp-bg p-4 overflow-y-auto space-y-3 text-slate-800 text-sm">
+        
+        <!-- Güvenlik & İşletme Bilgisi -->
+        <div class="flex justify-center">
+          <div class="bg-sky-100/90 text-sky-950 border border-sky-200 px-3 py-1.5 rounded-lg text-xs shadow-sm max-w-md text-center">
+            💧 <strong>Kuzey Pınar Su & Dağıtım</strong> resmi WhatsApp yapay zeka hattıdır. Mesajınızı anında anlar, kuryenin el terminaline ve sevkiyat fişine otomatik aktarır.
+          </div>
+        </div>
+
+        <!-- Bot Karşılama Mesajı -->
+        <div class="flex items-start gap-2 max-w-[85%]">
+          <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm border border-slate-200/60 text-slate-800">
+            <p class="font-medium text-sky-800 text-xs mb-1">Kuzey Pınar Su Dağıtım 💧</p>
+            <p>Merhaba! <strong>Kuzey Pınar Su & Dağıtım</strong> sipariş hattına hoş geldiniz.</p>
+            <p class="mt-1 text-slate-600">Uludağ zirvesinden <strong>8.2 pH doğal kaynak suyumuzu (19L Damacana, Cam Damacana, 5L ve Koli Su)</strong> veya maden sularımızı dilediğiniz gibi sipariş edebilirsiniz.</p>
+            <p class="mt-2 text-xs text-sky-900 font-semibold bg-sky-50 p-2 rounded-lg border border-sky-100">
+              💡 <em>Farklı marka damacanalarınız da birebir ücretsiz değişimle kabul edilir.</em>
+            </p>
+            <p class="mt-2 text-xs text-emerald-700 font-semibold">Nasıl yardımcı olabilirim? Kaç adet su getirelim?</p>
+            
+            <div class="text-[10px] text-slate-400 text-right mt-1.5 flex items-center justify-end gap-1">
+              <span>Şimdi</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Yazıyor Animasyonu (Gizli/Dinamik) -->
+      <div id="typingIndicator" class="hidden px-4 py-2 bg-slate-100/90 border-t border-slate-200 text-xs text-slate-600 flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-sky-600 animate-ping"></span>
+        <span class="font-semibold text-sky-900">Su Dağıtım AI Yanıt Hazırlıyor</span>
+        <div class="flex items-center gap-1">
+          <div class="w-1.5 h-1.5 rounded-full bg-slate-500 typing-dot"></div>
+          <div class="w-1.5 h-1.5 rounded-full bg-slate-500 typing-dot"></div>
+          <div class="w-1.5 h-1.5 rounded-full bg-slate-500 typing-dot"></div>
+        </div>
+      </div>
+
+      <!-- WhatsApp Mesaj Giriş Alanı -->
+      <div class="bg-[#f0f2f5] p-3 border-t border-slate-300 flex items-center gap-2">
+        <button onclick="simulateLocationShare()" title="Konum Gönder" class="text-slate-500 hover:text-emerald-600 p-2 text-lg transition">
+          <i class="fa-solid fa-location-dot"></i>
+        </button>
+        <button onclick="showPricingModal()" title="Fiyat Listesini Aç" class="text-slate-500 hover:text-sky-600 p-2 text-lg transition">
+          <i class="fa-solid fa-bottle-water"></i>
+        </button>
+        <div class="flex-1 relative">
+          <input id="chatInput" type="text" placeholder="Adet, adres ve ödeme şeklini yazın... (Örn: 2 damacana su, boşum var)" 
+                 onkeypress="handleKeyPress(event)"
+                 class="w-full bg-white rounded-full py-2.5 px-4 text-slate-800 text-sm focus:outline-none border border-slate-300 focus:border-[#075e54] shadow-inner">
+        </div>
+        <button id="voiceBtn" onclick="simulateAudioOrder()" title="Ses Kaydı Gönder" class="w-10 h-10 rounded-full bg-[#128c7e] hover:bg-[#075e54] text-white flex items-center justify-center transition shadow">
+          <i class="fa-solid fa-microphone"></i>
+        </button>
+        <button onclick="sendMessage()" class="w-10 h-10 rounded-full bg-[#128c7e] hover:bg-[#075e54] text-white flex items-center justify-center transition shadow">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- SAĞ BÖLÜM: DAĞITIM MERKEZİ / MOTORCU KURYE SEVKİYAT FİŞİ (5 Kolon) -->
+    <div class="lg:col-span-5 flex flex-col space-y-4">
+
+      <!-- Sevkiyat Paneli Başlığı & Canlı Durum -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold">
+              <i class="fa-solid fa-truck-fast"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-sm text-white">Sevkiyat & Dağıtım Paneli</h3>
+              <p class="text-xs text-slate-400">80mm Termal Kurye Sevkiyat Fişi</p>
+            </div>
+          </div>
+          <span id="printerStatus" class="text-[11px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full flex items-center gap-1 font-medium">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Kurye Terminali Online
+          </span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 text-center text-xs">
+          <div class="bg-slate-800/60 p-2 rounded-xl border border-slate-700/60">
+            <span class="text-slate-400 block text-[10px]">Bugünkü Dağıtım</span>
+            <span id="dailyOrdersCount" class="text-white font-bold text-base">142 Adet</span>
+          </div>
+          <div class="bg-slate-800/60 p-2 rounded-xl border border-slate-700/60">
+            <span class="text-slate-400 block text-[10px]">Kurtarılan Sipariş</span>
+            <span id="savedCommission" class="text-emerald-400 font-bold text-base">%100 Yakalama</span>
+          </div>
+          <div class="bg-slate-800/60 p-2 rounded-xl border border-slate-700/60">
+            <span class="text-slate-400 block text-[10px]">Kurye Yanıt Süresi</span>
+            <span class="text-sky-400 font-bold text-base">0.8 sn</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- GERÇEK 80MM TERMAL KURYE DAĞITIM FİŞİ (Thermal Delivery Receipt) -->
+      <div class="flex-1 flex flex-col bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-print text-sky-400"></i> Çıkan Son Sevkiyat Fişi
+          </span>
+          <div class="flex items-center gap-1.5">
+            <button onclick="printReceipt()" class="text-xs px-2.5 py-1 bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/40 rounded-lg transition flex items-center gap-1">
+              <i class="fa-solid fa-print"></i> Fişi Yazdır (Print)
+            </button>
+            <button onclick="playBeep(980, 'square', 0.2)" title="Zil Testi" class="text-xs px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg">
+              <i class="fa-solid fa-bell"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Canlı Sipariş Geldi Bildirim Bandı -->
+        <div id="receiptAlert" class="hidden mb-2 p-2 bg-sky-500/20 border border-sky-500 text-sky-300 text-xs rounded-xl flex items-center justify-between shadow-lg">
+          <span class="flex items-center gap-1.5 font-bold">
+            <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+            🔔 YENİ SU SİPARİŞİ BASILDI!
+          </span>
+          <span id="receiptAlertTime" class="text-[10px] text-sky-200"></span>
+        </div>
+
+        <!-- Fiş Kağıdı -->
+        <div class="flex-1 overflow-y-auto p-1 flex justify-center">
+          <div id="receiptPaper" class="thermal-paper text-slate-900 w-full max-w-[340px] p-5 rounded-sm mono text-xs leading-relaxed border-t-4 border-slate-800 shadow-md transition duration-500">
+            
+            <div class="text-center pb-2 border-b border-dashed border-slate-400">
+              <h2 class="font-bold text-base tracking-widest uppercase">KUZEY PINAR SU</h2>
+              <p class="text-[11px] font-semibold text-slate-700">Uludağ Kaynak Suyu Dağıtım Bayisi</p>
+              <p class="text-[10px] text-slate-600">Tel: 0546 482 79 30 • Bandırma</p>
+              <div class="mt-1 bg-black text-white px-2.5 py-0.5 inline-block text-[11px] font-bold rounded">
+                KURYE SEVKİYAT FİŞİ
+              </div>
+            </div>
+
+            <div class="py-2 border-b border-dashed border-slate-400 text-[11px] space-y-0.5">
+              <div class="flex justify-between">
+                <span>Fiş No: <strong id="receiptId">#SU-7824</strong></span>
+                <span id="receiptDate">05.11.2026 15:20</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Kanal: <strong>WhatsApp Su AI</strong></span>
+                <span class="text-emerald-700 font-bold" id="receiptStatus">KURYE BEKLİYOR</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Müşteri: <strong id="receiptCustomer">0532 *** 45 12 (Kayıtlı Abone)</strong></span>
+              </div>
+            </div>
+
+            <!-- Adres & Kat & Asansör Bilgisi -->
+            <div class="py-2 border-b border-dashed border-slate-400 text-[11px]">
+              <span class="text-slate-600 block text-[10px] uppercase font-bold">Teslimat Adresi:</span>
+              <p id="receiptAddress" class="font-bold text-slate-900 leading-snug">
+                Paşabayır Mah. 1021 Sok. No:5 Daire:4 (3. Kat - Asansör Var)
+              </p>
+            </div>
+
+            <!-- Sipariş Kalemleri -->
+            <div class="py-2 border-b border-dashed border-slate-400">
+              <table class="w-full text-left text-[11px]">
+                <thead>
+                  <tr class="border-b border-slate-300 text-slate-600 font-semibold">
+                    <th class="pb-1">Ad.</th>
+                    <th class="pb-1">Ürün</th>
+                    <th class="pb-1 text-right">Tutar</th>
+                  </tr>
+                </thead>
+                <tbody id="receiptItems" class="divide-y divide-slate-200">
+                  <tr>
+                    <td class="py-1 font-bold">2x</td>
+                    <td class="py-1">19L Damacana Su (Değişimli)</td>
+                    <td class="py-1 text-right font-bold">190 TL</td>
+                  </tr>
+                  <tr>
+                    <td class="py-1 font-bold">1x</td>
+                    <td class="py-1">Beypazarı Maden Suyu (24'lü)</td>
+                    <td class="py-1 text-right font-bold">145 TL</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- İade Alınacak Boş Damacana & Boş Tüp Rozeti -->
+            <div class="py-2 border-b border-dashed border-slate-400 bg-amber-50/80 p-2 my-1 rounded border border-amber-200 text-[11px]">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-amber-900 flex items-center gap-1">
+                  <i class="fa-solid fa-recycle text-amber-700"></i> İADE ALINACAK BOŞ:
+                </span>
+                <span id="receiptEmptyReturn" class="font-bold text-amber-950">2 Adet Boş Damacana</span>
+              </div>
+              <p class="text-[10px] text-amber-800 mt-0.5">Farklı marka damacana değişimi kabul edilir.</p>
+            </div>
+
+            <!-- Toplam Tutar & Ödeme -->
+            <div class="py-2 border-b border-dashed border-slate-400 text-[11px] space-y-1">
+              <div class="flex justify-between items-center text-sm font-extrabold">
+                <span>TOPLAM TUTAR:</span>
+                <span id="receiptTotal" class="text-base">335 TL</span>
+              </div>
+              <div class="flex justify-between text-slate-700">
+                <span>Ödeme Şekli:</span>
+                <strong id="receiptPayment" class="text-slate-900 bg-slate-200 px-1 rounded">Kapıda Kredi Kartı (Mobil POS)</strong>
+              </div>
+              <div class="flex justify-between text-slate-700">
+                <span>KDV (%1):</span>
+                <span>Dahil</span>
+              </div>
+            </div>
+
+            <!-- Kurye / Teslimat Özel Notu -->
+            <div class="py-2 border-b border-dashed border-slate-400 text-[11px]">
+              <span class="text-slate-600 block text-[10px] uppercase font-bold">Kurye / Sevkiyat Notu:</span>
+              <p id="receiptNotes" class="font-bold text-red-700 bg-red-50 p-1.5 rounded border border-red-200 leading-snug">
+                ⚠️ Kapıyı çalmayın lütfen, telefon edin bebek uyuyor.
+              </p>
+            </div>
+
+            <div class="pt-3 text-center text-[10px] text-slate-500 space-y-1">
+              <p>Operis AI — WhatsApp Akıllı Dağıtım Altyapısı</p>
+              <p class="font-semibold text-slate-800">Afiyet olsun, bizi tercih ettiğiniz için teşekkür ederiz!</p>
+              <div class="pt-1 flex justify-center">
+                <div class="h-6 w-40 bg-slate-800 flex items-center justify-center text-[9px] text-white tracking-widest font-mono">
+                  ||||| ||||||| |||| |||||
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FİYAT & ÜRÜN MODALI -->
+  <div id="pricingModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">💧</span>
+          <div>
+            <h3 class="font-bold text-white text-base">Kuzey Pınar Su & Dağıtım Kataloğu</h3>
+            <p class="text-xs text-slate-400">Güncel Perakende ve Toptan Fiyat Listesi</p>
+          </div>
+        </div>
+        <button onclick="closePricingModal()" class="text-slate-400 hover:text-white text-lg">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="space-y-2 text-xs max-h-96 overflow-y-auto pr-1">
+        <div class="p-2.5 rounded-xl bg-slate-800/60 border border-slate-700/60 flex justify-between items-center">
+          <div>
+            <p class="font-bold text-white">19L Polikarbon Damacana Su (Değişimli)</p>
+            <p class="text-slate-400 text-[11px]">8.2 pH Uludağ Doğal Kaynak Suyu • Boş kap takaslı</p>
+          </div>
+          <span class="text-emerald-400 font-bold text-sm">95 TL</span>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-slate-800/60 border border-slate-700/60 flex justify-between items-center">
+          <div>
+            <p class="font-bold text-white">15L Cam Damacana Su (Değişimli)</p>
+            <p class="text-slate-400 text-[11px]">Doğal cam saflığı • Özel ahşap taşıma kasalı</p>
+          </div>
+          <span class="text-emerald-400 font-bold text-sm">140 TL</span>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-slate-800/60 border border-slate-700/60 flex justify-between items-center">
+          <div>
+            <p class="font-bold text-white">Sıfır Damacana Depozito Ücreti</p>
+            <p class="text-slate-400 text-[11px]">Elinizde boş kap yoksa 1 kerelik depozito bedeli</p>
+          </div>
+          <span class="text-amber-400 font-bold text-sm">180 TL</span>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-slate-800/60 border border-slate-700/60 flex justify-between items-center">
+          <div>
+            <p class="font-bold text-white">5L Pet Su (4'lü Koli)</p>
+            <p class="text-slate-400 text-[11px]">Pratik kullanım • 4 adet x 5 Litre</p>
+          </div>
+          <span class="text-emerald-400 font-bold text-sm">110 TL</span>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-slate-800/60 border border-slate-700/60 flex justify-between items-center">
+          <div>
+            <p class="font-bold text-white">Beypazarı Doğal Maden Suyu (24'lü Koli)</p>
+            <p class="text-slate-400 text-[11px]">Zengin mineralli cam şişe (200ml x 24 adet)</p>
+          </div>
+          <span class="text-emerald-400 font-bold text-sm">145 TL</span>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-slate-800/60 border border-slate-700/60 flex justify-between items-center">
+          <div>
+            <p class="font-bold text-white">12 Kg Mutfak Tüpü (Değişimli)</p>
+            <p class="text-slate-400 text-[11px]">Ev tipi şişman/dar tüp • Boş değişimli</p>
+          </div>
+          <span class="text-emerald-400 font-bold text-sm">820 TL</span>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t border-slate-800 flex justify-between items-center">
+        <span class="text-[11px] text-slate-400">WhatsApp'a yazarak direkt sepete ekleyebilirsiniz.</span>
+        <button onclick="closePricingModal()" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-xl text-xs transition">
+          Kapat
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT MOTORU & AKILLI NLP AYRIŞTIRICI -->
+  <script>
+    // SES EFEKTİ ÜRETİCİSİ (Web Audio API - harici kütüphanesiz)
+    let audioCtx = null;
+    function playBeep(freq = 800, type = 'sine', duration = 0.15) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch(e) {}
+    }
+
+    function playPrinterSound() {
+      // 3 tıkırtılı yazıcı mekanizma efekti
+      playBeep(450, 'sawtooth', 0.08);
+      setTimeout(() => playBeep(520, 'square', 0.09), 120);
+      setTimeout(() => playBeep(880, 'sine', 0.18), 260);
+    }
+
+    // SOHBET GEÇMİŞİ VE AYARLAR
+    let chatHistory = [];
+    const chatMessagesEl = document.getElementById('chatMessages');
+    const chatInputEl = document.getElementById('chatInput');
+    const typingIndicatorEl = document.getElementById('typingIndicator');
+
+    function handleKeyPress(e) {
+      if (e.key === 'Enter') sendMessage();
+    }
+
+    function showTyping(show = true) {
+      if (show) {
+        typingIndicatorEl.classList.remove('hidden');
+      } else {
+        typingIndicatorEl.classList.add('hidden');
+      }
+      chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+    }
+
+    function appendMessage(sender, text, isAudio = false) {
+      const msgDiv = document.createElement('div');
+      const timeStr = new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+      
+      if (sender === 'user') {
+        msgDiv.className = 'flex items-start justify-end gap-2';
+        msgDiv.innerHTML = `
+          <div class="bg-[#d9fdd3] text-slate-800 rounded-2xl rounded-tr-none p-3 shadow-sm border border-emerald-200/60 max-w-[85%]">
+            ${isAudio ? `
+              <div class="flex items-center gap-3 bg-emerald-100/70 p-2 rounded-xl mb-1.5 border border-emerald-200">
+                <button onclick="playBeep(600, 'triangle', 0.4)" class="w-8 h-8 rounded-full bg-[#128c7e] text-white flex items-center justify-center text-xs shadow">
+                  <i class="fa-solid fa-play"></i>
+                </button>
+                <div class="flex-1">
+                  <div class="h-1.5 bg-emerald-300 rounded-full w-full overflow-hidden">
+                    <div class="h-full bg-[#128c7e] w-2/3"></div>
+                  </div>
+                  <div class="flex justify-between text-[10px] text-slate-500 mt-0.5">
+                    <span>0:07</span>
+                    <span>Ses Kaydı</span>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+            <p class="whitespace-pre-line">${text}</p>
+            <div class="text-[10px] text-slate-500 text-right mt-1 flex items-center justify-end gap-1">
+              <span>${timeStr}</span>
+              <i class="fa-solid fa-check-double text-sky-500"></i>
+            </div>
+          </div>
+        `;
+      } else {
+        msgDiv.className = 'flex items-start gap-2 max-w-[85%]';
+        msgDiv.innerHTML = `
+          <div class="bg-white text-slate-800 rounded-2xl rounded-tl-none p-3 shadow-sm border border-slate-200/60">
+            <p class="font-medium text-sky-800 text-xs mb-1">Kuzey Pınar Su Dağıtım 💧</p>
+            <div class="whitespace-pre-line">${text}</div>
+            <div class="text-[10px] text-slate-400 text-right mt-1.5 flex items-center justify-end gap-1">
+              <span>${timeStr}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      chatMessagesEl.appendChild(msgDiv);
+      chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+    }
+
+    function sendQuickMessage(txt) {
+      chatInputEl.value = txt;
+      sendMessage();
+    }
+
+    function simulateAudioOrder() {
+      const voiceText = "Alo usta bizim 2 damacana su bitmek üzere, yanına da bir koli Beypazarı atıver. Kapıda kartla öderim, bebek uyuyor zile basmayın arayın.";
+      appendMessage('user', `🎙️ <em>"2 damacana su ve 1 koli Beypazarı, kapıda kartla ödeme, zile basmayın arayın."</em>`, true);
+      playBeep(700, 'sine', 0.2);
+      processAIResponse(voiceText);
+    }
+
+    function simulateLocationShare() {
+      appendMessage('user', '📍 <strong>Konum Paylaşıldı:</strong> Paşabayır Mah. 1021 Sok. No:5 Daire:4 Bandırma (Canlı GPS Konumu)');
+      playBeep(520, 'triangle', 0.15);
+      processAIResponse("Konumumu gönderdim: Paşabayır Mah. 1021 Sok. No:5 Daire:4");
+    }
+
+    function sendMessage() {
+      const text = chatInputEl.value.trim();
+      if (!text) return;
+      chatInputEl.value = '';
+      appendMessage('user', text);
+      playBeep(480, 'sine', 0.08);
+      processAIResponse(text);
+    }
+
+    // AKILLI YEREL SU & DAĞITIM AI MOTORU (NLP & REGEX)
+    function processAIResponse(userMessage) {
+      showTyping(true);
+      chatHistory.push({ role: "user", content: userMessage });
+
+      setTimeout(() => {
+        const responseData = generateSuAIAnswer(userMessage);
+        showTyping(false);
+        appendMessage('bot', responseData.replyText);
+        playBeep(750, 'sine', 0.12);
+
+        if (responseData.isOrderConfirmed) {
+          updateThermalReceipt(responseData.order);
+        }
+      }, 700 + Math.random() * 500);
+    }
+
+    function generateSuAIAnswer(msg) {
+      const lower = msg.toLowerCase();
+      let replyText = "";
+      let isOrderConfirmed = false;
+      let order = null;
+
+      // 1. Durum: Bilgi Soruları (pH, kaynak, depozito, fiyat)
+      if (lower.includes("ph") || lower.includes("kaynak") || lower.includes("arıtma")) {
+        replyText = "💧 Kuzey Pınar suyumuz **Uludağ zirve kaynağından** el değmeden şişelenmektedir.\n\n• **pH Değeri:** 8.2 (Doğal alkali kaynak suyu)\n• **Dolum:** Sağlık Bakanlığı onaylı, BPA içermeyen polikarbon ve cam damacanalar.\n\nKaç adet sipariş hazırlamamızı istersiniz?";
+        return { replyText, isOrderConfirmed: false };
+      }
+
+      if (lower.includes("depozito") && !lower.includes("kapıda") && !lower.includes("adres")) {
+        replyText = "Elinizde boş damacana yoksa **1 kerelik sıfır damacana depozito bedeli 180 TL**'dir. Damacana suyun kendisi ise 95 TL'dir (Toplam: 275 TL).\n\n💡 *Eğer evinizde başka bir markanın boş damacanası varsa marka fark etmeksizin **ücretsiz takas** yapıyoruz, depozito ödemezsiniz!*\n\nSiparişinizi oluşturayım mı?";
+        return { replyText, isOrderConfirmed: false };
+      }
+
+      // 2. Durum: Tek Tıkla Tekrar Sipariş
+      if (lower.includes("aynı adrese") || lower.includes("geçen haftaki") || lower.includes("her zamankinden") || lower.includes("tek tıkla")) {
+        isOrderConfirmed = true;
+        order = {
+          id: "#SU-" + Math.floor(1000 + Math.random() * 9000),
+          customer: "0532 *** 45 12 (Kayıtlı Abone - Ahmet Y.)",
+          address: "Paşabayır Mah. 1021 Sok. No:5 Daire:4 (3. Kat - Asansör Var)",
+          items: [
+            { name: "19L Damacana Su (Değişimli)", qty: 1, price: 95 }
+          ],
+          emptyReturn: "1 Adet Boş Damacana",
+          total: 95,
+          payment: "Kapıda Nakit / POS",
+          notes: "Kayıtlı abone hızlı tekrar siparişi"
+        };
+
+        replyText = `Harika! Kayıtlı adresiniz olan **Paşabayır Mah. 1021 Sok. No:5 D:4** için **1 adet 19L Damacana Su (95 TL)** siparişinizi aldım.\n\n🛵 Dağıtım kuryemiz yola çıkarıldı, yaklaşık **20-30 dakika** içinde kapınızda olacaktır.\n\nKapıda 1 adet boş damacana takası yapılacaktır. Afiyet olsun! 💧`;
+        return { replyText, isOrderConfirmed, order };
+      }
+
+      // 3. Durum: Sipariş Oluşturma (Adet, adres veya ürün tespiti)
+      if (lower.includes("damacana") || lower.includes("su") || lower.includes("maden") || lower.includes("tüp") || lower.includes("koli")) {
+        isOrderConfirmed = true;
+
+        // Adet tespiti
+        let damacanaQty = 1;
+        if (lower.includes("2 damacana") || lower.includes("iki damacana") || lower.includes("2 adet")) damacanaQty = 2;
+        if (lower.includes("3 damacana") || lower.includes("üç damacana") || lower.includes("3 adet")) damacanaQty = 3;
+        if (lower.includes("4 damacana") || lower.includes("4 adet")) damacanaQty = 4;
+
+        let hasSoda = lower.includes("maden") || lower.includes("beypazarı") || lower.includes("soda");
+        let hasDeposit = lower.includes("boşum yok") || lower.includes("boş damacanam yok") || lower.includes("yeni abone");
+        let isCard = lower.includes("kart") || lower.includes("pos") || lower.includes("kredi");
+
+        // Fiyat hesabı
+        let items = [];
+        let total = 0;
+        let emptyReturn = `${damacanaQty} Adet Boş Damacana`;
+
+        items.push({
+          name: "19L Damacana Su (Değişimli)",
+          qty: damacanaQty,
+          price: 95 * damacanaQty
+        });
+        total += 95 * damacanaQty;
+
+        if (hasDeposit) {
+          items.push({
+            name: "Sıfır Damacana Depozito Ücreti",
+            qty: 1,
+            price: 180
+          });
+          total += 180;
+          emptyReturn = "Boş Kap Alınmayacak (Sıfır Depozito)";
+        }
+
+        if (hasSoda) {
+          items.push({
+            name: "Beypazarı Maden Suyu (24'lü Koli)",
+            qty: 1,
+            price: 145
+          });
+          total += 145;
+        }
+
+        // Adres ayıklama
+        let address = "Paşabayır Mah. 1021 Sok. No:5 Daire:4 (3. Kat - Asansör Var)";
+        if (lower.includes("atatürk")) address = "Atatürk Cad. Manolya Apt. No:12 Daire:5 (4. Kat)";
+        if (lower.includes("paşabayır")) address = "Paşabayır Mah. 1021 Sok. No:5 Daire:4";
+
+        // Not ayıklama
+        let notes = [];
+        if (lower.includes("bebek") || lower.includes("zil") || lower.includes("çalmayın") || lower.includes("uyuyor")) {
+          notes.push("⚠️ Zili çalmayın, kapıya gelince telefon edin bebek uyuyor.");
+        }
+        if (lower.includes("asansör yok")) {
+          notes.push("Asansör yok, merdivenden çıkılacak.");
+        }
+        if (lower.includes("18:00") || lower.includes("akşam")) {
+          notes.push("Teslimat saati: 18:30 - 20:00 arası");
+        }
+        if (notes.length === 0) notes.push("Kapıda teslimat, boş kap değişimi yapılacak.");
+
+        let finalNotes = notes.join(" • ");
+        let paymentStr = isCard ? "Kapıda Kredi Kartı (Mobil POS)" : "Kapıda Nakit / POS";
+
+        order = {
+          id: "#SU-" + Math.floor(1000 + Math.random() * 9000),
+          customer: "0532 *** 45 12 (WhatsApp Siparişi)",
+          address: address,
+          items: items,
+          emptyReturn: emptyReturn,
+          total: total,
+          payment: paymentStr,
+          notes: finalNotes
+        };
+
+        let itemsSummary = items.map(i => `• ${i.qty}x ${i.name} (${i.price} TL)`).join("\n");
+
+        replyText = `Siparişinizi memnuniyetle aldım ve **Sevkiyat Panelimize / Kurye Fişine** aktardım! 🚀\n\n${itemsSummary}\n\n💰 **Toplam Tutar:** ${total} TL\n💳 **Ödeme:** ${paymentStr}\n📍 **Teslimat:** ${address}\n🔄 **İade:** ${emptyReturn}\n${notes.length > 0 ? `📝 **Özel Not:** ${finalNotes}\n` : ''}\nKuryemiz hazırlanıp hemen yola çıkıyor. Tahmini teslimat süresi **20-25 dakika**dır. Bizi tercih ettiğiniz için teşekkür ederiz! 💧`;
+
+        return { replyText, isOrderConfirmed, order };
+      }
+
+      // Varsayılan Yanıt
+      replyText = "Tabii ki! Size 19L Damacana Su (95 TL), Cam Damacana (140 TL) veya Koli Maden Suyu ulaştırabiliriz.\n\nSipariş için **kaç adet istediğinizi ve teslimat adresinizi** yazmanız yeterlidir. Farklı marka boş damacanalarınız da kabul edilir.";
+      return { replyText, isOrderConfirmed: false };
+    }
+
+    // TERMAL FİŞ GÜNCELLEME VE SESLİ BİLDİRİM
+    function updateThermalReceipt(order) {
+      if (!order) return;
+
+      document.getElementById('receiptId').innerText = order.id || '#SU-7824';
+      document.getElementById('receiptDate').innerText = new Date().toLocaleDateString('tr-TR') + ' ' + new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('receiptCustomer').innerText = order.customer || '0532 *** 45 12';
+      document.getElementById('receiptAddress').innerText = order.address || 'Paşabayır Mah. 1021 Sok. No:5 Daire:4';
+      document.getElementById('receiptEmptyReturn').innerText = order.emptyReturn || 'Boş Damacana Değişimi Var';
+      document.getElementById('receiptTotal').innerText = order.total + ' TL';
+      document.getElementById('receiptPayment').innerText = order.payment || 'Kapıda Kredi Kartı (Mobil POS)';
+      document.getElementById('receiptNotes').innerText = order.notes || 'Normal Teslimat';
+
+      // Kalemleri bas
+      const itemsTbody = document.getElementById('receiptItems');
+      itemsTbody.innerHTML = '';
+      if (order.items && order.items.length > 0) {
+        order.items.forEach(it => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td class="py-1 font-bold">${it.qty || 1}x</td>
+            <td class="py-1">${it.name}</td>
+            <td class="py-1 text-right font-bold">${it.price} TL</td>
+          `;
+          itemsTbody.appendChild(tr);
+        });
+      }
+
+      // Canlı Sipariş Bildirim Bandı
+      const alertEl = document.getElementById('receiptAlert');
+      const alertTime = document.getElementById('receiptAlertTime');
+      alertTime.innerText = new Date().toLocaleTimeString('tr-TR');
+      alertEl.classList.remove('hidden');
+
+      // Fiş Kağıdına hafif parlama animasyonu
+      const paper = document.getElementById('receiptPaper');
+      paper.classList.add('ring-4', 'ring-sky-400');
+      setTimeout(() => paper.classList.remove('ring-4', 'ring-sky-400'), 1500);
+
+      // Yazıcı ses efekti
+      playPrinterSound();
+
+      // Sayaçları güncelle
+      const countEl = document.getElementById('dailyOrdersCount');
+      let cur = parseInt(countEl.innerText) || 142;
+      countEl.innerText = (cur + 1) + ' Adet';
+    }
+
+    function printReceipt() {
+      window.print();
+    }
+
+    function resetConversation() {
+      chatHistory = [];
+      chatMessagesEl.innerHTML = `
+        <div class="flex justify-center">
+          <div class="bg-sky-100/90 text-sky-950 border border-sky-200 px-3 py-1.5 rounded-lg text-xs shadow-sm max-w-md text-center">
+            💧 <strong>Kuzey Pınar Su & Dağıtım</strong> resmi WhatsApp yapay zeka hattıdır.
+          </div>
+        </div>
+        <div class="flex items-start gap-2 max-w-[85%]">
+          <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-sm border border-slate-200/60 text-slate-800">
+            <p class="font-medium text-sky-800 text-xs mb-1">Kuzey Pınar Su Dağıtım 💧</p>
+            <p>Sohbet sıfırlandı. <strong>8.2 pH doğal kaynak suyumuzu</strong> veya maden sularımızı dilediğiniz gibi sipariş edebilirsiniz.</p>
+            <p class="mt-1 text-xs text-emerald-700 font-semibold">Kaç adet su getirelim?</p>
+          </div>
+        </div>
+      `;
+      playBeep(400, 'sine', 0.1);
+    }
+
+    function showPricingModal() {
+      document.getElementById('pricingModal').classList.remove('hidden');
+    }
+    function closePricingModal() {
+      document.getElementById('pricingModal').classList.add('hidden');
+    }
+  </script>
+
+</body>
+</html>
