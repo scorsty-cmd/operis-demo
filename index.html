@@ -1213,6 +1213,7 @@ footer.corp-footer {
           Bilgilerinizi doldurun; otelinize özel hazırlanmış canlı yapay zeka asistanınızı 24 saat içinde aktif edelim. İzmir (Karşıyaka, Çiğli, Aliağa, Foça, Urla, Çeşme) bölgesindeki otellerimizle dilerlerse tesislerinde yüz yüze kurulum da gerçekleştiriyoruz.
         </p>
         <div style="font-size:14px; color:#a7f3d0; display:flex; flex-direction:column; gap:8px;">
+          <div>💬 <b>Hızlı WhatsApp Hattı:</b> <a href="https://wa.me/905464827930" target="_blank" style="color:#34d399; text-decoration:none; font-weight:700;">0546 482 79 30</a></div>
           <div>📧 <b>Kurumsal E-Posta:</b> qpersi.ai@gmail.com</div>
           <div>📸 <b>Resmi Instagram:</b> <a href="https://www.instagram.com/operis_ai/" target="_blank" style="color:#34d399;">@operis_ai</a></div>
           <div>📍 <b>Merkez Operasyon:</b> İzmir & Türkiye Geneli Bulut Altyapısı</div>
@@ -1221,18 +1222,42 @@ footer.corp-footer {
 
       <div style="background:rgba(7,11,20,0.8); padding:28px; border-radius:16px; border:1px solid var(--border);">
         <h3 style="margin-bottom:16px; font-size:18px;">🏨 Hızlı Pilot Başvuru Formu</h3>
-        <div class="form-grid">
+        <div class="form-grid" id="pilotFormGrid">
           <input type="text" id="formOtel" placeholder="Otelinizin Adı *" required>
           <input type="text" id="formBolge" placeholder="İl / İlçe (Örn: Karşıyaka, Foça) *" required>
           <input type="number" id="formOda" placeholder="Oda Sayısı (Örn: 45)">
           <input type="tel" id="formTel" placeholder="Yetkili Telefon / WhatsApp *" required>
           <input type="text" id="formNot" class="full" placeholder="Varsa Instagram adresiniz veya özel notunuz">
-          <button type="button" class="btn-primary full" style="justify-content:center; padding:13px;" onclick="basvuruGonder('email')">
-            📩 14 Gün Ücretsiz Pilot Talebini Gönder
+          <div id="formUyari" class="full" style="display:none; background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.4); color:#fca5a5; padding:10px 14px; border-radius:10px; font-size:13px; font-weight:600;"></div>
+          <button type="button" id="btnPilotGonder" class="btn-primary full" style="justify-content:center; padding:13px;" onclick="basvuruGonder('pilot')">
+            🚀 14 Gün Ücretsiz Pilot Talebini Gönder
           </button>
-          <button type="button" class="btn-secondary full" style="justify-content:center; padding:11px;" onclick="basvuruGonder('ig')">
-            📸 Instagram (@operis_ai) Üzerinden Hızlı Yaz
+          <button type="button" class="btn-secondary" style="justify-content:center; padding:11px;" onclick="basvuruGonder('wa')">
+            💬 WhatsApp ile Anında Gönder
           </button>
+          <button type="button" class="btn-secondary" style="justify-content:center; padding:11px;" onclick="basvuruGonder('ig')">
+            📸 Instagram (@operis_ai)
+          </button>
+        </div>
+
+        <div id="formSonucKutusu" style="display:none; margin-top:16px; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.45); border-radius:14px; padding:18px; color:#ecfdf5;">
+          <div style="font-weight:800; font-size:15.5px; color:#34d399; margin-bottom:6px;" id="formSonucBaslik">
+            ✅ Pilot Başvurunuz Başarıyla Alındı!
+          </div>
+          <p style="font-size:13px; color:#cbd5e1; margin-bottom:14px; line-height:1.5;" id="formSonucAciklama">
+            Talebiniz Operis AI kurulum ekibimize iletildi. Hızlı aktivasyon için aşağıdaki kanallardan biriyle doğrudan teyit mesajınızı da gönderebilirsiniz:
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <a id="linkWaOnay" href="#" target="_blank" class="btn-primary" style="font-size:12.5px; padding:9px 14px; text-decoration:none;">
+              💬 WhatsApp'tan Teyit Et (Önerilen)
+            </a>
+            <a id="linkGmailOnay" href="#" target="_blank" class="btn-secondary" style="font-size:12.5px; padding:9px 14px; text-decoration:none;">
+              📧 Gmail Web ile Gönder
+            </a>
+            <a id="linkMailtoOnay" href="#" class="btn-secondary" style="font-size:12.5px; padding:9px 14px; text-decoration:none;">
+              ✉️ Mail Uygulaması
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -2038,32 +2063,96 @@ function hesaplaROI() {
 }
 
 function basvuruGonder(kanal) {
-  const otel = document.getElementById("formOtel").value.trim() || "Otelimiz";
-  const bolge = document.getElementById("formBolge").value.trim() || "Türkiye";
-  const oda = document.getElementById("formOda").value.trim() || "-";
-  const tel = document.getElementById("formTel").value.trim() || "-";
-  const not = document.getElementById("formNot").value.trim() || "-";
+  const otelInput = document.getElementById("formOtel");
+  const bolgeInput = document.getElementById("formBolge");
+  const odaInput = document.getElementById("formOda");
+  const telInput = document.getElementById("formTel");
+  const notInput = document.getElementById("formNot");
+  const uyari = document.getElementById("formUyari");
+  const sonucKutusu = document.getElementById("formSonucKutusu");
+  const btn = document.getElementById("btnPilotGonder");
 
   if (kanal === 'ig') {
     window.open("https://ig.me/m/operis_ai", "_blank");
     return;
   }
 
+  const rawOtel = otelInput ? otelInput.value.trim() : "";
+  const rawTel = telInput ? telInput.value.trim() : "";
+
+  if (!rawOtel && !rawTel && kanal === 'pilot') {
+    if (uyari) {
+      uyari.style.display = "block";
+      uyari.innerHTML = "⚠️ Lütfen size ulaşabilmemiz için <b>Otelinizin Adını</b> ve <b>Telefon / WhatsApp</b> numaranızı yazın.";
+    }
+    if (otelInput) otelInput.focus();
+    return;
+  }
+  if (uyari) uyari.style.display = "none";
+
+  const otel = rawOtel || "Otelimiz";
+  const bolge = (bolgeInput && bolgeInput.value.trim()) || "Türkiye";
+  const oda = (odaInput && odaInput.value.trim()) || "-";
+  const tel = rawTel || "-";
+  const not = (notInput && notInput.value.trim()) || "-";
+
+  const duzMetin = `Merhaba Operis AI Ekibi,\n\nOtelimiz için 14 Günlük Ücretsiz Pilot Kurulum başvurusu yapmak istiyoruz:\n\n• Otel Adı: ${otel}\n• Bölge / Şehir: ${bolge}\n• Oda Sayısı: ${oda}\n• Yetkili Telefon / WhatsApp: ${tel}\n• Ek Not / Instagram: ${not}\n\nBizimle iletişime geçmenizi rica ederiz.`;
+
   const konu = encodeURIComponent(`Operis AI 14 Gün Ücretsiz Pilot Başvurusu - ${otel} (${bolge})`);
-  const govde = encodeURIComponent(
-`Merhaba Operis AI Ekibi,
+  const govde = encodeURIComponent(duzMetin);
+  const waUrl = `https://wa.me/905464827930?text=${govde}`;
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=qpersi.ai@gmail.com&su=${konu}&body=${govde}`;
+  const mailtoUrl = `mailto:qpersi.ai@gmail.com?subject=${konu}&body=${govde}`;
 
-Otelimiz için 14 Günlük Ücretsiz Pilot Kurulum başvurusu yapmak istiyoruz:
+  // 1) Arka planda bulut bildirim kanalına (ntfy) anında kayıt düş
+  try {
+    fetch("https://ntfy.sh/operis_ai_pilot_talepleri", {
+      method: "POST",
+      headers: {
+        "Title": `Yeni Otel Pilot Başvurusu: ${otel}`,
+        "Priority": "high",
+        "Tags": "hotel,rocket"
+      },
+      body: `Otel: ${otel} | Bölge: ${bolge} | Oda: ${oda} | Tel: ${tel} | Not: ${not} | Kanal: ${kanal}`
+    }).catch(() => {});
+  } catch (e) {}
 
-• Otel Adı: ${otel}
-• Bölge / Şehir: ${bolge}
-• Oda Sayısı: ${oda}
-• Yetkili Telefon / WhatsApp: ${tel}
-• Ek Not / Instagram: ${not}
+  // 2) FormSubmit üzerinden doğrudan e-posta bildirimi tetikle
+  try {
+    fetch("https://formsubmit.co/ajax/qpersi.ai@gmail.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        _subject: `Operis AI 14 Gün Ücretsiz Pilot Başvurusu - ${otel} (${bolge})`,
+        otel_adi: otel,
+        bolge_sehir: bolge,
+        oda_sayisi: oda,
+        telefon_whatsapp: tel,
+        ek_not: not
+      })
+    }).catch(() => {});
+  } catch (e) {}
 
-Bizimle iletişime geçmenizi rica ederiz.`
-  );
-  window.location.href = `mailto:qpersi.ai@gmail.com?subject=${konu}&body=${govde}`;
+  // 3) Ekranda anında görsel onay kartını göster ve butonları bağla
+  if (btn) {
+    btn.innerHTML = "✅ Pilot Talebiniz Alındı — Yönlendiriliyor...";
+    btn.style.background = "linear-gradient(135deg, #059669 0%, #10b981 100%)";
+  }
+  const linkWa = document.getElementById("linkWaOnay");
+  const linkGmail = document.getElementById("linkGmailOnay");
+  const linkMailto = document.getElementById("linkMailtoOnay");
+  const baslik = document.getElementById("formSonucBaslik");
+  if (linkWa) linkWa.href = waUrl;
+  if (linkGmail) linkGmail.href = gmailUrl;
+  if (linkMailto) linkMailto.href = mailtoUrl;
+  if (baslik) baslik.innerHTML = `✅ ${otel} İçin Pilot Başvurunuz Kaydedildi!`;
+  if (sonucKutusu) {
+    sonucKutusu.style.display = "block";
+    sonucKutusu.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  // 4) Doğrudan WhatsApp penceresini yeni sekmede aç (her cihazda %100 çalışır)
+  window.open(waUrl, "_blank");
 }
 
 window.onload = () => {
