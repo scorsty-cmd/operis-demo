@@ -436,12 +436,12 @@ header.navbar {
   color: #e9edef;
   word-wrap: break-word;
 }
-.msg.bot {
+.msg.bot, .msg.in {
   background: var(--wa-in);
   align-self: flex-start;
   border-top-left-radius: 2px;
 }
-.msg.user {
+.msg.user, .msg.out {
   background: var(--wa-out);
   align-self: flex-end;
   border-top-right-radius: 2px;
@@ -964,7 +964,28 @@ footer.corp-footer {
   .nav-links { display: none; }
   .poster-banner { height: 220px; }
 }
+
+.room-card {
+  background: #182229;
+  border: 1px solid rgba(24, 181, 141, 0.35);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-top: 8px;
+}
+.room-card h5 { color: #18b58d; font-size: 12.5px; margin-bottom: 4px; }
+.room-card p { color: #cbd5e1; font-size: 11.5px; margin-bottom: 8px; }
+.room-btn {
+  display: inline-block;
+  background: #18b58d;
+  color: #0e1526;
+  font-weight: 800;
+  font-size: 11.5px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+}
 </style>
+
 </head>
 <body>
 
@@ -1068,34 +1089,34 @@ footer.corp-footer {
       <!-- SAĞ TARAF: CANLI OTEL SİMÜLATÖRÜ -->
       <div class="simulator-col">
         <div class="hotel-selector-bar">
-          <label for="otelSecici">
+          <label for="hotelSelect">
             <span>🏨 61 Otelin Canlı Asistanını Test Edin</span>
             <span style="color:#a7f3d0; font-size:10.5px;">GERÇEK ZAMANLI AI</span>
           </label>
-          <select id="otelSecici" onchange="otelDegistir()"></select>
+          <select id="hotelSelect" onchange="degistirOtel(this.value)"></select>
         </div>
 
         <div class="phone-mockup">
           <div class="phone-header">
-            <div class="phone-avatar" id="waAvatar">O</div>
+            <div class="phone-avatar" id="avatarText">O</div>
             <div class="phone-meta">
-              <h3 id="waHotelName">Otel Asistanı</h3>
+              <h3 id="hotelTitle">Otel Asistanı</h3>
               <span>● çevrimiçi · 7/24 yapay zeka resepsiyon</span>
             </div>
           </div>
 
-          <div class="chat-body" id="chatMessages"></div>
+          <div class="chat-body" id="chatArea"></div>
 
           <div class="quick-chips">
-            <button class="chip-btn" onclick="quickAsk('Bu hafta sonu 2 kişilik oda fiyatınız nedir?')">🛏️ Oda &amp; Fiyat</button>
-            <button class="chip-btn" onclick="quickAsk('Kahvaltı dahil mi ve otoparkınız var mı?')">🍳 Kahvaltı &amp; Otopark</button>
-            <button class="chip-btn" onclick="quickAsk('Hi! Do you have sea view rooms for next Friday?')">🇬🇧 English Test</button>
-            <button class="chip-btn" onclick="quickAsk('Rezervasyon yapmak istiyorum, link paylaşır mısınız?')">🔗 Direkt Rezervasyon</button>
+            <button class="chip-btn" onclick="hizliGonder('Bu hafta sonu 2 kişilik oda fiyatınız nedir?')">🛏️ Oda &amp; Fiyat</button>
+            <button class="chip-btn" onclick="hizliGonder('Kahvaltı dahil mi ve otoparkınız var mı?')">🍳 Kahvaltı &amp; Otopark</button>
+            <button class="chip-btn" onclick="hizliGonder('Hi! Do you have sea view rooms for next Friday?')">🇬🇧 English Test</button>
+            <button class="chip-btn" onclick="hizliGonder('Rezervasyon yapmak istiyorum, link paylaşır mısınız?')">🔗 Direkt Rezervasyon</button>
           </div>
 
           <div class="chat-input-bar">
-            <input type="text" id="chatInput" placeholder="Otel hakkında bir soru yazın..." onkeypress="if(event.key==='Enter') sendMsg()">
-            <button id="sendBtn" onclick="sendMsg()">➤</button>
+            <input type="text" id="userInput" placeholder="Otel hakkında bir soru yazın..." onkeypress="if(event.key==='Enter') mesajGonder()">
+            <button id="sendBtn" onclick="mesajGonder()">➤</button>
           </div>
         </div>
       </div>
@@ -1271,31 +1292,31 @@ footer.corp-footer {
     <div class="roi-box">
       <div>
         <div class="slider-group">
-          <label>İşletme Büyüklüğü (Oda / Günlük Masa) <span id="lblOda">25</span></label>
-          <input type="range" id="roiOda" min="5" max="150" value="25" oninput="hesaplaROI()">
+          <label>İşletme Büyüklüğü (Oda / Günlük Masa) <span id="odaVal">25 Oda</span></label>
+          <input type="range" id="odaRange" min="5" max="150" value="25" oninput="hesaplaROI()">
         </div>
         <div class="slider-group">
-          <label>Ortalama İşlem Tutarı (TL) <span id="lblFiyat">3.500 TL</span></label>
-          <input type="range" id="roiFiyat" min="300" max="12000" step="100" value="3500" oninput="hesaplaROI()">
+          <label>Ortalama İşlem Tutarı (TL) <span id="fiyatVal">3.500 TL</span></label>
+          <input type="range" id="fiyatRange" min="300" max="12000" step="100" value="3500" oninput="hesaplaROI()">
         </div>
         <div class="slider-group">
-          <label>Gece / Yoğun Saatte Gelen Aylık Mesaj <span id="lblMesaj">180 Mesaj</span></label>
-          <input type="range" id="roiMesaj" min="30" max="1000" step="10" value="180" oninput="hesaplaROI()">
+          <label>Gece / Yoğun Saatte Gelen Günlük Mesaj <span id="mesajVal">12 Mesaj/Gece</span></label>
+          <input type="range" id="mesajRange" min="2" max="80" step="1" value="12" oninput="hesaplaROI()">
         </div>
       </div>
 
       <div class="roi-results">
         <div class="roi-item">
-          <div class="lbl">Cevapsız Kalan Potansiyel Talep / Ay</div>
-          <div class="val" id="resKacan">45 Talep</div>
+          <div class="lbl">Aracı Platformlara Ödenen Yıllık Komisyon</div>
+          <div class="val" id="komisyonKaybi">0 TL</div>
         </div>
         <div class="roi-item">
-          <div class="lbl">Aracı Platformlara Ödenen Yıllık Komisyon</div>
-          <div class="val" id="resKomisyon">340.200 TL</div>
+          <div class="lbl">Gece Kaçan Mesajlardan Kurtarılan Ciro</div>
+          <div class="val" id="geceKaybi" style="color:#fbbf24;">0 TL</div>
         </div>
         <div class="roi-item highlight">
           <div class="lbl" style="color:#ffffff; font-weight:700;">Operis AI ile Yıllık Net Kazanç</div>
-          <div class="val" id="resKazanc">+567.000 TL</div>
+          <div class="val" id="netKazanc">+0 TL</div>
         </div>
       </div>
     </div>
@@ -1471,29 +1492,27 @@ footer.corp-footer {
         </div>
       </div>
 
-      <form id="pilotForm" onsubmit="pilotGonder(event)">
+      <div>
         <div class="form-grid">
-          <input type="text" id="fOtel" placeholder="İşletme / Otel / Restoran Adı *" required>
-          <input type="text" id="fBolge" placeholder="İlçe / Şehir (Örn: Alaçatı, Karşıyaka) *" required>
-          <input type="number" id="fOda" placeholder="Oda / Günlük Sipariş Sayısı" value="25">
-          <input type="tel" id="fTel" placeholder="Telefon / WhatsApp *" required>
-          <select id="fKanal" class="full">
-            <option value="WhatsApp + Web">WhatsApp + Web Asistanı İstiyorum</option>
-            <option value="Restoran Sipariş + Termal Fiş">Restoran Sipariş + 80mm Mutfak Fişi</option>
-            <option value="Su Dağıtım Bayisi">Su Dağıtım Bayisi Otomasyonu</option>
-          </select>
-          <input type="text" id="fNot" class="full" placeholder="Eklemek istediğiniz not (isteğe bağlı)">
-          <button type="submit" class="btn-primary full" style="justify-content:center; padding:14px; font-size:15px;">Ücretsiz Demo &amp; Pilot Talebi Gönder →</button>
+          <input type="text" id="formOtel" placeholder="İşletme / Otel / Restoran Adı *" required>
+          <input type="text" id="formBolge" placeholder="İlçe / Şehir (Örn: Alaçatı, Karşıyaka) *" required>
+          <input type="number" id="formOda" placeholder="Oda / Günlük Sipariş Sayısı" value="25">
+          <input type="tel" id="formTel" placeholder="Telefon / WhatsApp *" required>
+          <input type="text" id="formNot" class="full" placeholder="Sektör / eklemek istediğiniz not (isteğe bağlı)">
+          <button type="button" id="btnPilotGonder" onclick="basvuruGonder('pilot')" class="btn-primary full" style="justify-content:center; padding:14px; font-size:15px;">Ücretsiz Demo &amp; Pilot Talebi Gönder →</button>
         </div>
 
-        <div id="formSonuc" style="display:none; margin-top:16px; background:rgba(24,181,141,0.14); border:1px solid rgba(24,181,141,0.4); border-radius:12px; padding:14px; font-size:13.5px;">
-          <strong>✅ Talebiniz hazırlandı!</strong> Aşağıdaki butonla doğrudan WhatsApp veya Gmail üzerinden iletebilirsiniz:
+        <div id="formUyari" style="display:none; margin-top:12px; color:#fca5a5; font-size:13px;"></div>
+
+        <div id="formSonucKutusu" style="display:none; margin-top:16px; background:rgba(24,181,141,0.14); border:1px solid rgba(24,181,141,0.4); border-radius:12px; padding:14px; font-size:13.5px;">
+          <strong id="formSonucBaslik">✅ Talebiniz hazırlandı!</strong>
           <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;">
             <a id="linkWaOnay" href="#" target="_blank" class="btn-primary" style="font-size:12.5px; padding:8px 14px;">💬 WhatsApp ile Gönder</a>
             <a id="linkGmailOnay" href="#" target="_blank" class="btn-secondary" style="font-size:12.5px; padding:8px 14px;">📧 Gmail Web ile Gönder</a>
+            <a id="linkMailtoOnay" href="#" class="btn-secondary" style="font-size:12.5px; padding:8px 14px;">✉️ E-posta Uygulaması</a>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </section>
@@ -2389,6 +2408,25 @@ window.onload = () => {
   const params = new URLSearchParams(window.location.search);
   const qOtel = params.get("otel");
   const sel = document.getElementById("hotelSelect");
+  if (sel && sel.options.length === 0 && typeof OTELLER === "object") {
+    const groups = {};
+    for (const [key, o] of Object.entries(OTELLER)) {
+      const grp = o.bolge || "Diğer Oteller";
+      if (!groups[grp]) groups[grp] = [];
+      groups[grp].push([key, o.ad + (o.oda ? ` (${o.oda} Oda)` : "")]);
+    }
+    for (const [grpName, items] of Object.entries(groups)) {
+      const og = document.createElement("optgroup");
+      og.label = grpName;
+      for (const [val, text] of items) {
+        const opt = document.createElement("option");
+        opt.value = val;
+        opt.textContent = text;
+        og.appendChild(opt);
+      }
+      sel.appendChild(og);
+    }
+  }
   if (qOtel && OTELLER[qOtel]) {
     sel.value = qOtel;
     degistirOtel(qOtel);
