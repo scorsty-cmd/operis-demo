@@ -88,8 +88,12 @@
         </div>
       </div>
 
-      <!-- Sağ Aksiyon Butonları -->
-      <div class="flex items-center gap-2">
+      <!-- Sağ Aksiyon Butonları & Restoran Seçici -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <select onchange="if(this.value) window.location.href=this.value" aria-label="Restoran Seç" class="px-2.5 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 text-xs text-amber-300 font-semibold border border-amber-500/40 focus:outline-none cursor-pointer transition">
+          <option value="bandirmapilavcisi.html" class="bg-slate-900 text-white">🍚 Bandırma Pilavcısı</option>
+          <option value="gurmepilav.html" selected class="bg-slate-900 text-white">🔥 Gurme Pilav</option>
+        </select>
         <a href="hub.html" class="px-2.5 py-1.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900/60 text-xs text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5 transition">
           <img src="assets/operis_emblem_dark.png" class="w-4 h-4 object-contain">
           <span class="font-bold">operis<span class="text-[#18b58d]">AI</span></span>
