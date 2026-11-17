@@ -3,26 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Operis AI | Otel & Turizm Yapay Zeka Otomasyonu — 7/24 Dijital Resepsiyon</title>
-<meta name="description" content="Operis AI: Oteller için 7/24 WhatsApp ve Instagram DM yapay zeka resepsiyon asistanı. 3 saniyede yanıt, otomatik oda fotoğrafı, 4 dil desteği ve %0 komisyonla doğrudan rezervasyon.">
+<title>Operis AI | İşletmeler İçin 7/24 Yapay Zeka Asistanı — Otel, Restoran & Dağıtım</title>
+<meta name="description" content="Operis AI: Oteller, restoranlar ve su dağıtım bayileri için 7/24 WhatsApp ve Web yapay zeka asistanı. Saniyeler içinde yanıt, sesli sipariş ve %0 komisyon.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg-dark: #070b14;
-  --bg-card: #0f1626;
-  --bg-card-hover: #151f36;
-  --bg-glass: rgba(15, 22, 38, 0.82);
-  --accent: #10b981;
-  --accent-light: #34d399;
-  --accent-glow: rgba(16, 185, 129, 0.22);
-  --blue: #3b82f6;
-  --gold: #f59e0b;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --border: rgba(255, 255, 255, 0.09);
+  --bg-cream: #f7f5f0;
+  --bg-card: #ffffff;
+  --bg-navy: #0e1526;
+  --bg-navy-soft: #162038;
+  --accent: #0e8f5c;
+  --accent-bright: #18b58d;
+  --accent-soft: rgba(14, 143, 92, 0.10);
+  --amber: #f59e0b;
+  --blue: #0284c7;
+  --coral: #dc2626;
+  --text-main: #0e1526;
+  --text-body: #3f4a5e;
+  --text-muted: #5e6a80;
+  --border: #e2ded5;
   --wa-bg: #0b141a;
   --wa-header: #202c33;
   --wa-in: #202c33;
@@ -35,53 +37,51 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: var(--bg-dark);
+  background-color: var(--bg-cream);
   background-image:
-    radial-gradient(circle at 12% 8%, rgba(16, 185, 129, 0.14), transparent 32%),
-    radial-gradient(circle at 88% 20%, rgba(59, 130, 246, 0.12), transparent 35%),
-    radial-gradient(circle at 50% 65%, rgba(16, 185, 129, 0.06), transparent 45%);
+    radial-gradient(circle at 8% 4%, rgba(24, 181, 141, 0.08), transparent 28%),
+    radial-gradient(circle at 92% 18%, rgba(245, 158, 11, 0.07), transparent 30%),
+    radial-gradient(circle at 12% 60%, rgba(2, 132, 199, 0.05), transparent 34%);
   color: var(--text-main);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* TOP ANNOUNCEMENT BAR */
 .top-bar {
-  background: linear-gradient(90deg, #064e3b, #0f172a, #064e3b);
-  border-bottom: 1px solid rgba(16, 185, 129, 0.25);
-  padding: 8px 20px;
+  background: var(--bg-navy);
+  border-bottom: 2px solid var(--accent-bright);
+  padding: 9px 20px;
   font-size: 12.5px;
-  color: #d1fae5;
+  color: #e2e8f0;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
   text-align: center;
 }
 .top-bar .pulse-dot {
   width: 8px; height: 8px;
-  background: var(--accent-light);
+  background: var(--accent-bright);
   border-radius: 50%;
   display: inline-block;
-  box-shadow: 0 0 8px var(--accent-light);
+  box-shadow: 0 0 8px var(--accent-bright);
 }
 .top-bar a {
-  color: #fff;
-  font-weight: 700;
+  color: var(--accent-bright);
+  font-weight: 800;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-/* NAVBAR */
 header.navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(7, 11, 20, 0.88);
-  backdrop-filter: blur(16px);
+  background: rgba(247, 245, 240, 0.94);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
-  padding: 14px 4%;
+  padding: 13px 4%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -92,25 +92,24 @@ header.navbar {
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 11px;
   text-decoration: none;
   color: var(--text-main);
 }
 .brand-logo {
-  width: 42px; height: 42px;
+  width: 40px; height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 4px 14px rgba(24, 181, 141, 0.4));
 }
 .brand-logo img {
   width: 100%; height: 100%;
   object-fit: contain;
 }
 .brand-text-wrap { display: flex; flex-direction: column; }
-.brand-name { font-weight: 800; font-size: 19px; letter-spacing: -0.5px; line-height: 1.1; }
-.brand-name span { color: var(--accent); }
-.brand-sub { font-size: 10.5px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.4px; }
+.brand-name { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; line-height: 1.1; color: var(--bg-navy); }
+.brand-name span { color: var(--accent-bright); }
+.brand-sub { font-size: 10.5px; color: var(--text-muted); font-weight: 700; letter-spacing: 0.3px; }
 
 .nav-links {
   display: flex;
@@ -119,28 +118,28 @@ header.navbar {
   list-style: none;
 }
 .nav-links a {
-  color: var(--text-muted);
+  color: var(--text-body);
   text-decoration: none;
   font-size: 13.5px;
-  font-weight: 600;
+  font-weight: 700;
   transition: color 0.2s;
 }
-.nav-links a:hover { color: #fff; }
+.nav-links a:hover { color: var(--accent); }
 
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: #04130d;
+  background: linear-gradient(135deg, #18b58d, #0e8f5c);
+  color: #ffffff;
   font-weight: 800;
   font-size: 13.5px;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 11px 22px;
+  border-radius: 999px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -148,20 +147,20 @@ header.navbar {
   transition: all 0.2s;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 18px var(--accent-glow);
+  box-shadow: 0 6px 18px rgba(14, 143, 92, 0.24);
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 10px 26px rgba(14, 143, 92, 0.34);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-main);
+  background: #ffffff;
+  color: var(--bg-navy);
   font-weight: 700;
   font-size: 13.5px;
   padding: 10px 18px;
-  border-radius: 10px;
+  border-radius: 999px;
   text-decoration: none;
   border: 1px solid var(--border);
   display: inline-flex;
@@ -170,20 +169,81 @@ header.navbar {
   transition: all 0.2s;
 }
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.22);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
-/* CONTAINER */
 .container {
   max-width: 1240px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* HERO SECTION */
+.poster-banner-wrap {
+  padding: 24px 0 8px;
+}
+.poster-banner {
+  position: relative;
+  height: 250px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 18px 42px rgba(14, 21, 38, 0.14);
+  border: 1px solid var(--border);
+}
+.poster-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.poster-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(14,21,38,0.84) 0%, rgba(14,21,38,0.45) 55%, rgba(14,21,38,0.22) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 32px;
+}
+.poster-top-tags {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.poster-loc-pill {
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--bg-navy);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.poster-live-pill {
+  background: rgba(24, 181, 141, 0.22);
+  border: 1px solid rgba(24, 181, 141, 0.55);
+  color: #a7f3d0;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 13px;
+  border-radius: 999px;
+}
+.poster-bottom-info h2 {
+  color: #ffffff;
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.poster-cities {
+  color: rgba(255,255,255,0.88);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
 .hero-section {
-  padding: 44px 0 64px;
+  padding: 34px 0 60px;
 }
 .hero-grid {
   display: grid;
@@ -198,84 +258,88 @@ header.navbar {
   gap: 8px;
   padding: 6px 14px;
   border-radius: 999px;
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  color: var(--accent-light);
+  background: var(--accent-soft);
+  border: 1px solid rgba(14, 143, 92, 0.28);
+  color: var(--accent);
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  margin-bottom: 18px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
 }
 
 .hero-title {
-  font-size: clamp(30px, 3.8vw, 48px);
+  font-size: clamp(32px, 3.8vw, 48px);
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -1px;
-  margin-bottom: 18px;
+  color: var(--bg-navy);
+  margin-bottom: 16px;
 }
 .hero-title span {
-  background: linear-gradient(90deg, #34d399, #10b981, #60a5fa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent);
 }
 
 .hero-desc {
-  color: var(--text-muted);
+  color: var(--text-body);
   font-size: 16.5px;
   line-height: 1.65;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
 }
-.hero-desc b { color: #e2e8f0; }
+.hero-desc b { color: var(--bg-navy); }
 
-/* METRICS STRIP IN HERO */
 .hero-metrics {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 .metric-box {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px 12px;
+  border-top: 3px solid var(--accent-bright);
+  border-radius: 14px;
+  padding: 14px 10px;
   text-align: center;
+  box-shadow: 0 6px 18px rgba(14, 21, 38, 0.04);
 }
+.metric-box:nth-child(2) { border-top-color: var(--blue); }
+.metric-box:nth-child(3) { border-top-color: var(--amber); }
+.metric-box:nth-child(4) { border-top-color: var(--bg-navy); }
 .metric-box .num {
   font-size: 22px;
   font-weight: 800;
-  color: var(--accent-light);
+  color: var(--bg-navy);
   display: block;
   line-height: 1.15;
 }
 .metric-box .lbl {
   font-size: 11.5px;
   color: var(--text-muted);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .hero-cta-group {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 26px;
+  margin-bottom: 22px;
 }
 
 .guarantee-banner {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(59, 130, 246, 0.08));
-  border: 1px solid rgba(16, 185, 129, 0.28);
-  padding: 16px 18px;
-  border-radius: 14px;
+  background: var(--bg-navy);
+  color: #ffffff;
+  padding: 16px 20px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   gap: 14px;
+  box-shadow: 0 12px 28px rgba(14, 21, 38, 0.14);
 }
 .guarantee-banner .icon { font-size: 28px; }
-.guarantee-banner h4 { font-size: 14.5px; color: #fff; margin-bottom: 2px; }
-.guarantee-banner p { font-size: 12.5px; color: var(--text-muted); }
+.guarantee-banner h4 { font-size: 14.5px; color: #18b58d; margin-bottom: 2px; font-weight: 800; }
+.guarantee-banner p { font-size: 12.8px; color: #cbd5e1; }
 
-/* SIMULATOR WRAPPER */
 .simulator-col {
   display: flex;
   flex-direction: column;
@@ -285,29 +349,29 @@ header.navbar {
 .hotel-selector-bar {
   width: 100%;
   max-width: 410px;
-  background: var(--bg-card);
-  border: 1px solid rgba(16, 185, 129, 0.35);
+  background: var(--bg-navy);
+  border: 2px solid var(--accent-bright);
   border-radius: 14px;
-  padding: 10px 14px;
+  padding: 11px 14px;
   margin-bottom: 14px;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  box-shadow: 0 12px 28px rgba(14, 21, 38, 0.16);
 }
 .hotel-selector-bar label {
   font-size: 11.5px;
-  font-weight: 700;
-  color: var(--accent-light);
+  font-weight: 800;
+  color: var(--accent-bright);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .hotel-selector-bar select {
   width: 100%;
-  background: #070b14;
-  color: #fff;
-  border: 1px solid var(--border);
+  background: #162038;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.16);
   padding: 9px 10px;
   border-radius: 8px;
   font-family: inherit;
@@ -317,14 +381,13 @@ header.navbar {
   cursor: pointer;
 }
 
-/* PHONE MOCKUP */
 .phone-mockup {
   width: 100%;
   max-width: 410px;
-  background: #000;
+  background: var(--bg-navy);
   border-radius: 36px;
   padding: 11px;
-  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  box-shadow: 0 28px 60px -12px rgba(14, 21, 38, 0.35), 0 0 0 1px rgba(14, 21, 38, 0.12);
 }
 
 .phone-header {
@@ -339,7 +402,7 @@ header.navbar {
 .phone-avatar {
   width: 40px; height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #10b981, #047857);
+  background: linear-gradient(135deg, #18b58d, #0e8f5c);
   display: grid;
   place-items: center;
   font-weight: 800;
@@ -348,125 +411,95 @@ header.navbar {
   flex-shrink: 0;
 }
 .phone-meta h3 { font-size: 14px; font-weight: 700; color: #e9edef; line-height: 1.2; }
-.phone-meta span { font-size: 11px; color: var(--wa-green); display: block; font-weight: 600; }
+.phone-meta span { font-size: 11.5px; color: #34d399; font-weight: 600; }
 
-.chat-area {
+.chat-body {
   background-color: var(--wa-bg);
-  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
   background-size: 18px 18px;
-  height: 390px;
+  height: 365px;
   overflow-y: auto;
-  padding: 14px;
+  padding: 14px 12px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+.chat-body::-webkit-scrollbar { width: 4px; }
+.chat-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.16); border-radius: 4px; }
 
 .msg {
-  max-width: 84%;
+  max-width: 85%;
   padding: 9px 12px;
   border-radius: 12px;
   font-size: 13px;
   line-height: 1.45;
-  position: relative;
+  color: #e9edef;
   word-wrap: break-word;
 }
-.msg.in {
+.msg.bot {
   background: var(--wa-in);
-  color: #e9edef;
   align-self: flex-start;
   border-top-left-radius: 2px;
 }
-.msg.out {
+.msg.user {
   background: var(--wa-out);
-  color: #e9edef;
   align-self: flex-end;
   border-top-right-radius: 2px;
 }
 .msg-time {
+  display: block;
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.5);
+  color: #8696a0;
   text-align: right;
   margin-top: 4px;
 }
 
-.room-card {
-  margin-top: 8px;
-  background: rgba(0, 0, 0, 0.28);
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-.room-card img {
-  width: 100%;
-  height: 125px;
-  object-fit: cover;
-  display: block;
-}
-.room-info { padding: 9px 10px; }
-.room-info b { display: block; font-size: 12.5px; color: #fff; margin-bottom: 2px; }
-.room-info span { font-size: 11.5px; color: var(--accent-light); font-weight: 700; }
-.room-btn {
-  display: block;
-  width: 100%;
-  text-align: center;
-  background: var(--wa-green);
-  color: #04130d;
-  font-weight: 800;
-  font-size: 11.5px;
-  padding: 7px;
-  border-radius: 6px;
-  margin-top: 7px;
-  text-decoration: none;
-}
-
 .quick-chips {
-  background: var(--wa-bg);
+  background: #111b21;
   padding: 8px 10px;
   display: flex;
   gap: 6px;
   overflow-x: auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  scrollbar-width: none;
+  border-top: 1px solid rgba(255,255,255,0.05);
 }
 .quick-chips::-webkit-scrollbar { display: none; }
-.chip {
-  background: rgba(0, 168, 132, 0.15);
-  border: 1px solid rgba(0, 168, 132, 0.4);
-  color: #d1fae5;
-  font-size: 11px;
-  padding: 6px 10px;
+.chip-btn {
+  background: rgba(24, 181, 141, 0.14);
+  color: #a7f3d0;
+  border: 1px solid rgba(24, 181, 141, 0.35);
   border-radius: 999px;
+  padding: 5px 11px;
+  font-size: 11px;
+  font-weight: 700;
   white-space: nowrap;
   cursor: pointer;
-  transition: all 0.15s;
   font-family: inherit;
 }
-.chip:hover { background: var(--wa-green); color: #0b141a; font-weight: 700; }
+.chip-btn:hover { background: rgba(24, 181, 141, 0.28); }
 
 .chat-input-bar {
   background: var(--wa-header);
   border-radius: 0 0 26px 26px;
-  padding: 9px 12px;
+  padding: 10px 12px;
   display: flex;
   gap: 8px;
   align-items: center;
 }
-.chat-input {
+.chat-input-bar input {
   flex: 1;
   background: #2a3942;
   border: none;
+  border-radius: 999px;
+  padding: 10px 15px;
   color: #fff;
-  padding: 9px 13px;
-  border-radius: 20px;
-  font-size: 12.5px;
+  font-size: 13px;
   outline: none;
   font-family: inherit;
 }
-.send-btn {
+.chat-input-bar button {
   background: var(--wa-green);
   border: none;
-  width: 35px; height: 35px;
+  width: 38px; height: 38px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -487,11 +520,10 @@ header.navbar {
 .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 @keyframes typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
 
-/* TECH COMPLIANCE STRIP */
 .tech-strip {
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  background: rgba(15, 22, 38, 0.55);
+  background: #ffffff;
   padding: 20px 0;
 }
 .tech-strip-inner {
@@ -507,23 +539,32 @@ header.navbar {
   gap: 8px;
   font-size: 13px;
   font-weight: 700;
-  color: #cbd5e1;
+  color: var(--bg-navy);
 }
-.tech-item span { color: var(--accent-light); font-size: 16px; }
+.tech-item span { color: var(--accent); font-size: 16px; }
 
-/* GENERIC SECTION STYLING */
 section.corp-section {
-  padding: 76px 0;
+  padding: 68px 0;
 }
 .section-header {
   text-align: center;
-  max-width: 720px;
-  margin: 0 auto 48px;
+  max-width: 740px;
+  margin: 0 auto 42px;
+}
+.section-eyebrow {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 .section-header h2 {
   font-size: clamp(26px, 3vw, 38px);
   font-weight: 800;
   letter-spacing: -0.6px;
+  color: var(--bg-navy);
   margin-bottom: 12px;
 }
 .section-header p {
@@ -531,7 +572,141 @@ section.corp-section {
   font-size: 16px;
 }
 
-/* 6 CAPABILITIES GRID */
+.sectors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.sector-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 30px rgba(14, 21, 38, 0.06);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.sector-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 42px rgba(14, 21, 38, 0.12);
+}
+.sector-photo {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+.sector-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.sector-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 999px;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.badge-otel { background: #0e8f5c; }
+.badge-restoran { background: #d97706; }
+.badge-su { background: #0284c7; }
+
+.sector-body {
+  padding: 22px 24px 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sector-body h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--bg-navy);
+  margin-bottom: 10px;
+}
+.sector-body p {
+  font-size: 14px;
+  color: var(--text-body);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.sector-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+.sector-tags span {
+  background: var(--bg-cream);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--bg-navy);
+}
+.sector-link {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--accent);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.sector-link:hover { text-decoration: underline; }
+
+.story-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 32px;
+}
+.story-tile {
+  position: relative;
+  height: 220px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 26px rgba(14, 21, 38, 0.08);
+}
+.story-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.story-tile-grad {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(14, 21, 38, 0.88) 100%);
+}
+.story-tile-text {
+  position: absolute;
+  bottom: 16px;
+  left: 18px;
+  right: 18px;
+  color: #ffffff;
+}
+.story-tile-text strong {
+  display: block;
+  font-size: 14px;
+  color: #18b58d;
+  margin-bottom: 3px;
+}
+.story-tile-text span {
+  font-size: 13px;
+  line-height: 1.4;
+  color: #f1f5f9;
+}
+
 .capabilities-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -540,39 +715,41 @@ section.corp-section {
 .cap-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 18px;
   padding: 26px 24px;
+  box-shadow: 0 8px 24px rgba(14, 21, 38, 0.04);
   transition: all 0.25s;
 }
 .cap-card:hover {
-  background: var(--bg-card-hover);
-  border-color: rgba(16, 185, 129, 0.35);
+  border-color: var(--accent-bright);
   transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(14, 21, 38, 0.09);
 }
 .cap-icon {
-  width: 46px; height: 46px;
-  border-radius: 12px;
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.28);
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  border: 1px solid rgba(14, 143, 92, 0.24);
   display: grid;
   place-items: center;
   font-size: 22px;
   margin-bottom: 16px;
 }
-.cap-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #fff; }
-.cap-card p { font-size: 13.8px; color: var(--text-muted); line-height: 1.6; }
+.cap-card:nth-child(2) .cap-icon { background: rgba(2, 132, 199, 0.1); border-color: rgba(2, 132, 199, 0.25); }
+.cap-card:nth-child(3) .cap-icon { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.3); }
+.cap-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: var(--bg-navy); }
+.cap-card p { font-size: 13.8px; color: var(--text-body); line-height: 1.6; }
 
-/* ROI CALCULATOR SECTION */
 .roi-box {
-  background: linear-gradient(145deg, #0f172a, #091326);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: 22px;
-  padding: 38px;
+  background: var(--bg-navy);
+  border-radius: 24px;
+  padding: 40px;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 36px;
   align-items: center;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+  box-shadow: 0 24px 60px rgba(14, 21, 38, 0.2);
+  color: #ffffff;
 }
 .slider-group { margin-bottom: 22px; }
 .slider-group label {
@@ -583,39 +760,39 @@ section.corp-section {
   margin-bottom: 8px;
   color: #e2e8f0;
 }
-.slider-group label span { color: var(--accent-light); font-weight: 800; font-size: 16px; }
+.slider-group label span { color: var(--accent-bright); font-weight: 800; font-size: 16px; }
 .slider-group input[type=range] {
   width: 100%;
-  accent-color: var(--accent);
+  accent-color: var(--accent-bright);
   height: 7px;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .roi-results {
-  background: rgba(7, 11, 20, 0.75);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
   padding: 26px;
 }
 .roi-item {
   padding: 14px 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .roi-item:last-child { border-bottom: none; }
-.roi-item .lbl { font-size: 13.5px; color: var(--text-muted); }
-.roi-item .val { font-size: 19px; font-weight: 800; color: #f87171; }
-.roi-item.highlight .val { font-size: 26px; color: var(--accent-light); }
+.roi-item .lbl { font-size: 13.5px; color: #cbd5e1; }
+.roi-item .val { font-size: 19px; font-weight: 800; color: #fca5a5; }
+.roi-item.highlight .val { font-size: 26px; color: var(--accent-bright); }
 
-/* COMPARISON TABLE */
 .comp-table-wrap {
   overflow-x: auto;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(14, 21, 38, 0.05);
 }
 table.comp-table {
   width: 100%;
@@ -628,14 +805,14 @@ table.comp-table th, table.comp-table td {
   font-size: 14px;
 }
 table.comp-table th {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg-navy);
+  color: #ffffff;
   font-size: 14.5px;
   font-weight: 800;
 }
-table.comp-table td.bad { color: #fca5a5; }
-table.comp-table td.good { color: var(--accent-light); font-weight: 700; }
+table.comp-table td.bad { color: #b91c1c; font-weight: 600; }
+table.comp-table td.good { color: var(--accent); font-weight: 800; }
 
-/* 3 STEPS HOW IT WORKS */
 .steps-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -644,24 +821,23 @@ table.comp-table td.good { color: var(--accent-light); font-weight: 700; }
 .step-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 18px;
   padding: 28px 24px;
-  position: relative;
+  box-shadow: 0 8px 22px rgba(14, 21, 38, 0.04);
 }
 .step-num {
   display: inline-block;
-  background: rgba(16, 185, 129, 0.15);
-  color: var(--accent-light);
+  background: var(--bg-navy);
+  color: var(--accent-bright);
   font-weight: 800;
   font-size: 12px;
-  padding: 5px 12px;
+  padding: 5px 13px;
   border-radius: 999px;
   margin-bottom: 14px;
 }
-.step-card h3 { font-size: 18px; margin-bottom: 10px; }
-.step-card p { font-size: 13.8px; color: var(--text-muted); }
+.step-card h3 { font-size: 18px; font-weight: 800; color: var(--bg-navy); margin-bottom: 10px; }
+.step-card p { font-size: 13.8px; color: var(--text-body); }
 
-/* PRICING PACKAGES */
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -670,42 +846,45 @@ table.comp-table td.good { color: var(--accent-light); font-weight: 700; }
 .price-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 20px;
   padding: 32px 26px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  box-shadow: 0 10px 26px rgba(14, 21, 38, 0.05);
 }
 .price-card.featured {
-  border: 2px solid var(--accent);
-  background: linear-gradient(180deg, rgba(16, 185, 129, 0.09), var(--bg-card));
-  box-shadow: 0 20px 50px rgba(16, 185, 129, 0.14);
+  border: 2px solid var(--accent-bright);
+  background: var(--bg-navy);
+  color: #ffffff;
+  box-shadow: 0 20px 50px rgba(14, 21, 38, 0.22);
 }
 .popular-badge {
   position: absolute;
   top: -12px;
   right: 22px;
-  background: var(--accent);
-  color: #04130d;
+  background: var(--accent-bright);
+  color: var(--bg-navy);
   font-size: 11px;
   font-weight: 800;
   padding: 4px 12px;
   border-radius: 999px;
 }
-.price-card h3 { font-size: 20px; margin-bottom: 6px; }
-.price-card .room-range { font-size: 13px; color: var(--accent-light); font-weight: 700; margin-bottom: 18px; }
+.price-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+.price-card .room-range { font-size: 13px; color: var(--accent); font-weight: 800; margin-bottom: 18px; }
+.price-card.featured .room-range { color: var(--accent-bright); }
 .price-card ul { list-style: none; margin: 18px 0 26px; }
 .price-card ul li {
   font-size: 13.5px;
-  color: #cbd5e1;
+  color: var(--text-body);
   margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
+.price-card.featured ul li { color: #cbd5e1; }
 
-/* FAQ */
 .faq-list {
   max-width: 820px;
   margin: 0 auto;
@@ -716,31 +895,31 @@ table.comp-table td.good { color: var(--accent-light); font-weight: 700; }
 details.faq-item {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 18px 22px;
 }
 details.faq-item summary {
-  font-weight: 700;
+  font-weight: 800;
   font-size: 15.5px;
   cursor: pointer;
-  color: #fff;
+  color: var(--bg-navy);
 }
 details.faq-item p {
   margin-top: 12px;
   font-size: 14px;
-  color: var(--text-muted);
+  color: var(--text-body);
 }
 
-/* APPLICATION FORM */
 .apply-card {
-  background: linear-gradient(135deg, #0f172a, #06281e);
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  border-radius: 22px;
+  background: var(--bg-navy);
+  border-radius: 24px;
   padding: 42px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 36px;
   align-items: center;
+  color: #ffffff;
+  box-shadow: 0 24px 60px rgba(14, 21, 38, 0.22);
 }
 .form-grid {
   display: grid;
@@ -751,20 +930,19 @@ details.faq-item p {
   width: 100%;
   padding: 12px 14px;
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(7, 11, 20, 0.85);
-  color: #fff;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: #162038;
+  color: #ffffff;
   font-family: inherit;
   font-size: 13.5px;
 }
 .form-grid .full { grid-column: 1 / -1; }
 
-/* FOOTER */
 footer.corp-footer {
   border-top: 1px solid var(--border);
   padding: 48px 0 32px;
-  background: #05080f;
-  color: var(--text-muted);
+  background: #0e1526;
+  color: #94a3b8;
   font-size: 13.5px;
 }
 .footer-grid {
@@ -773,17 +951,18 @@ footer.corp-footer {
   gap: 32px;
   margin-bottom: 32px;
 }
-.footer-col h4 { color: #fff; font-size: 14.5px; margin-bottom: 12px; }
+.footer-col h4 { color: #ffffff; font-size: 14.5px; margin-bottom: 12px; }
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 8px; }
-.footer-col ul a { color: var(--text-muted); text-decoration: none; }
-.footer-col ul a:hover { color: var(--accent-light); }
+.footer-col ul a { color: #94a3b8; text-decoration: none; }
+.footer-col ul a:hover { color: var(--accent-bright); }
 
 @media (max-width: 960px) {
   .hero-grid, .roi-box, .apply-card { grid-template-columns: 1fr; }
-  .capabilities-grid, .steps-grid, .pricing-grid, .footer-grid { grid-template-columns: 1fr; }
+  .sectors-grid, .story-strip, .capabilities-grid, .steps-grid, .pricing-grid, .footer-grid { grid-template-columns: 1fr; }
   .hero-metrics { grid-template-columns: repeat(2, 1fr); }
   .nav-links { display: none; }
+  .poster-banner { height: 220px; }
 }
 </style>
 </head>
@@ -791,80 +970,97 @@ footer.corp-footer {
 
 <!-- ÜST DUYURU ÇUBUĞU -->
 <div class="top-bar">
-  <span><i class="pulse-dot"></i> <b>Operis AI Kurumsal v4.2</b> — İzmir (Karşıyaka, Çiğli, Aliağa, Foça, Çeşme, Urla) & Türkiye Geneli Oteller İçin <b>14 Gün Ücretsiz Pilot</b> Kayıtları Açık!</span>
-  <a href="#ucretsiz-pilot">Hemen Başvur →</a>
+  <span><span class="pulse-dot"></span> <strong>Operis AI:</strong> İzmir merkezli · Ege ve Türkiye geneli oteller, restoranlar &amp; dağıtım bayileri için 7/24 otonom asistan</span>
+  <a href="hub.html">Sektörel Demoları Gör →</a>
 </div>
 
 <!-- KURUMSAL NAVBAR -->
 <header class="navbar">
   <a href="#" class="brand">
-    <div class="brand-logo"><img src="assets/operis_emblem_dark.png" alt="operisAI"></div>
+    <div class="brand-logo">
+      <img src="assets/operis_emblem_light.png" alt="Operis AI Logo">
+    </div>
     <div class="brand-text-wrap">
       <div class="brand-name">operis<span>AI</span></div>
-      <div class="brand-sub">OTEL & TURİZM YAPAY ZEKA OTOMASYONU</div>
+      <div class="brand-sub">İŞLETME YAPAY ZEKA OTOMASYONLARI</div>
     </div>
   </a>
 
   <ul class="nav-links">
-    <li><a href="#canli-simulator">Otel Simülatörü</a></li>
-    <li><a href="gurmepilav.html" target="_blank" style="color: #f59e0b; display: inline-flex; align-items: center; gap: 5px;">🍚 Restoran AI <span style="font-size: 9px; font-weight: 800; background: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.4); padding: 1px 6px; border-radius: 4px; color: #fbbf24;">YENİ</span></a></li>
-    <li><a href="#cozumler">Çözümlerimiz</a></li>
-    <li><a href="#roi-hesaplayici">Komisyon Hesaplayıcı</a></li>
-    <li><a href="#nasil-calisir">Nasıl Çalışır?</a></li>
-    <li><a href="#paketler">Kurumsal Paketler</a></li>
-    <li><a href="#sss">S.S.S.</a></li>
+    <li><a href="#sektorler">Sektörler</a></li>
+    <li><a href="#canli-simulator">Canlı Simülatör</a></li>
+    <li><a href="#cozumler">Özellikler</a></li>
+    <li><a href="#roi-hesaplayici">Kazanç Hesapla</a></li>
+    <li><a href="#paketler">Paketler</a></li>
   </ul>
 
   <div class="nav-actions">
-    <a href="hub.html" class="btn-secondary" style="border-color: rgba(16, 185, 129, 0.4); color: #10b981; font-weight: 700;">🌐 Demo Hub</a>
-    <a href="https://www.instagram.com/operis_ai/" target="_blank" class="btn-secondary">📸 @operis_ai</a>
-    <a href="#ucretsiz-pilot" class="btn-primary">🚀 14 Gün Ücretsiz Dene</a>
+    <a href="https://instagram.com/operis_ai" target="_blank" class="btn-secondary">@operis_ai</a>
+    <a href="#ucretsiz-pilot" class="btn-primary">14 Gün Ücretsiz Dene →</a>
   </div>
 </header>
+
+<!-- AFİŞ TARZI FOTOĞRAFLI ÜST ATMOSFER BANDI -->
+<div class="container poster-banner-wrap">
+  <div class="poster-banner">
+    <img src="assets/otel_hero.jpg" alt="Alaçatı Ege Butik Otel Terası">
+    <div class="poster-banner-overlay">
+      <div class="poster-top-tags">
+        <span class="poster-loc-pill">İzmir merkezli · Ege ve Türkiye'deki işletmeler için</span>
+        <span class="poster-live-pill">● 7/24 Aktif Bulut AI</span>
+      </div>
+      <div class="poster-bottom-info">
+        <h2>İşletmenize özel 7/24 konuşan, satış kapatan ve sipariş alan yapay zeka asistanı.</h2>
+        <div class="poster-cities">ALAÇATI · ÇEŞME · URLA · FOÇA · KARŞIYAKA · BOSTANLI · İZMİR</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- HERO BÖLÜMÜ + CANLI SİMÜLATÖR -->
 <section class="hero-section" id="canli-simulator">
   <div class="container">
     <div class="hero-grid">
+
       <!-- SOL TARAF: KURUMSAL DEĞER ÖNERİSİ -->
       <div>
-        <div class="badge-pill">⚡ RESMİ WHATSAPP & INSTAGRAM DM YAPAY ZEKA KONSİYERJİ</div>
+        <div class="badge-pill">⚡ OTEL, RESTORAN VE DAĞITIM FİRMALARI İÇİN</div>
         <h1 class="hero-title">
-          Gece Gelen Misafiri <span>Kaçırmayan</span> 7/24 Dijital Otel Resepsiyonu
+          Müşteriniz gece 03:00'te yazdı. <span>Cevabı kim verdi?</span>
         </h1>
         <p class="hero-desc">
-          Misafirleriniz WhatsApp veya Instagram'dan oda müsaitliği ve fiyat sorduğunda, resepsiyonunuz uyurken bile <b>3 saniye içinde</b> yanıt verir, <b>oda fotoğraflarını gönderir</b>, 4 dilde konuşur ve <b>%0 komisyonla</b> doğrudan rezervasyona bağlar.
+          OperisAI, işletmenizin <b>WhatsApp hattına</b> ve <b>web sitesine</b> 7/24 çalışan çok dilli bir yapay zeka asistanı kurar. Misafir ve müşterilerinizin sorularını saniyeler içinde kendi bilgilerinizle yanıtlar, doğrudan rezervasyon veya siparişe dönüştürür.
         </p>
 
         <div class="hero-metrics">
           <div class="metric-box">
-            <span class="num">3 Sn</span>
-            <span class="lbl">Ortalama Yanıt Hızı</span>
+            <span class="num">&lt; 3 sn</span>
+            <span class="lbl">Anında Cevap</span>
           </div>
           <div class="metric-box">
             <span class="num">%0</span>
-            <span class="lbl">Acente Komisyonu</span>
+            <span class="lbl">Komisyon</span>
           </div>
           <div class="metric-box">
-            <span class="num">4 Dil</span>
-            <span class="lbl">TR • EN • DE • RU</span>
+            <span class="num">4+ Dil</span>
+            <span class="lbl">TR · EN · DE · RU</span>
           </div>
           <div class="metric-box">
-            <span class="num">24 Saat</span>
-            <span class="lbl">Anahtar Teslim Kurulum</span>
+            <span class="num">7/24</span>
+            <span class="lbl">Hiç Kapanmaz</span>
           </div>
         </div>
 
         <div class="hero-cta-group">
-          <a href="#ucretsiz-pilot" class="btn-primary">🛡️ 14 Gün Ücretsiz Pilot Kurulum İste</a>
-          <a href="#roi-hesaplayici" class="btn-secondary">🧮 Otelinizin Kazancını Hesaplayın</a>
+          <a href="#ucretsiz-pilot" class="btn-primary">🚀 14 Gün Ücretsiz Pilot Başlat</a>
+          <a href="#sektorler" class="btn-secondary">📸 Sektörel Çözümleri Gör</a>
         </div>
 
         <div class="guarantee-banner">
           <div class="icon">🛡️</div>
           <div>
-            <h4>Operis AI Sıfır Risk & Performans Garantisi</h4>
-            <p>Otelinize özel hafızayı 24 saatte kuruyoruz. 14 gün boyunca kredi kartı veya taahhüt olmadan test ediyorsunuz; gece kaçan rezervasyonları yakalamazsa tek kuruş ödemiyorsunuz.</p>
+            <h4>İlk İşletmelerimize Kurulum Ücretsiz · Sıfır Risk</h4>
+            <p>14 gün boyunca kendi WhatsApp hattınızda ücretsiz test edin. Memnun kalmazsanız tek kuruş ödemeyin.</p>
           </div>
         </div>
       </div>
@@ -872,53 +1068,38 @@ footer.corp-footer {
       <!-- SAĞ TARAF: CANLI OTEL SİMÜLATÖRÜ -->
       <div class="simulator-col">
         <div class="hotel-selector-bar">
-          <label for="hotelSelect">
-            <span>🏨 Canlı Test Edilecek Oteli Seçin (56 Otel Yüklü):</span>
-            <span style="color:#94a3b8; font-weight:500;">Canlı Demo</span>
+          <label for="otelSecici">
+            <span>🏨 61 Otelin Canlı Asistanını Test Edin</span>
+            <span style="color:#a7f3d0; font-size:10.5px;">GERÇEK ZAMANLI AI</span>
           </label>
-          <select id="hotelSelect" onchange="degistirOtel(this.value)">
-            
-      <optgroup label="📍 Kuzey İzmir (Karşıyaka, Çiğli, Aliağa, Foça, Dikili)">
-        <option value="anemon_kent_cigli_otel">Anemon Kent Çiğli Otel (İzmir / Çiğli (Ataşehir))</option><option value="avwan_hotel_cigli">Avwan Hotel Çiğli (İzmir / Çiğli (Balatçık))</option><option value="restway_hotel_cigli">Restway Hotel Çiğli (İzmir / Çiğli (Ataşehir))</option><option value="best_western_premier_karsiya">Best Western Premier Karşıyaka (İzmir / Karşıyaka (Mavişehir))</option><option value="marlen_hotel_mavisehir">Marlen Hotel Mavişehir (İzmir / Karşıyaka (Mavişehir))</option><option value="ve_hotels_karsiyaka_bostanli">VE Hotels Karşıyaka (Bostanlı) (İzmir / Karşıyaka (Bostanlı))</option><option value="karsiyaka_plus_otel">Karşıyaka Plus Otel (İzmir / Karşıyaka)</option><option value="life_artemis_hotel_bostanli">Life Artemis Hotel Bostanlı (İzmir / Karşıyaka (Bostanlı))</option><option value="ramada_by_wyndham_izmir_alia">Ramada by Wyndham İzmir Aliağa (İzmir / Aliağa)</option><option value="prestige_hotel_donmez_aliaga">Prestige Hotel Dönmez Aliağa (İzmir / Aliağa)</option><option value="del_puerto_hotel_aliaga">Del Puerto Hotel Aliağa (İzmir / Aliağa)</option><option value="hanedan_beach_hotel_foca">Hanedan Beach Hotel Foça (İzmir / Foça)</option><option value="la_petra_hotel_yenifoca">La Petra Hotel Yenifoça (İzmir / Yenifoça)</option><option value="navalia_hotel_foca">Navalia Hotel Foça (İzmir / Foça)</option><option value="agonz_hotel_agz_hotel_dikili">Agonz Hotel (AGZ Hotel) Dikili (İzmir / Dikili)</option><option value="foca_antik_otel">Foça Antik Otel (İzmir / Foça)</option><option value="lola_38_hotel_foca">Lola 38 Hotel Foça (İzmir / Foça)</option><option value="bulbul_yuvasi_butik_otel">Bülbül Yuvası Butik Otel (İzmir / Foça)</option>
-      </optgroup>
-      <optgroup label="🌿 Güney İzmir & Yarımada (Urla, Alaçatı, Çeşme, Sığacık)">
-        <option value="huzurla">Huzurla Otel (Urla / İzmir)</option>
-        <option value="alavya">Alavya Hotel (Alaçatı / Çeşme)</option>
-        <option value="alavya_hotel_alacati">Alavya Hotel Alaçatı (İzmir / Çeşme)</option><option value="huzurla_otel_urla">Huzurla Otel Urla (İzmir / Urla)</option><option value="villa_taraca_romantik_otel">Villa Taraça Romantik Otel (İzmir / Çeşme)</option><option value="noesta_alacati">Noesta Alaçatı (İzmir / Çeşme)</option><option value="baska_urla_otel">Başka Urla Otel (İzmir / Urla)</option><option value="ke_urla_butik_otel">KE Urla Butik Otel (İzmir / Urla)</option><option value="urla_zeytin_otel">Urla Zeytin Otel (İzmir / Urla)</option><option value="7800_cesme">7800 Çeşme (İzmir / Çeşme)</option><option value="gullu_konaklari_sirince">Güllü Konakları Şirince (İzmir / Selçuk (Şirince))</option><option value="nisanyan_hotel_sirince">Nişanyan Hotel Şirince (İzmir / Selçuk (Şirince))</option><option value="sirince_tas_konak_butik_otel">Şirince Taş Konak Butik Otel (İzmir / Selçuk (Şirince))</option>
-      </optgroup>
-      <optgroup label="🇹🇷 Türkiye Geneli (Kapadokya, Kazdağları, Abant, Ağva, Cunda, Kaş)">
-        <option value="museum">Museum Hotel (Kapadokya)</option>
-        <option value="museum_hotel_kapadokya">Museum Hotel Kapadokya (Nevşehir / Uçhisar)</option><option value="argos_in_cappadocia">Argos in Cappadocia (Nevşehir / Uçhisar)</option><option value="sultan_cave_suites">Sultan Cave Suites (Nevşehir / Göreme)</option><option value="mithra_cave_hotel">Mithra Cave Hotel (Nevşehir / Göreme)</option><option value="kayakapi_premium_caves">Kayakapi Premium Caves (Nevşehir / Ürgüp)</option><option value="taskonaklar_cave_hotel">Taskonaklar Cave Hotel (Nevşehir / Uçhisar)</option><option value="villa_mahal">Villa Mahal (Antalya / Kalkan)</option><option value="doria_hotel_kas">Doria Hotel Kaş (Antalya / Kaş)</option><option value="meis_exclusive_hotel_kas">Meis Exclusive Hotel Kaş (Antalya / Kaş)</option><option value="casa_dellarte">Casa dell'Arte (Muğla / Bodrum)</option><option value="the_marmara_bodrum">The Marmara Bodrum (Muğla / Bodrum)</option><option value="agva_nehir_evi_butik_otel">Ağva Nehir Evi Butik Otel (İstanbul / Ağva)</option><option value="agva_greenline_guesthouse">Ağva Greenline Guesthouse (İstanbul / Ağva)</option><option value="wineport_lodge_agva">Wineport Lodge Ağva (İstanbul / Ağva)</option><option value="tiny_river_house_agva">Tiny River House Ağva (İstanbul / Ağva)</option><option value="abant_lotus_otel">Abant Lotus Otel (Bolu / Abant)</option><option value="abant_garden_butik_otel">Abant Garden Butik Otel (Bolu / Abant)</option><option value="abant_aden_boutique_hotel__s">Abant Aden Boutique Hotel & Spa (Bolu / Abant)</option><option value="manici_kasri_kazdaglari">Manici Kasrı Kazdağları (Çanakkale / Ayvacık (Kazdağları))</option><option value="ida_tas_konak_kazdaglari">İda Taş Konak Kazdağları (Çanakkale / Ayvacık (Kazdağları))</option><option value="panjur_hotel_cunda">Panjur Hotel Cunda (Balıkesir / Ayvalık (Cunda))</option><option value="cunda_despot_evi">Cunda Despot Evi (Balıkesir / Ayvalık (Cunda))</option><option value="macaron_konagi_ayvalik">Macaron Konağı Ayvalık (Balıkesir / Ayvalık)</option><option value="gizemli_konak_ayvalik">Gizemli Konak Ayvalık (Balıkesir / Ayvalık)</option><option value="goreme_cave_lodge">Göreme Cave Lodge (Nevşehir / Göreme)</option><option value="cappadocia_cave_lodge">Cappadocia Cave Lodge (Nevşehir / Göreme)</option><option value="cappadocia_cave_suites">Cappadocia Cave Suites (Nevşehir / Göreme)</option>
-      </optgroup>
-    
-          </select>
+          <select id="otelSecici" onchange="otelDegistir()"></select>
         </div>
 
         <div class="phone-mockup">
           <div class="phone-header">
-            <div class="phone-avatar" id="avatarText">H</div>
+            <div class="phone-avatar" id="waAvatar">O</div>
             <div class="phone-meta">
-              <h3 id="hotelTitle">Huzurla Otel Urla Asistanı</h3>
-              <span id="aiStatusBadge">🟢 Çevrimiçi (Operis AI Canlı Zeka)</span>
+              <h3 id="waHotelName">Otel Asistanı</h3>
+              <span>● çevrimiçi · 7/24 yapay zeka resepsiyon</span>
             </div>
           </div>
 
-          <div class="chat-area" id="chatArea"></div>
+          <div class="chat-body" id="chatMessages"></div>
 
           <div class="quick-chips">
-            <button class="chip" onclick="hizliGonder('Hafta sonu 2 kişi için boş oda ve fiyat nedir?')">📅 Hafta sonu fiyat</button>
-            <button class="chip" onclick="hizliGonder('Deluxe odanın fotoğraflarını atar mısınız?')">📸 Oda fotoğrafları</button>
-            <button class="chip" onclick="hizliGonder('Do you have an available room for next weekend?')">🇬🇧 English Test</button>
-            <button class="chip" onclick="hizliGonder('Giriş-çıkış saatleri, kahvaltı ve otopark var mı?')">🍳 Kahvaltı & Otopark</button>
-            <button class="chip" onclick="hizliGonder('Evcil hayvan kabul ediyor musunuz?')">🐾 Evcil hayvan</button>
+            <button class="chip-btn" onclick="quickAsk('Bu hafta sonu 2 kişilik oda fiyatınız nedir?')">🛏️ Oda &amp; Fiyat</button>
+            <button class="chip-btn" onclick="quickAsk('Kahvaltı dahil mi ve otoparkınız var mı?')">🍳 Kahvaltı &amp; Otopark</button>
+            <button class="chip-btn" onclick="quickAsk('Hi! Do you have sea view rooms for next Friday?')">🇬🇧 English Test</button>
+            <button class="chip-btn" onclick="quickAsk('Rezervasyon yapmak istiyorum, link paylaşır mısınız?')">🔗 Direkt Rezervasyon</button>
           </div>
 
           <div class="chat-input-bar">
-            <input type="text" class="chat-input" id="userInput" placeholder="Otel asistanına istediğiniz soruyu yazın..." onkeydown="if(event.key==='Enter') mesajGonder()">
-            <button class="send-btn" onclick="mesajGonder()">➤</button>
+            <input type="text" id="chatInput" placeholder="Otel hakkında bir soru yazın..." onkeypress="if(event.key==='Enter') sendMsg()">
+            <button id="sendBtn" onclick="sendMsg()">➤</button>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -926,106 +1107,192 @@ footer.corp-footer {
 <!-- KURUMSAL TEKNOLOJİ & GÜVEN BANDI -->
 <div class="tech-strip">
   <div class="container tech-strip-inner">
-    <div class="tech-item"><span>✓</span> Resmi Meta WhatsApp Business API</div>
-    <div class="tech-item"><span>✓</span> Instagram DM Otomatik Yanıt & Katalog</div>
-    <div class="tech-item"><span>✓</span> OpenAI Whisper Sesli Mesaj Anlama</div>
-    <div class="tech-item"><span>✓</span> HotelRunner / PMS / Takvim Uyumlu</div>
-    <div class="tech-item"><span>✓</span> KVKK & 256-Bit Kurumsal Veri Güvenliği</div>
+    <div class="tech-item"><span>✔</span> Resmi Meta WhatsApp Altyapısı</div>
+    <div class="tech-item"><span>✔</span> 80mm Termal Yazıcı &amp; POS Uyumu</div>
+    <div class="tech-item"><span>✔</span> Sesli Mesaj (Whisper) Çözümleme</div>
+    <div class="tech-item"><span>✔</span> Booking / Yemeksepeti Komisyonsuz Satış</div>
+    <div class="tech-item"><span>✔</span> İzmir Yerinde Kurulum &amp; Destek</div>
   </div>
 </div>
 
-<!-- 6 ÇEKİRDEK KURUMSAL YETENEK -->
-<section class="corp-section" id="cozumler">
+<!-- SEKTÖRLERE ÖZEL FOTOĞRAFLI ÇÖZÜM VİTRİNİ -->
+<section class="corp-section" id="sektorler">
   <div class="container">
     <div class="section-header">
-      <div class="badge-pill">KURUMSAL MİMARİ</div>
-      <h2>Otelinizin Neden Operis AI'a İhtiyacı Var?</h2>
-      <p>Standart "1'e basın, 2'ye basın" diyen ilkel botları unutun. Operis AI, otelinizin tüm oda tiplerini, politikalarını ve bölge rehberini bilen 5 yıldızlı bir dijital resepsiyonisttir.</p>
+      <div class="section-eyebrow">SEKTÖRE ÖZEL YAPAY ZEKA</div>
+      <h2>Her İşletmenin İhtiyacına Özel Tasarlanmış Asistanlar</h2>
+      <p>Tek bir kalıp bot değil; otelinize, restoranınıza veya su dağıtım bayinize özel eğitilmiş canlı yapay zeka çözümleri.</p>
+    </div>
+
+    <div class="sectors-grid">
+      <div class="sector-card">
+        <div class="sector-photo">
+          <img src="assets/otel_hero.jpg" alt="Butik Otel Yapay Zeka Asistanı">
+          <span class="sector-badge badge-otel">OTEL &amp; TURİZM AI</span>
+        </div>
+        <div class="sector-body">
+          <div>
+            <h3>Butik Oteller İçin 7/24 Dijital Resepsiyon</h3>
+            <p>Gece yarısı veya yoğun sezonda gelen oda, fiyat, kahvaltı, otopark ve transfer sorularını misafirin kendi dilinde (TR, EN, DE, RU) yanıtlar; Booking'in %15–18 komisyonunu ödemeden direkt rezervasyon aldırır.</p>
+            <div class="sector-tags">
+              <span>4+ Dil Desteği</span>
+              <span>Oda &amp; Fiyat</span>
+              <span>%0 Komisyon</span>
+            </div>
+          </div>
+          <a href="#canli-simulator" class="sector-link">Yukarıda Canlı Test Et →</a>
+        </div>
+      </div>
+
+      <div class="sector-card">
+        <div class="sector-photo">
+          <img src="assets/restoran_hero.jpg" alt="Restoran WhatsApp Sipariş Otomasyonu">
+          <span class="sector-badge badge-restoran">RESTORAN &amp; POS AI</span>
+        </div>
+        <div class="sector-body">
+          <div>
+            <h3>WhatsApp'tan Komisyonsuz Sipariş &amp; Mutfak Fişi</h3>
+            <p>Müşterinizin yazılı veya sesli siparişini saniyeler içinde çözer, porsiyon ve notları doğrular, adresi alır ve onaylandığı an 80mm termal mutfak yazıcınızdan otomatik fiş basıp zili çalar. %28–34 platform kesintisine son verir.</p>
+            <div class="sector-tags">
+              <span>Sesli Sipariş</span>
+              <span>80mm Termal Fiş</span>
+              <span>%0 Platform Kesintisi</span>
+            </div>
+          </div>
+          <a href="gurmepilav.html" class="sector-link">Canlı Restoran Demosunu Aç →</a>
+        </div>
+      </div>
+
+      <div class="sector-card">
+        <div class="sector-photo">
+          <img src="assets/su_hero.jpg" alt="Su Dağıtımı ve Damacana Bayi Asistanı">
+          <span class="sector-badge badge-su">SU DAĞITIM &amp; BAYİ AI</span>
+        </div>
+        <div class="sector-body">
+          <div>
+            <h3>Hiç Meşgul Çalmayan Damacana Sipariş Hattı</h3>
+            <p>Müşteriniz "Her zamankinden 2 damacana gönderir misiniz?" yazdığında veya ses kaydı attığında kayıtlı mahalle ve daire bilgisini hatırlar, teslimat saatini bildirir ve siparişi doğrudan kurye dağıtım listesine işler.</p>
+            <div class="sector-tags">
+              <span>Kayıtlı Adres</span>
+              <span>1 Tık Tekrar Sipariş</span>
+              <span>Otomatik Rota</span>
+            </div>
+          </div>
+          <a href="sudagitim.html" class="sector-link">Su Dağıtım Demosunu İncele →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-strip">
+      <div class="story-tile">
+        <img src="assets/otel_misafir.jpg" alt="Misafir gece soru sorar">
+        <div class="story-tile-grad"></div>
+        <div class="story-tile-text">
+          <strong>1. Müşteri İstediği Saatte Yazar</strong>
+          <span>Gece 03:00'te veya akşam pik saatte WhatsApp'tan mesaj ya da ses kaydı atar…</span>
+        </div>
+      </div>
+      <div class="story-tile">
+        <img src="assets/restoran_mutfak.jpg" alt="Mutfakta anında fiş basılır">
+        <div class="story-tile-grad"></div>
+        <div class="story-tile-text">
+          <strong>2. Asistan Saniyeler İçinde İşler</strong>
+          <span>Soruyu yanıtlar, adresi teyit eder ve siparişi veya rezervasyonu sisteme geçirir…</span>
+        </div>
+      </div>
+      <div class="story-tile">
+        <img src="assets/su_teslimat.jpg" alt="Ekibiniz sahada teslimat yapar">
+        <div class="story-tile-grad"></div>
+        <div class="story-tile-text">
+          <strong>3. Siz İşinize Odaklanırsınız</strong>
+          <span>Telefon trafiği ve tekrarlayan sorular biter; cironuz ve müşteri memnuniyetiniz artar.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 ÇEKİRDEK KURUMSAL YETENEK -->
+<section class="corp-section" id="cozumler" style="padding-top:16px;">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">TEKNİK ÜSTÜNLÜK</div>
+      <h2>Sıradan Bir Chatbot Değil, İşletmenizin Dijital Çalışanı</h2>
+      <p>Kalıp butonlar ve sıkıcı "1'e basın" menüleri yerine, gerçek insan gibi anlayan ve satan akıllı sistem.</p>
     </div>
 
     <div class="capabilities-grid">
       <div class="cap-card">
         <div class="cap-icon">🌙</div>
-        <h3>1. Gece 23:00–08:00 Kaçan Misafirleri Yakalar</h3>
-        <p>Otel mesajlarının %62'si mesai saatleri dışında gelir. Gece fiyat soran misafir sabahı beklemez; 3 saniyede yanıt veren Operis AI misafiri rakiplerinizden önce yakalar.</p>
+        <h3>Gece 03:00'te Sıfır Kaçan Müşteri</h3>
+        <p>Resepsiyonunuz kapalıyken veya kasa yoğunken gelen hiçbir mesaj cevapsız kalmaz. Müşteri rakip işletmeye ya da komisyoncu platforma gitmeden satışı kapatır.</p>
       </div>
-
-      <div class="cap-card">
-        <div class="cap-icon">🖼️</div>
-        <h3>2. Sohbet İçi Otomatik Oda Fotoğrafı & Katalog</h3>
-        <p>"Oda nasıl?" diye soran misafire karmaşık web sitesi linki atmaz; doğrudan WhatsApp ve Instagram sohbeti içinde odanın HD fotoğraflarını ve gecelik fiyat kartını gönderir.</p>
-      </div>
-
       <div class="cap-card">
         <div class="cap-icon">🎙️</div>
-        <h3>3. Sesli Mesajları (Voice Note) Dinler ve Anlar</h3>
-        <p>Misafiriniz araç kullanırken 40 saniyelik ses kaydı gönderse bile OpenAI Whisper motoruyla sesi metne döker, talebi anlar ve eksiksiz yanıtlar.</p>
+        <h3>Sesli Mesajları (Whisper) Anlar</h3>
+        <p>Müşteriniz yazmaya üşenip 15 saniyelik ses kaydı gönderse bile konuşmayı yazıya çevirir, içindeki ürün/oda ve adres detaylarını eksiksiz yakalar.</p>
       </div>
-
       <div class="cap-card">
         <div class="cap-icon">🌍</div>
-        <h3>4. 4 Dilde (TR, EN, DE, RU) Ana Dil Kalitesi</h3>
-        <p>Yabancı dil bilen gece resepsiyonisti bulma ve maliyet sorununu çözer. İngilizce, Almanca, Rusça ve Türkçe yazan turistlere kendi dillerinde kusursuz yanıt verir.</p>
+        <h3>Çok Dilli Otomatik İletişim</h3>
+        <p>Türkçe, İngilizce, Almanca, Rusça ve Arapça mesajları misafirin kendi dilinde, nazik ve ikna edici bir kurumsal üslupla yanıtlar.</p>
       </div>
-
       <div class="cap-card">
-        <div class="cap-icon">💰</div>
-        <h3>5. %0 Komisyonla Doğrudan Rezervasyon</h3>
-        <p>Instagram ve Google Haritalar'dan otelinizi gören misafiri %15-%20 komisyon alan aracı sitelere (Booking/OTA) kaptırmadan doğrudan kendi WhatsApp hattınızda satışa dönüştürür.</p>
+        <div class="cap-icon">🖨️</div>
+        <h3>80mm Mutfak &amp; Dağıtım Fişi</h3>
+        <p>Restoran ve su bayilerinde onaylanan siparişler doğrudan mutfak veya depo yazıcısından adisyon fişi olarak çıkar, zil çalar.</p>
       </div>
-
       <div class="cap-card">
-        <div class="cap-icon">📲</div>
-        <h3>6. Yöneticiye Anlık WhatsApp Rezervasyon Özeti</h3>
-        <p>Misafir odayı onayladığında ad-soyad, telefon, giriş-çıkış tarihi ve kişi sayısını tek bir özet kart halinde anında otel müdürünün veya resepsiyonun telefonuna bildirir.</p>
+        <div class="cap-icon">💸</div>
+        <h3>%0 Komisyonla Direkt Satış</h3>
+        <p>Booking (%15–18) ve yemek platformları (%28–34) yerine müşteriyi doğrudan kendi rezervasyon linkinize veya WhatsApp siparişinize bağlar.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">📊</div>
+        <h3>Günlük Yönetici Özeti</h3>
+        <p>Her sabah gece boyunca kaç müşteriye yanıt verildiğini, kaç sipariş veya rezervasyon alındığını tek özetle cebinize gönderir.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- İNTERAKTİF GELİR & KOMİSYON HESAPLAYICI -->
-<section class="corp-section" id="roi-hesaplayici" style="padding-top:20px;">
+<section class="corp-section" id="roi-hesaplayici" style="padding-top:16px;">
   <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">FİNANSAL ETKİ</div>
+      <h2>Yılda Ne Kadar Komisyon &amp; Ciro Kaybediyorsunuz?</h2>
+      <p>İşletmenizin büyüklüğünü seçin, Operis AI'ın size yıllık kazandıracağı net geliri anında hesaplayın.</p>
+    </div>
+
     <div class="roi-box">
       <div>
-        <div class="badge-pill">FİNANSAL ETKİ SİMÜLASYONU</div>
-        <h2 style="font-size:30px; font-weight:800; margin-bottom:12px;">Otelinizin Yıllık Kazancını Hesaplayın</h2>
-        <p style="color:var(--text-muted); font-size:14.5px; margin-bottom:26px;">
-          Oda sayınızı ve ortalama gecelik fiyatınızı seçin; geç yanıt yüzünden kaçan ve aracı sitelere (OTA) ödenen komisyondan yılda ne kadar tasarruf edeceğinizi görün.
-        </p>
-
         <div class="slider-group">
-          <label>Otelinizin Oda Sayısı: <span id="odaVal">45 Oda</span></label>
-          <input type="range" id="odaRange" min="10" max="150" step="5" value="45" oninput="hesaplaROI()">
+          <label>İşletme Büyüklüğü (Oda / Günlük Masa) <span id="lblOda">25</span></label>
+          <input type="range" id="roiOda" min="5" max="150" value="25" oninput="hesaplaROI()">
         </div>
-
         <div class="slider-group">
-          <label>Ortalama Gecelik Oda Fiyatı: <span id="fiyatVal">4.200 TL</span></label>
-          <input type="range" id="fiyatRange" min="2000" max="15000" step="200" value="4200" oninput="hesaplaROI()">
+          <label>Ortalama İşlem Tutarı (TL) <span id="lblFiyat">3.500 TL</span></label>
+          <input type="range" id="roiFiyat" min="300" max="12000" step="100" value="3500" oninput="hesaplaROI()">
         </div>
-
         <div class="slider-group">
-          <label>Günde Gece/Mesai Dışı Gelen Mesaj Sayısı: <span id="mesajVal">12 Mesaj</span></label>
-          <input type="range" id="mesajRange" min="3" max="50" step="1" value="12" oninput="hesaplaROI()">
+          <label>Gece / Yoğun Saatte Gelen Aylık Mesaj <span id="lblMesaj">180 Mesaj</span></label>
+          <input type="range" id="roiMesaj" min="30" max="1000" step="10" value="180" oninput="hesaplaROI()">
         </div>
       </div>
 
       <div class="roi-results">
-        <h3 style="font-size:17px; margin-bottom:14px; color:#fff;">📊 Otelinizin Yıllık Projeksiyonu</h3>
         <div class="roi-item">
-          <span class="lbl">Acente Sitelerine (%18) Giden Yıllık Komisyon:</span>
-          <span class="val" id="komisyonKaybi">612.360 TL</span>
+          <div class="lbl">Cevapsız Kalan Potansiyel Talep / Ay</div>
+          <div class="val" id="resKacan">45 Talep</div>
         </div>
         <div class="roi-item">
-          <span class="lbl">Gece Geç Yanıt Nedeniyle Kaçan Tahmini Ciro:</span>
-          <span class="val" id="geceKaybi">907.200 TL</span>
+          <div class="lbl">Aracı Platformlara Ödenen Yıllık Komisyon</div>
+          <div class="val" id="resKomisyon">340.200 TL</div>
         </div>
         <div class="roi-item highlight">
-          <span class="lbl" style="color:#fff; font-weight:700;">Operis AI İle Yıllık Kurtarılan Net Ciro:</span>
-          <span class="val" id="netKazanc">+1.215.000 TL</span>
-        </div>
-        <div style="margin-top:18px;">
-          <a href="#ucretsiz-pilot" class="btn-primary" style="width:100%; justify-content:center;">Bu Geliri Otelinizde Tutmak İçin 14 Gün Ücretsiz Deneyin →</a>
+          <div class="lbl" style="color:#ffffff; font-weight:700;">Operis AI ile Yıllık Net Kazanç</div>
+          <div class="val" id="resKazanc">+567.000 TL</div>
         </div>
       </div>
     </div>
@@ -1033,48 +1300,42 @@ footer.corp-footer {
 </section>
 
 <!-- KARŞILAŞTIRMA TABLOSU -->
-<section class="corp-section">
+<section class="corp-section" style="padding-top:16px;">
   <div class="container">
     <div class="section-header">
-      <div class="badge-pill">OPERASYONEL FARK</div>
-      <h2>Geleneksel Resepsiyon vs. Operis AI</h2>
-      <p>Resepsiyon ekibinizin iş yükünü %80 azaltırken misafir memnuniyetini maksimuma çıkarın.</p>
+      <div class="section-eyebrow">KARŞILAŞTIRMA</div>
+      <h2>Geleneksel Yöntem vs. Operis AI</h2>
     </div>
 
     <div class="comp-table-wrap">
       <table class="comp-table">
         <thead>
           <tr>
-            <th>Kriter</th>
-            <th>Geleneksel Manuel Süreç</th>
-            <th>Operis AI Dijital Resepsiyon</th>
+            <th>Özellik</th>
+            <th>Geleneksel Resepsiyon / Telefon</th>
+            <th style="color:#18b58d;">Operis AI (7/24 Otonom)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><b>Gece 02:00'de Gelen Mesaja Yanıt</b></td>
-            <td class="bad">❌ Sabah 09:00'da (Misafir çoktan başka otel tuttu)</td>
-            <td class="good">✅ 3 Saniye İçinde Anında Yanıt & Fotoğraf</td>
+            <td><strong>Gece 03:00 Yanıt Süresi</strong></td>
+            <td class="bad">Sabah 09:00'a kadar cevapsız (Müşteri kaçar)</td>
+            <td class="good">⚡ 2–3 saniye içinde anında yanıt</td>
           </tr>
           <tr>
-            <td><b>Yabancı Dil (İngilizce, Almanca, Rusça)</b></td>
-            <td class="bad">❌ Gece vardiyasında yabancı dil bilen personel zorluğu</td>
-            <td class="good">✅ 7/24 Ana Dil Kalitesinde 4 Dilde İletişim</td>
+            <td><strong>Yabancı Dil Desteği</strong></td>
+            <td class="bad">Sadece temel İngilizce veya çeviri bekleme</td>
+            <td class="good">🌍 TR, EN, DE, RU, AR anadili seviyesinde</td>
           </tr>
           <tr>
-            <td><b>Oda Fotoğrafı & Fiyat Sunumu</b></td>
-            <td class="bad">❌ Tek tek galeriden fotoğraf arayıp kopyala-yapıştır</td>
-            <td class="good">✅ Otomatik HD Oda Kartı ve Güncel Fiyat Gönderimi</td>
+            <td><strong>Sesli Mesaj Çözümleme</strong></td>
+            <td class="bad">Yoğunlukta dinlenemez veya unutulur</td>
+            <td class="good">🎙️ Ses kaydını çözer, siparişe/rezervasyona döker</td>
           </tr>
           <tr>
-            <td><b>Acente / OTA Komisyon Oranı</b></td>
-            <td class="bad">❌ %15 ile %22 arası Booking / ETS / Acente Kesintisi</td>
-            <td class="good">✅ %0 Komisyon (Doğrudan Otel Kasasına Tahsilat)</td>
-          </tr>
-          <tr>
-            <td><b>Personel Maliyeti & Kurulum</b></td>
-            <td class="bad">❌ Yüksek vardiya maliyeti ve haftalar süren eğitim</td>
-            <td class="good">✅ 24 Saatte Anahtar Teslim Kurulum & Sabit Düşük Maliyet</td>
+            <td><strong>Aracı Platform Komisyonu</strong></td>
+            <td class="bad">%15–34 arası yüksek komisyon kesintisi</td>
+            <td class="good">💸 %0 komisyonla doğrudan kasaya satış</td>
           </tr>
         </tbody>
       </table>
@@ -1083,120 +1344,110 @@ footer.corp-footer {
 </section>
 
 <!-- 3 ADIMDA NASIL ÇALIŞIR -->
-<section class="corp-section" id="nasil-calisir" style="padding-top:10px;">
+<section class="corp-section" id="nasil-calisir" style="padding-top:16px;">
   <div class="container">
     <div class="section-header">
-      <div class="badge-pill">24 SAATTE CANLI YAYIN</div>
-      <h2>3 Adımda Anahtar Teslim Kurulum</h2>
-      <p>Otelinizin hiçbir teknik işlem yapmasına gerek yoktur. Tüm kurulum mühendislerimiz tarafından gerçekleştirilir.</p>
+      <div class="section-eyebrow">KURULUM SÜRECİ</div>
+      <h2>3 Adımda İşletmenize Özel Yayında</h2>
+      <p>Teknik bilgiye veya karmaşık yazılımlara ihtiyacınız yok; tüm kurulumu İzmir'den ekibimiz yapar.</p>
     </div>
 
     <div class="steps-grid">
       <div class="step-card">
-        <span class="step-num">ADIM 01 • SAAT 0–4</span>
-        <h3>Otel Hafızasının Eğitilmesi</h3>
-        <p>Oda tiplerinizi, sezonluk/hafta sonu fiyatlarınızı, kahvaltı saatlerinizi, şirket konaklama kurallarınızı ve oda fotoğraflarınızı yapay zeka beynine biz tanımlıyoruz.</p>
+        <span class="step-num">ADIM 1</span>
+        <h3>İşletmenizi Tanıyoruz</h3>
+        <p>Oda/menü/ürün fiyatlarınızı, çalışma saatlerinizi, konumunuzu ve sık sorulan kurallarınızı birlikte topluyoruz.</p>
       </div>
       <div class="step-card">
-        <span class="step-num">ADIM 02 • SAAT 4–12</span>
-        <h3>WhatsApp & Instagram Bağlantısı</h3>
-        <p>Mevcut kurumsal WhatsApp Business hattınızı ve Instagram hesabınızı resmi Meta API altyapısıyla güvenli şekilde sisteme bağlıyoruz.</p>
+        <span class="step-num">ADIM 2</span>
+        <h3>Kurup Test Ediyoruz</h3>
+        <p>Asistanı web sitenize ve WhatsApp hattınıza bağlıyoruz. Yayına almadan önce tüm yanıtları sizinle test ediyoruz.</p>
       </div>
       <div class="step-card">
-        <span class="step-num">ADIM 03 • SAAT 12–24</span>
-        <h3>14 Gün Ücretsiz Canlı Pilot</h3>
-        <p>Asistanınız 7/24 devreye girer. 14 gün boyunca gece yakalanan misafirleri ve resepsiyonunuza düşen hazır rezervasyon bildirimlerini canlı izlersiniz.</p>
+        <span class="step-num">ADIM 3</span>
+        <h3>7/24 Satış &amp; Sipariş</h3>
+        <p>Siz misafirinizle ve işinizle ilgilenirken asistan soruları yanıtlar, rezervasyon veya mutfak fişi oluşturur.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- KURUMSAL PAKETLER -->
-<section class="corp-section" id="paketler" style="padding-top:10px;">
+<section class="corp-section" id="paketler" style="padding-top:16px;">
   <div class="container">
     <div class="section-header">
-      <div class="badge-pill">ŞEFFAF KURUMSAL LİSANS</div>
-      <h2>Otelinizin Ölçeğine Uygun Paketler</h2>
-      <p>Tüm paketlerimizde <b>14 Gün Ücretsiz Pilot Deneme</b> ve <b>Ücretsiz İlk Kurulum</b> dahildir. Ayda sadece 1 gecelik oda satışı bile sistemin tüm maliyetini fazlasıyla çıkarır.</p>
+      <div class="section-eyebrow">ŞEFFAF PAKETLER</div>
+      <h2>İşletmenize Uygun Planı Seçin</h2>
+      <p>Tüm paketlerde ilk 14 gün ücretsiz deneme ve ilk işletmelerimize ücretsiz kurulum dahildir.</p>
     </div>
 
     <div class="pricing-grid">
       <div class="price-card">
         <div>
-          <h3>Butik Otel Paketi</h3>
-          <div class="room-range">10 – 25 Odalı Butik Oteller İçin</div>
-          <p style="font-size:13.5px; color:var(--text-muted);">Bölgesel butik oteller ve taş konaklar için eksiksiz 7/24 karşılama paketi.</p>
+          <h3>Butik Başlangıç</h3>
+          <div class="room-range">Butik Oteller · Kafeler · Küçük Bayiler</div>
           <ul>
-            <li>✅ 7/24 WhatsApp & Instagram DM Yanıt</li>
-            <li>✅ Otomatik Oda Fotoğrafı Gönderimi</li>
-            <li>✅ 4 Dilde (TR, EN, DE, RU) Misafir İletişimi</li>
-            <li>✅ Yönetici WhatsApp Bildirim Hattı</li>
-            <li>✅ 14 Gün Ücretsiz Pilot Deneme</li>
+            <li>✔ 7/24 WhatsApp &amp; Web Asistanı</li>
+            <li>✔ Türkçe &amp; İngilizce dil desteği</li>
+            <li>✔ Fiyat, konum ve SSS yanıtlama</li>
+            <li>✔ Direkt rezervasyon / sipariş linki</li>
           </ul>
         </div>
-        <a href="#ucretsiz-pilot" class="btn-secondary" style="justify-content:center;">14 Gün Ücretsiz Başlat</a>
+        <a href="#ucretsiz-pilot" class="btn-secondary" style="justify-content:center;">14 Gün Ücretsiz Dene</a>
       </div>
 
       <div class="price-card featured">
-        <div class="popular-badge">EN ÇOK TERCİH EDİLEN</div>
+        <span class="popular-badge">EN ÇOK TERCİH EDİLEN</span>
         <div>
-          <h3>Business & Şehir Oteli</h3>
-          <div class="room-range">25 – 100 Odalı Oteller & Tatil Köyleri</div>
-          <p style="font-size:13.5px; color:var(--text-muted);">Sürekli iş, şirket ve tatil trafiği alan orta-büyük ölçekli oteller için tam otomasyon.</p>
+          <h3>Kurumsal Büyüme</h3>
+          <div class="room-range">Oteller · Restoranlar · Su Dağıtım Bayileri</div>
           <ul>
-            <li>✅ <b>Butik Paketteki Tüm Özellikler</b></li>
-            <li>✅ <b>OpenAI Whisper Sesli Mesaj Anlama</b></li>
-            <li>✅ <b>Şirket / Kurumsal Grup Fiyatlandırma Modülü</b></li>
-            <li>✅ <b>Esnek Sezon & Hafta Sonu Fiyat Tablosu</b></li>
-            <li>✅ <b>İzmir İçi Yüz Yüze & Türkiye Geneli 7/24 VIP Destek</b></li>
+            <li>✔ 4+ Dilde akıcı çok dilli AI asistan</li>
+            <li>✔ Sesli mesaj (Whisper) anlama</li>
+            <li>✔ 80mm Termal mutfak/depo fişi entegrasyonu</li>
+            <li>✔ Kayıtlı müşteri adresi &amp; günlük rapor</li>
           </ul>
         </div>
-        <a href="#ucretsiz-pilot" class="btn-primary" style="justify-content:center;">🚀 14 Gün Ücretsiz Pilot Başlat</a>
+        <a href="#ucretsiz-pilot" class="btn-primary" style="justify-content:center;">Hemen Pilot Başlat →</a>
       </div>
 
       <div class="price-card">
         <div>
-          <h3>Kurumsal Zincir & PMS</h3>
-          <div class="room-range">100+ Oda ve Çoklu Otel Grupları</div>
-          <p style="font-size:13.5px; color:var(--text-muted);">Özel kanal yöneticisi (HotelRunner, ElektraWeb) ve ERP bağlantısı gerektiren tesisler.</p>
+          <h3>Özel &amp; Zincir İşletme</h3>
+          <div class="room-range">Çok Şubeli İşletmeler &amp; Büyük Oteller</div>
           <ul>
-            <li>✅ <b>Business Paketteki Tüm Özellikler</b></li>
-            <li>✅ Canlı PMS / Kanal Yöneticisi API Köprüsü</li>
-            <li>✅ Çoklu Şube Tek Merkez Raporlama</li>
-            <li>✅ Özel Ödeme Linki (Sanal POS) Entegrasyonu</li>
-            <li>✅ Özel Müşteri Başarı Yöneticisi</li>
+            <li>✔ Çok şubeli merkezi yönetim</li>
+            <li>✔ Özel PMS / POS / CRM API bağlantısı</li>
+            <li>✔ Özel ses tonu &amp; kurumsal marka eğitimi</li>
+            <li>✔ Yerinde eğitim &amp; 7/24 öncelikli destek</li>
           </ul>
         </div>
-        <a href="#ucretsiz-pilot" class="btn-secondary" style="justify-content:center;">Kurumsal Teklif & Demo İste</a>
+        <a href="#ucretsiz-pilot" class="btn-secondary" style="justify-content:center;">Teklif Al</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SIKÇA SORULAN SORULAR -->
-<section class="corp-section" id="sss" style="padding-top:10px;">
+<section class="corp-section" id="sss" style="padding-top:16px;">
   <div class="container">
     <div class="section-header">
-      <div class="badge-pill">MERAK EDİLENLER</div>
+      <div class="section-eyebrow">MERAK EDİLENLER</div>
       <h2>Sıkça Sorulan Sorular</h2>
     </div>
 
     <div class="faq-list">
       <details class="faq-item" open>
-        <summary>1. Misafirler yapay zeka ile konuştuğunu anlayıp soğukluk hisseder mi?</summary>
-        <p>Hayır. Operis AI klasik tuşlamalı botlardan tamamen farklıdır. Otelinizin üslubuyla, sıcak ve 5 yıldızlı bir konsiyerj zarafetiyle konuşur. Yukarıdaki canlı simülatörden dilediğiniz soruyu sorarak doğallığını bizzat test edebilirsiniz.</p>
+        <summary>Mevcut WhatsApp numaramız değişecek mi?</summary>
+        <p>Hayır. Müşterilerinizin zaten bildiği işletme WhatsApp hattınıza bağlanıyoruz; yeni bir numara almanıza gerek kalmaz.</p>
       </details>
       <details class="faq-item">
-        <summary>2. Resepsiyon personelimiz istediği an sohbete müdahale edebilir mi?</summary>
-        <p>Kesinlikle evet. WhatsApp Business ve Instagram uygulamanız telefonunuzda ve bilgisayarınızda normal şekilde çalışmaya devam eder. İstediğiniz an sohbete dahil olabilir, özel indirim veya teyit verebilirsiniz.</p>
+        <summary>Yapay zeka yanlış fiyat veya yanlış bilgi verir mi?</summary>
+        <p>Asistan yalnızca sizin onayladığınız fiyat listesi, menü ve kurallar çerçevesinde yanıt verir. Emin olmadığı özel durumlarda konuyu doğrudan yetkiliye yönlendirir.</p>
       </details>
       <details class="faq-item">
-        <summary>3. Oda fiyatlarımız veya müsaitlik değiştiğinde nasıl güncellenir?</summary>
-        <p>Yönetici panelimizden veya doğrudan WhatsApp üzerinden asistanınıza tek mesajla yeni fiyatlarınızı yaı dolu tarihlerinizi iletmeniz yeterlidir; saniyeler içinde tüm yanıtlar güncellenir.</p>
-      </details>
-      <details class="faq-item">
-        <summary>4. 14 günlük ücretsiz pilot kurulumda herhangi bir taahhüt var mı?</summary>
-        <p>Hiçbir sözleşme veya kredi kartı şartı yoktur. Otelinize özel sistemi kurarız, 14 gün boyunca gelen misafir mesajlarını nasıl rezervasyona çevirdiğini görürsünüz. Memnun kalırsanız devam edersiniz.</p>
+        <summary>Kurulum ne kadar sürüyor ve teknik ekip gerekiyor mu?</summary>
+        <p>Hiçbir teknik bilgiye ihtiyacınız yok. Bilgilerinizi aldıktan sonra restoran ve su bayileri için 3 günde, oteller için en geç 1 haftada sisteminiz yayına alınır.</p>
       </details>
     </div>
   </div>
@@ -1207,59 +1458,39 @@ footer.corp-footer {
   <div class="container">
     <div class="apply-card">
       <div>
-        <div class="badge-pill">HEMEN BAŞLAYIN</div>
-        <h2 style="font-size:32px; font-weight:800; margin-bottom:14px;">Oteliniz İçin 14 Günlük Ücretsiz Pilot Kurulumu Başlatın</h2>
-        <p style="color:#cbd5e1; font-size:15px; margin-bottom:20px;">
-          Bilgilerinizi doldurun; otelinize özel hazırlanmış canlı yapay zeka asistanınızı 24 saat içinde aktif edelim. İzmir (Karşıyaka, Çiğli, Aliağa, Foça, Urla, Çeşme) bölgesindeki otellerimizle dilerlerse tesislerinde yüz yüze kurulum da gerçekleştiriyoruz.
-        </p>
-        <div style="font-size:14px; color:#a7f3d0; display:flex; flex-direction:column; gap:8px;">
-          <div>💬 <b>Hızlı WhatsApp Hattı:</b> <a href="https://wa.me/905464827930" target="_blank" style="color:#34d399; text-decoration:none; font-weight:700;">0546 482 79 30</a></div>
+        <div class="badge-pill" style="background:rgba(24,181,141,0.16); border-color:rgba(24,181,141,0.4); color:#18b58d;">🚀 14 GÜN ÜCRETSİZ PİLOT</div>
+        <h2 style="font-size:30px; font-weight:800; line-height:1.18; margin-bottom:14px;">İşletmenizde 14 Gün Ücretsiz Deneyin</h2>
+        <p style="color:#cbd5e1; font-size:15px; margin-bottom:22px;">Formu doldurun, İzmir merkezli ekibimiz aynı gün içinde işletmenize özel canlı demoyu hazırlayıp sizinle paylaşsın.</p>
+        <div style="display:flex; flex-direction:column; gap:8px; font-size:14px; color:#e2e8f0;">
+          <div>💬 <b>Hızlı WhatsApp Hattı:</b> <a href="https://wa.me/905464827930" target="_blank" style="color:#18b58d; text-decoration:none; font-weight:800;">0546 482 79 30</a></div>
           <div>📧 <b>Kurumsal E-Posta:</b> qpersi.ai@gmail.com</div>
-          <div>📸 <b>Resmi Instagram:</b> <a href="https://www.instagram.com/operis_ai/" target="_blank" style="color:#34d399;">@operis_ai</a></div>
-          <div>📍 <b>Merkez Operasyon:</b> İzmir & Türkiye Geneli Bulut Altyapısı</div>
+          <div>👤 <b>Yetkili:</b> Fuat Babadağ · İzmir</div>
         </div>
       </div>
 
-      <div style="background:rgba(7,11,20,0.8); padding:28px; border-radius:16px; border:1px solid var(--border);">
-        <h3 style="margin-bottom:16px; font-size:18px;">🏨 Hızlı Pilot Başvuru Formu</h3>
-        <div class="form-grid" id="pilotFormGrid">
-          <input type="text" id="formOtel" placeholder="Otelinizin Adı *" required>
-          <input type="text" id="formBolge" placeholder="İl / İlçe (Örn: Karşıyaka, Foça) *" required>
-          <input type="number" id="formOda" placeholder="Oda Sayısı (Örn: 45)">
-          <input type="tel" id="formTel" placeholder="Yetkili Telefon / WhatsApp *" required>
-          <input type="text" id="formNot" class="full" placeholder="Varsa Instagram adresiniz veya özel notunuz">
-          <div id="formUyari" class="full" style="display:none; background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.4); color:#fca5a5; padding:10px 14px; border-radius:10px; font-size:13px; font-weight:600;"></div>
-          <button type="button" id="btnPilotGonder" class="btn-primary full" style="justify-content:center; padding:13px;" onclick="basvuruGonder('pilot')">
-            🚀 14 Gün Ücretsiz Pilot Talebini Gönder
-          </button>
-          <button type="button" class="btn-secondary" style="justify-content:center; padding:11px;" onclick="basvuruGonder('wa')">
-            💬 WhatsApp ile Anında Gönder
-          </button>
-          <button type="button" class="btn-secondary" style="justify-content:center; padding:11px;" onclick="basvuruGonder('ig')">
-            📸 Instagram (@operis_ai)
-          </button>
+      <form id="pilotForm" onsubmit="pilotGonder(event)">
+        <div class="form-grid">
+          <input type="text" id="fOtel" placeholder="İşletme / Otel / Restoran Adı *" required>
+          <input type="text" id="fBolge" placeholder="İlçe / Şehir (Örn: Alaçatı, Karşıyaka) *" required>
+          <input type="number" id="fOda" placeholder="Oda / Günlük Sipariş Sayısı" value="25">
+          <input type="tel" id="fTel" placeholder="Telefon / WhatsApp *" required>
+          <select id="fKanal" class="full">
+            <option value="WhatsApp + Web">WhatsApp + Web Asistanı İstiyorum</option>
+            <option value="Restoran Sipariş + Termal Fiş">Restoran Sipariş + 80mm Mutfak Fişi</option>
+            <option value="Su Dağıtım Bayisi">Su Dağıtım Bayisi Otomasyonu</option>
+          </select>
+          <input type="text" id="fNot" class="full" placeholder="Eklemek istediğiniz not (isteğe bağlı)">
+          <button type="submit" class="btn-primary full" style="justify-content:center; padding:14px; font-size:15px;">Ücretsiz Demo &amp; Pilot Talebi Gönder →</button>
         </div>
 
-        <div id="formSonucKutusu" style="display:none; margin-top:16px; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.45); border-radius:14px; padding:18px; color:#ecfdf5;">
-          <div style="font-weight:800; font-size:15.5px; color:#34d399; margin-bottom:6px;" id="formSonucBaslik">
-            ✅ Pilot Başvurunuz Başarıyla Alındı!
-          </div>
-          <p style="font-size:13px; color:#cbd5e1; margin-bottom:14px; line-height:1.5;" id="formSonucAciklama">
-            Talebiniz Operis AI kurulum ekibimize iletildi. Hızlı aktivasyon için aşağıdaki kanallardan biriyle doğrudan teyit mesajınızı da gönderebilirsiniz:
-          </p>
-          <div style="display:flex; flex-wrap:wrap; gap:8px;">
-            <a id="linkWaOnay" href="#" target="_blank" class="btn-primary" style="font-size:12.5px; padding:9px 14px; text-decoration:none;">
-              💬 WhatsApp'tan Teyit Et (Önerilen)
-            </a>
-            <a id="linkGmailOnay" href="#" target="_blank" class="btn-secondary" style="font-size:12.5px; padding:9px 14px; text-decoration:none;">
-              📧 Gmail Web ile Gönder
-            </a>
-            <a id="linkMailtoOnay" href="#" class="btn-secondary" style="font-size:12.5px; padding:9px 14px; text-decoration:none;">
-              ✉️ Mail Uygulaması
-            </a>
+        <div id="formSonuc" style="display:none; margin-top:16px; background:rgba(24,181,141,0.14); border:1px solid rgba(24,181,141,0.4); border-radius:12px; padding:14px; font-size:13.5px;">
+          <strong>✅ Talebiniz hazırlandı!</strong> Aşağıdaki butonla doğrudan WhatsApp veya Gmail üzerinden iletebilirsiniz:
+          <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;">
+            <a id="linkWaOnay" href="#" target="_blank" class="btn-primary" style="font-size:12.5px; padding:8px 14px;">💬 WhatsApp ile Gönder</a>
+            <a id="linkGmailOnay" href="#" target="_blank" class="btn-secondary" style="font-size:12.5px; padding:8px 14px;">📧 Gmail Web ile Gönder</a>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </section>
@@ -1269,52 +1500,47 @@ footer.corp-footer {
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col">
-        <div class="brand" style="margin-bottom:12px;">
-          <div class="brand-logo"><img src="assets/operis_emblem_dark.png" alt="operisAI"></div>
-          <div class="brand-text-wrap">
-            <div class="brand-name">operis<span>AI</span></div>
-            <div class="brand-sub">OTEL & TURİZM YAPAY ZEKA OTOMASYONU</div>
-          </div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+          <img src="assets/operis_emblem_dark.png" alt="Operis AI" style="width:32px; height:32px; object-fit:contain;">
+          <span style="font-size:19px; font-weight:800; color:#fff;">operis<span style="color:#18b58d;">AI</span></span>
         </div>
-        <p>Oteller, butik konaklar ve turizm işletmeleri için 7/24 WhatsApp & Instagram DM üzerinde çalışan yeni nesil yapay zeka resepsiyon ve doğrudan satış teknolojisi.</p>
+        <p style="line-height:1.6;">İzmir merkezli B2B yapay zeka otomasyon stüdyosu. Oteller, restoranlar ve dağıtım işletmeleri için 7/24 satış ve sipariş asistanları kurar.</p>
       </div>
 
       <div class="footer-col">
-        <h4>Hızlı Menü</h4>
+        <h4>Sektörel Demolar</h4>
         <ul>
-          <li><a href="#canli-simulator">Canlı Otel Simülatörü</a></li>
-          <li><a href="#cozumler">6 Çekirdek Çözüm</a></li>
-          <li><a href="#roi-hesaplayici">Komisyon & Gelir Hesaplayıcı</a></li>
-          <li><a href="#nasil-calisir">24 Saatte Kurulum</a></li>
-          <li><a href="#paketler">Kurumsal Paketler</a></li>
+          <li><a href="#canli-simulator">Otel &amp; Turizm Asistanı</a></li>
+          <li><a href="gurmepilav.html">Restoran &amp; POS Demosu</a></li>
+          <li><a href="sudagitim.html">Su Dağıtımı Demosu</a></li>
+          <li><a href="hub.html">Tüm Demo Merkezi</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <h4>Hizmet Bölgelerimiz</h4>
+        <h4>Hızlı Bağlantılar</h4>
         <ul>
-          <li>İzmir (Karşıyaka, Çiğli, Aliağa, Foça)</li>
-          <li>Çeşme, Alaçatı, Urla, Seferihisar</li>
-          <li>Kapadokya, Kazdağları, Cunda, Ayvalık</li>
-          <li>Abant, Sapanca, Ağva, Kaş, Bodrum</li>
+          <li><a href="#cozumler">Özellikler</a></li>
+          <li><a href="#roi-hesaplayici">Kazanç Hesaplayıcı</a></li>
+          <li><a href="#paketler">Paketler</a></li>
+          <li><a href="#ucretsiz-pilot">14 Gün Ücretsiz Pilot</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <h4>Kurumsal İletişim</h4>
+        <h4>İletişim</h4>
         <ul>
-          <li><a href="https://wa.me/905464827930?text=Merhaba%20Operis%20AI%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum" target="_blank">💬 WhatsApp: 0546 482 79 30</a></li>
+          <li><a href="https://wa.me/905464827930" target="_blank">💬 WhatsApp: 0546 482 79 30</a></li>
           <li><a href="tel:05464827930">📞 Tel: 0546 482 79 30</a></li>
           <li><a href="mailto:qpersi.ai@gmail.com">📧 qpersi.ai@gmail.com</a></li>
-          <li><a href="https://www.instagram.com/operis_ai/" target="_blank">📸 Instagram: @operis_ai</a></li>
-          <li><a href="#ucretsiz-pilot">🛡️ 14 Gün Ücretsiz Pilot</a></li>
+          <li><a href="https://instagram.com/operis_ai" target="_blank">📸 @operis_ai · İzmir</a></li>
         </ul>
       </div>
     </div>
 
-    <div style="border-top:1px solid var(--border); padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
-      <span>© 2026 Operis AI — Otel & Turizm Yapay Zeka Sistemleri. Tüm hakları saklıdır.</span>
-      <span>KVKK Uyumlu • Resmi Meta Cloud API Mimarisi</span>
+    <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px;">
+      <span>© 2026 Operis AI · Tüm hakları saklıdır.</span>
+      <span>Yetkili: Fuat Babadağ · İzmir, Türkiye</span>
     </div>
   </div>
 </footer>
