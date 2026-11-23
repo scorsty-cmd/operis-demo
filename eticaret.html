@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operis AI | E-Ticaret 7/24 WhatsApp & Instagram Satış Asistanı Canlı Demo</title>
+<meta name="description" content="Operis AI E-Ticaret Asistanı: Beden ve stok sorularına 3 saniyede yanıt veren, kargo takibi ve iade kodu oluşturan, terk edilen sepetleri satışa çeviren 7/24 WhatsApp ve Instagram AI asistanı.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-cream:#f7f5f0;--bg-card:#ffffff;--bg-navy:#0e1526;--accent:#0e8f5c;--accent-bright:#18b58d;
+  --accent-soft:rgba(14,143,92,.10);--amber:#d97706;--purple:#7c3aed;--text-main:#0e1526;
+  --text-body:#3f4a5e;--text-muted:#64748b;--border:#e2ded5;
+  --wa-bg:#0b141a;--wa-header:#202c33;--wa-in:#202c33;--wa-out:#005c4b;--wa-green:#00a884;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg-cream);
+  background-image:radial-gradient(circle at 8% 4%,rgba(124,58,237,.07),transparent 28%),
+                   radial-gradient(circle at 92% 16%,rgba(24,181,141,.09),transparent 30%);
+  color:var(--text-main);line-height:1.55;overflow-x:hidden;
+}
+.top-bar{background:var(--bg-navy);border-bottom:2px solid var(--accent-bright);padding:9px 20px;font-size:12.5px;color:#e2e8f0;display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;text-align:center}
+.pulse-dot{width:8px;height:8px;background:var(--accent-bright);border-radius:50%;display:inline-block;box-shadow:0 0 8px var(--accent-bright);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.25)}}
+.top-bar a{color:var(--accent-bright);font-weight:800;text-decoration:underline;text-underline-offset:3px}
+
+header.navbar{position:sticky;top:0;z-index:100;background:rgba(247,245,240,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:12px 4%;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text-main)}
+.brand img{width:38px;height:38px;object-fit:contain}
+.brand-name{font-weight:800;font-size:19px;letter-spacing:-.5px;color:var(--bg-navy);line-height:1.1}
+.brand-name span{color:var(--accent-bright)}
+.brand-sub{font-size:10.5px;color:var(--text-muted);font-weight:700}
+.nav-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.store-select{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:#fff;font:600 13px inherit;color:var(--bg-navy);cursor:pointer}
+.btn-primary{background:linear-gradient(135deg,#18b58d,#0e8f5c);color:#fff;font-weight:800;font-size:13px;padding:10px 20px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:7px;border:0;cursor:pointer;box-shadow:0 6px 18px rgba(14,143,92,.24);transition:.2s}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(14,143,92,.34)}
+.btn-secondary{background:#fff;color:var(--bg-navy);font-weight:700;font-size:13px;padding:9px 16px;border-radius:999px;text-decoration:none;border:1px solid var(--border);display:inline-flex;align-items:center;gap:6px}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+
+.container{max-width:1240px;margin:0 auto;padding:28px 20px 60px}
+.hero-head{text-align:center;max-width:830px;margin:0 auto 28px}
+.pill{display:inline-flex;align-items:center;gap:7px;background:rgba(124,58,237,.10);color:var(--purple);font-weight:800;font-size:12px;padding:6px 14px;border-radius:999px;margin-bottom:12px}
+.hero-head h1{font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-.8px;line-height:1.15;margin-bottom:10px;color:var(--bg-navy)}
+.hero-head h1 span{color:var(--accent)}
+.hero-head p{font-size:15.5px;color:var(--text-body)}
+
+.workspace{display:grid;grid-template-columns:minmax(320px,460px) 1fr;gap:24px;align-items:start}
+@media(max-width:960px){.workspace{grid-template-columns:1fr}}
+
+.phone{background:#111b21;border-radius:26px;overflow:hidden;box-shadow:0 24px 60px rgba(14,21,38,.26);border:6px solid #1e293b;display:flex;flex-direction:column;height:690px}
+.wa-top{background:var(--wa-header);padding:12px 14px;display:flex;align-items:center;justify-content:space-between;color:#e9edef;border-bottom:1px solid #2a3942}
+.wa-profile{display:flex;align-items:center;gap:10px;min-width:0}
+.wa-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#18b58d);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff;flex-shrink:0}
+.wa-title{font-weight:700;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wa-status{font-size:11.5px;color:#8696a0;display:flex;align-items:center;gap:5px}
+.wa-status .dot{width:7px;height:7px;background:#00a884;border-radius:50%}
+.wa-reset{background:rgba(255,255,255,.08);color:#e9edef;border:0;border-radius:8px;padding:6px 10px;font:700 12px inherit;cursor:pointer}
+.wa-reset:hover{background:rgba(255,255,255,.16)}
+
+.wa-chat{flex:1;overflow-y:auto;padding:14px;background:var(--wa-bg);background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 0);background-size:20px 20px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:88%;padding:9px 12px;border-radius:12px;font-size:13.5px;line-height:1.48;color:#e9edef;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.msg.bot{background:var(--wa-in);align-self:flex-start;border-top-left-radius:3px}
+.msg.user{background:var(--wa-out);align-self:flex-end;border-top-right-radius:3px}
+.msg-time{font-size:10.5px;color:#8696a0;text-align:right;margin-top:4px}
+
+.prod-card{background:#182229;border:1px solid #2a3942;border-radius:12px;overflow:hidden;margin-top:8px}
+.prod-top{padding:12px;display:flex;justify-content:space-between;align-items:center;color:#fff}
+.prod-body{padding:10px 12px;border-top:1px solid #222e35}
+.prod-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.prod-tags span{font-size:11px;background:#202c33;color:#cbd5e1;padding:2px 7px;border-radius:6px}
+.prod-btn{width:100%;background:#00a884;color:#0b141a;border:0;border-radius:8px;padding:8px;font:800 12.5px inherit;cursor:pointer}
+.prod-btn:hover{filter:brightness(1.08)}
+
+.track-card{background:#122436;border:1px solid #0284c7;border-radius:10px;padding:10px 12px;margin-top:8px;font-size:12.5px}
+.track-card b{color:#7dd3fc;display:block;margin-bottom:4px;font-size:13px}
+.steps{display:flex;justify-content:space-between;gap:4px;margin:8px 0;font-size:10.5px}
+.steps span{flex:1;text-align:center;padding:4px;border-radius:6px;background:#1e3a5f;color:#bae6fd}
+.steps span.done{background:#0e8f5c;color:#fff;font-weight:700}
+
+.confirm-card{background:#0f2e26;border:1px solid #00a884;border-radius:10px;padding:10px 12px;margin-top:8px;font-size:12.5px}
+.confirm-card b{color:#5eead4;display:block;margin-bottom:4px;font-size:13px}
+
+.chips{padding:8px 10px;background:#111b21;border-top:1px solid #222e35;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{background:#202c33;color:#e9edef;border:1px solid #2a3942;border-radius:999px;padding:6px 11px;font:600 12px inherit;white-space:nowrap;cursor:pointer;transition:.15s}
+.chip:hover{background:#00a884;color:#0b141a;border-color:#00a884}
+
+.wa-input{background:var(--wa-header);padding:10px 12px;display:flex;gap:8px;align-items:center}
+.wa-input input{flex:1;background:#2a3942;border:0;border-radius:999px;padding:10px 14px;color:#e9edef;font:500 13.5px inherit;outline:none}
+.wa-input button{width:40px;height:40px;border-radius:50%;border:0;background:var(--wa-green);color:#0b141a;font-weight:800;font-size:16px;cursor:pointer;flex-shrink:0}
+
+.panel{display:flex;flex-direction:column;gap:18px}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:20px;box-shadow:0 8px 28px rgba(14,21,38,.05)}
+.card h2{font-size:17px;font-weight:800;color:var(--bg-navy);margin-bottom:4px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.live-tag{font-size:11px;font-weight:800;color:var(--accent);background:var(--accent-soft);padding:3px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:5px}
+.sub{font-size:13px;color:var(--text-muted);margin-bottom:14px}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+@media(max-width:560px){.kpi-grid{grid-template-columns:1fr}}
+.kpi{background:var(--bg-cream);border:1px solid var(--border);border-radius:14px;padding:12px}
+.kpi .val{font-size:22px;font-weight:800;color:var(--bg-navy)}
+.kpi .lbl{font-size:11.5px;color:var(--text-muted);font-weight:600}
+
+.event-list{display:flex;flex-direction:column;gap:10px;max-height:280px;overflow-y:auto}
+.ev{border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:12px;padding:12px;background:#fcfbf8;animation:fadeUp .25s ease}
+.ev.order{border-left-color:var(--purple);background:#faf5ff}
+.ev-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px;font-size:13.5px}
+.badge{font-size:11px;font-weight:800;background:#dcfce7;color:#166534;padding:2px 8px;border-radius:999px}
+.badge.ord{background:#ede9fe;color:#5b21b6}
+.ev-meta{font-size:12.5px;color:var(--text-body)}
+
+.platforms{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.platforms span{background:var(--bg-cream);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:700;color:var(--bg-navy)}
+
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:720px){.benefits{grid-template-columns:1fr}}
+.ben{background:var(--bg-cream);border:1px solid var(--border);border-radius:14px;padding:14px}
+.ben b{display:block;font-size:14px;margin-bottom:4px;color:var(--bg-navy)}
+.ben p{font-size:12.5px;color:var(--text-body)}
+
+.cta-box{background:var(--bg-navy);color:#fff;border-radius:20px;padding:22px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.cta-box h3{font-size:18px;font-weight:800;margin-bottom:4px}
+.cta-box p{font-size:13.5px;color:#cbd5e1}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <span class="pulse-dot"></span>
+  <span><b>Operis AI E-Ticaret Asistanı:</b> Beden/stok sorusunu anında satışa çevirin, "kargom nerede" ve iade yükünün %85'ini otopilota alın.</span>
+  <a href="https://wa.me/905464827930?text=Merhaba%2C%20e-ticaret%20ma%C4%9Fazam%C4%B1z%20i%C3%A7in%2014%20g%C3%BCn%20%C3%BCcretsiz%20Operis%20AI%20denemesi%20istiyorum." target="_blank">14 Gün Ücretsiz Dene →</a>
+</div>
+
+<header class="navbar">
+  <a class="brand" href="index.html">
+    <img src="assets/operis_emblem_dark.png" alt="Operis AI" onerror="this.style.display='none'">
+    <div>
+      <div class="brand-name">operis<span>AI</span></div>
+      <div class="brand-sub">E-TİCARET SATIŞ & DESTEK ASİSTANI</div>
+    </div>
+  </a>
+  <div class="nav-actions">
+    <select id="storeSelect" class="store-select" aria-label="Örnek Mağaza Seç">
+      <option value="Lumina Studio">Lumina Studio (Online Mağaza)</option>
+      <option value="Doa Kozmetik">Doa Kozmetik</option>
+      <option value="Donne">Donne</option>
+      <option value="İzmir Zeytinyağları">İzmir Zeytinyağları</option>
+      <option value="Konak Peruk">Konak Peruk</option>
+    </select>
+    <a class="btn-secondary" href="emlak.html">Emlak Demosu</a>
+    <a class="btn-primary" href="https://wa.me/905464827930?text=Merhaba%2C%20e-ticaret%20ma%C4%9Fazam%C4%B1z%20i%C3%A7in%2014%20g%C3%BCn%20%C3%BCcretsiz%20pilot%20kurulum%20istiyorum." target="_blank">14 Gün Ücretsiz Pilot</a>
+  </div>
+</header>
+
+<main class="container">
+  <div class="hero-head">
+    <div class="pill">🛍️ SHOPIFY · İKAS · TİCİMAX · İDEASOFT · WOOCOMMERCE UYUMLU</div>
+    <h1>Müşteri <span>Sepeti Terk Etmeden</span> Yanıtlayın, Kargo & İade Yükünü Sıfırlayın</h1>
+    <p>Aşağıdaki canlı WhatsApp / Instagram DM simülatöründe müşteri gibi sorun: <i>"Kargom nerede?"</i>, <i>"1.72 boy 68 kiloyum hangi beden?"</i> veya <i>"iade etmek istiyorum"</i>. Sağdaki canlı mağaza panelini izleyin.</p>
+  </div>
+
+  <div class="workspace">
+    <section class="phone" aria-label="E-Ticaret AI Simülatörü">
+      <div class="wa-top">
+        <div class="wa-profile">
+          <div class="wa-avatar" id="waAvatar">LS</div>
+          <div>
+            <div class="wa-title" id="waName">Lumina Studio</div>
+            <div class="wa-status"><span class="dot"></span><span id="waStatusText">7/24 AI Satış & Destek · çevrimiçi</span></div>
+          </div>
+        </div>
+        <button class="wa-reset" id="resetBtn">↻ Sıfırla</button>
+      </div>
+      <div class="wa-chat" id="chatBox"></div>
+      <div class="chips">
+        <button class="chip" data-q="Sipariş numaram #OP-48219, kargom nerede?">📦 Kargom Nerede?</button>
+        <button class="chip" data-q="1.72 boy 68 kiloyum keten gömlekte hangi beden olur?">👕 Beden & Stok</button>
+        <button class="chip" data-q="Keten gömlek M beden sipariş vermek istiyorum">🛒 Hızlı Sipariş</button>
+        <button class="chip" data-q="Ürünü iade veya değişim yapmak istiyorum, süreç nasıl?">🔄 İade & Değişim</button>
+        <button class="chip" data-q="Kapıda ödeme ve ücretsiz kargo sınırı var mı?">💳 Kargo & Ödeme</button>
+      </div>
+      <form class="wa-input" id="chatForm">
+        <input id="msgInput" type="text" placeholder="Kargo, beden, stok, iade veya sipariş yazın..." autocomplete="off">
+        <button type="submit" aria-label="Gönder">➤</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="card">
+        <h2>Canlı Mağaza Sipariş & Destek Paneli <span class="live-tag"><span class="pulse-dot"></span> Canlı Senkron</span></h2>
+        <div class="sub">Asistanın çözdüğü her destek talebi ve sohbet içi aldığı her sipariş anında mağaza panelinize işlenir.</div>
+        <div class="kpi-grid">
+          <div class="kpi"><div class="val" id="kpiSolved">142</div><div class="lbl">Bugün Otomatik Çözülen</div></div>
+          <div class="kpi"><div class="val" id="kpiOrders">18</div><div class="lbl">DM/WP'den Gelen Sipariş</div></div>
+          <div class="kpi"><div class="val" id="kpiRev">23.450 ₺</div><div class="lbl">Kurtarılan Sepet Cirosu</div></div>
+        </div>
+        <div class="event-list" id="eventList">
+          <div class="ev order">
+            <div class="ev-top"><b>🛒 Yeni Sipariş #SIP-77412</b><span class="badge ord">1.290 ₺</span></div>
+            <div class="ev-meta">Organik Keten Gömlek (M Beden) · Instagram DM üzerinden beden önerisi sonrası tamamlandı</div>
+          </div>
+          <div class="ev">
+            <div class="ev-top"><b>📦 Kargo Sorgusu Çözüldü (#OP-48105)</b><span class="badge">İnsan Müdahalesi: 0</span></div>
+            <div class="ev-meta">Yurtiçi Kargo canlı durumu 2 saniyede iletildi · Müşteri memnuniyeti: ⭐ 5/5</div>
+          </div>
+        </div>
+        <div class="platforms">
+          <span>Shopify</span><span>ikas</span><span>Ticimax</span><span>IdeaSoft</span><span>WooCommerce</span><span>Shopier</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>E-Ticaret Mağazanıza Ne Kazandırır?</h2>
+        <div class="sub">Reklam bütçeniz boşa gitmesin; gece gelen her DM ve WhatsApp sorusu satışa dönsün.</div>
+        <div class="benefits">
+          <div class="ben"><b>👕 Akıllı Beden & Stok</b><p>Boy/kilo bilgisine göre doğru bedeni önerir, stoktaki rengi gösterir ve iade oranını düşürür.</p></div>
+          <div class="ben"><b>📦 Otomatik Kargo Takibi</b><p>"Kargom nerede?" mesajlarının %90'ını ekip yormadan saniyeler içinde canlı kargo durumlarıyla yanıtlar.</p></div>
+          <div class="ben"><b>💰 Sepet Büyütme (Upsell)</b><p>"Ücretsiz kargo için 210 ₺ kaldı" diyerek tamamlayıcı ürün önerir ve ortalama sepet tutarını artırır.</p></div>
+        </div>
+      </div>
+
+      <div class="cta-box">
+        <div>
+          <h3>Mağazanızın Ürün Kataloğuyla 14 Gün Ücretsiz Deneyin</h3>
+          <p>Ürün listenizi ve kargo kurallarınızı 24 saat içinde bağlıyoruz. Risk yok, memnun kalmazsanız ücret yok.</p>
+        </div>
+        <a class="btn-primary" href="https://wa.me/905464827930?text=Merhaba%20Fuat%20Bey%2C%20e-ticaret%20demosunu%20inceledim.%20Ma%C4%9Fazam%C4%B1z%20i%C3%A7in%2014%20g%C3%BCn%20%C3%BCcretsiz%20kurulum%20istiyorum." target="_blank">WhatsApp'tan Başlat →</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+const PRODUCTS = [
+  {id:"gomlek", name:"Organik Keten Oversize Gömlek", price:1290, priceStr:"1.290 ₺", stock:"S (4), M (6), L (3) · XL tükendi", ship:"Ücretsiz Kargo · Aynı Gün", grad:"linear-gradient(135deg,#0f2942,#18b58d)"},
+  {id:"serum", name:"C Vitamini Aydınlatıcı Bakım Serumu", price:540, priceStr:"540 ₺", stock:"Stokta Var (28 adet)", ship:"2 Adette Ücretsiz Kargo", grad:"linear-gradient(135deg,#5b21b6,#ec4899)"},
+  {id:"zeytin", name:"Erken Hasat Soğuk Sıkım Zeytinyağı (1L)", price:690, priceStr:"690 ₺", stock:"Stokta Var (45 adet)", ship:"2 Al 1.250 ₺ · Ücretsiz Kargo", grad:"linear-gradient(135deg,#1b4332,#65a30d)"}
+];
+
+let currentStore = "Lumina Studio";
+let solved = 142, orders = 18, rev = 23450;
+const chatBox = document.getElementById("chatBox");
+const eventList = document.getElementById("eventList");
+const storeSelect = document.getElementById("storeSelect");
+
+function nowTime(){return new Date().toLocaleTimeString("tr-TR",{hour:"2-digit",minute:"2-digit"})}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+
+function setStore(name){
+  currentStore = name;
+  document.getElementById("waName").textContent = name;
+  document.getElementById("waAvatar").textContent = name.split(/\s+/).slice(0,2).map(w=>w[0]||"").join("").toUpperCase()||"OA";
+  resetChat();
+}
+function addMsg(html, sender="bot"){
+  const el = document.createElement("div");
+  el.className = `msg ${sender}`;
+  el.innerHTML = `${html}<div class="msg-time">${nowTime()}${sender==="user"?" ✓✓":""}</div>`;
+  chatBox.appendChild(el);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+function prodCard(p){
+  return `<div class="prod-card">
+    <div class="prod-top" style="background:${p.grad}"><b>${esc(p.name)}</b><span><b>${p.priceStr}</b></span></div>
+    <div class="prod-body">
+      <div class="prod-tags"><span>Stok: ${esc(p.stock)}</span><span>${esc(p.ship)}</span></div>
+      <button class="prod-btn" onclick="quickAsk('${esc(p.name)} sipariş vermek istiyorum')">🛒 Hemen Sipariş Ver (${p.priceStr})</button>
+    </div>
+  </div>`;
+}
+function pushEvent(title, badge, meta, isOrder=false, amount=0){
+  solved += 1;
+  if(isOrder){orders += 1; rev += amount;}
+  document.getElementById("kpiSolved").textContent = solved;
+  document.getElementById("kpiOrders").textContent = orders;
+  document.getElementById("kpiRev").textContent = rev.toLocaleString("tr-TR") + " ₺";
+  const d = document.createElement("div");
+  d.className = "ev" + (isOrder?" order":"");
+  d.innerHTML = `<div class="ev-top"><b>${esc(title)}</b><span class="badge ${isOrder?"ord":""}">${esc(badge)}</span></div>
+    <div class="ev-meta">${esc(meta)} · ${nowTime()}</div>`;
+  eventList.prepend(d);
+}
+
+function respond(raw){
+  const q = raw.toLowerCase().replace(/İ/g,"i");
+  document.getElementById("waStatusText").textContent = "yazıyor...";
+  setTimeout(()=>{
+    document.getElementById("waStatusText").textContent = "7/24 AI Satış & Destek · çevrimiçi";
+
+    if(/kargo|nerede|takip|#op/.test(q)){
+      const no = (raw.match(/#?[A-Z]{2}-\d{4,6}/i)||["#OP-48219"])[0].toUpperCase();
+      addMsg(`Siparişinizi anında kontrol ettim:<div class="track-card">
+        <b>📦 Kargo Durumu — ${esc(no)}</b>
+        • Firma: Yurtiçi Kargo (Takip: 9048271645)<br>
+        • Güncel Konum: <b>İzmir Aktarma Merkezi — Dağıtıma Hazırlanıyor</b><br>
+        • Tahmini Teslimat: <b>Yarın 10:00 – 15:00</b>
+        <div class="steps"><span class="done">Hazırlandı</span><span class="done">Kargoda</span><span class="done">Aktarmada</span><span>Teslim</span></div>
+      </div>Başka bir konuda yardımcı olabilir miyim?`);
+      pushEvent(`📦 Kargo Takibi Çözüldü (${no})`, "Otomatik · 2 sn", "Yurtiçi Kargo canlı durumu müşteriye iletildi");
+      return;
+    }
+
+    if(/iade|değişim|degisim/.test(q)){
+      const kod = "IADE-" + Math.floor(10000+Math.random()*89999);
+      addMsg(`Hiç sorun değil, 14 gün içinde <b>ücretsiz iade ve beden değişimi</b> yapabilirsiniz:<div class="confirm-card">
+        <b>🔄 Ücretsiz İade / Değişim Kodu: ${kod}</b>
+        1. Ürünü paketiyle herhangi bir Yurtiçi Kargo şubesine verin.<br>
+        2. Bu kodu söylemeniz yeterli, kargo ücreti bize aittir.<br>
+        3. Paket bize ulaştığı gün ücret iadesi veya yeni beden çıkışı yapılır.</div>`);
+      pushEvent(`🔄 İade Kodu Oluşturuldu (${kod})`, "Otomatik", "14 gün ücretsiz iade/değişim talimatı paylaşıldı");
+      return;
+    }
+
+    if(/sipariş|siparis|almak ist|sepet|satın al/.test(q)){
+      const p = /serum|kozmetik/.test(q)?PRODUCTS[1]:/zeytin/.test(q)?PRODUCTS[2]:PRODUCTS[0];
+      const no = "SIP-" + Math.floor(10000+Math.random()*89999);
+      addMsg(`Harika seçim! <b>${esc(p.name)}</b> için sipariş ön kaydınızı hazırladım:<div class="confirm-card">
+        <b>✅ Sipariş Özeti #${no}</b>
+        • Ürün: ${esc(p.name)}<br>
+        • Tutar: <b>${p.priceStr}</b> (${p.price>=1000?"Ücretsiz Kargo":"Kargo: 59 ₺ — 1.000 ₺ üzeri ücretsiz"})<br>
+        • Teslimat: Yarın kargoda (1-2 iş günü)<br>
+        • Ödeme: Güvenli Kart Linki veya Kapıda Ödeme</div>
+        Ad-soyad ve teslimat adresinizi yazarsanız ödeme linkinizi anında göndereyim!`);
+      pushEvent(`🛒 Yeni Sipariş (#${no})`, p.priceStr, `${p.name} · WhatsApp/DM içi hızlı sipariş`, true, p.price);
+      return;
+    }
+
+    if(/beden|kilo|boy|stok|gömlek|gomlek/.test(q)){
+      addMsg(`1.72 boy ve 68 kilo için <b>M beden</b> tam ve rahat bir kalıp sunar (oversize duruş isterseniz L beden tercih edebilirsiniz).<br><br>Güncel stok durumumuz:` + prodCard(PRODUCTS[0]));
+      pushEvent("👕 Beden & Stok Danışmanlığı", "Sepete Yönlendirildi", "M beden önerisi + canlı stok kartı gösterildi");
+      return;
+    }
+
+    if(/kapıda|ödeme|odeme|ücretsiz|ucretsiz|taksit/.test(q)){
+      addMsg(`Ödeme ve kargo bilgilerimiz:<br>• <b>1.000 ₺ ve üzeri</b> tüm siparişlerde kargo <b>ÜCRETSİZ</b>.<br>• Kredi kartına 6 taksit, havale/EFT (%5 indirim) ve <b>kapıda ödeme</b> seçeneklerimiz aktif.<br>• Saat 16:00'ya kadar verilen siparişler <b>aynı gün kargoda!</b><br><br>En çok satan ürünlerimiz:` + prodCard(PRODUCTS[0]) + prodCard(PRODUCTS[1]));
+      pushEvent("💳 Ödeme & Kargo Sorusu", "Otomatik · 2 sn", "Ücretsiz kargo sınırı + upsell önerisi iletildi");
+      return;
+    }
+
+    addMsg(`Merhaba! Size en hızlı şekilde yardımcı olabilmem için ürün adı, beden/stok, kargo takip numarası veya iade talebinizi yazabilirsiniz.<br><br>Öne çıkan ürünlerimiz:` + prodCard(PRODUCTS[0]) + prodCard(PRODUCTS[2]));
+  }, 500);
+}
+
+function quickAsk(t){addMsg(esc(t),"user");respond(t)}
+function resetChat(){
+  chatBox.innerHTML = "";
+  addMsg(`Merhaba 👋 <b>${esc(currentStore)}</b> 7/24 Yapay Zeka Alışveriş Asistanına hoş geldiniz!<br><br>Beden & stok sorabilir, <b>"kargom nerede?"</b> diye anında öğrenebilir, iade kodu alabilir veya 30 saniyede sipariş verebilirsiniz.<br><br>Nasıl yardımcı olabilirim?`);
+}
+
+document.getElementById("chatForm").onsubmit = e=>{
+  e.preventDefault();
+  const inp = document.getElementById("msgInput");
+  const v = inp.value.trim();
+  if(!v)return;
+  inp.value = "";
+  quickAsk(v);
+};
+document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>quickAsk(c.dataset.q));
+document.getElementById("resetBtn").onclick = resetChat;
+storeSelect.onchange = e=>setStore(e.target.value);
+
+const urlMagaza = new URLSearchParams(location.search).get("magaza");
+if(urlMagaza){
+  const temiz = urlMagaza.replace(/[-_]+/g," ").trim();
+  const opt = document.createElement("option");
+  opt.value = temiz; opt.textContent = temiz;
+  storeSelect.prepend(opt);
+  storeSelect.value = temiz;
+  setStore(temiz);
+}else{
+  resetChat();
+}
+</script>
+</body>
+</html>
