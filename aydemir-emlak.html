@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aydemir Emlak & Gayrimenkul — Operis AI Özel Portföy & 7/24 Dijital Danışman Demosu</title>
+<meta name="description" content="Balıkesir Gönen Aydemir Emlak (aydemiremlak10.sahibinden.com) için özel olarak hazırlanmış 7/24 WhatsApp AI Asistanı, Portföy Yönetimi ve Danışman CRM Entegrasyonu.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-dark: #0a0f1d;
+  --bg-card: #111827;
+  --bg-card-light: #1f293d;
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --accent-light: #34d399;
+  --accent-glow: rgba(16, 185, 129, 0.25);
+  --amber: #f59e0b;
+  --blue: #3b82f6;
+  --purple: #8b5cf6;
+  --text-main: #f8fafc;
+  --text-body: #94a3b8;
+  --text-muted: #64748b;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --wa-bg: #0b141a;
+  --wa-header: #202c33;
+  --wa-in: #202c33;
+  --wa-out: #005c4b;
+  --wa-green: #00a884;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-dark);
+  background-image:
+    radial-gradient(circle at 10% 5%, rgba(16, 185, 129, 0.12), transparent 30%),
+    radial-gradient(circle at 90% 15%, rgba(59, 130, 246, 0.10), transparent 32%),
+    radial-gradient(circle at 50% 70%, rgba(245, 158, 11, 0.05), transparent 40%);
+  color: var(--text-main);
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+/* TOP STATUS BAR */
+.top-notice {
+  background: linear-gradient(90deg, #064e3b, #0f172a, #064e3b);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 8px 20px;
+  font-size: 12.5px;
+  color: #d1fae5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.pulse-dot {
+  width: 8px; height: 8px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px var(--accent-light);
+  animation: pulse 1.8s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.3); } }
+.top-notice a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* NAVBAR */
+header.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(10, 15, 29, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text-main);
+}
+.brand-badge {
+  background: linear-gradient(135deg, #10b981, #059669);
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 18px; color: #fff;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+}
+.brand-info h1 {
+  font-size: 18px; font-weight: 800; letter-spacing: -0.4px; line-height: 1.15;
+}
+.brand-info h1 span { color: var(--accent-light); }
+.brand-info p {
+  font-size: 11px; color: var(--text-body); font-weight: 600;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+.nav-tab-btn {
+  background: transparent;
+  border: 0;
+  color: var(--text-body);
+  font: 600 13px inherit;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-tab-btn:hover { color: #fff; }
+.nav-tab-btn.active {
+  background: var(--accent);
+  color: #051a12;
+  font-weight: 800;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-shb {
+  background: #ffcc00;
+  color: #111;
+  font-weight: 800;
+  font-size: 12.5px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.2s;
+}
+.btn-shb:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+/* MAIN CONTAINER */
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+}
+
+/* SECTION HEAD */
+.hero-header {
+  text-align: center;
+  max-width: 920px;
+  margin: 0 auto 32px;
+}
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--accent-light);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+.hero-header h2 {
+  font-size: clamp(26px, 3.6vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  line-height: 1.18;
+  margin-bottom: 12px;
+}
+.hero-header h2 span { color: var(--accent-light); }
+.hero-header p {
+  font-size: 15.5px;
+  color: var(--text-body);
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* TAB PANELS */
+.tab-content { display: none; animation: fadeIn 0.3s ease; }
+.tab-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ==================== TAB 1: SIMULATOR & CRM ==================== */
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(340px, 460px) 1fr;
+  gap: 28px;
+  align-items: start;
+}
+@media (max-width: 980px) {
+  .workspace { grid-template-columns: 1fr; }
+}
+
+/* Phone Simulator */
+.phone {
+  background: #111b21;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 720px;
+  border: 4px solid #1f2937;
+}
+.wa-bar {
+  background: var(--wa-header);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #2a3942;
+}
+.wa-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.wa-avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981, #059669);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 16px; color: #fff;
+  border: 2px solid #25d366;
+}
+.wa-meta b {
+  font-size: 14.5px; color: #e9edef; display: block;
+}
+.wa-meta span {
+  font-size: 11.5px; color: #8696a0; display: inline-flex; align-items: center; gap: 5px;
+}
+.wa-meta span::before {
+  content: ''; width: 7px; height: 7px; background: #00a884; border-radius: 50%; display: inline-block;
+}
+.wa-reset {
+  background: rgba(255, 255, 255, 0.08);
+  border: 0; color: #e9edef;
+  padding: 6px 11px; border-radius: 8px;
+  font: 700 12px inherit; cursor: pointer;
+  transition: 0.2s;
+}
+.wa-reset:hover { background: rgba(255, 255, 255, 0.18); }
+
+.wa-screen {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  background: var(--wa-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.wa-msg {
+  max-width: 86%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #e9edef;
+  position: relative;
+  word-break: break-word;
+  animation: slideUp 0.22s ease;
+}
+@keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.wa-msg.in {
+  background: var(--wa-in);
+  align-self: flex-start;
+  border-top-left-radius: 3px;
+}
+.wa-msg.out {
+  background: var(--wa-out);
+  align-self: flex-end;
+  border-top-right-radius: 3px;
+}
+.wa-msg-time {
+  font-size: 10px;
+  color: #8696a0;
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* Chat Card Widget */
+.chat-prop-card {
+  background: #182229;
+  border: 1px solid #2a3942;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.chat-prop-img {
+  height: 130px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+}
+.chat-prop-price {
+  background: rgba(11, 20, 26, 0.9);
+  color: #5eead4;
+  font-weight: 800;
+  font-size: 13.5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+.chat-prop-body {
+  padding: 10px 12px;
+}
+.chat-prop-title {
+  font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px;
+}
+.chat-prop-meta {
+  font-size: 11.5px; color: #94a3b8; margin-bottom: 8px;
+}
+.chat-prop-btns {
+  display: flex; gap: 6px;
+}
+.chat-btn-action {
+  flex: 1;
+  background: #00a884;
+  color: #051a12;
+  border: 0;
+  padding: 7px 10px;
+  border-radius: 6px;
+  font: 800 11.5px inherit;
+  cursor: pointer;
+  text-align: center;
+}
+.chat-btn-action.sec {
+  background: #2a3942;
+  color: #e9edef;
+}
+
+.wa-chips {
+  padding: 10px 12px;
+  background: #111b21;
+  border-top: 1px solid #222e35;
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.wa-chips::-webkit-scrollbar { display: none; }
+.wa-chip {
+  background: #202c33;
+  color: #e9edef;
+  border: 1px solid #2a3942;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: 600 12px inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.wa-chip:hover {
+  background: #00a884;
+  color: #0b141a;
+  border-color: #00a884;
+}
+
+.wa-input-box {
+  background: var(--wa-header);
+  padding: 10px 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.wa-input-box input {
+  flex: 1;
+  background: #2a3942;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 16px;
+  color: #e9edef;
+  font: 500 13px inherit;
+  outline: none;
+}
+.wa-send-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--wa-green);
+  color: #0b141a;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* CRM PANEL */
+.crm-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.crm-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+.crm-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.crm-card-head h3 {
+  font-size: 18px; font-weight: 800; color: #fff;
+}
+.crm-card-sub {
+  font-size: 13px; color: var(--text-body); margin-bottom: 18px;
+}
+.live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--accent-light);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 580px) { .kpi-row { grid-template-columns: 1fr; } }
+.kpi-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+}
+.kpi-val {
+  font-size: 22px; font-weight: 800; color: #fff; font-family: 'Space Grotesk', sans-serif;
+}
+.kpi-lbl {
+  font-size: 11.5px; color: var(--text-muted); font-weight: 600; margin-top: 2px;
+}
+
+.crm-lead-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 310px;
+  overflow-y: auto;
+}
+.crm-lead-item {
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  animation: slideUp 0.3s ease;
+  transition: 0.2s;
+}
+.crm-lead-item.just-added {
+  border-left-color: var(--amber);
+  background: rgba(245, 158, 11, 0.08);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.2);
+}
+.lead-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+.lead-title-row b { font-size: 14px; color: #fff; }
+.lead-score {
+  font-size: 11px; font-weight: 800;
+  padding: 2px 8px; border-radius: 999px;
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--accent-light);
+}
+.lead-desc {
+  font-size: 12.5px; color: var(--text-body); line-height: 1.45;
+}
+.lead-agent-badge {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  background: rgba(59, 130, 246, 0.15);
+  color: #93c5fd;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* Feature Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 680px) { .features-grid { grid-template-columns: 1fr; } }
+.feat-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+.feat-box b {
+  display: block; font-size: 14px; color: #fff; margin-bottom: 6px;
+}
+.feat-box p {
+  font-size: 12.5px; color: var(--text-body);
+}
+
+/* ==================== TAB 2: PORTFOLIO EXPLORER ==================== */
+.catalog-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.catalog-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-body);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font: 600 13px inherit;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.filter-btn:hover { color: #fff; border-color: var(--border-strong); }
+.filter-btn.active {
+  background: var(--accent);
+  color: #051a12;
+  font-weight: 800;
+  border-color: var(--accent);
+}
+
+.search-input-wrap {
+  position: relative;
+  min-width: 280px;
+}
+.search-input-wrap input {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 9px 18px 9px 38px;
+  color: #fff;
+  font: 500 13.5px inherit;
+  outline: none;
+}
+.search-input-wrap span {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+.prop-card-full {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.prop-card-full:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+.prop-card-header {
+  height: 200px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+.prop-badge-cat {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: rgba(10, 15, 29, 0.88);
+  color: var(--accent-light);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+.prop-badge-loc {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: rgba(10, 15, 29, 0.88);
+  color: #e2e8f0;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+.prop-price-tag {
+  position: absolute;
+  bottom: 12px; left: 12px;
+  background: rgba(10, 15, 29, 0.92);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 800;
+  font-family: 'Space Grotesk', sans-serif;
+  padding: 5px 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+}
+
+.prop-content {
+  padding: 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.prop-title-full {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+.prop-specs-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+.prop-spec-item {
+  font-size: 12px;
+}
+.prop-spec-item span {
+  color: var(--text-muted); display: block; font-size: 10.5px;
+}
+.prop-spec-item b {
+  color: #e2e8f0; font-weight: 600;
+}
+.prop-tags-list {
+  display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px;
+}
+.prop-tag-span {
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+.prop-card-actions {
+  display: flex; gap: 8px;
+}
+.btn-card-ask {
+  flex: 1;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #04140d;
+  font: 800 12.5px inherit;
+  padding: 10px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  transition: 0.2s;
+}
+.btn-card-ask:hover { filter: brightness(1.1); }
+.btn-card-detail {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 0;
+  font: 700 12.5px inherit;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn-card-detail:hover { background: rgba(255, 255, 255, 0.16); }
+
+/* ==================== TAB 3: SAHIBINDEN ANALYSIS ==================== */
+.report-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+@media (max-width: 900px) { .report-grid { grid-template-columns: 1fr; } }
+
+.audit-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 26px;
+}
+.audit-card h3 {
+  font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 6px;
+}
+.audit-list {
+  display: flex; flex-direction: column; gap: 16px; margin-top: 20px;
+}
+.audit-item {
+  display: flex; gap: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+.audit-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.audit-icon.warn { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+.audit-icon.success { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+.audit-icon.blue { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+.audit-info b { font-size: 14.5px; color: #fff; display: block; margin-bottom: 3px; }
+.audit-info p { font-size: 13px; color: var(--text-body); }
+
+.roi-card {
+  background: linear-gradient(135deg, #131d33, #0f172a);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 20px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.roi-card h4 { font-size: 17px; font-weight: 800; color: var(--accent-light); margin-bottom: 12px; }
+.roi-metric { margin-bottom: 16px; }
+.roi-num { font-size: 32px; font-weight: 800; color: #fff; font-family: 'Space Grotesk', sans-serif; }
+.roi-desc { font-size: 12.5px; color: var(--text-body); }
+
+/* ==================== TAB 4: TEAM DIRECTORY ==================== */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.team-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px;
+  text-align: center;
+  transition: 0.2s;
+}
+.team-card:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: translateY(-3px);
+}
+.team-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  margin: 0 auto 14px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border: 2px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 800; color: var(--accent-light);
+}
+.team-card h4 { font-size: 16.5px; font-weight: 800; color: #fff; margin-bottom: 2px; }
+.team-role { font-size: 12px; color: var(--accent-light); font-weight: 700; margin-bottom: 12px; }
+.team-phone {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 12px;
+}
+.team-wa-btn {
+  background: #00a884;
+  color: #051a12;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: block;
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10, 15, 29, 0.86);
+  backdrop-filter: blur(8px);
+  display: none; align-items: center; justify-content: center;
+  padding: 20px; z-index: 2000;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 24px;
+  max-width: 580px; width: 100%;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  animation: modalIn 0.25s ease;
+}
+@keyframes modalIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+.modal-img {
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.modal-close-btn {
+  position: absolute; top: 12px; right: 12px;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(10, 15, 29, 0.85); color: #fff;
+  border: 0; font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-body { padding: 22px; }
+.modal-body h3 { font-size: 19px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+.modal-price-val { font-size: 22px; font-weight: 800; color: var(--accent-light); font-family: 'Space Grotesk', sans-serif; margin-bottom: 14px; }
+.modal-grid-specs {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;
+}
+.modal-grid-specs div {
+  background: rgba(255, 255, 255, 0.03); padding: 10px; border-radius: 8px; font-size: 12.5px;
+}
+.modal-grid-specs div span { color: var(--text-muted); display: block; font-size: 11px; }
+.modal-grid-specs div b { color: #e2e8f0; }
+.modal-desc-text { font-size: 13.5px; color: var(--text-body); margin-bottom: 20px; line-height: 1.5; }
+.modal-cta-row { display: flex; gap: 10px; }
+.modal-cta-row a, .modal-cta-row button {
+  flex: 1; padding: 12px; border-radius: 10px; font-weight: 800; font-size: 13px; text-align: center; text-decoration: none; cursor: pointer; border: 0;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 30px 4% 50px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+footer a { color: var(--accent-light); text-decoration: none; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-notice">
+  <span class="pulse-dot"></span>
+  <span><b>Aydemir Emlak Özel Demosu:</b> Sahibinden ilanlarınıza gelen gece ve pazar mesajlarına 3 saniyede yanıt, ada/parsel filtreleme ve danışmana hazır randevu!</span>
+  <a href="https://aydemiremlak10.sahibinden.com/" target="_blank">aydemiremlak10.sahibinden.com Mağazasını Gör →</a>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <a class="brand-box" href="#">
+    <div class="brand-badge">A</div>
+    <div class="brand-info">
+      <h1>AYDEMİR <span>EMLAK</span></h1>
+      <p>Gönen / Balıkesir · Yetki Belge No: 1000172</p>
+    </div>
+  </a>
+
+  <div class="nav-tabs">
+    <button class="nav-tab-btn active" data-tab="tab-simulator">💬 Canlı Asistan & CRM</button>
+    <button class="nav-tab-btn" data-tab="tab-portfolio">📋 Tüm İlanlar (16)</button>
+    <button class="nav-tab-btn" data-tab="tab-audit">📊 Sahibinden Analizi</button>
+    <button class="nav-tab-btn" data-tab="tab-team">👥 Danışman Ekibi</button>
+  </div>
+
+  <div class="nav-actions">
+    <a class="btn-shb" href="https://aydemiremlak10.sahibinden.com/" target="_blank">
+      <span>🟡</span> Sahibinden Mağazası
+    </a>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ==================== TAB 1: CANLI ASİSTAN & CRM ==================== -->
+  <section id="tab-simulator" class="tab-content active">
+    <div class="hero-header">
+      <div class="hero-pill">🤖 7/24 WHATSAPP YAPAY ZEKA SATIŞ & RANDEVU ROBOTU</div>
+      <h2>Gece 02:00'de Sahibinden'den Gelen Alıcıyı <span>3 Saniyede</span> Yakalayın</h2>
+      <p>Gönen köylerindeki tarlayı, Çakmak'taki imarlı arsayı veya Denizkent'teki yazlığı soran alıcıyı anında karşılar; ada/parsel, resmi yol ve fiyat detayını verip danışmanınıza hazır yer gösterimi randevusu kilitler.</p>
+    </div>
+
+    <div class="workspace">
+      <!-- Phone Simulator -->
+      <div class="phone" role="region" aria-label="WhatsApp Canlı Simülatör">
+        <div class="wa-bar">
+          <div class="wa-user">
+            <div class="wa-avatar">A</div>
+            <div class="wa-meta">
+              <b>Aydemir Emlak Asistanı</b>
+              <span>Çevrimiçi · 7/24 AI Danışman</span>
+            </div>
+          </div>
+          <button class="wa-reset" id="waResetBtn">↻ Sıfırla</button>
+        </div>
+
+        <div class="wa-screen" id="waChatBox">
+          <!-- Default Welcome Message -->
+          <div class="wa-msg in">
+            Merhaba! <b>Aydemir Emlak & Gayrimenkul</b> (Gönen) dijital danışmanına hoş geldiniz. 🏡<br><br>
+            Balıkesir Gönen, Sarıköy, Denizkent, Taştepe ve çevre köylerdeki satılık köy evi, imarlı arsa, sulanabilir tarla ve sahil villaları portföyümüz için size nasıl yardımcı olabilirim?
+            <div class="wa-msg-time">10:00</div>
+          </div>
+        </div>
+
+        <!-- Quick Chips -->
+        <div class="wa-chips" id="waChipsBox">
+          <button class="wa-chip" data-q="Gönen köylerinde 2-3 milyon TL civarında satılık müstakil bahçeli köy evi var mı?">🏡 Köy Evi Bakıyorum</button>
+          <button class="wa-chip" data-q="Çakmak Köyü'ndeki 465 m² imarlı arsanın tapusu müstakil mi, kadastro yolu açık mı?">📐 Çakmak İmarlı Arsa</button>
+          <button class="wa-chip" data-q="Denizkent'te denize yakın 4+1 yazlık için cumartesi günü yer gösterimi randevusu alabilir miyim?">🏖️ Denizkent Yazlık Randevusu</button>
+          <button class="wa-chip" data-q="Gönen ovasında resmi kadastro yollu sulanabilir tarla veya cevizlik arıyorum.">🌾 Tarla & Çiftlik</button>
+          <button class="wa-chip" data-q="Gönen'de 12 dönüm arazim var satmak istiyorum, Ahmet Bey ile nasıl görüşebilirim?">🔑 Mülkümü Satmak İstiyorum</button>
+        </div>
+
+        <!-- Input Form -->
+        <form class="wa-input-box" id="waForm">
+          <input id="waInput" type="text" placeholder="Bir alıcı gibi yazın (örn: bütçem 2M arsa arıyorum)..." autocomplete="off">
+          <button class="wa-send-btn" type="submit" aria-label="Mesaj Gönder">➤</button>
+        </form>
+      </div>
+
+      <!-- CRM & Live Pipeline Panel -->
+      <div class="crm-panel">
+        <div class="crm-card">
+          <div class="crm-card-head">
+            <h3>Danışman CRM & Sıcak Alıcı Kokpiti</h3>
+            <span class="live-indicator"><span class="pulse-dot"></span> Canlı Senkronize</span>
+          </div>
+          <div class="crm-card-sub">
+            WhatsApp ve Sahibinden'den gelen alıcılar ön elemeden geçer; ada/parsel, bütçe ve yer gösterimi talebi anında Ahmet Bey ve ekibinin ekranına düşer.
+          </div>
+
+          <div class="kpi-row">
+            <div class="kpi-box">
+              <div class="kpi-val" id="kpiLeadCount">3 Kişi</div>
+              <div class="kpi-lbl">Nitelikli Alıcı / Randevu</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val">2.1 sn</div>
+              <div class="kpi-lbl">Ortalama İlk Yanıt</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-val" id="kpiVolumeVal">13.8M ₺</div>
+              <div class="kpi-lbl">Aktif Alıcı Bütçesi</div>
+            </div>
+          </div>
+
+          <div class="crm-lead-list" id="crmLeadsList">
+            <!-- Sample Leads -->
+            <div class="crm-lead-item">
+              <div class="lead-title-row">
+                <b>Kemal Yılmaz (İstanbul / Kadıköy)</b>
+                <span class="lead-score">Sıcak · %96</span>
+              </div>
+              <div class="lead-desc">
+                Hedef: <b>Çakmak Köyü 465 m² İmarlı Arsa</b> · Bütçe: 900.000 ₺ Nakit · Talep: Kadastro yolu ve tapu teyidi istedi. Cumartesi 13:00'e yer gösterimi istiyor.
+              </div>
+              <span class="lead-agent-badge">Atanan Danışman: Ahmet Aydemir</span>
+            </div>
+
+            <div class="crm-lead-item">
+              <div class="lead-title-row">
+                <b>Ender S. (Bursa / Nilüfer)</b>
+                <span class="lead-score">Sıcak · %92</span>
+              </div>
+              <div class="lead-desc">
+                Hedef: <b>Denizkent 4+1 Dubleks Villa</b> · Bütçe: 6.000.000 ₺ (Krediye Uygun) · Özel plaj ve site aidatını sordu. Pazar 15:30 randevu teyit bekliyor.
+              </div>
+              <span class="lead-agent-badge">Atanan Danışman: Berkay Aydemir</span>
+            </div>
+
+            <div class="crm-lead-item">
+              <div class="lead-title-row">
+                <b>Mehmet Taner (Gönen Merkez)</b>
+                <span class="lead-score">Mülk Sahibi · %90</span>
+              </div>
+              <div class="lead-desc">
+                Talep: <b>Sarıköy'de 8.5 Dönüm Tarla Satışı</b> · Ekspertiz ve Sahibinden vitrin ilanı istiyor. Ahmet Bey ile ofiste görüşme talep etti.
+              </div>
+              <span class="lead-agent-badge">Atanan Danışman: Sezgin Kocabozacı</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Benefits -->
+        <div class="crm-card">
+          <div class="crm-card-head">
+            <h3>Aydemir Emlak'a Ne Sağlar?</h3>
+          </div>
+          <div class="features-grid">
+            <div class="feat-box">
+              <b>⚡ Sıfır Kaçan İlan</b>
+              <p>Gece 23:00 veya Pazar günü yazan alıcı beklemez; 3 saniyede ada/parsel ve video linkini alır.</p>
+            </div>
+            <div class="feat-box">
+              <b>🎯 Boş Arama Filtresi</b>
+              <p>"Sadece fiyat soran" değil; bütçesi hazır, tapuya gelebilecek ciddi alıcılar elenerek danışmana aktarılır.</p>
+            </div>
+            <div class="feat-box">
+              <b>🔑 Otomatik Mülk Toplama</b>
+              <p>"Tarlamı/evimi satmak istiyorum" diyen mülk sahiplerinin ada/parsel ve bilgilerini toplayıp sözleşmeye bağlar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 2: PORTFÖY GEZGİNİ ==================== -->
+  <section id="tab-portfolio" class="tab-content">
+    <div class="hero-header">
+      <div class="hero-pill">🏠 AYDEMİR EMLAK SAHİBİNDEN PORTFÖY KATALOĞU</div>
+      <h2>Gönen ve Güney Marmara'nın <span>Tüm Seçkin İlanları</span></h2>
+      <p>Köy evleri, imarlı arsalar, kadastro yollu tarlalar ve Denizkent sahil villaları. Gerçek ada/parsel, imar durumu ve fotoğraflarla filtrelenebilir dijital vitrin.</p>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="catalog-toolbar">
+      <div class="catalog-filters" id="catalogFilters">
+        <button class="filter-btn active" data-cat="all">Tümü (16)</button>
+        <button class="filter-btn" data-cat="koy-evi">🏡 Köy Evleri (4)</button>
+        <button class="filter-btn" data-cat="arsa">📐 İmarlı Arsalar (4)</button>
+        <button class="filter-btn" data-cat="tarla">🌾 Tarla & Zeytinlik (4)</button>
+        <button class="filter-btn" data-cat="yazlik">🏖️ Denizkent Yazlıkları (3)</button>
+        <button class="filter-btn" data-cat="daire">🏢 Gönen Merkez (1)</button>
+      </div>
+
+      <div class="search-input-wrap">
+        <span>🔍</span>
+        <input type="text" id="propSearchInput" placeholder="Köy adı, ilan no veya ada/parsel ara...">
+      </div>
+    </div>
+
+    <!-- Listings Grid -->
+    <div class="catalog-grid" id="catalogGrid"></div>
+  </section>
+
+  <!-- ==================== TAB 3: SAHIBINDEN ANALİZİ ==================== -->
+  <section id="tab-audit" class="tab-content">
+    <div class="hero-header">
+      <div class="hero-pill">📈 SAHA & DİJİTAL MAĞAZA ANALİZ RAPORU</div>
+      <h2>aydemiremlak10.sahibinden.com <span>Dönüşüm Raporu</span></h2>
+      <p>Sahibinden kurumsal mağazanızın potansiyel müşteri akışı ve yapay zeka entegrasyonuyla elde edilecek somut faydalar.</p>
+    </div>
+
+    <div class="report-grid">
+      <div class="audit-card">
+        <h3>Mevcut Durum & Kaçan Fırsat Analizi</h3>
+        <p style="color:var(--text-body);font-size:13.5px">Gönen bölgesine özellikle büyükşehirlerden (İstanbul, Bursa, Kocaeli, İzmir) gelen yoğun talep döngüsü incelenmiştir.</p>
+
+        <div class="audit-list">
+          <div class="audit-item">
+            <div class="audit-icon warn">⏰</div>
+            <div class="audit-info">
+              <b>Gece 19:00 - 01:00 Arası Yanıtsız Kalan İlan Talepleri</b>
+              <p>Marmara bölgesindeki beyaz yakalı ve yatırımcı alıcılar ilanları mesai çıkışında inceler. Bu saatlerde gelen WhatsApp ve Sahibinden mesajlarına anında yanıt verilemediğinde, alıcı başka bir emlak ofisinin ilanına yönelmektedir (%64 kayıp oranı).</p>
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-icon warn">📑</div>
+            <div class="audit-info">
+              <b>Tekrarlayan "Ada/Parsel, Yol Var mı, Su Var mı?" Soruları</b>
+              <p>Danışmanlar gün boyu sahada yer gösterirken sürekli aynı temel sorular için telefonla bölünmektedir. Yapay zeka asistanı kadastro yolu, su/elektrik durumu ve imar yüzdesini saniyeler içinde sunarak danışmanın vaktini korur.</p>
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-icon success">🎯</div>
+            <div class="audit-info">
+              <b>Hafta Sonu Yer Gösterimi Randevusuna Otomatik Kilitleme</b>
+              <p>Alıcı hafta içi Çarşamba günü yazdığında yapay zeka doğrudan: <i>"Bu cumartesi Gönen'e gelmeyi planlıyorsanız Ahmet Bey ile saat 14:00'te parsel başında buluşma randevunuzu oluşturalım mı?"</i> diyerek sıcak alıcıyı bağlar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROI Metric Card -->
+      <div class="roi-card">
+        <div>
+          <h4>KAZANÇ & VERİMLİLİK SİMÜLASYONU</h4>
+          <div class="roi-metric">
+            <div class="roi-num">+%42</div>
+            <div class="roi-desc">Ayda kaçırılan ilan temaslarının geri kazanım oranı</div>
+          </div>
+          <div class="roi-metric">
+            <div class="roi-num">3 sn</div>
+            <div class="roi-desc">Günün her saati ilk yanıt ve portföy sunum hızı</div>
+          </div>
+          <div class="roi-metric">
+            <div class="roi-num">0 ₺</div>
+            <div class="roi-desc">14 Gün Boyunca Sıfır Riskli Ücretsiz Pilot Kurulum</div>
+          </div>
+        </div>
+        <a class="btn-card-ask" style="padding:14px;font-size:14px" href="https://wa.me/905323074072?text=Merhaba%20Ahmet%20Bey%2C%20Aydemir%20Emlak%20i%C3%A7in%20haz%C4%B1rlanan%20Operis%20AI%20demosunu%20inceledim." target="_blank">
+          WhatsApp'tan Başlat →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 4: DANIŞMAN EKİBİ ==================== -->
+  <section id="tab-team" class="tab-content">
+    <div class="hero-header">
+      <div class="hero-pill">👥 GÖNEN AYDEMİR EMLAK KADROSU</div>
+      <h2>Bölgenin Güvenilir <span>Gayrimenkul Uzmanları</span></h2>
+      <p>Yapay zeka asistanımız gelen talepleri doğrudan mülkün uzman danışmanına yönlendirir.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">AA</div>
+        <h4>Ahmet Aydemir</h4>
+        <div class="team-role">Kurucu & Genel Koordinatör</div>
+        <a class="team-phone" href="tel:05323074072">📞 0532 307 40 72</a>
+        <a class="team-wa-btn" href="https://wa.me/905323074072" target="_blank">WhatsApp'tan Yaz</a>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">BA</div>
+        <h4>Berkay Aydemir</h4>
+        <div class="team-role">Portföy & Saha Yöneticisi</div>
+        <a class="team-phone" href="tel:05301592813">📞 0530 159 28 13</a>
+        <a class="team-wa-btn" href="https://wa.me/905301592813" target="_blank">WhatsApp'tan Yaz</a>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">SK</div>
+        <h4>Sezgin Kocabozacı</h4>
+        <div class="team-role">Arsa & Tarla Danışmanı</div>
+        <a class="team-phone" href="tel:05353328529">📞 0535 332 85 29</a>
+        <a class="team-wa-btn" href="https://wa.me/905353328529" target="_blank">WhatsApp'tan Yaz</a>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">EK</div>
+        <h4>Ender Kardaş</h4>
+        <div class="team-role">Köy Evi & Villa Danışmanı</div>
+        <a class="team-phone" href="tel:05415170177">📞 0541 517 01 77</a>
+        <a class="team-wa-btn" href="https://wa.me/905415170177" target="_blank">WhatsApp'tan Yaz</a>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">ÖG</div>
+        <h4>Ömer Gökbay</h4>
+        <div class="team-role">Gayrimenkul Danışmanı</div>
+        <a class="team-phone" href="tel:05370377539">📞 0537 037 75 39</a>
+        <a class="team-wa-btn" href="https://wa.me/905370377539" target="_blank">WhatsApp'tan Yaz</a>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">FD</div>
+        <h4>Ferdi Düvenci</h4>
+        <div class="team-role">Gayrimenkul Danışmanı</div>
+        <a class="team-phone" href="tel:05327091100">📞 0532 709 11 00</a>
+        <a class="team-wa-btn" href="https://wa.me/905327091100" target="_blank">WhatsApp'tan Yaz</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- PROPERTY DETAILS MODAL -->
+<div class="modal-overlay" id="propModal">
+  <div class="modal-box">
+    <div class="modal-img" id="modalImg">
+      <button class="modal-close-btn" id="modalCloseBtn">✕</button>
+    </div>
+    <div class="modal-body">
+      <h3 id="modalTitle">İlan Başlığı</h3>
+      <div class="modal-price-val" id="modalPrice">0 ₺</div>
+      <div class="modal-grid-specs" id="modalSpecs"></div>
+      <p class="modal-desc-text" id="modalDesc"></p>
+      <div class="modal-cta-row">
+        <button class="btn-card-ask" id="modalBookBtn">📅 Bu İlan İçin Randevu Al</button>
+        <button class="btn-card-detail" id="modalCloseBtn2">Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><b>Aydemir Emlak & Gayrimenkul</b> Özel Dijital Portföy ve Yapay Zeka Satış Sistemi</p>
+  <p style="margin-top:6px;font-size:12px">Adres: Malkoç Mah. Kızılay Cad. No:4/C (Gönen Tapu Müdürlüğü altı), Gönen / Balıkesir · Tel: 0532 307 40 72 / 0530 159 28 13</p>
+  <p style="margin-top:10px">Operis AI Altyapısı ile Güçlendirilmiştir · <a href="https://aydemiremlak10.sahibinden.com/" target="_blank">Sahibinden.com Kurumsal Mağazası</a></p>
+</footer>
+
+<!-- JAVASCRIPT LOGIC -->
+<script>
+// ==================== REAL LISTING DATABASE (AYDEMİR EMLAK) ====================
+const PROPERTIES = [
+  // --- KÖY EVLERİ ---
+  {
+    id: "gonen-sifir-koy-evi",
+    cat: "koy-evi",
+    catLabel: "Köy Evi",
+    title: "Gönen Köyünde 730 m² Arsa İçinde Sıfır 2+1 Müstakil Köy Evi",
+    loc: "Gönen / Balıkesir",
+    price: 4650000,
+    priceStr: "4.650.000 ₺",
+    sqm: "730 m² Arsa · 100 m² Ev",
+    tapu: "Müstakil Parsel",
+    imar: "Köy Yerleşik Alanı",
+    yol: "Resmi Kadastro Yolu Açık",
+    suElektrik: "Elektrik ve Şebeke Suyu Aktif",
+    advisor: "Ahmet Aydemir",
+    img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80",
+    tags: ["Sıfır Yapı", "Müstakil Tapu", "Geniş Bahçeli", "Hemen Taşınmaya Hazır"],
+    desc: "Gönen'e 12 km mesafede, 730 m² müstakil bahçe içerisinde sıfırdan inşa edilmiş 2+1 taş ve ahşap detaylı şık köy evi. Bahçesinde meyve ağaçları, artezyen kuyusu ve araç otopark alanı mevcuttur."
+  },
+  {
+    id: "cigli-koy-arsasi-evli",
+    cat: "koy-evi",
+    catLabel: "Köy Evi & Arsa",
+    title: "Gönen Taştepe / Çakmak Civarı 557 m² Ev Kayıtlı Köy Arsası",
+    loc: "Gönen / Çakmak Köyü",
+    price: 1650000,
+    priceStr: "1.650.000 ₺",
+    sqm: "557 m² Arsa",
+    tapu: "Müstakil Tapu (Ev Kayıtlı)",
+    imar: "%40 2.5 Kat Köy İçi İmar",
+    yol: "Asfalt Cepheli",
+    suElektrik: "Altyapısı Kapısında",
+    advisor: "Berkay Aydemir",
+    img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=700&q=80",
+    tags: ["Ev Kayıtlı", "Doğa Manzaralı", "İmar İzni Var", "Yatırımlık"],
+    desc: "Tapuda ev ve avlusu olarak kayıtlı, elektrik ve su aboneliği hemen açtırılabilen, harika orman ve vadi manzaralı 557 m² fırsat köy arazisi."
+  },
+  {
+    id: "sarikoy-bahceli-tas-ev",
+    cat: "koy-evi",
+    catLabel: "Köy Evi",
+    title: "Sarıköy Mevkiinde 480 m² Bahçeli Taş Mimarili 3+1 Köy Evi",
+    loc: "Gönen / Sarıköy",
+    price: 3250000,
+    priceStr: "3.250.000 ₺",
+    sqm: "480 m² Arsa · 135 m² Ev",
+    tapu: "Müstakil Tek Tapu",
+    imar: "Köy İçi",
+    yol: "Kilit Taşı Yol Cepheli",
+    suElektrik: "Var (Doğalgaz Kapıda)",
+    advisor: "Ender Kardaş",
+    img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=700&q=80",
+    tags: ["Tarihi Doku", "Fırınlı Bahçe", "Taş Konak", "Sarıköy Merkez"],
+    desc: "Büyükşehir gürültüsünden kaçmak isteyenler için restore edilmiş sağlam taş duvarlı, köy fırınlı, asmaları ve meyve ağaçlarıyla yaşama hazır 3+1 ev."
+  },
+  {
+    id: "kumkoy-ciftlik-evi",
+    cat: "koy-evi",
+    catLabel: "Çiftlik Evi",
+    title: "Kumköy Çevresi 1.100 m² Geniş Bahçeli Yenilenmiş Çiftlik Evi",
+    loc: "Gönen / Kumköy",
+    price: 5850000,
+    priceStr: "5.850.000 ₺",
+    sqm: "1.100 m² Arsa · 160 m² Ev",
+    tapu: "Müstakil Parsel",
+    imar: "Köy İçi İmarlı",
+    yol: "Kadastro Yolu Açık",
+    suElektrik: "Şebeke + Artezyen",
+    advisor: "Ahmet Aydemir",
+    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80",
+    tags: ["Hobi Bahçesi", "Kümes & Depo", "Çiftlik Konsepti", "Krediye Uygun"],
+    desc: "1.100 m² tel örgüsü çekilmiş arsa içinde, zeytin ağaçları, kapalı deposu ve modern iç mimarisiyle dört mevsim huzurlu yaşam imkanı."
+  },
+
+  // --- İMARLI ARSALAR ---
+  {
+    id: "cakmak-465-imarli-arsa",
+    cat: "arsa",
+    catLabel: "İmarlı Arsa",
+    title: "Gönen Çakmak Köyü 465 m² %40 2.5 Kat Köy İçi İmarlı Arsa",
+    loc: "Gönen / Çakmak Köyü",
+    price: 845000,
+    priceStr: "845.000 ₺",
+    sqm: "465 m²",
+    tapu: "Müstakil Tek Tapu",
+    imar: "%40 Taban - 2.5 Kat Konut İmarı",
+    yol: "Resmi Kadastro Yolu Var",
+    suElektrik: "Hemen Bağlanabilir",
+    advisor: "Ahmet Aydemir",
+    img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80",
+    tags: ["Uygun Fiyat", "Müstakil Parsel", "%40 İmar", "Hemen İnşaat Yapılabilir"],
+    desc: "Balıkesir Gönen Çakmak köyünde, köy merkezine yürüme mesafesinde, resmi yolu açık, hemen villa veya köy evi yapımına uygun kelepir arsa."
+  },
+  {
+    id: "dere-kenari-1206-arsa",
+    cat: "arsa",
+    catLabel: "İmarlı Arsa",
+    title: "Gönen Dere Kenarında 1.206 m² Müstakil Parsel İmarlı Arsa",
+    loc: "Gönen Köyleri",
+    price: 2350000,
+    priceStr: "2.350.000 ₺",
+    sqm: "1.206 m²",
+    tapu: "Müstakil Tapu",
+    imar: "Köy Yerleşik Alanı İmarlı",
+    yol: "Kadastro Yolu Mevcut",
+    suElektrik: "Altyapı Hazır",
+    advisor: "Berkay Aydemir",
+    img: "https://images.unsplash.com/photo-1500076656116-558758c991c1?auto=format&fit=crop&w=700&q=80",
+    tags: ["Dere Kenarı", "Doğal Kaynak Suyu", "Müstakil Parsel", "Bungalov Uygun"],
+    desc: "Yanından berrak dere akan, etrafı meşe ve çınar ağaçlarıyla çevrili, bungalov ya da butik kır evi yapımına son derece elverişli eşsiz parsel."
+  },
+  {
+    id: "doga-manzarali-1379-arsa",
+    cat: "arsa",
+    catLabel: "İmarlı Arsa",
+    title: "Gönen Hakim Tepe 1.379 m² Panoramik Doğa Manzaralı Arsa",
+    loc: "Gönen / Taştepe",
+    price: 2650000,
+    priceStr: "2.650.000 ₺",
+    sqm: "1.379 m²",
+    tapu: "Müstakil Parsel",
+    imar: "%40 Konut İmarlı",
+    yol: "Resmi Yolu Açık",
+    suElektrik: "Mevcut",
+    advisor: "Sezgin Kocabozacı",
+    img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80",
+    tags: ["Panoramik Manzara", "Kapanmaz Önü", "Yüksek Oksijen", "Villa İmarlı"],
+    desc: "Köyün en havadar noktasında, ovayı ve Kaz Dağları silüetini gören, önü kapanmaz lüks çiftlik villası yapılabilir büyük arsa."
+  },
+  {
+    id: "denizkent-girisi-620-arsa",
+    cat: "arsa",
+    catLabel: "Sahil Arsası",
+    title: "Denizkent Girişinde 620 m² Denize Yakın Müstakil Villa Arsası",
+    loc: "Gönen / Denizkent",
+    price: 1950000,
+    priceStr: "1.950.000 ₺",
+    sqm: "620 m²",
+    tapu: "Müstakil Tapu",
+    imar: "Ayrık Nizam 2 Kat Villa İmarı",
+    yol: "Geniş Sokak Cepheli",
+    suElektrik: "Tüm Hatlar Hazır",
+    advisor: "Berkay Aydemir",
+    img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80",
+    tags: ["Denize 500m", "Villa İmarı", "Yazlık Bölgesi", "Hızlı Prim"],
+    desc: "Marmara Denizi'nin parlayan sahil bölgesi Denizkent'te, plaja yürüme mesafesinde iki adet ikiz villa veya geniş müstakil villa yapımına hazır arsa."
+  },
+
+  // --- TARLA & ZEYTİNLİK ---
+  {
+    id: "gonen-ovasi-14500-tarla",
+    cat: "tarla",
+    catLabel: "Verimli Tarla",
+    title: "Gönen Ovasında 14.500 m² Kadastro Yollu Sulanabilir Tarla",
+    loc: "Gönen Ovası / Balıkesir",
+    price: 3850000,
+    priceStr: "3.850.000 ₺",
+    sqm: "14.500 m² (14.5 Dönüm)",
+    tapu: "Müstakil Parsel",
+    imar: "Tarımsal Nitelikli",
+    yol: "Resmi Kadastro Yolu Var",
+    suElektrik: "Kanal Suyu Mevcut",
+    advisor: "Sezgin Kocabozacı",
+    img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80",
+    tags: ["Çeltik & Mısır", "Sulanabilir Ova", "Yüksek Verim", "Düz Taban"],
+    desc: "Gönen'in birinci sınıf tarım arazisi olan ovada, DSİ sulama kanalına sıfır cepheli, traktör ve biçerdöver girişine uygun resmi kadastro yollu tarla."
+  },
+  {
+    id: "manyas-yolu-8200-zeytinlik",
+    cat: "tarla",
+    catLabel: "Zeytinlik",
+    title: "Manyas Yolu Üzerinde 8.200 m² Yetişkin Bakımlı Zeytinlik",
+    loc: "Gönen - Manyas Yolu",
+    price: 2400000,
+    priceStr: "2.400.000 ₺",
+    sqm: "8.200 m² (8.2 Dönüm)",
+    tapu: "Tek Tapu",
+    imar: "Zeytinlik",
+    yol: "Yolu Açık Araç Girer",
+    suElektrik: "Artezyen Açılabilir",
+    advisor: "Ahmet Aydemir",
+    img: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=700&q=80",
+    tags: ["200+ Zeytin Ağacı", "Yıllık Yağ Getirisi", "Hobi Alanı", "Krediye Uygun"],
+    desc: "İçerisinde 200 adedin üzerinde verimli Edremit tipi yağlık ve sofralık zeytin ağacı bulunan, yıllık düzenli zeytinyağı hasadı veren manzaralı bahçe."
+  },
+  {
+    id: "ciftlik-26000-arazi",
+    cat: "tarla",
+    catLabel: "Çiftlik Arazisi",
+    title: "Hayvancılık & Çiftliğe Uygun 26.000 m² Müstakil Parsel Arazi",
+    loc: "Gönen Köyleri",
+    price: 6750000,
+    priceStr: "6.750.000 ₺",
+    sqm: "26.000 m² (26 Dönüm)",
+    tapu: "Müstakil Parsel",
+    imar: "Çiftlik Kurulabilir",
+    yol: "Stabilize Yol Cepheli",
+    suElektrik: "Yakınında Trafo Var",
+    advisor: "Ferdi Düvenci",
+    img: "https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=700&q=80",
+    tags: ["Büyük Çiftlik", "Güneş Enerjisi (GES)", "Ruhsata Uygun", "Geniş Mera"],
+    desc: "Büyükbaş/küçükbaş hayvancılık tesisleri, sera yatırımı veya ceviz çiftliği kurmak isteyenler için köy yerleşimine ideal mesafede geniş metrajlı arazi."
+  },
+  {
+    id: "asfalt-cepheli-5000-cevizlik",
+    cat: "tarla",
+    catLabel: "Cevizlik",
+    title: "Asfalt Yola Cepheli 5.000 m² Chandler Cinsi Aşılı Cevizlik",
+    loc: "Gönen / Bakırlı",
+    price: 1850000,
+    priceStr: "1.850.000 ₺",
+    sqm: "5.000 m² (5 Dönüm)",
+    tapu: "Müstakil Tapu",
+    imar: "Tarımsal Alan",
+    yol: "Ana Asfalt Cepheli",
+    suElektrik: "Damlama Sulama Sistemi Kurulu",
+    advisor: "Ömer Gökbay",
+    img: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=700&q=80",
+    tags: ["Damlama Sulama", "Chandler Ceviz", "Asfalt Cephe", "Konteyner Konulur"],
+    desc: "5 yaşında 100 adet Chandler aşılı ceviz ağacı olan, damlama sulama tesisatı hazır, elektrik direği yanında, hemen içine konteyner konulabilecek hobi arazisi."
+  },
+
+  // --- DENİZKENT YAZLIKLARI ---
+  {
+    id: "denizkent-triplex-yazlik",
+    cat: "yazlik",
+    catLabel: "Sahil Yazlığı",
+    title: "Denizkent Pınarkent Mevkiinde Denize 200m 4+1 Triplex Yazlık",
+    loc: "Gönen / Denizkent (Pınarkent)",
+    price: 4700000,
+    priceStr: "4.700.000 ₺",
+    sqm: "180 m² · 4+1",
+    tapu: "Müstakil Tapu (Kat İrtifaklı)",
+    imar: "Konut İmarlı",
+    yol: "Açık",
+    suElektrik: "Aktif",
+    advisor: "Ahmet Aydemir",
+    img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=700&q=80",
+    tags: ["Denize 200 Metre", "4+1 Triplex", "Teras Manzaralı", "Bahçeli"],
+    desc: "Pınarkent sahilinde, kumsala 3 dakika yürüme mesafesinde, geniş terasından deniz manzarası olan, masrafsız ve krediye uygun 4+1 geniş yazlık."
+  },
+  {
+    id: "guveymalan-dubleks-villa",
+    cat: "yazlik",
+    catLabel: "Lüks Villa",
+    title: "Denizkent / Güveymalan Özel Plajlı Sitede Müstakil Dubleks Villa",
+    loc: "Gönen / Denizkent",
+    price: 6000000,
+    priceStr: "6.000.000 ₺",
+    sqm: "160 m² · 4+1",
+    tapu: "Müstakil Parsel Tapu",
+    imar: "Site İçi Villa",
+    yol: "Site İçi Güvenlikli Yol",
+    suElektrik: "Tam Kurulu",
+    advisor: "Berkay Aydemir",
+    img: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=700&q=80",
+    tags: ["Özel Plaj", "Geniş Veranda", "Peyzajlı Bahçe", "Lüks İç Mimari"],
+    desc: "Site sakinlerine özel kumsal plajı bulunan, 7/24 güvenlikli ve çocuk oyun alanlı nezih bölgede, şömineli ve klimalı lüks 4+1 müstakil dubleks."
+  },
+  {
+    id: "denizkent-bahceli-yazlik",
+    cat: "yazlik",
+    catLabel: "Müstakil Yazlık",
+    title: "Denizkent Merkezde 3+1 Geniş Bahçeli ve Verandalı Müstakil Yazlık",
+    loc: "Gönen / Denizkent",
+    price: 3900000,
+    priceStr: "3.900.000 ₺",
+    sqm: "130 m² · 3+1",
+    tapu: "Müstakil Tapulu",
+    imar: "Konut",
+    yol: "Asfalt",
+    suElektrik: "Aktif",
+    advisor: "Ender Kardaş",
+    img: "https://images.unsplash.com/photo-1598228723793-52759bba239c?auto=format&fit=crop&w=700&q=80",
+    tags: ["Barbekü Alanı", "Büyük Veranda", "Krediye Uygun", "Yaz-Kış Oturuma Uygun"],
+    desc: "Denizkent marketlere ve çarşıya çok yakın, sakin sokakta, kendine ait otoparkı ve meyve ağaçları olan bakımlı 3+1 tek katlı müstakil sahil evi."
+  },
+
+  // --- GÖNEN MERKEZ DAİRE ---
+  {
+    id: "gonen-merkez-sifir-31",
+    cat: "daire",
+    catLabel: "Merkez Daire",
+    title: "Gönen Merkezde Termal Bölgeye Yakın 140 m² 3+1 Lüks Daire",
+    loc: "Gönen Merkez / Balıkesir",
+    price: 3650000,
+    priceStr: "3.650.000 ₺",
+    sqm: "140 m² Brüt · 125 m² Net",
+    tapu: "Kat Mülkiyeti (İskanlı)",
+    imar: "Konut",
+    yol: "Cadde Üstü",
+    suElektrik: "Doğalgaz Kombili",
+    advisor: "Ferdi Düvenci",
+    img: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=700&q=80",
+    tags: ["Doğalgaz Kombili", "Asansörlü", "Ebeveyn Banyolu", "Kapalı Otopark"],
+    desc: "Gönen dünyaca ünlü kaplıcalar bölgesine ve çarşıya yürüme mesafesinde, sıfır binada birinci sınıf malzeme ve işçilikle yapılmış 3+1 daire."
+  }
+];
+
+// ==================== TAB NAVIGATION ====================
+const tabBtns = document.querySelectorAll('.nav-tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabContents.forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    const targetId = btn.getAttribute('data-tab');
+    document.getElementById(targetId).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// ==================== CATALOG RENDER & FILTER ====================
+const catalogGrid = document.getElementById('catalogGrid');
+const catalogFilters = document.querySelectorAll('.filter-btn');
+const propSearchInput = document.getElementById('propSearchInput');
+
+function renderCatalog(items) {
+  catalogGrid.innerHTML = '';
+  if (items.length === 0) {
+    catalogGrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted)">Aradığınız kriterlere uygun ilan bulunamadı. Lütfen filtreleri değiştirin.</div>';
+    return;
+  }
+  items.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'prop-card-full';
+    card.innerHTML = `
+      <div class="prop-card-header" style="background-image:url('${p.img}')">
+        <span class="prop-badge-cat">${p.catLabel}</span>
+        <span class="prop-badge-loc">📍 ${p.loc}</span>
+        <div class="prop-price-tag">${p.priceStr}</div>
+      </div>
+      <div class="prop-content">
+        <div>
+          <h4 class="prop-title-full">${p.title}</h4>
+          <div class="prop-specs-table">
+            <div class="prop-spec-item"><span>Alan</span><b>${p.sqm}</b></div>
+            <div class="prop-spec-item"><span>Tapu</span><b>${p.tapu}</b></div>
+            <div class="prop-spec-item"><span>İmar</span><b>${p.imar}</b></div>
+            <div class="prop-spec-item"><span>Yol Durumu</span><b>${p.yol}</b></div>
+          </div>
+          <div class="prop-tags-list">
+            ${p.tags.map(t => `<span class="prop-tag-span">✓ ${t}</span>`).join('')}
+          </div>
+        </div>
+        <div class="prop-card-actions">
+          <button class="btn-card-ask" onclick="openSimWithProp('${p.id}')">💬 Asistana Sor</button>
+          <button class="btn-card-detail" onclick="openPropModal('${p.id}')">Detaylar</button>
+        </div>
+      </div>
+    `;
+    catalogGrid.appendChild(card);
+  });
+}
+
+// Initial render
+renderCatalog(PROPERTIES);
+
+// Category filtering
+catalogFilters.forEach(btn => {
+  btn.addEventListener('click', () => {
+    catalogFilters.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+  });
+});
+
+// Search input
+propSearchInput.addEventListener('input', applyFilters);
+
+function applyFilters() {
+  const activeBtn = document.querySelector('.filter-btn.active');
+  const cat = activeBtn ? activeBtn.getAttribute('data-cat') : 'all';
+  const query = propSearchInput.value.trim().toLowerCase();
+
+  const filtered = PROPERTIES.filter(p => {
+    const matchCat = (cat === 'all' || p.cat === cat);
+    const matchQuery = (
+      p.title.toLowerCase().includes(query) ||
+      p.loc.toLowerCase().includes(query) ||
+      p.tags.some(t => t.toLowerCase().includes(query)) ||
+      p.desc.toLowerCase().includes(query)
+    );
+    return matchCat && matchQuery;
+  });
+  renderCatalog(filtered);
+}
+
+// ==================== MODAL LOGIC ====================
+const propModal = document.getElementById('propModal');
+const modalCloseBtn = document.getElementById('modalCloseBtn');
+const modalCloseBtn2 = document.getElementById('modalCloseBtn2');
+const modalImg = document.getElementById('modalImg');
+const modalTitle = document.getElementById('modalTitle');
+const modalPrice = document.getElementById('modalPrice');
+const modalSpecs = document.getElementById('modalSpecs');
+const modalDesc = document.getElementById('modalDesc');
+const modalBookBtn = document.getElementById('modalBookBtn');
+
+let activeModalProp = null;
+
+function openPropModal(id) {
+  const p = PROPERTIES.find(x => x.id === id);
+  if (!p) return;
+  activeModalProp = p;
+  modalImg.style.backgroundImage = `url('${p.img}')`;
+  modalTitle.textContent = p.title;
+  modalPrice.textContent = p.priceStr;
+  modalSpecs.innerHTML = `
+    <div><span>Konum</span><b>${p.loc}</b></div>
+    <div><span>Alan & Metraj</span><b>${p.sqm}</b></div>
+    <div><span>Tapu Niteliği</span><b>${p.tapu}</b></div>
+    <div><span>İmar Durumu</span><b>${p.imar}</b></div>
+    <div><span>Kadastro Yolu</span><b>${p.yol}</b></div>
+    <div><span>Su & Elektrik</span><b>${p.suElektrik}</b></div>
+    <div><span>Yetkili Danışman</span><b>${p.advisor}</b></div>
+    <div><span>Sahibinden</span><b>aydemiremlak10</b></div>
+  `;
+  modalDesc.textContent = p.desc;
+  propModal.classList.add('open');
+}
+
+modalCloseBtn.addEventListener('click', () => propModal.classList.remove('open'));
+modalCloseBtn2.addEventListener('click', () => propModal.classList.remove('open'));
+propModal.addEventListener('click', (e) => {
+  if (e.target === propModal) propModal.classList.remove('open');
+});
+
+modalBookBtn.addEventListener('click', () => {
+  if (activeModalProp) {
+    propModal.classList.remove('open');
+    openSimWithProp(activeModalProp.id);
+  }
+});
+
+function openSimWithProp(id) {
+  const p = PROPERTIES.find(x => x.id === id);
+  if (!p) return;
+  // Switch to simulator tab
+  tabBtns[0].click();
+  const q = `Merhaba, Sahibinden mağazanızdaki "${p.title}" (${p.priceStr}) ilanı hakkında detaylı bilgi ve yer gösterimi randevusu almak istiyorum.`;
+  handleUserMessage(q, p);
+}
+
+// ==================== CHAT SIMULATOR & CRM LOGIC ====================
+const waChatBox = document.getElementById('waChatBox');
+const waForm = document.getElementById('waForm');
+const waInput = document.getElementById('waInput');
+const waChipsBox = document.getElementById('waChipsBox');
+const waResetBtn = document.getElementById('waResetBtn');
+const crmLeadsList = document.getElementById('crmLeadsList');
+const kpiLeadCount = document.getElementById('kpiLeadCount');
+const kpiVolumeVal = document.getElementById('kpiVolumeVal');
+
+let currentLeads = 3;
+let currentVolumeM = 13.8;
+
+function getCurrentTime() {
+  const now = new Date();
+  return String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+}
+
+function appendMsg(text, type = 'in', cardHtml = '') {
+  const msgDiv = document.createElement('div');
+  msgDiv.className = `wa-msg ${type}`;
+  msgDiv.innerHTML = text + (cardHtml ? cardHtml : '') + `<div class="wa-msg-time">${getCurrentTime()}</div>`;
+  waChatBox.appendChild(msgDiv);
+  waChatBox.scrollTop = waChatBox.scrollHeight;
+}
+
+function appendTypingIndicator() {
+  const t = document.createElement('div');
+  t.id = 'typingIndicator';
+  t.className = 'wa-msg in';
+  t.innerHTML = '<i>Aydemir Emlak Asistanı yazıyor...</i>';
+  waChatBox.appendChild(t);
+  waChatBox.scrollTop = waChatBox.scrollHeight;
+}
+
+function removeTypingIndicator() {
+  const t = document.getElementById('typingIndicator');
+  if (t) t.remove();
+}
+
+function handleUserMessage(userText, directProp = null) {
+  appendMsg(userText, 'out');
+  appendTypingIndicator();
+
+  setTimeout(() => {
+    removeTypingIndicator();
+    processAiResponse(userText, directProp);
+  }, 900);
+}
+
+function processAiResponse(text, directProp = null) {
+  const lower = text.toLowerCase();
+
+  // If directly triggered for a specific property
+  if (directProp) {
+    const cardHtml = `
+      <div class="chat-prop-card">
+        <div class="chat-prop-img" style="background-image:url('${directProp.img}')">
+          <span class="chat-prop-price">${directProp.priceStr}</span>
+        </div>
+        <div class="chat-prop-body">
+          <div class="chat-prop-title">${directProp.title}</div>
+          <div class="chat-prop-meta">📍 ${directProp.loc} · ${directProp.sqm} · ${directProp.tapu}</div>
+          <div class="chat-prop-btns">
+            <button class="chat-btn-action" onclick="confirmAppointment('${directProp.title}', '${directProp.priceStr}', '${directProp.advisor}')">📅 Cumartesi 14:00 Randevu Al</button>
+            <a class="chat-btn-action sec" href="https://aydemiremlak10.sahibinden.com/" target="_blank">Sahibinden No</a>
+          </div>
+        </div>
+      </div>
+    `;
+    appendMsg(
+      `Harika bir seçim! İncelediğiniz <b>${directProp.title}</b> ilanımız portföyümüzde aktiftir. ✅<br><br>` +
+      `<b>Tapu Durumu:</b> ${directProp.tapu} (Sorunsuz, borçsuz, satışa hazır)<br>` +
+      `<b>İmar / Yol:</b> ${directProp.imar} · ${directProp.yol}<br>` +
+      `<b>Sorumlu Danışman:</b> ${directProp.advisor}<br><br>` +
+      `Bu parseli hafta sonu veya yarın yerinde görmek isterseniz hemen randevunuzu oluşturalım:`,
+      'in',
+      cardHtml
+    );
+    addLeadToCrm("Alıcı (Online / WhatsApp)", directProp.title, directProp.priceStr, directProp.advisor, "İlan detayı ve randevu teyidi bekliyor");
+    return;
+  }
+
+  // Köy Evi Sorgusu
+  if (lower.includes('köy evi') || lower.includes('tas ev') || lower.includes('taş ev') || lower.includes('müstakil bahçe')) {
+    const p = PROPERTIES[0]; // 730m2 köy evi
+    const cardHtml = `
+      <div class="chat-prop-card">
+        <div class="chat-prop-img" style="background-image:url('${p.img}')">
+          <span class="chat-prop-price">${p.priceStr}</span>
+        </div>
+        <div class="chat-prop-body">
+          <div class="chat-prop-title">${p.title}</div>
+          <div class="chat-prop-meta">📍 Gönen Köyleri · 730 m² Arsa · Sıfır 2+1</div>
+          <div class="chat-prop-btns">
+            <button class="chat-btn-action" onclick="confirmAppointment('${p.title}', '${p.priceStr}', 'Ahmet Aydemir')">📅 Bu Evi İnceleme Randevusu</button>
+          </div>
+        </div>
+      </div>
+    `;
+    appendMsg(
+      `Gönen köylerinde tam aradığınız nitelikte, müstakil tapulu ve bahçeli fırsat evlerimiz bulunmaktadır! 🏡<br><br>` +
+      `Özellikle <b>730 m² arsa içerisinde sıfır yapılmış 2+1 taş köy evimiz</b> (4.650.000 ₺) ve <b>Taştepe'deki 557 m² ev kayıtlı parselimiz</b> (1.650.000 ₺) en çok talep gören yerlerimizdir.<br><br>` +
+      `Görsel ve detaylarını iletiyorum:`,
+      'in',
+      cardHtml
+    );
+    addLeadToCrm("Doğa Tutkunu Alıcı", "Gönen Köy Evi Portföyü", "4.650.000 ₺", "Ahmet Aydemir", "Hafta sonu yer görme talep etti");
+    return;
+  }
+
+  // Çakmak İmarlı Arsa Sorgusu
+  if (lower.includes('çakmak') || lower.includes('arsa') || lower.includes('imarlı')) {
+    const p = PROPERTIES[4]; // Çakmak 465 m2 arsa
+    const cardHtml = `
+      <div class="chat-prop-card">
+        <div class="chat-prop-img" style="background-image:url('${p.img}')">
+          <span class="chat-prop-price">${p.priceStr}</span>
+        </div>
+        <div class="chat-prop-body">
+          <div class="chat-prop-title">${p.title}</div>
+          <div class="chat-prop-meta">📍 Gönen Çakmak · 465 m² · %40 Köy İçi İmar</div>
+          <div class="chat-prop-btns">
+            <button class="chat-btn-action" onclick="confirmAppointment('${p.title}', '${p.priceStr}', 'Ahmet Aydemir')">📍 Konum ve Tapu Bilgisi İste</button>
+          </div>
+        </div>
+      </div>
+    `;
+    appendMsg(
+      `Evet, <b>Gönen Çakmak Köyü 465 m² imarlı arsamız</b> portföyümüzdedir. 📐<br><br>` +
+      `<b>Tapu:</b> Müstakil tek tapudur, hisse yoktur.<br>` +
+      `<b>İmar Oranı:</b> %40 taban oturumlu, 2.5 kat konut imarlıdır.<br>` +
+      `<b>Yol Durumu:</b> Resmi kadastro yolu cepheli olup binek araçla parselin önüne kadar gidilmektedir.<br>` +
+      `<b>Fiyat:</b> 845.000 ₺ (Bölge emsallerine göre oldukça kelepir).<br><br>` +
+      `Ahmet Bey'in ada/parsel krokisini telefonunuza göndermesini ister misiniz?`,
+      'in',
+      cardHtml
+    );
+    addLeadToCrm("Yatırımcı (İstanbul)", "Çakmak Köyü 465 m² İmarlı Arsa", "845.000 ₺", "Ahmet Aydemir", "Ada/Parsel ve Kadastro krokisi istedi");
+    return;
+  }
+
+  // Denizkent Yazlık Sorgusu
+  if (lower.includes('denizkent') || lower.includes('yazlık') || lower.includes('sahil') || lower.includes('villa')) {
+    const p = PROPERTIES[12]; // Denizkent triplex
+    const cardHtml = `
+      <div class="chat-prop-card">
+        <div class="chat-prop-img" style="background-image:url('${p.img}')">
+          <span class="chat-prop-price">${p.priceStr}</span>
+        </div>
+        <div class="chat-prop-body">
+          <div class="chat-prop-title">${p.title}</div>
+          <div class="chat-prop-meta">📍 Denizkent / Pınarkent · 4+1 Triplex · Denize 200m</div>
+          <div class="chat-prop-btns">
+            <button class="chat-btn-action" onclick="confirmAppointment('${p.title}', '${p.priceStr}', 'Berkay Aydemir')">📅 Cumartesi Saat 15:00 Randevu</button>
+          </div>
+        </div>
+      </div>
+    `;
+    appendMsg(
+      `Denizkent sahil bölgesinde hem Pınarkent mevkii hem de Güveymalan sitesinde çok özel yazlık ve villalarımız mevcuttur! 🏖️<br><br>` +
+      `• <b>Pınarkent 4+1 Triplex Yazlık:</b> Kumsala 200m mesafede, geniş teraslı, 4.700.000 ₺<br>` +
+      `• <b>Güveymalan Müstakil Dubleks:</b> Özel plajlı site içerisinde 6.000.000 ₺<br><br>` +
+      `Berkay Bey hafta sonu bölgede yer gösterimindedir. Randevunuzu rezerve edelim:`,
+      'in',
+      cardHtml
+    );
+    addLeadToCrm("Sahil Evi Alıcısı (Bursa)", "Denizkent 4+1 Yazlık Portföyü", "4.700.000 ₺", "Berkay Aydemir", "Cumartesi yer gösterimi istiyor");
+    return;
+  }
+
+  // Mülkümü Satmak İstiyorum
+  if (lower.includes('satmak') || lower.includes('mülk') || lower.includes('ekspertiz') || lower.includes('ahmet bey')) {
+    appendMsg(
+      `Mülkünüz için Aydemir Emlak'ı tercih ettiğiniz için teşekkür ederiz! 🔑<br><br>` +
+      `Gönen merkez ofisimizde <b>Ahmet Aydemir</b> ve ekibimiz mülkünüzün ücretsiz piyasa ekspertizini yapıp Sahibinden kurumsal mağazamızda, YouTube video tanıtım kanalımızda ve 10.000+ kayıtlı yatırımcı ağımızda en doğru fiyattan satışa sunar.<br><br>` +
+      `Gönen Tapu Müdürlüğü altındaki ofisimize bekleriz veya Ahmet Bey'e doğrudan <b>0532 307 40 72</b> numarasından ulaşabilirsiniz. Randevunuz danışman ekranına kaydedildi.`,
+      'in'
+    );
+    addLeadToCrm("Mülk Sahibi", "Gönen / Çevre Köy Mülk Satış Kaydı", "Bilinmiyor", "Ahmet Aydemir", "Ekspertiz ve Sahibinden vitrin ilanı istiyor");
+    return;
+  }
+
+  // Generic AI Response
+  appendMsg(
+    `Mesajınızı aldım! Gönen Aydemir Emlak olarak 100'ü aşkın aktif Sahibinden ilanımızla Gönen, Sarıköy, Denizkent ve Manyas bölgesinde hizmet veriyoruz.<br><br>` +
+    `Bütçeniz, aradığınız m² veya ilgilendiğiniz köy adını belirtirseniz size en uygun 2 seçeneği fotoğraflarıyla çıkarabilirim. Dilerseniz <b>Ahmet Aydemir (0532 307 40 72)</b> veya <b>Berkay Aydemir (0530 159 28 13)</b> ile doğrudan görüşme ayarlayabilirim.`,
+    'in'
+  );
+}
+
+function confirmAppointment(title, price, advisor) {
+  appendMsg(`📅 <b>${title}</b> ilanı için Cumartesi günü saat 14:00'te randevu talebimi onaylıyorum. Danışman: ${advisor}`, 'out');
+  appendTypingIndicator();
+  setTimeout(() => {
+    removeTypingIndicator();
+    appendMsg(
+      `Harika! Randevunuz oluşturuldu. 🎉<br><br>` +
+      `<b>İlan:</b> ${title}<br>` +
+      `<b>Danışmanınız:</b> ${advisor}<br>` +
+      `<b>Buluşma Noktası:</b> Malkoç Mah. Kızılay Cad. No:4/C (Gönen Tapu Müdürlüğü altı) Aydemir Emlak Ofisi veya Parsel Başı.<br><br>` +
+      `Danışmanımız az sonra WhatsApp üzerinden kesin konum pimini iletecektir. Şimdiden hayırlı olsun!`,
+      'in'
+    );
+    addLeadToCrm("Doğrulanmış Alıcı", title, price, advisor, "Randevu Onaylandı · Cumartesi 14:00 Buluşma");
+  }, 800);
+}
+
+function addLeadToCrm(name, target, budget, advisor, note) {
+  currentLeads++;
+  const numBudget = parseFloat(budget.replace(/[^0-9.]/g, '')) || 2.5;
+  currentVolumeM = parseFloat((currentVolumeM + (numBudget > 1000 ? numBudget / 1000000 : numBudget)).toFixed(1));
+
+  kpiLeadCount.textContent = currentLeads + " Kişi";
+  kpiVolumeVal.textContent = currentVolumeM + "M ₺";
+
+  const leadItem = document.createElement('div');
+  leadItem.className = 'crm-lead-item just-added';
+  leadItem.innerHTML = `
+    <div class="lead-title-row">
+      <b>${name}</b>
+      <span class="lead-score">Yeni Talep · %98</span>
+    </div>
+    <div class="lead-desc">
+      Hedef: <b>${target}</b> · Bütçe: ${budget} · Not: ${note}
+    </div>
+    <span class="lead-agent-badge">Atanan Danışman: ${advisor}</span>
+  `;
+  crmLeadsList.insertBefore(leadItem, crmLeadsList.firstChild);
+}
+
+// Form submit
+waForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const val = waInput.value.trim();
+  if (!val) return;
+  waInput.value = '';
+  handleUserMessage(val);
+});
+
+// Chips click
+waChipsBox.querySelectorAll('.wa-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const q = chip.getAttribute('data-q');
+    handleUserMessage(q);
+  });
+});
+
+// Reset Chat
+waResetBtn.addEventListener('click', () => {
+  waChatBox.innerHTML = `
+    <div class="wa-msg in">
+      Sohbet sıfırlandı. <b>Aydemir Emlak & Gayrimenkul</b> dijital danışmanına hoş geldiniz. 🏡<br><br>
+      Gönen köylerindeki satılık köy evi, imarlı arsa, tarla ve Denizkent yazlık ilanlarımız için size nasıl yardımcı olabilirim?
+      <div class="wa-msg-time">${getCurrentTime()}</div>
+    </div>
+  `;
+});
+</script>
+</body>
+</html>
