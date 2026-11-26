@@ -1292,16 +1292,265 @@ footer.corp-footer {
   color: #cbd5e1; font-size: 12.5px;
 }
 
+/* ===== HOTEL INNOVATIONS SHOWCASE ===== */
+.hotel-suite-wrap {
+  background: linear-gradient(180deg, rgba(14, 21, 38, 0.03) 0%, rgba(24, 181, 141, 0.05) 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.suite-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+.suite-tab {
+  background: #ffffff;
+  border: 1px solid var(--border-strong);
+  color: var(--text-body);
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.suite-tab:hover { border-color: var(--accent); color: var(--accent); }
+.suite-tab.active {
+  background: var(--bg-navy);
+  border-color: var(--bg-navy);
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(14, 21, 38, 0.16);
+}
+.innov-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.innov-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px 26px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+.innov-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(24, 181, 141, 0.45);
+  box-shadow: var(--shadow-md);
+}
+.innov-card.hidden-innov { display: none; }
+.innov-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.innov-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.innov-pill {
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(14, 21, 38, 0.06);
+  color: var(--bg-navy);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.innov-pill.money { background: rgba(14, 143, 92, 0.12); color: #0b6e47; }
+.innov-pill.shield { background: rgba(217, 119, 6, 0.12); color: #b45309; }
+.innov-pill.ops { background: rgba(2, 132, 199, 0.12); color: #0369a1; }
+.innov-pill.boss { background: rgba(79, 70, 229, 0.12); color: #4338ca; }
+.innov-card h3 {
+  font-size: 17.5px;
+  font-weight: 800;
+  color: var(--bg-navy);
+  letter-spacing: -0.3px;
+  margin-bottom: 6px;
+}
+.innov-card p {
+  font-size: 13.8px;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+.innov-impact {
+  background: var(--bg-cream);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 13px;
+  font-size: 12.6px;
+  color: var(--bg-navy);
+  font-weight: 600;
+  line-height: 1.48;
+}
+.innov-impact b { color: var(--accent); }
+.innov-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+.innov-try-btn {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 12.8px;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+}
+.innov-try-btn:hover { text-decoration: underline; }
+
+.boss-report-banner {
+  background: var(--bg-navy);
+  border-radius: 24px;
+  padding: 32px 34px;
+  color: #ffffff;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 30px;
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+}
+.boss-report-banner h3 {
+  font-size: clamp(22px, 2.6vw, 29px);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.boss-report-banner p {
+  color: #cbd5e1;
+  font-size: 14.5px;
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+.boss-wa-card {
+  background: #111b21;
+  border: 1px solid rgba(24, 181, 141, 0.35);
+  border-radius: 18px;
+  padding: 18px 20px;
+  font-size: 13px;
+  color: #e9edef;
+  line-height: 1.55;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.32);
+}
+.boss-wa-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #34d399;
+}
+.boss-wa-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+.boss-wa-row:last-of-type { border-bottom: none; }
+.boss-wa-row strong { color: #34d399; white-space: nowrap; }
+.boss-wa-alert {
+  margin-top: 10px;
+  background: rgba(245, 158, 11, 0.14);
+  border: 1px solid rgba(245, 158, 11, 0.38);
+  color: #fde68a;
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.chat-rich-card {
+  background: #111b21;
+  border: 1px solid rgba(24, 181, 141, 0.36);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-top: 8px;
+  font-size: 11.8px;
+  color: #e2e8f0;
+  line-height: 1.48;
+}
+.chat-rich-card.amber {
+  border-color: rgba(245, 158, 11, 0.48);
+  background: rgba(245, 158, 11, 0.08);
+}
+.chat-rich-card.blue {
+  border-color: rgba(56, 189, 248, 0.45);
+  background: rgba(2, 132, 199, 0.10);
+}
+.chat-rich-title {
+  font-size: 12.2px;
+  font-weight: 800;
+  color: #34d399;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+.chat-rich-card.amber .chat-rich-title { color: #fbbf24; }
+.chat-rich-card.blue .chat-rich-title { color: #38bdf8; }
+.chat-rich-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 3px 0;
+}
+.chat-rich-btn {
+  margin-top: 8px;
+  width: 100%;
+  background: linear-gradient(135deg, #18b58d, #0e8f5c);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 980px) {
-  .hero-grid, .roi-grid, .apply-card { grid-template-columns: 1fr; }
-  .sectors-grid, .pricing-grid, .footer-grid, .steps-inline { grid-template-columns: 1fr; }
+  .hero-grid, .roi-grid, .apply-card, .boss-report-banner { grid-template-columns: 1fr; }
+  .sectors-grid, .pricing-grid, .footer-grid, .steps-inline, .innov-grid { grid-template-columns: 1fr; }
   .bento-span-7, .bento-span-5, .bento-span-6, .bento-span-12 { grid-column: span 12; }
   .hero-metrics { grid-template-columns: repeat(2, 1fr); }
   .nav-links, .nav-actions .btn-secondary { display: none; }
   .mobile-toggle { display: inline-flex; }
   section.corp-section { padding: 62px 0; }
-  .roi-box, .apply-card { padding: 26px 22px; }
+  .roi-box, .apply-card, .boss-report-banner { padding: 26px 22px; }
 }
 @media (max-width: 520px) {
   .form-grid { grid-template-columns: 1fr; }
@@ -1329,9 +1578,9 @@ footer.corp-footer {
     </a>
 
     <ul class="nav-links">
+      <li><a href="#otel-yenilikler">Otel AI</a></li>
       <li><a href="#cozumler">Hizmetler</a></li>
       <li><a href="#canli-studyo">Canlı Demo</a></li>
-      <li><a href="#mimari">Mimari</a></li>
       <li><a href="#roi-hesaplayici">Kazanç</a></li>
       <li><a href="#paketler">Paketler</a></li>
     </ul>
@@ -1343,6 +1592,7 @@ footer.corp-footer {
     </div>
   </div>
   <div id="mobileDrawer" class="mobile-drawer">
+    <a href="#otel-yenilikler" onclick="this.parentElement.classList.remove('open')">Otel AI Yenilikleri (10 Modül)</a>
     <a href="#cozumler" onclick="this.parentElement.classList.remove('open')">Hizmetlerimiz</a>
     <a href="#canli-studyo" onclick="this.parentElement.classList.remove('open')">Canlı AI Stüdyo</a>
     <a href="#mimari" onclick="this.parentElement.classList.remove('open')">AI Mimari</a>
@@ -1535,21 +1785,22 @@ footer.corp-footer {
       <article class="sector-card" data-cat="turizm-yeme">
         <div class="sector-photo">
           <img src="assets/otel_hero.jpg" alt="Otel ve Turizm Yapay Zeka Resepsiyonu" loading="lazy">
-          <span class="sector-badge badge-otel">OTEL &amp; TURİZM AI</span>
+          <span class="sector-badge badge-otel">OTEL &amp; TURİZM AI · 10 MODÜL</span>
         </div>
         <div class="sector-body">
           <div>
-            <h3>Çok Dilli Dijital &amp; Sesli Resepsiyon</h3>
-            <p>TR, EN, DE ve RU dillerinde oda, fiyat, kahvaltı ve transfer sorularını anında yanıtlar; Booking'in %15–18 komisyonunu ödemeden direkt rezervasyon alır. Sesli telefon resepsiyonu desteklidir.</p>
+            <h3>Komisyon Kıran &amp; Gelir Artıran Otel Otopilotu</h3>
+            <p>Booking fiyatını kırıp %10 direkt indirimle kapora alır, kötü yorumları Google'a düşmeden yakalar, kimlik fotoğrafıyla KBS ön check-in yapar, oda içi QR siparişini mutfağa fişler ve her sabah 09:00'da patrona kâr raporu atar.</p>
             <div class="sector-tags">
-              <span>4+ Dil Desteği</span>
-              <span>Sesli Telefon AI</span>
-              <span>%0 OTA Komisyonu</span>
+              <span>Booking Fiyat Kırıcı</span>
+              <span>Google 5★ Kalkanı</span>
+              <span>Kapora &amp; KBS OCR</span>
+              <span>Patron Raporu</span>
             </div>
           </div>
           <div class="sector-footer">
-            <a href="#canli-studyo" onclick="sektorSec('otel')" class="sector-link">61 Otel Canlı Test Et →</a>
-            <a href="#ucretsiz-pilot" class="sector-link" style="color:var(--text-muted); font-weight:700;">Pilot Başlat</a>
+            <a href="#otel-yenilikler" class="sector-link">10 Otel Yeniliğini İncele →</a>
+            <a href="#canli-studyo" onclick="sektorSec('otel')" class="sector-link" style="color:var(--text-muted); font-weight:700;">Canlı Test Et</a>
           </div>
         </div>
       </article>
@@ -1624,6 +1875,248 @@ footer.corp-footer {
       </article>
 
     </div>
+  </div>
+</section>
+
+<!-- OTEL SAHİPLERİNE ÖZEL 10 AKILLI GELİR & OTOPİLOT MODÜLÜ -->
+<section class="corp-section hotel-suite-wrap" id="otel-yenilikler">
+  <div class="container">
+    <div class="section-header" style="max-width:780px;">
+      <div class="section-eyebrow">🏨 OTEL OTOMASYONU v3.0 · 10 YENİLİK</div>
+      <h2>Sıradan Chatbot Değil, Otelinize Doğrudan Para Kazandıran Otopilot</h2>
+      <p>Otel sahipleri için <strong>"gider" değil, kendi parasını ilk 3 rezervasyonda çıkaran gelir makinesi</strong>. Booking komisyonunu keser, no-show'u bitirir, kötü yorumu kapıdan çıkmadan söndürür ve her sabah patronun cebine net kâr raporu gönderir.</p>
+    </div>
+
+    <div class="suite-tabs">
+      <button type="button" class="suite-tab active" onclick="innovFiltrele('all', this)">Tümü (10 Modül)</button>
+      <button type="button" class="suite-tab" onclick="innovFiltrele('money', this)">💰 Komisyon &amp; Gelir (4)</button>
+      <button type="button" class="suite-tab" onclick="innovFiltrele('shield', this)">⭐ İtibar &amp; Yorum Kalkanı</button>
+      <button type="button" class="suite-tab" onclick="innovFiltrele('ops', this)">⚙️ Resepsiyon &amp; Oda İçi (3)</button>
+      <button type="button" class="suite-tab" onclick="innovFiltrele('boss', this)">📊 Patron Kokpiti (2)</button>
+    </div>
+
+    <div class="innov-grid">
+
+      <!-- 1 -->
+      <article class="innov-card" data-innov="money">
+        <div>
+          <div class="innov-top">
+            <div class="innov-icon">🛡️</div>
+            <span class="innov-pill money">OTA Komisyon Kalkanı</span>
+          </div>
+          <h3 style="margin-top:12px;">1. Booking / ETS Fiyat Kırıcı (Ekran Görüntüsü Okuyucu)</h3>
+          <p>Misafir <em>"Booking'de 5.000 TL gördüm"</em> yazdığında veya ekran görüntüsü attığında yapay zeka fiyatı anında okur; aracı komisyonunu aradan çıkarıp <strong>%10 direkt indirim + ücretsiz geç çıkış</strong> teklifiyle satışı otelinize çevirir.</p>
+        </div>
+        <div>
+          <div class="innov-impact"><b>Finansal Etki:</b> Ayda sadece 2–3 odayı Booking'den (%18 komisyon) direkt rezervasyona çevirmek, sistemin tüm yıllık maliyetini tek başına karşılar.</div>
+          <div class="innov-actions">
+            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Vision OCR + Otomatik Teklif</span>
+            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Bookingde 5.000 TL gordum, sizde direkt fiyat ne kadar?')">Canlı Demoda Dene →</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="innov-card" data-innov="money">
+        <div>
+          <div class="innov-top">
+            <div class="innov-icon">💳</div>
+            <span class="innov-pill money">No-Show Bitirici</span>
+          </div>
+          <h3 style="margin-top:12px;">2. Sohbet İçi Kapora Linki &amp; Otomatik Dekont OCR</h3>
+          <p>Ön rezervasyonda kalmaz: 1 gecelik kapora için anında <strong>iyzico / PayTR linki</strong> veya IBAN paylaşır. Misafir havale dekontunun fotoğrafını attığında tutarı ve tarihi otomatik doğrulayıp odayı kesinleştirir.</p>
+        </div>
+        <div>
+          <div class="innov-impact"><b>Finansal Etki:</b> Son dakika iptallerini ve gelmeyen misafir (No-Show) kaybını %80'e varan oranda düşürür; resepsiyon dekont takibiyle uğraşmaz.</div>
+          <div class="innov-actions">
+            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">iyzico · PayTR · Dekont OCR</span>
+            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('1 gecelik kaporayi yatirdim, dekontu gonderiyorum')">Canlı Demoda Dene →</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="innov-card" data-innov="money">
+        <div>
+          <div class="innov-top">
+            <div class="innov-icon">🔁</div>
+            <span class="innov-pill money">Kayıp Ciro Kurtarıcı</span>
+          </div>
+          <h3 style="margin-top:12px;">3. Terk Edilen Sohbet (Abandoned Inquiry) Geri Kazanımı</h3>
+          <p>Gece 01:30'da fiyat sorup <em>"düşüneyim"</em> diyen veya susan misafirleri unutmaz. Ertesi gün 11:00'de otomatik nazik takip atar: <em>"Sorduğunuz tarihlerde son 2 oda kaldı, sizin için 2 saat opsiyonlayalım mı?"</em></p>
+        </div>
+        <div>
+          <div class="innov-impact"><b>Finansal Etki:</b> Fiyat sorup kaybolan potansiyel misafirlerin %20–30'unu ek reklam bütçesi harcamadan geri döndürür.</div>
+          <div class="innov-actions">
+            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Akıllı 24 Saat Takip Zinciri</span>
+            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Fiyatlari dusuneyim, sonra donerim')">Canlı Demoda Dene →</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="innov-card" data-innov="money">
+        <div>
+          <div class="innov-top">
+            <div class="innov-icon">✨</div>
+            <span class="innov-pill money">RevPAR Büyütücü</span>
+          </div>
+          <h3 style="margin-top:12px;">4. Check-in Öncesi Otomatik Upsell &amp; Ek Satış Motoru</h3>
+          <p>Girişten 24–48 saat önce misafire kişiselleştirilmiş teklif sunar: <strong>deniz manzaralı süite yükseltme</strong>, havalimanı VIP transfer, odaya çiçek/meyve veya akşam restoran masası rezervasyonu.</p>
+        </div>
+        <div>
+          <div class="innov-impact"><b>Finansal Etki:</b> Tek kuruş pazarlama maliyeti olmadan oda başı ortalama geliri (RevPAR) <b>+%15 ile +%25</b> arasında artırır.</div>
+          <div class="innov-actions">
+            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Oda Yükseltme · Transfer · Spa</span>
+            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Yarin giris yapacagiz, deniz manzarali suit yukseltme veya havalimani transferi var mi?')">Canlı Demoda Dene →</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="innov-card" data-innov="shield">
+        <div>
+          <div class="innov-top">
+            <div class="innov-icon">⭐</div>
+            <span class="innov-pill shield">Google 5★ Puan Kalkanı</span>
+          </div>
+          <h3 style="margin-top:12px;">5. Kötü Yorumu Google'a Düşmeden Yakalayan Nabız Yoklama</h3>
+          <p>Check-in'den 2 saat sonra misafire <em>"Odanızdan memnun musunuz?"</em> diye sorar. Sorun varsa (klima, havlu, temizlik) <strong>Google linki atmaz</strong>; anında teknik/housekeeping grubuna acil görev açar. Memnun misafire çıkışta tek tıkla <strong>5★ Google yorum linki</strong> gönderir.</p>
+        </div>
+        <div>
+          <div class="innov-impact"><b>Finansal Etki:</b> Google puanı 4.2'den 4.7'ye yükselen oteller oda fiyatlarını %12–15 yukarı çekebilir; kötü yorumlar daha otelden çıkmadan içeride söndürülür.</div>
+          <div class="innov-actions">
+            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Anlık Ticket + 5★ Yorum Filtresi</span>
+            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Odamdaki klima tam sogutmuyor ve havlu eksik')">Canlı Demoda Dene →</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="innov-card" data-innov="ops">
+        <div>
+          <div class="innov-top">
+            <div class="innov-icon">🪪</div>
+            <span class="innov-pill ops">Sıfır Kuyruk Check-in</span>
+          </div>
+          <h3 style="margin-top:12px;">6. WhatsApp'tan Kimlik / Pasaport Fotoğrafıyla KBS Ön Check-in</h3>
+          <p>Misafir otele gelmeden kimlik veya pasaport fotoğrafını WhatsApp'tan gönderir. Yapay zeka ad, soyad, TC/pasaport no ve doğum tarihini ayrıştırır, dijital KVKK onayını alır ve resepsiyona <strong>KBS girişine hazır</strong> sunar.</p>
+        </div>
+        <div>
+          <div class="innov-impact"><b>Operasyonel Etki:</b> Yaz sezonunda resepsiyon önündeki check-in kuyruğunu bitirir; misafir otele adım attığında sadece anahtarını alır.</div>
+          <div class="innov-actions">
+            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Kimlik OCR + Dijital KVKK</span>
+            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Kimlik fotografimi atsam hizli on check-in ve KBS hazirligi yapabilir misiniz?')">Canlı Demoda Dene →</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="innov-card" data-innov="ops">
+        <div>
+          <div class="innov-top">
+            <div class="innov-icon">🛎️</div>
+            <span class="innov-pill ops">Çok Dilli Oda Konsiyerji</span>
+          </div>
+          <h3 style="margin-top:12px;">7. Oda İçi QR Konsiyerj + Mutfağa 80mm Türkçe Fiş Basımı</h3>
+          <p>Her odadaki QR kodu okutan yabancı misafir kendi dilinde (Rusça, Arapça, Almanca, İngilizce) oda servisi veya ekstra yastık ister. AI talebi <strong>anında Türkçe'ye çevirip</strong> mutfak/kat hizmetleri yazıcısından fiş olarak çıkarır.</p>
+        </div>
+        <div>
+          <div class="innov-impact"><b>Operasyonel Etki:</b> Yabancı dil bilmeyen personel sorununu tek hamlede çözer; oda içi yeme-içme siparişlerini hızlandırıp ciroyu büyütür.</div>
+          <div class="innov-actions">
+            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">QR Oda Etiketi + 80mm ESC/POS</span>
+            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('204 nolu odaya 2 Turk kahvesi ve 1 ekstra yastik istiyorum')">Canlı Demoda Dene →</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="innov-card" data-innov="ops">
+        <div>
+          <div class="innov-top">
+            <div class="innov-icon">📞</div>
+            <span class="innov-pill ops">Sesli + WhatsApp Hafıza</span>
+          </div>
+          <h3 style="margin-top:12px;">8. Sesli Telefon AI + Çağrı Sonrası Otomatik WhatsApp Takibi</h3>
+          <p>Otelinizi telefonla arayan misafiri 12+ dilde insan doğallığında karşılar. Telefon kapandığı saniye misafirin WhatsApp'ına <strong>konuşulan odanın fotoğrafları ve %10 direkt indirimli rezervasyon linki</strong> otomatik düşer.</p>
+        </div>
+        <div>
+          <div class="innov-impact"><b>Operasyonel Etki:</b> Meşgul çalan veya açılmayan telefonlardan kaçan yüksek bütçeli rezervasyonları anında kurtarır.</div>
+          <div class="innov-actions">
+            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">SIP Voice AI + Omnichannel</span>
+            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Az once telefonla aradim, oda fotograflari ve direkt linki atar misiniz?')">Canlı Demoda Dene →</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9 -->
+      <article class="innov-card" data-innov="boss">
+        <div>
+          <div class="innov-top">
+            <div class="innov-icon">📊</div>
+            <span class="innov-pill boss">Patron Koltuğu Özeti</span>
+          </div>
+          <h3 style="margin-top:12px;">9. Her Sabah 09:00'da Patrona WhatsApp Gece Kâr Raporu</h3>
+          <p>Otel sahipleri karmaşık ekranlara bakmaz. Her sabah 09:00'da telefonunuza tek mesaj düşer: gece gelen talep, kapatılan direkt oda sayısı, <strong>Booking'den kurtarılan net komisyon</strong> ve çözülen oda şikayetleri.</p>
+        </div>
+        <div>
+          <div class="innov-impact"><b>Yönetim Etkisi:</b> Sistemin otelinize her gün kaç bin TL kazandırdığını şeffaf rakamlarla cebinizden takip edersiniz.</div>
+          <div class="innov-actions">
+            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Günlük Otomatik Özet</span>
+            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Patron raporu: Dun gece kac rezervasyon kapattin ve ne kadar komisyon kurtardin?')">Canlı Demoda Dene →</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10 -->
+      <article class="innov-card" data-innov="boss">
+        <div>
+          <div class="innov-top">
+            <div class="innov-icon">📈</div>
+            <span class="innov-pill boss">Akıllı Fiyat Alarmı</span>
+          </div>
+          <h3 style="margin-top:12px;">10. Talep Patlaması &amp; Dinamik Fiyat Artış Alarmı</h3>
+          <p>Aynı tarih için 1–2 saat içinde 5'ten fazla misafir fiyat sorduğunda patrona anında WhatsApp uyarısı gider: <em>"15–17 Ağustos için talep patladı, son 3 oda kaldı — fiyatı %15 artıralım mı?"</em></p>
+        </div>
+        <div>
+          <div class="innov-impact"><b>Finansal Etki:</b> Bayram ve hafta sonu pik dönemlerinde odaların ucuza dolmasını önler; tek onayla gecelik kârlılığı maksimize eder.</div>
+          <div class="innov-actions">
+            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Yield Management Lite</span>
+            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('15 Agustos talep alarmi ve dinamik fiyat onerisini goster')">Canlı Demoda Dene →</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- PATRON SABAH 09:00 RAPORU ÖNİZLEME BANDI -->
+    <div class="boss-report-banner">
+      <div>
+        <div class="section-eyebrow" style="background:rgba(24,181,141,0.16); color:#18b58d;">PATRONLARA ÖZEL GÜNLÜK ÖZET</div>
+        <h3>Siz Uyurken Oteliniz Kaç Oda Sattı? Her Sabah 09:00'da Cebinizde.</h3>
+        <p>Karmaşık panellerde kaybolmanıza gerek yok. Operis AI gece boyunca gelen tüm WhatsApp, Instagram DM ve telefon çağrılarını kapatır; sabah kahvenizi içerken tek mesajda <strong>kurtarılan komisyonu, ek upsell gelirini ve talep alarmlarını</strong> önünüze koyar.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#ucretsiz-pilot" onclick="pilotSektorSec('Otel & Turizm')" class="btn-primary">Otelinizde 14 Gün Ücretsiz Deneyin →</a>
+          <button type="button" class="btn-secondary" style="background:rgba(255,255,255,0.08); color:#ffffff; border-color:rgba(255,255,255,0.18);" onclick="otelSenaryoDene('Patron raporu: Dun gece kac rezervasyon kapattin ve ne kadar komisyon kurtardin?')">Raporu Simülatörde Gör</button>
+        </div>
+      </div>
+
+      <div class="boss-wa-card">
+        <div class="boss-wa-head">
+          <span>🤖 Operis AI · Patron Sabah Özeti</span>
+          <span>09:00 · WhatsApp</span>
+        </div>
+        <div class="boss-wa-row"><span>🌙 Gece Gelen Talep (22:00–08:00)</span><strong>14 Misafir</strong></div>
+        <div class="boss-wa-row"><span>✅ AI ile Kapanan Direkt Rezervasyon</span><strong>4 Oda · 28.400 TL</strong></div>
+        <div class="boss-wa-row"><span>🛡️ Booking Komisyonundan Kurtarılan</span><strong>+5.112 TL Net Kâr</strong></div>
+        <div class="boss-wa-row"><span>✨ Check-in Upsell &amp; Transfer Satışı</span><strong>+3.400 TL Ek Gelir</strong></div>
+        <div class="boss-wa-row"><span>⭐ Önlenen Şikayet / Yeni 5★ Google</span><strong>2 Çözüldü · 3 Yeni 5★</strong></div>
+        <div class="boss-wa-alert">
+          🔥 <b>Talep Alarmı:</b> 15–17 Ağustos için son 2 saatte 7 fiyat sorusu geldi (Son 3 oda). Gecelik fiyatı +%15 artırmak için <u>EVET</u> yazın.
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1833,6 +2326,14 @@ footer.corp-footer {
       <details class="faq-item">
         <summary>Yapay zeka yanlış fiyat, yanlış stok veya uydurma bilgi verir mi?</summary>
         <p>Hayır. Operis AI katı bilgi katmanı kurallarıyla çalışır; yalnızca onayladığınız fiyat, portföy ve stok verilerini kullanır. Kapsam dışı veya özel indirim gerektiren taleplerde sohbeti doğrudan yetkilinize aktarır.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Booking / ETS fiyat kırma ve %0 komisyon direkt rezervasyon nasıl çalışıyor?</summary>
+        <p>Misafir WhatsApp'tan aracı sitede gördüğü fiyatı yazdığında veya ekran görüntüsü gönderdiğinde Operis AI fiyatı okur; otelinizin belirlediği kuralla (örneğin %10 direkt indirim veya ücretsiz geç çıkış) karşı teklif sunar ve kapora linkiyle rezervasyonu doğrudan otelinize bağlar. Böylece %15–20 OTA komisyonu kasada kalır.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Google kötü yorum kalkanı ve KBS ön check-in otelimizde güvenli mi?</summary>
+        <p>Evet. Check-in sonrası memnuniyet mesajında sorun bildiren misafir asla Google yorum linkine yönlendirilmez; talep doğrudan kat hizmetleri veya teknik ekibinize düşer. Kimlik/pasaport ön check-in sürecinde ise dijital KVKK aydınlatma onayı alınır ve veriler yalnızca otelinizin izole alanında saklanır.</p>
       </details>
       <details class="faq-item">
         <summary>Kurulum ne kadar sürer ve teknik ekip gerekir mi?</summary>
@@ -2525,9 +3026,14 @@ const SEKTOR_AYARLARI = {
     demoLink: "hub.html",
     demoText: "Tüm Demolar ↗",
     chips: [
+      { lbl: "🛡️ Booking Fiyat Kır", msg: "Booking'de 5.000 TL gördüm, sizde direkt fiyat ne kadar?" },
+      { lbl: "💳 Kapora & Dekont", msg: "1 gecelik kaporayı yatırdım, dekontu gönderiyorum" },
+      { lbl: "✨ Oda Yükseltme", msg: "Yarın giriş yapacağız, deniz manzaralı süit veya transfer var mı?" },
+      { lbl: "⭐ Şikayet Kalkanı", msg: "Odamdaki klima tam soğutmuyor ve havlu eksik" },
+      { lbl: "🪪 Hızlı Check-in", msg: "Kimlik fotoğrafımı atsam hızlı ön check-in olur mu?" },
+      { lbl: "🛎️ Oda İçi QR", msg: "204 nolu odaya 2 Türk kahvesi ve ekstra yastık istiyorum" },
+      { lbl: "📊 Patron Raporu", msg: "Patron raporu: Dün gece kaç rezervasyon kapattın?" },
       { lbl: "📸 Oda Fotoğrafı", msg: "Oda fotoğraflarını görebilir miyim?" },
-      { lbl: "🛏️ Oda & Fiyat", msg: "Bu hafta sonu 2 kişilik oda fiyatınız nedir?" },
-      { lbl: "🍳 Kahvaltı", msg: "Kahvaltı dahil mi ve otoparkınız var mı?" },
       { lbl: "🇬🇧 English", msg: "Hi! Do you have sea view rooms for next Friday?" }
     ]
   },
@@ -2738,6 +3244,123 @@ function odaKartiUret() {
   `;
 }
 
+function bookingFiyatKirKarti() {
+  const ham = parseInt(String(seciliOtel.fiyat || "4500").replace(/\D/g, ""), 10) || 4500;
+  const otaFiyat = Math.round((ham * 1.18) / 50) * 50;
+  const direktFiyat = Math.round((otaFiyat * 0.90) / 50) * 50;
+  const tasarruf = otaFiyat - direktFiyat;
+  return `
+    <div class="chat-rich-card">
+      <div class="chat-rich-title"><span>🛡️ Booking / OTA Fiyat Kırıcı Aktif</span><span>%0 KOMİSYON</span></div>
+      <div class="chat-rich-row"><span>Aracı Platform Fiyatı:</span><span style="text-decoration:line-through; color:#94a3b8;">${otaFiyat.toLocaleString("tr-TR")} TL</span></div>
+      <div class="chat-rich-row"><span>Direkt Otel Fiyatı (%10 İndirim):</span><strong style="color:#34d399;">${direktFiyat.toLocaleString("tr-TR")} TL</strong></div>
+      <div class="chat-rich-row"><span>Hediye Ayrıcalık:</span><span>Ücretsiz Geç Çıkış (14:00)</span></div>
+      <div class="chat-rich-row"><span>Misafir Kazancı / Kurtarılan Komisyon:</span><strong style="color:#fbbf24;">+${tasarruf.toLocaleString("tr-TR")} TL</strong></div>
+      <button type="button" class="chat-rich-btn" onclick="rezervasyonTalebiOlustur()">💳 iyzico / PayTR Kapora Linkiyle Ayır</button>
+    </div>
+  `;
+}
+
+function kaporaOcrKarti() {
+  const refNo = "OPR-" + Math.floor(10000 + Math.random() * 89999);
+  return `
+    <div class="chat-rich-card">
+      <div class="chat-rich-title"><span>✅ Dekont OCR Doğrulandı</span><span>#${refNo}</span></div>
+      <div class="chat-rich-row"><span>Okunan Tutar:</span><strong>${escapeHtml(seciliOtel.fiyat)} (1 Gece Kapora)</strong></div>
+      <div class="chat-rich-row"><span>PMS / HotelRunner Durumu:</span><strong style="color:#34d399;">Kesin Rezervasyon İşlendi</strong></div>
+      <div class="chat-rich-row"><span>No-Show Riski:</span><span>%0 · Oda Kilitlendi</span></div>
+    </div>
+  `;
+}
+
+function upsellKarti() {
+  return `
+    <div class="chat-rich-card blue">
+      <div class="chat-rich-title"><span>✨ Check-in Öncesi VIP Upsell Teklifi</span><span>+REVPAR</span></div>
+      <div class="chat-rich-row"><span>🌊 Deniz Manzaralı Süit Yükseltme:</span><strong>+900 TL / Gece</strong></div>
+      <div class="chat-rich-row"><span>🚐 Havalimanı VIP Özel Transfer:</span><strong>+1.450 TL</strong></div>
+      <div class="chat-rich-row"><span>🍓 Odaya Hoş Geldin Meyve &amp; Çiçek:</span><strong>+450 TL</strong></div>
+      <button type="button" class="chat-rich-btn" onclick="hizliGonder('Deniz manzarali suit yukseltme ve transferi rezervasyonuma ekleyin')">✨ Tek Tıkla Rezervasyona Ekle</button>
+    </div>
+  `;
+}
+
+function sikayetKalkaniKarti() {
+  const tkt = "TKT-" + Math.floor(100 + Math.random() * 899);
+  return `
+    <div class="chat-rich-card amber">
+      <div class="chat-rich-title"><span>🛡️ Kötü Yorum Kalkanı Devrede</span><span>#${tkt}</span></div>
+      <div class="chat-rich-row"><span>Teknik Servis &amp; Kat Hizmetleri:</span><strong style="color:#fbbf24;">Acil Görev Atandı (5 dk)</strong></div>
+      <div class="chat-rich-row"><span>Google Yorum Linki:</span><strong style="color:#fca5a5;">Durduruldu (Önce Çözüm)</strong></div>
+      <div style="margin-top:5px; font-size:11px; color:#fde68a;">Sorun çözülüp misafir memnun kaldığında otomatik 5★ Google yorum linki tetiklenir.</div>
+    </div>
+  `;
+}
+
+function kbsCheckinKarti() {
+  return `
+    <div class="chat-rich-card blue">
+      <div class="chat-rich-title"><span>🪪 Hızlı Ön Check-in &amp; KBS Hazırlığı</span><span>SIFIR KUYRUK</span></div>
+      <div class="chat-rich-row"><span>Kimlik / Pasaport OCR:</span><strong style="color:#38bdf8;">Aktif (Fotoğraftan Otomatik)</strong></div>
+      <div class="chat-rich-row"><span>Dijital KVKK Aydınlatma Onayı:</span><strong style="color:#34d399;">✓ Onaylandı</strong></div>
+      <div class="chat-rich-row"><span>Resepsiyon Durumu:</span><span>Anahtarınız Hazır Bekliyor</span></div>
+    </div>
+  `;
+}
+
+function qrKonsiyerjKarti() {
+  const fis = "ODA-" + Math.floor(100 + Math.random() * 899);
+  return `
+    <div class="chat-rich-card">
+      <div class="chat-rich-title"><span>🛎️ Oda 204 · Dijital Konsiyerj</span><span>80mm FİŞ #${fis}</span></div>
+      <div class="chat-rich-row"><span>☕ Mutfak Yazıcısı (TR Çevrildi):</span><strong>2x Türk Kahvesi (Oda 204)</strong></div>
+      <div class="chat-rich-row"><span>🛏️ Kat Hizmetleri Ekranı:</span><strong>1x Ekstra Yastık</strong></div>
+      <div class="chat-rich-row"><span>Tahmini Teslim:</span><strong style="color:#34d399;">8 Dakika</strong></div>
+    </div>
+  `;
+}
+
+function patronRaporuKarti() {
+  return `
+    <div class="chat-rich-card">
+      <div class="chat-rich-title"><span>📊 Patron Sabah 09:00 Kâr Raporu</span><span>${escapeHtml(seciliOtel.ad)}</span></div>
+      <div class="chat-rich-row"><span>🌙 Gece Gelen Talep (22:00–08:00):</span><strong>14 Misafir</strong></div>
+      <div class="chat-rich-row"><span>✅ Kapanan Direkt Rezervasyon:</span><strong style="color:#34d399;">4 Oda · 28.400 TL</strong></div>
+      <div class="chat-rich-row"><span>🛡️ Kurtarılan Booking Komisyonu:</span><strong style="color:#fbbf24;">+5.112 TL Net Kâr</strong></div>
+      <div class="chat-rich-row"><span>🔥 Talep Alarmı (15 Ağustos):</span><strong>Son 3 Oda (+%15 Öneri)</strong></div>
+    </div>
+  `;
+}
+
+function otelOzelKartBul(metin, aiYanit) {
+  const birlesik = (metin + " " + (aiYanit || "")).toLowerCase();
+  if (birlesik.includes("[patron_raporu]") || /(patron|rapor|dün gece|dun gece|talep alarm|dinamik fiyat)/i.test(metin)) return patronRaporuKarti();
+  if (birlesik.includes("[booking_karti]") || /(booking|ets|tatilbudur|komisyon|5\.000|5000|direkt fiyat|fiyat kır|fiyat kir)/i.test(metin)) return bookingFiyatKirKarti();
+  if (birlesik.includes("[kapora_karti]") || /(kapora|dekont|havale|iyzico|paytr|ödeme yaptım|yatirdim|yatırdım)/i.test(metin)) return kaporaOcrKarti();
+  if (birlesik.includes("[upsell_karti]") || /(yükselt|yukselt|upsell|transfer|havaliman|meyve|çiçek|süit|suit)/i.test(metin)) return upsellKarti();
+  if (birlesik.includes("[sikayet_kalkani]") || /(klima|havlu|şikayet|sikayet|bozuk|soğutmuyor|sogutmuyor|temizlik|sorun|kötü)/i.test(metin)) return sikayetKalkaniKarti();
+  if (birlesik.includes("[kbs_karti]") || /(kimlik|pasaport|check-in|checkin|kbs|kvkk)/i.test(metin)) return kbsCheckinKarti();
+  if (birlesik.includes("[qr_konsiyerj]") || /(204|kahve|yastık|yastik|oda servisi|qr)/i.test(metin)) return qrKonsiyerjKarti();
+  if (birlesik.includes("[oda_karti]") || /(foto|resim|görsel|photo|fiyat|müsait|rezervasyon|telefonla arad)/i.test(metin)) return odaKartiUret();
+  return "";
+}
+
+function innovFiltrele(cat, btn) {
+  document.querySelectorAll(".suite-tab").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  document.querySelectorAll(".innov-card").forEach(card => {
+    const show = (cat === "all") || (card.dataset.innov === cat);
+    card.classList.toggle("hidden-innov", !show);
+  });
+}
+
+function otelSenaryoDene(mesaj) {
+  if (aktifSektor !== "otel") sektorSec("otel");
+  const hedef = document.getElementById("canli-studyo");
+  if (hedef) hedef.scrollIntoView({ behavior: "smooth", block: "start" });
+  setTimeout(() => { hizliGonder(mesaj); }, 380);
+}
+
 function sektorCevapUret(soru) {
   const s = soru.toLowerCase();
   if (aktifSektor === "emlak") {
@@ -2776,23 +3399,56 @@ function sektorCevapUret(soru) {
     }
     return `Kayıtlı adresinizi hemen tanıdım! 💧<div class="res-confirm-box"><div><strong>✅ Sipariş:</strong> 2x 19L Cam/Polikarbon Damacana</div><div><strong>📍 Kayıtlı Adres:</strong> Karşıyaka / Bostanlı (Daire 7)</div><div><strong>🚚 Kurye Rotası:</strong> 20 dk içinde kapınızda</div><a href="sudagitim.html" class="res-confirm-link">Tam Su Dağıtım Demosunu Aç →</a></div>`;
   }
-  // Otel fallback
+  // Otel özel yenilik senaryoları (fallback)
+  if (/(patron|rapor|dün gece|dun gece|talep alarm|dinamik fiyat)/i.test(s)) {
+    return `Günaydın! <b>${seciliOtel.ad}</b> için dün gecenin otomatik özet kâr ve talep raporu hazır: 📊${patronRaporuKarti()}`;
+  }
+  if (/(booking|ets|tatilbudur|5\.000|5000|direkt fiyat|fiyat kır|fiyat kir)/i.test(s)) {
+    return `Aracı sitelere %18 komisyon ödemenize gerek yok! <b>${seciliOtel.ad}</b> resmi direkt rezervasyon kanalından <b>%10 anında indirim + ücretsiz 14:00 geç çıkış</b> tanımladım: 🛡️${bookingFiyatKirKarti()}`;
+  }
+  if (/(kapora|dekont|havale|yatirdim|yatırdım)/i.test(s)) {
+    return `Teşekkürler! Gönderdiğiniz dekont fotoğrafı <b>Vision OCR</b> ile doğrulandı ve odanız PMS takviminde kesinleştirildi: ✅${kaporaOcrKarti()}`;
+  }
+  if (/(yükselt|yukselt|upsell|transfer|havaliman|süit|suit)/i.test(s)) {
+    return `Yarın sizi <b>${seciliOtel.ad}</b>'da ağırlamak için sabırsızlanıyoruz! 🌊 Müsait VIP yükseltme ve transfer ayrıcalıklarınız hazır:${upsellKarti()}`;
+  }
+  if (/(klima|havlu|şikayet|sikayet|bozuk|soğutmuyor|sogutmuyor|sorun)/i.test(s)) {
+    return `Yaşadığınız aksaklık için çok üzgünüz, hemen çözüyoruz! 🛠️ Teknik servis ve kat hizmetleri ekibimize acil görev iletildi, <b>5 dakika içinde</b> odanızda olacaklar.${sikayetKalkaniKarti()}`;
+  }
+  if (/(kimlik|pasaport|check-in|checkin|kbs)/i.test(s)) {
+    return `Elbette! Kimlik veya pasaport fotoğrafınızı buradan iletmeniz yeterli. Bilgileriniz KBS için hazırlanır, resepsiyonda hiç beklemeden anahtarınızı alırsınız: 🪪${kbsCheckinKarti()}`;
+  }
+  if (/(204|kahve|yastık|yastik|oda servisi|qr)/i.test(s)) {
+    return `Talebiniz alındı! Siparişiniz Türkçe olarak mutfak <b>80mm termal yazıcısına</b> ve kat hizmetlerine anında iletildi: 🛎️${qrKonsiyerjKarti()}`;
+  }
+  if (/(düşüneyim|dusuneyim|sonra dönerim|sonra donerim)/i.test(s)) {
+    return `Tabii ki, hiç acele etmeyin! 🌿 <i>(Operis AI Otomasyonu: Bu misafir 24 saat içinde dönüş yapmazsa ertesi gün 11:00'de "Seçtiğiniz tarihlerde son 2 oda kaldı, 2 saat opsiyonlayalım mı?" şeklinde otomatik nazik takip gönderir ve kayıp ciroyu geri kazanır.)</i>`;
+  }
   if (s.includes("available") || s.includes("room") || s.includes("price") || s.includes("english")) {
-    return `Hello and welcome to <b>${seciliOtel.ad}</b>! 🌿<br><br>Yes, our <b>${seciliOtel.oda}</b> is available. Nightly rate is <b>${seciliOtel.fiyat}</b> including breakfast and free parking.${odaKartiUret()}`;
+    return `Hello and welcome to <b>${seciliOtel.ad}</b>! 🌿<br><br>Yes, our <b>${seciliOtel.oda}</b> is available. Nightly rate is <b>${seciliOtel.fiyat}</b> including breakfast, free parking and 10% direct booking advantage.${odaKartiUret()}`;
   }
   if (s.includes("kahvaltı") || s.includes("otopark")) {
     return `Tüm konaklamalara zengin Ege kahvaltımız ve ücretsiz otopark dahildir. 🍳🚗 Giriş 14:00, çıkış 12:00 (gece geç girişler 7/24 karşılanır).`;
   }
-  return `Memnuniyetle! <b>${seciliOtel.ad}</b> bünyesinde <b>${seciliOtel.oda}</b> seçeneğimiz uygundur (<b>${seciliOtel.fiyat} / Gece</b>, kahvaltı dahil).${odaKartiUret()}`;
+  return `Memnuniyetle! <b>${seciliOtel.ad}</b> bünyesinde <b>${seciliOtel.oda}</b> seçeneğimiz uygundur (<b>${seciliOtel.fiyat} / Gece</b>, kahvaltı dahil, %0 komisyon).${odaKartiUret()}`;
 }
 
 const AI_PROXY_URL = "https://ai.operisai.com.tr/chat";
 
 function buildMainSystemPrompt() {
   if (aktifSektor === "otel") {
-    return `Sen ${seciliOtel.ad} (${seciliOtel.bolge}) bünyesinde 7/24 görev yapan, Operis AI destekli resmi otel misafir asistanısın.
+    return `Sen ${seciliOtel.ad} (${seciliOtel.bolge}) bünyesinde 7/24 görev yapan, Operis AI v3.0 destekli akıllı otel gelir & misafir asistanısın.
 Oda: ${seciliOtel.oda} | Fiyat: ${seciliOtel.fiyat} (Kahvaltı ve otopark dahil, %0 komisyon) | Detay: ${seciliOtel.detay}
-Kurallar: Misafirin dilinde (TR/EN/DE/RU) kısa, zarif ve ikna edici yanıt ver (max 110 kelime). Fiyat, müsaitlik, fotoğraf veya rezervasyon sorulursa sona [ODA_KARTI] ekle.`;
+Yeteneklerin:
+1) Booking/ETS/Tatilbudur fiyatı söylenirse %10 direkt indirim + ücretsiz 14:00 geç çıkış teklif et ve sona [BOOKING_KARTI] ekle.
+2) Kapora/dekont/havale denirse OCR doğrulama ve PMS kesinleştirme yap, sona [KAPORA_KARTI] ekle.
+3) Oda yükseltme/süit/transfer sorulursa VIP upsell sun, sona [UPSELL_KARTI] ekle.
+4) Klima/havlu/temizlik şikayeti gelirse özür dileyip 5 dk içinde teknik/kat hizmetleri yönlendir, Google yorum linki ATMA, sona [SIKAYET_KALKANI] ekle.
+5) Kimlik/pasaport/KBS ön check-in sorulursa sıfır kuyruk check-in ve KVKK onayı sun, sona [KBS_KARTI] ekle.
+6) Oda servisi/kahve/yastık/QR talebinde 80mm mutfak fişi ve kat hizmetlerine iletildiğini söyle, sona [QR_KONSIYERJ] ekle.
+7) Patron raporu / dün gece satış / talep alarmı sorulursa sabah 09:00 özetini sun, sona [PATRON_RAPORU] ekle.
+8) Normal oda, fiyat, fotoğraf veya telefon sonrası link sorulursa sona [ODA_KARTI] ekle.
+Kurallar: Misafirin dilinde (TR/EN/DE/RU) kısa, zarif ve ikna edici yanıt ver (max 95 kelime).`;
   }
   if (aktifSektor === "emlak") {
     return `Sen Operis Gayrimenkul AI asistanısın. İzmir portföyleri: Alsancak 3+1 deniz manzaralı 145 m² (9.850.000 TL, kat mülkiyetli, krediye uygun, aidat 2.400 TL), Mavişehir havuzlu 2+1 (6.450.000 TL), Urla 4+1 müstakil villa (18.900.000 TL), Bornova yatırımlık 1+1 (3.250.000 TL, 24.000 TL kira getirisi). Karmaşık kredi/peşinat/aidat/tapu/randevu sorularını doğal danışman gibi kısa ve net yanıtla (max 110 kelime).`;
@@ -2839,12 +3495,11 @@ async function mesajGonder() {
   if (live) {
     sohbetGecmisi.push({ role: "assistant", content: live });
     yaziyorGizle();
-    const gorselIstendi = aktifSektor === "otel" && /(foto|resim|görsel|photo|fiyat|müsait|rezervasyon)/i.test(metin);
-    const kart = aktifSektor === "otel" && (live.includes("[ODA_KARTI]") || gorselIstendi);
-    let html = escapeHtml(live.replace(/\[ODA_KARTI\]/g, "").trim())
+    const ozelKart = aktifSektor === "otel" ? otelOzelKartBul(metin, live) : "";
+    let html = escapeHtml(live.replace(/\[(ODA_KARTI|BOOKING_KARTI|KAPORA_KARTI|UPSELL_KARTI|SIKAYET_KALKANI|KBS_KARTI|QR_KONSIYERJ|PATRON_RAPORU)\]/gi, "").trim())
       .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
       .replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
-    if (kart) html += odaKartiUret();
+    if (ozelKart) html += ozelKart;
     mesajEkle(html, "in");
     return;
   }
