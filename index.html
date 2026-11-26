@@ -2786,6 +2786,45 @@ function sektorCevapUret(soru) {
   return `Memnuniyetle! <b>${seciliOtel.ad}</b> bünyesinde <b>${seciliOtel.oda}</b> seçeneğimiz uygundur (<b>${seciliOtel.fiyat} / Gece</b>, kahvaltı dahil).${odaKartiUret()}`;
 }
 
+const AI_PROXY_URL = "https://ai.operisai.com.tr/chat";
+
+function buildMainSystemPrompt() {
+  if (aktifSektor === "otel") {
+    return `Sen ${seciliOtel.ad} (${seciliOtel.bolge}) bünyesinde 7/24 görev yapan, Operis AI destekli resmi otel misafir asistanısın.
+Oda: ${seciliOtel.oda} | Fiyat: ${seciliOtel.fiyat} (Kahvaltı ve otopark dahil, %0 komisyon) | Detay: ${seciliOtel.detay}
+Kurallar: Misafirin dilinde (TR/EN/DE/RU) kısa, zarif ve ikna edici yanıt ver (max 110 kelime). Fiyat, müsaitlik, fotoğraf veya rezervasyon sorulursa sona [ODA_KARTI] ekle.`;
+  }
+  if (aktifSektor === "emlak") {
+    return `Sen Operis Gayrimenkul AI asistanısın. İzmir portföyleri: Alsancak 3+1 deniz manzaralı 145 m² (9.850.000 TL, kat mülkiyetli, krediye uygun, aidat 2.400 TL), Mavişehir havuzlu 2+1 (6.450.000 TL), Urla 4+1 müstakil villa (18.900.000 TL), Bornova yatırımlık 1+1 (3.250.000 TL, 24.000 TL kira getirisi). Karmaşık kredi/peşinat/aidat/tapu/randevu sorularını doğal danışman gibi kısa ve net yanıtla (max 110 kelime).`;
+  }
+  if (aktifSektor === "eticaret") {
+    return `Sen Operis E-Ticaret AI asistanısın (Shopify/ikas/Ticimax uyumlu). Örnek sipariş #OP-48219 Yurtiçi Kargo dağıtım şubesinde bugün 14:00-17:00 teslim. Keten ceket stokta M/L/XL mevcut, 14 gün ücretsiz iade var. Kısa, yardımcı ve satış odaklı yanıt ver (max 110 kelime).`;
+  }
+  if (aktifSektor === "restoran") {
+    return `Sen Operis Restoran AI sipariş asistanısın. Tavuklu Nohutlu Pilav 145 TL, Kavurmalı Pilav 230 TL, Yayık Ayran 35 TL. Yazılı/sesli sipariş alır, onaylanınca 80mm termal mutfak yazıcısından otomatik fiş basar (%0 platform komisyonu). Kısa ve sıcak yanıt ver (max 110 kelime).`;
+  }
+  return `Sen Operis Su Dağıtım AI asistanısın. 19L damacana su, kayıtlı adres hafızası (Karşıyaka/Bostanlı, 20 dk teslimat), kapıda nakit/temassız kart. Kısa ve net yanıt ver (max 100 kelime).`;
+}
+
+async function callOperisProxy() {
+  try {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 6500);
+    const res = await fetch(AI_PROXY_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ system: buildMainSystemPrompt(), messages: sohbetGecmisi.slice(-6) }),
+      signal: ctrl.signal
+    });
+    clearTimeout(t);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data && data.reply ? String(data.reply) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
 async function mesajGonder() {
   const inp = document.getElementById("userInput");
   const metin = inp.value.trim();
@@ -2795,6 +2834,20 @@ async function mesajGonder() {
   mesajEkle(metin, "out");
   sohbetGecmisi.push({ role: "user", content: metin });
   yaziyorGoster();
+
+  const live = await callOperisProxy();
+  if (live) {
+    sohbetGecmisi.push({ role: "assistant", content: live });
+    yaziyorGizle();
+    const gorselIstendi = aktifSektor === "otel" && /(foto|resim|görsel|photo|fiyat|müsait|rezervasyon)/i.test(metin);
+    const kart = aktifSektor === "otel" && (live.includes("[ODA_KARTI]") || gorselIstendi);
+    let html = escapeHtml(live.replace(/\[ODA_KARTI\]/g, "").trim())
+      .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+      .replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+    if (kart) html += odaKartiUret();
+    mesajEkle(html, "in");
+    return;
+  }
 
   setTimeout(() => {
     yaziyorGizle();
