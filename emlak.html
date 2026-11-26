@@ -292,6 +292,8 @@ let currentOffice = "Ege Premium Gayrimenkul";
 let leadCount = 2;
 let totalVolumeM = 16.3;
 let selectedProp = PROPERTIES[0];
+let chatHistory = [];
+const AI_PROXY_URL = "https://ai.operisai.com.tr/chat";
 
 const chatBox = document.getElementById("chatBox");
 const crmList = document.getElementById("crmList");
@@ -348,59 +350,195 @@ function addCrmLead(title, meta, budgetM){
   crmList.prepend(item);
 }
 
-function respond(raw){
-  const q = raw.toLowerCase().replace(/İ/g,"i");
+const PROP_EXTRA = {
+  "alsancak-31": { aidat: "2.400 ₺/ay", tapu: "Kat Mülkiyetli (İskanlı)", binaYasi: "8 yıllık (2025 komple yenilendi)", isitma: "Doğalgaz Kombi + 3 Klima", kira: "55.000–62.000 ₺/ay", ulasim: "Kordon 2 dk, Tramvay 4 dk, Alsancak İskele 6 dk", pazarlik: "Nakit alımda makul pazarlık payı mevcut" },
+  "mavisehir-21": { aidat: "3.100 ₺/ay (Havuz & Güvenlik dahil)", tapu: "Kat Mülkiyetli (İskanlı)", binaYasi: "6 yıllık", isitma: "Merkezi Pay Ölçer + Klima", kira: "38.000–44.000 ₺/ay", ulasim: "Tramvay 3 dk, Hilltown AVM 5 dk, Sahil 4 dk", pazarlik: "Tapu devri hızlı, sınırlı pazarlık" },
+  "urla-villa": { aidat: "Site aidatı yok (Müstakil)", tapu: "Müstakil Tapulu · İskanlı", binaYasi: "0 (Sıfır yapı)", isitma: "Isı Pompası + Yerden Isıtma", kira: "110.000–130.000 ₺/ay", ulasim: "Urla Merkez 7 dk, Otoban 5 dk, Çeşme 35 dk", pazarlik: "Ciddi alıcıya yerinde teklif değerlendirilir" },
+  "bornova-11": { aidat: "950 ₺/ay", tapu: "Kat Mülkiyetli (İskanlı)", binaYasi: "4 yıllık", isitma: "Doğalgaz Kombi", kira: "24.000–27.000 ₺/ay", ulasim: "Bornova Metro 4 dk, Ege Üniversitesi 6 dk", pazarlik: "Yatırım fırsatı, son fiyat aralığında" }
+};
+
+function buildEmlakSystemPrompt(){
+  const pList = PROPERTIES.map(p => {
+    const ex = PROP_EXTRA[p.id] || {};
+    return `- [${p.id}] ${p.title} | ${p.district} | ${p.rooms} | ${p.sqm} | ${p.priceStr} | ${p.floor} | Tapu: ${ex.tapu} | Aidat: ${ex.aidat} | Kira Getirisi: ${ex.kira} | Isıtma: ${ex.isitma} | Ulaşım: ${ex.ulasim} | Pazarlık: ${ex.pazarlik}`;
+  }).join("\n");
+  return `Sen ${currentOffice} bünyesinde 7/24 çalışan, Operis AI destekli son derece deneyimli, doğal ve ikna edici bir gayrimenkul danışmanısın.
+Portföy Veritabanı (SADECE bu gerçek verileri kullan, asla uydurma ilan/fiyat verme):
+${pList}
+
+Kurallar:
+1. Müşterinin karmaşık, çoklu veya kıyaslamalı her sorusunu (kredi/peşinat, aidat, tapu, kira getirisi, yatırım amortismanı, takas, pazarlık, ulaşım, çocuklu aile uygunluğu, İngilizce vb.) doğrudan, doğal insan üslubuyla ve net rakamlarla yanıtla.
+2. Kısa ve WhatsApp'ta kolay okunan paragraflar kullan (en fazla 130 kelime).
+3. İlgili bir portföyden bahsedersen cevabın sonuna mutlaka [PORTFOY:id] etiketini ekle (örn: [PORTFOY:alsancak-31]).
+4. Kullanıcı yer gösterimi / randevu isterse cevabın sonuna [RANDEVU:id] etiketini ekle.
+5. Her yanıtın sonunda sohbeti ilerleten doğal bir tek soru sor (bütçe, ödeme şekli veya yer gösterimi saati gibi).`;
+}
+
+async function callLiveProxy(userText){
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 5500);
+    const res = await fetch(AI_PROXY_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ system: buildEmlakSystemPrompt(), messages: chatHistory.slice(-8) }),
+      signal: ctrl.signal
+    });
+    clearTimeout(timer);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data && data.reply ? String(data.reply) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function detectPropertyFromText(q){
+  if (/urla|villa|müstakil|havuz|kekliktepe|4\+1/.test(q)) return PROPERTIES[2];
+  if (/alsancak|kordon|deniz|3\+1/.test(q)) return PROPERTIES[0];
+  if (/mavişehir|mavisehir|karşıyaka|karsiyaka|site|2\+1/.test(q)) return PROPERTIES[1];
+  if (/bornova|metro|ege|1\+1|öğrenci|ogrenci/.test(q)) return PROPERTIES[3];
+  return null;
+}
+
+function smartLocalAdvisor(raw){
+  const q = raw.toLowerCase().replace(/İ/g, "i");
+  const mentioned = detectPropertyFromText(q);
+  if (mentioned) selectedProp = mentioned;
+  const p = selectedProp || PROPERTIES[0];
+  const ex = PROP_EXTRA[p.id];
+
+  // İngilizce destek
+  if (/\b(hello|hi|price|apartment|villa|buy|rent|credit|view|english)\b/.test(q)) {
+    return {
+      text: `Hello! Welcome to <b>${escapeHtml(currentOffice)}</b>. 🌿<br><br>Our featured Izmir property is <b>${escapeHtml(p.title)}</b> (${escapeHtml(p.sqm)}, <b>${escapeHtml(p.priceStr)}</b>, freehold title deed ready). Would you like to schedule a viewing or compare investment yields?`,
+      cardProp: p
+    };
+  }
+
+  // Satıcı / Ekspertiz
+  if (/satmak|ekspertiz|kiraya ver|mülküm|dairemi|evimi sat/.test(q)) {
+    const kod = "EKS-" + Math.floor(10000 + Math.random() * 89999);
+    addCrmLead("Satıcı Portföy Talebi (Ekspertiz)", `Talep #${kod} · Evini satmak/kiralamak istiyor · WhatsApp`, 7.5);
+    return {
+      text: `Harika! <b>${escapeHtml(currentOffice)}</b> olarak bölgenizdeki son 6 aylık gerçek tapu satış verileriyle ücretsiz ekspertiz ve profesyonel drone/fotoğraf çekimi sunuyoruz.<div class="confirm-card"><b>✅ Satıcı / Ekspertiz Talebi #${kod}</b>• Hizmet: Ücretsiz Değerleme & Satış Planı<br>• Durum: Bölge uzmanımız 15 dk içinde sizinle iletişime geçecek.</div>Mülkünüz hangi ilçede ve kaç metrekare? Ön değerlemeyi şimdiden hazırlayalım.`
+    };
+  }
+
+  // Randevu
+  if (/randevu|görmek|gösterim|gezelim|saat|yarın|hafta sonu/.test(q)) {
+    const kod = "EML-" + Math.floor(10000 + Math.random() * 89999);
+    addCrmLead(`Yer Gösterimi — ${p.district} ${p.rooms}`, `Randevu #${kod} · ${p.priceStr} · Danışman Takvimine İşlendi`, +(p.price / 1e6).toFixed(1));
+    return {
+      text: `Memnuniyetle! <b>${escapeHtml(p.title)}</b> için yer gösterimi randevunuzu danışman takvimine işledim:<div class="confirm-card"><b>✅ Yer Gösterimi Onayı #${kod}</b>• Portföy: ${escapeHtml(p.title)} (${p.priceStr})<br>• Tapu & Kredi: ${ex.tapu} · Krediye Uygun<br>• Konum Pini: Randevudan 1 saat önce WhatsApp'tan paylaşılacak.</div>Ödeme planınız <b>nakit</b> mi yoksa <b>konut kredisi</b> destekli mi olacak?`
+    };
+  }
+
+  // Çoklu / karmaşık detay sorgusu (aidat, tapu, kredi/peşinat/taksit, kira, pazarlık, takas, ısınma, ulaşım)
+  const parts = [];
+  const pesinatMatch = q.match(/(\d+(?:[.,]\d+)?)\s*(milyon|m\b)/);
+  if (/kredi|taksit|peşinat|pesinat|faiz|banka|ödeme|odeme/.test(q)) {
+    const pesinat = pesinatMatch ? parseFloat(pesinatMatch[1].replace(",", ".")) * 1e6 : Math.round(p.price * 0.45);
+    const kredi = Math.max(500000, p.price - pesinat);
+    const aylikOran = 0.0305;
+    const vade = 120;
+    const taksit = Math.round(kredi * (aylikOran * Math.pow(1 + aylikOran, vade)) / (Math.pow(1 + aylikOran, vade) - 1));
+    parts.push(`🏦 <b>Kredi &amp; Ödeme Hesabı (${escapeHtml(p.title)}):</b> ${ex.tapu} olduğu için konut kredisine uygundur. <b>${(pesinat/1e6).toFixed(1)}M ₺ peşinat</b> ile kalan <b>${(kredi/1e6).toFixed(1)}M ₺</b> için 120 ay vadede tahmini aylık taksit ~<b>${taksit.toLocaleString("tr-TR")} ₺</b> bandındadır.`);
+  }
+  if (/aidat|masraf|gider/.test(q)) {
+    parts.push(`🧾 <b>Aidat:</b> ${ex.aidat}.`);
+  }
+  if (/tapu|iskan|kat mülkiyet|ipotek|haciz/.test(q)) {
+    parts.push(`📄 <b>Tapu Durumu:</b> ${ex.tapu}, satışa ve krediye engel hiçbir şerh/ipotek yoktur.`);
+  }
+  if (/kira|yatırım|yatirim|amortisman|getiri/.test(q)) {
+    parts.push(`📈 <b>Kira &amp; Yatırım Getirisi:</b> Bölgedeki güncel kira beklentisi <b>${ex.kira}</b> seviyesindedir.`);
+  }
+  if (/pazarlık|pazarlik|indirim|son fiyat|takas|araç|arac/.test(q)) {
+    parts.push(`🤝 <b>Pazarlık &amp; Takas:</b> ${ex.pazarlik}. Araç/daire takası mal sahibi onayıyla yer gösterimi sonrası değerlendirilir.`);
+  }
+  if (/ulaşım|ulasim|metro|tramvay|okul|hastane|yakın|yakin|konum|çevre|cevre/.test(q)) {
+    parts.push(`📍 <b>Konum &amp; Ulaşım:</b> ${ex.ulasim}.`);
+  }
+  if (/ısınma|isinma|doğalgaz|dogalgaz|klima|yaş|yas|bina|deprem|otopark/.test(q)) {
+    parts.push(`🏗️ <b>Bina &amp; Donanım:</b> ${ex.binaYasi}, ${ex.isitma}.`);
+  }
+  if (/kıyas|kiyas|karşılaştır|karsilastir|hangisi|fark|aile|çocuk/.test(q)) {
+    parts.push(`⚖️ <b>Kıyaslama Önerisi:</b> Çocuklu aile ve site yaşamı için <b>Mavişehir 2+1 (6.45M ₺, havuzlu &amp; güvenlikli)</b>, geniş alan + deniz manzarası için <b>Alsancak 3+1 (9.85M ₺)</b>, yüksek kira amortismanı için <b>Bornova 1+1 (3.25M ₺)</b> öne çıkıyor.`);
+  }
+
+  if (parts.length > 0) {
+    if (/kredi|bütçe|milyon|yatırım/.test(q)) {
+      addCrmLead(`Nitelikli Alıcı — ${p.district}`, `Detaylı soru sordu (kredi/tapu/aidat) · ${p.priceStr}`, +(p.price / 1e6).toFixed(1));
+    }
+    return {
+      text: parts.join("<br><br>") + `<br><br>İsterseniz <b>${escapeHtml(p.title)}</b> için yarın yer gösterimi planlayalım ya da farklı bir kriteriniz varsa belirtin?`,
+      cardProp: mentioned || (/kıyas|hangisi/.test(q) ? null : p)
+    };
+  }
+
+  // Bütçe filtresi
+  if (/bütçe|milyon|\bm\b/.test(q) && pesinatMatch) {
+    const limit = parseFloat(pesinatMatch[1].replace(",", ".")) * 1e6;
+    const uygun = PROPERTIES.filter(x => x.price <= limit + 600000);
+    const secilen = uygun.length ? uygun : [PROPERTIES[1], PROPERTIES[3]];
+    addCrmLead(`Bütçe Ön Eleme (${(limit/1e6).toFixed(1)}M ₺)`, `${secilen.length} uygun portföy eşleştirildi · WhatsApp`, +(limit / 1e6).toFixed(1));
+    return {
+      text: `<b>${(limit/1e6).toFixed(1)} Milyon ₺</b> bütçe aralığınız için krediye uygun en güçlü seçeneklerimiz:` + secilen.slice(0, 2).map(propCardHtml).join("") + `<br>Hangisinin aidat/tapu detayını inceleyelim veya yer gösterimi planlayalım?`
+    };
+  }
+
+  // Sadece ilçe/tip bahsedildiyse
+  if (mentioned) {
+    return {
+      text: `<b>${escapeHtml(mentioned.title)}</b> portföyümüz güncel ve aktif. <b>${mentioned.sqm}</b>, ${ex.tapu}, aidat ${ex.aidat}, tahmini kira getirisi ${ex.kira}.` + propCardHtml(mentioned) + `<br>Kredi hesaplaması, pazarlık payı veya yer gösterimi randevusu ister misiniz?`
+    };
+  }
+
+  return {
+    text: `Anladım, size nokta atışı yardımcı olabilmem için tek bir detay sorayım: <b>Oturum amaçlı mı yoksa yatırım (kira getirisi) amaçlı mı</b> bakıyorsunuz ve yaklaşık bütçe aralığınız nedir?<br><br>Dilerseniz şu an en çok sorulan iki portföyümüzü doğrudan inceleyebilirsiniz:` + propCardHtml(PROPERTIES[0]) + propCardHtml(PROPERTIES[1])
+  };
+}
+
+async function respond(raw){
+  chatHistory.push({ role: "user", content: raw });
+  if (chatHistory.length > 10) chatHistory = chatHistory.slice(-10);
   document.getElementById("waStatusText").textContent = "yazıyor...";
-  setTimeout(()=>{
+
+  // 1) Önce güvenli Cloudflare Worker (Groq LLM) proxy'sini dene
+  const liveReply = await callLiveProxy(raw);
+  if (liveReply) {
+    document.getElementById("waStatusText").textContent = "7/24 Canlı Groq AI · çevrimiçi";
+    let clean = liveReply;
+    let cardHtml = "";
+    const pMatch = clean.match(/\[PORTFOY:([a-z0-9-]+)\]/i);
+    if (pMatch) {
+      const found = PROPERTIES.find(x => x.id === pMatch[1]);
+      if (found) { selectedProp = found; cardHtml += propCardHtml(found); }
+      clean = clean.replace(/\[PORTFOY:[a-z0-9-]+\]/gi, "").trim();
+    }
+    const rMatch = clean.match(/\[RANDEVU:([a-z0-9-]+)\]/i);
+    if (rMatch) {
+      const found = PROPERTIES.find(x => x.id === rMatch[1]) || selectedProp;
+      const kod = "EML-" + Math.floor(10000 + Math.random() * 89999);
+      addCrmLead(`Yer Gösterimi — ${found.district} ${found.rooms}`, `Randevu #${kod} · Canlı AI Onaylı`, +(found.price / 1e6).toFixed(1));
+      cardHtml += `<div class="confirm-card"><b>✅ Yer Gösterimi Onayı #${kod}</b>• Portföy: ${escapeHtml(found.title)} (${found.priceStr})<br>• Durum: Danışman CRM takvimine işlendi.</div>`;
+      clean = clean.replace(/\[RANDEVU:[a-z0-9-]+\]/gi, "").trim();
+    }
+    clean = escapeHtml(clean).replace(/\*\*(.*?)\*\*/g, "<b>$1</b>").replace(/\n\n/g, "<br><br>").replace(/\n/g, "<br>");
+    chatHistory.push({ role: "assistant", content: liveReply });
+    addMsg(clean + cardHtml, "bot");
+    return;
+  }
+
+  // 2) Proxy henüz aktif değilse gelişmiş çok-katmanlı akıllı danışman motoru
+  setTimeout(() => {
     document.getElementById("waStatusText").textContent = "7/24 AI Danışman · çevrimiçi";
-
-    if(/satmak|ekspertiz|kiraya ver|mülküm|dairemi/.test(q)){
-      const kod = "EKS-" + Math.floor(10000+Math.random()*89999);
-      addMsg(`Harika! <b>${escapeHtml(currentOffice)}</b> olarak ücretsiz piyasa değerleme (ekspertiz) ve profesyonel drone/fotoğraf çekimi desteği veriyoruz.<br><br>
-      Talebinizi danışmanımıza öncelikli olarak ilettim:<div class="confirm-card"><b>✅ Satıcı / Ekspertiz Talebi #${kod}</b>• Talep: Ücretsiz Değerleme & Satış<br>• Bölge: İzmir<br>• Durum: Bölge uzmanımız 15 dk içinde arayacak</div>`);
-      addCrmLead("Satıcı Portföy Talebi (Ekspertiz)", `Talep #${kod} · Evini satmak istiyor · WhatsApp`, 7.5);
-      return;
-    }
-
-    if(/randevu|görmek|gösterim|gezelim|saat/.test(q)){
-      const p = /urla|villa/.test(q) ? PROPERTIES[2] : /alsancak|3\+1/.test(q) ? PROPERTIES[0] : /bornova|1\+1/.test(q) ? PROPERTIES[3] : PROPERTIES[1];
-      const kod = "EML-" + Math.floor(10000+Math.random()*89999);
-      addMsg(`Memnuniyetle! <b>${escapeHtml(p.title)}</b> için yer gösterimi ön randevunuzu oluşturdum:<div class="confirm-card">
-      <b>✅ Yer Gösterimi Onayı #${kod}</b>
-      • Portföy: ${escapeHtml(p.title)} (${p.priceStr})<br>
-      • Zaman: Yarın 15:00<br>
-      • Kredi Uygunluğu: Krediye Uygun · Tapu Hazır<br>
-      • Danışman: Konum pini 1 saat önce WhatsApp'tan iletilecek.</div>
-      Ödeme planınız <b>nakit</b> mi yoksa <b>konut kredisi</b> mi olacak? (Banka oranlarını da hazırlayalım)`);
-      addCrmLead(`Yer Gösterimi — ${p.district} ${p.rooms}`, `Randevu #${kod} · Bütçe: ${p.priceStr} · Yarın 15:00`, +(p.price/1e6).toFixed(1));
-      return;
-    }
-
-    if(/bütçe|kredi|milyon|taksit|yatırım/.test(q)){
-      const m = q.match(/(\d+(?:[.,]\d+)?)\s*(milyon|m\b)/);
-      const limit = m ? parseFloat(m[1].replace(",",".")) * 1e6 : 7000000;
-      const uygun = PROPERTIES.filter(p => p.price <= limit + 500000);
-      const secilen = uygun.length ? uygun : [PROPERTIES[1], PROPERTIES[3]];
-      addMsg(`<b>${(limit/1e6).toFixed(1)} Milyon ₺</b> bütçeniz ve konut kredisine uygunluk kriteriniz için güncel portföyümüzden en güçlü seçenekler:` + secilen.slice(0,2).map(propCardHtml).join("") + `<br>Hangisi için yarın yer gösterimi planlayalım?`);
-      addCrmLead(`Bütçe & Kredi Ön Eleme (${(limit/1e6).toFixed(1)}M ₺)`, `Krediye uygun ilan sordu · ${secilen.length} portföy önerildi`, +(limit/1e6).toFixed(1));
-      return;
-    }
-
-    if(/urla|villa|müstakil|havuz/.test(q)){
-      addMsg(`Urla'daki müstakil havuzlu portföyümüz şu an aktif:` + propCardHtml(PROPERTIES[2]) + `<br>Detaylı tapu/imar bilgisi veya hafta sonu yer gösterimi için tek mesaj yazmanız yeterli.`);
-      return;
-    }
-    if(/alsancak|kordon|3\+1|deniz/.test(q)){
-      addMsg(`Alsancak Kordon'da deniz manzaralı ve krediye uygun güncel 3+1 portföyümüz:` + propCardHtml(PROPERTIES[0]) + `<br>Bu daire için kredi hesaplaması veya yer gösterimi randevusu ister misiniz?`);
-      return;
-    }
-    if(/bornova|1\+1|kira/.test(q)){
-      addMsg(`Yatırım amaçlı yüksek kira getirili Bornova portföyümüz:` + propCardHtml(PROPERTIES[3]));
-      return;
-    }
-
-    addMsg(`Merhaba! Size en hızlı şekilde yardımcı olabilmem için <b>aradığınız ilçe, oda sayısı (2+1, 3+1, villa)</b> ve <b>yaklaşık bütçenizi</b> yazabilirsiniz.<br><br>Öne çıkan iki portföyümüz:` + propCardHtml(PROPERTIES[0]) + propCardHtml(PROPERTIES[1]));
-  }, 550);
+    const res = smartLocalAdvisor(raw);
+    const full = res.text + (res.cardProp ? propCardHtml(res.cardProp) : "");
+    chatHistory.push({ role: "assistant", content: res.text.replace(/<[^>]+>/g, " ") });
+    addMsg(full, "bot");
+  }, 420);
 }
 
 function quickAsk(text){
@@ -409,6 +547,7 @@ function quickAsk(text){
 }
 
 function resetChat(){
+  chatHistory = [];
   chatBox.innerHTML = "";
   addMsg(`Merhaba 👋 <b>${escapeHtml(currentOffice)}</b> 7/24 Yapay Zeka Gayrimenkul Asistanına hoş geldiniz!<br><br>Gece veya hafta sonu fark etmeksizin; satılık/kiralık portföylerimizi anında inceleyebilir, kredi uygunluğu sorabilir veya 30 saniyede <b>yer gösterimi randevusu</b> alabilirsiniz.<br><br>Nasıl yardımcı olabilirim?`);
 }
