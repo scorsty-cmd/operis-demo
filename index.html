@@ -1852,7 +1852,7 @@ footer.corp-footer {
         <p style="color:#cbd5e1; font-size:15px; margin-bottom:24px; line-height:1.65;">Bilgilerinizi bırakın; aynı gün içinde kendi portföyünüz, ürünleriniz, odalarınız veya menünüzle eğitilmiş canlı demoyu sizinle paylaşalım.</p>
         <div style="display:flex; flex-direction:column; gap:10px; font-size:14px; color:#e2e8f0;">
           <div>💬 <b>WhatsApp &amp; Telefon:</b> <a href="https://wa.me/905464827930" target="_blank" style="color:#18b58d; text-decoration:none; font-weight:800;">0546 482 79 30</a></div>
-          <div>📧 <b>Kurumsal E-Posta:</b> <a href="mailto:fuat@operisai.com.tr" style="color:#e2e8f0; text-decoration:none; font-weight:700;">fuat@operisai.com.tr</a></div>
+          <div>📧 <b>Kurumsal E-Posta:</b> <a href="mailto:info@operisai.com.tr" style="color:#e2e8f0; text-decoration:none; font-weight:700;">info@operisai.com.tr</a></div>
           <div>🌐 <b>Resmi Web:</b> operisai.com.tr · İzmir, Türkiye</div>
         </div>
       </div>
@@ -1928,7 +1928,7 @@ footer.corp-footer {
         <ul>
           <li><a href="https://wa.me/905464827930" target="_blank">💬 WhatsApp: 0546 482 79 30</a></li>
           <li><a href="tel:05464827930">📞 Tel: 0546 482 79 30</a></li>
-          <li><a href="mailto:fuat@operisai.com.tr">📧 fuat@operisai.com.tr</a></li>
+          <li><a href="mailto:info@operisai.com.tr">📧 info@operisai.com.tr</a></li>
           <li><a href="https://instagram.com/operis_ai" target="_blank">📸 @operis_ai · İzmir</a></li>
         </ul>
       </div>
@@ -2993,10 +2993,10 @@ function basvuruGonder(kanal) {
   const konu = encodeURIComponent(`Operis AI Pilot Başvurusu — ${marka} (${sektor})`);
   const govde = encodeURIComponent(metin);
   const waUrl = `https://wa.me/905464827930?text=${govde}`;
-  const mailtoUrl = `mailto:fuat@operisai.com.tr?subject=${konu}&body=${govde}`;
+  const mailtoUrl = `mailto:info@operisai.com.tr?subject=${konu}&body=${govde}`;
 
   try {
-    fetch("https://formsubmit.co/ajax/fuat@operisai.com.tr", {
+    fetch("https://formsubmit.co/ajax/info@operisai.com.tr", {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({ _subject: `Operis AI Pilot Başvurusu - ${marka} (${sektor})`, isletme: marka, sektor, bolge, telefon: tel, not })
