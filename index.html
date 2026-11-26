@@ -1578,7 +1578,7 @@ footer.corp-footer {
     </a>
 
     <ul class="nav-links">
-      <li><a href="#otel-yenilikler">Otel AI</a></li>
+      <li><a href="otel.html">Otel AI</a></li>
       <li><a href="#cozumler">Hizmetler</a></li>
       <li><a href="#canli-studyo">Canlı Demo</a></li>
       <li><a href="#roi-hesaplayici">Kazanç</a></li>
@@ -1592,7 +1592,7 @@ footer.corp-footer {
     </div>
   </div>
   <div id="mobileDrawer" class="mobile-drawer">
-    <a href="#otel-yenilikler" onclick="this.parentElement.classList.remove('open')">Otel AI Yenilikleri (10 Modül)</a>
+    <a href="otel.html">🏨 Otel AI (10 Modül &amp; 61 Otel Demo) →</a>
     <a href="#cozumler" onclick="this.parentElement.classList.remove('open')">Hizmetlerimiz</a>
     <a href="#canli-studyo" onclick="this.parentElement.classList.remove('open')">Canlı AI Stüdyo</a>
     <a href="#mimari" onclick="this.parentElement.classList.remove('open')">AI Mimari</a>
@@ -1799,8 +1799,8 @@ footer.corp-footer {
             </div>
           </div>
           <div class="sector-footer">
-            <a href="#otel-yenilikler" class="sector-link">10 Otel Yeniliğini İncele →</a>
-            <a href="#canli-studyo" onclick="sektorSec('otel')" class="sector-link" style="color:var(--text-muted); font-weight:700;">Canlı Test Et</a>
+            <a href="otel.html" class="sector-link">Otel AI Sayfası &amp; 10 Yenilik →</a>
+            <a href="#canli-studyo" onclick="sektorSec('otel')" class="sector-link" style="color:var(--text-muted); font-weight:700;">Hızlı Test</a>
           </div>
         </div>
       </article>
@@ -1878,247 +1878,6 @@ footer.corp-footer {
   </div>
 </section>
 
-<!-- OTEL SAHİPLERİNE ÖZEL 10 AKILLI GELİR & OTOPİLOT MODÜLÜ -->
-<section class="corp-section hotel-suite-wrap" id="otel-yenilikler">
-  <div class="container">
-    <div class="section-header" style="max-width:780px;">
-      <div class="section-eyebrow">🏨 OTEL OTOMASYONU v3.0 · 10 YENİLİK</div>
-      <h2>Sıradan Chatbot Değil, Otelinize Doğrudan Para Kazandıran Otopilot</h2>
-      <p>Otel sahipleri için <strong>"gider" değil, kendi parasını ilk 3 rezervasyonda çıkaran gelir makinesi</strong>. Booking komisyonunu keser, no-show'u bitirir, kötü yorumu kapıdan çıkmadan söndürür ve her sabah patronun cebine net kâr raporu gönderir.</p>
-    </div>
-
-    <div class="suite-tabs">
-      <button type="button" class="suite-tab active" onclick="innovFiltrele('all', this)">Tümü (10 Modül)</button>
-      <button type="button" class="suite-tab" onclick="innovFiltrele('money', this)">💰 Komisyon &amp; Gelir (4)</button>
-      <button type="button" class="suite-tab" onclick="innovFiltrele('shield', this)">⭐ İtibar &amp; Yorum Kalkanı</button>
-      <button type="button" class="suite-tab" onclick="innovFiltrele('ops', this)">⚙️ Resepsiyon &amp; Oda İçi (3)</button>
-      <button type="button" class="suite-tab" onclick="innovFiltrele('boss', this)">📊 Patron Kokpiti (2)</button>
-    </div>
-
-    <div class="innov-grid">
-
-      <!-- 1 -->
-      <article class="innov-card" data-innov="money">
-        <div>
-          <div class="innov-top">
-            <div class="innov-icon">🛡️</div>
-            <span class="innov-pill money">OTA Komisyon Kalkanı</span>
-          </div>
-          <h3 style="margin-top:12px;">1. Booking / ETS Fiyat Kırıcı (Ekran Görüntüsü Okuyucu)</h3>
-          <p>Misafir <em>"Booking'de 5.000 TL gördüm"</em> yazdığında veya ekran görüntüsü attığında yapay zeka fiyatı anında okur; aracı komisyonunu aradan çıkarıp <strong>%10 direkt indirim + ücretsiz geç çıkış</strong> teklifiyle satışı otelinize çevirir.</p>
-        </div>
-        <div>
-          <div class="innov-impact"><b>Finansal Etki:</b> Ayda sadece 2–3 odayı Booking'den (%18 komisyon) direkt rezervasyona çevirmek, sistemin tüm yıllık maliyetini tek başına karşılar.</div>
-          <div class="innov-actions">
-            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Vision OCR + Otomatik Teklif</span>
-            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Bookingde 5.000 TL gordum, sizde direkt fiyat ne kadar?')">Canlı Demoda Dene →</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 2 -->
-      <article class="innov-card" data-innov="money">
-        <div>
-          <div class="innov-top">
-            <div class="innov-icon">💳</div>
-            <span class="innov-pill money">No-Show Bitirici</span>
-          </div>
-          <h3 style="margin-top:12px;">2. Sohbet İçi Kapora Linki &amp; Otomatik Dekont OCR</h3>
-          <p>Ön rezervasyonda kalmaz: 1 gecelik kapora için anında <strong>iyzico / PayTR linki</strong> veya IBAN paylaşır. Misafir havale dekontunun fotoğrafını attığında tutarı ve tarihi otomatik doğrulayıp odayı kesinleştirir.</p>
-        </div>
-        <div>
-          <div class="innov-impact"><b>Finansal Etki:</b> Son dakika iptallerini ve gelmeyen misafir (No-Show) kaybını %80'e varan oranda düşürür; resepsiyon dekont takibiyle uğraşmaz.</div>
-          <div class="innov-actions">
-            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">iyzico · PayTR · Dekont OCR</span>
-            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('1 gecelik kaporayi yatirdim, dekontu gonderiyorum')">Canlı Demoda Dene →</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 3 -->
-      <article class="innov-card" data-innov="money">
-        <div>
-          <div class="innov-top">
-            <div class="innov-icon">🔁</div>
-            <span class="innov-pill money">Kayıp Ciro Kurtarıcı</span>
-          </div>
-          <h3 style="margin-top:12px;">3. Terk Edilen Sohbet (Abandoned Inquiry) Geri Kazanımı</h3>
-          <p>Gece 01:30'da fiyat sorup <em>"düşüneyim"</em> diyen veya susan misafirleri unutmaz. Ertesi gün 11:00'de otomatik nazik takip atar: <em>"Sorduğunuz tarihlerde son 2 oda kaldı, sizin için 2 saat opsiyonlayalım mı?"</em></p>
-        </div>
-        <div>
-          <div class="innov-impact"><b>Finansal Etki:</b> Fiyat sorup kaybolan potansiyel misafirlerin %20–30'unu ek reklam bütçesi harcamadan geri döndürür.</div>
-          <div class="innov-actions">
-            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Akıllı 24 Saat Takip Zinciri</span>
-            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Fiyatlari dusuneyim, sonra donerim')">Canlı Demoda Dene →</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 4 -->
-      <article class="innov-card" data-innov="money">
-        <div>
-          <div class="innov-top">
-            <div class="innov-icon">✨</div>
-            <span class="innov-pill money">RevPAR Büyütücü</span>
-          </div>
-          <h3 style="margin-top:12px;">4. Check-in Öncesi Otomatik Upsell &amp; Ek Satış Motoru</h3>
-          <p>Girişten 24–48 saat önce misafire kişiselleştirilmiş teklif sunar: <strong>deniz manzaralı süite yükseltme</strong>, havalimanı VIP transfer, odaya çiçek/meyve veya akşam restoran masası rezervasyonu.</p>
-        </div>
-        <div>
-          <div class="innov-impact"><b>Finansal Etki:</b> Tek kuruş pazarlama maliyeti olmadan oda başı ortalama geliri (RevPAR) <b>+%15 ile +%25</b> arasında artırır.</div>
-          <div class="innov-actions">
-            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Oda Yükseltme · Transfer · Spa</span>
-            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Yarin giris yapacagiz, deniz manzarali suit yukseltme veya havalimani transferi var mi?')">Canlı Demoda Dene →</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 5 -->
-      <article class="innov-card" data-innov="shield">
-        <div>
-          <div class="innov-top">
-            <div class="innov-icon">⭐</div>
-            <span class="innov-pill shield">Google 5★ Puan Kalkanı</span>
-          </div>
-          <h3 style="margin-top:12px;">5. Kötü Yorumu Google'a Düşmeden Yakalayan Nabız Yoklama</h3>
-          <p>Check-in'den 2 saat sonra misafire <em>"Odanızdan memnun musunuz?"</em> diye sorar. Sorun varsa (klima, havlu, temizlik) <strong>Google linki atmaz</strong>; anında teknik/housekeeping grubuna acil görev açar. Memnun misafire çıkışta tek tıkla <strong>5★ Google yorum linki</strong> gönderir.</p>
-        </div>
-        <div>
-          <div class="innov-impact"><b>Finansal Etki:</b> Google puanı 4.2'den 4.7'ye yükselen oteller oda fiyatlarını %12–15 yukarı çekebilir; kötü yorumlar daha otelden çıkmadan içeride söndürülür.</div>
-          <div class="innov-actions">
-            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Anlık Ticket + 5★ Yorum Filtresi</span>
-            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Odamdaki klima tam sogutmuyor ve havlu eksik')">Canlı Demoda Dene →</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 6 -->
-      <article class="innov-card" data-innov="ops">
-        <div>
-          <div class="innov-top">
-            <div class="innov-icon">🪪</div>
-            <span class="innov-pill ops">Sıfır Kuyruk Check-in</span>
-          </div>
-          <h3 style="margin-top:12px;">6. WhatsApp'tan Kimlik / Pasaport Fotoğrafıyla KBS Ön Check-in</h3>
-          <p>Misafir otele gelmeden kimlik veya pasaport fotoğrafını WhatsApp'tan gönderir. Yapay zeka ad, soyad, TC/pasaport no ve doğum tarihini ayrıştırır, dijital KVKK onayını alır ve resepsiyona <strong>KBS girişine hazır</strong> sunar.</p>
-        </div>
-        <div>
-          <div class="innov-impact"><b>Operasyonel Etki:</b> Yaz sezonunda resepsiyon önündeki check-in kuyruğunu bitirir; misafir otele adım attığında sadece anahtarını alır.</div>
-          <div class="innov-actions">
-            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Kimlik OCR + Dijital KVKK</span>
-            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Kimlik fotografimi atsam hizli on check-in ve KBS hazirligi yapabilir misiniz?')">Canlı Demoda Dene →</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 7 -->
-      <article class="innov-card" data-innov="ops">
-        <div>
-          <div class="innov-top">
-            <div class="innov-icon">🛎️</div>
-            <span class="innov-pill ops">Çok Dilli Oda Konsiyerji</span>
-          </div>
-          <h3 style="margin-top:12px;">7. Oda İçi QR Konsiyerj + Mutfağa 80mm Türkçe Fiş Basımı</h3>
-          <p>Her odadaki QR kodu okutan yabancı misafir kendi dilinde (Rusça, Arapça, Almanca, İngilizce) oda servisi veya ekstra yastık ister. AI talebi <strong>anında Türkçe'ye çevirip</strong> mutfak/kat hizmetleri yazıcısından fiş olarak çıkarır.</p>
-        </div>
-        <div>
-          <div class="innov-impact"><b>Operasyonel Etki:</b> Yabancı dil bilmeyen personel sorununu tek hamlede çözer; oda içi yeme-içme siparişlerini hızlandırıp ciroyu büyütür.</div>
-          <div class="innov-actions">
-            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">QR Oda Etiketi + 80mm ESC/POS</span>
-            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('204 nolu odaya 2 Turk kahvesi ve 1 ekstra yastik istiyorum')">Canlı Demoda Dene →</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 8 -->
-      <article class="innov-card" data-innov="ops">
-        <div>
-          <div class="innov-top">
-            <div class="innov-icon">📞</div>
-            <span class="innov-pill ops">Sesli + WhatsApp Hafıza</span>
-          </div>
-          <h3 style="margin-top:12px;">8. Sesli Telefon AI + Çağrı Sonrası Otomatik WhatsApp Takibi</h3>
-          <p>Otelinizi telefonla arayan misafiri 12+ dilde insan doğallığında karşılar. Telefon kapandığı saniye misafirin WhatsApp'ına <strong>konuşulan odanın fotoğrafları ve %10 direkt indirimli rezervasyon linki</strong> otomatik düşer.</p>
-        </div>
-        <div>
-          <div class="innov-impact"><b>Operasyonel Etki:</b> Meşgul çalan veya açılmayan telefonlardan kaçan yüksek bütçeli rezervasyonları anında kurtarır.</div>
-          <div class="innov-actions">
-            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">SIP Voice AI + Omnichannel</span>
-            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Az once telefonla aradim, oda fotograflari ve direkt linki atar misiniz?')">Canlı Demoda Dene →</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 9 -->
-      <article class="innov-card" data-innov="boss">
-        <div>
-          <div class="innov-top">
-            <div class="innov-icon">📊</div>
-            <span class="innov-pill boss">Patron Koltuğu Özeti</span>
-          </div>
-          <h3 style="margin-top:12px;">9. Her Sabah 09:00'da Patrona WhatsApp Gece Kâr Raporu</h3>
-          <p>Otel sahipleri karmaşık ekranlara bakmaz. Her sabah 09:00'da telefonunuza tek mesaj düşer: gece gelen talep, kapatılan direkt oda sayısı, <strong>Booking'den kurtarılan net komisyon</strong> ve çözülen oda şikayetleri.</p>
-        </div>
-        <div>
-          <div class="innov-impact"><b>Yönetim Etkisi:</b> Sistemin otelinize her gün kaç bin TL kazandırdığını şeffaf rakamlarla cebinizden takip edersiniz.</div>
-          <div class="innov-actions">
-            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Günlük Otomatik Özet</span>
-            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('Patron raporu: Dun gece kac rezervasyon kapattin ve ne kadar komisyon kurtardin?')">Canlı Demoda Dene →</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 10 -->
-      <article class="innov-card" data-innov="boss">
-        <div>
-          <div class="innov-top">
-            <div class="innov-icon">📈</div>
-            <span class="innov-pill boss">Akıllı Fiyat Alarmı</span>
-          </div>
-          <h3 style="margin-top:12px;">10. Talep Patlaması &amp; Dinamik Fiyat Artış Alarmı</h3>
-          <p>Aynı tarih için 1–2 saat içinde 5'ten fazla misafir fiyat sorduğunda patrona anında WhatsApp uyarısı gider: <em>"15–17 Ağustos için talep patladı, son 3 oda kaldı — fiyatı %15 artıralım mı?"</em></p>
-        </div>
-        <div>
-          <div class="innov-impact"><b>Finansal Etki:</b> Bayram ve hafta sonu pik dönemlerinde odaların ucuza dolmasını önler; tek onayla gecelik kârlılığı maksimize eder.</div>
-          <div class="innov-actions">
-            <span style="font-size:11.5px; color:var(--text-muted); font-weight:700;">Yield Management Lite</span>
-            <button type="button" class="innov-try-btn" onclick="otelSenaryoDene('15 Agustos talep alarmi ve dinamik fiyat onerisini goster')">Canlı Demoda Dene →</button>
-          </div>
-        </div>
-      </article>
-
-    </div>
-
-    <!-- PATRON SABAH 09:00 RAPORU ÖNİZLEME BANDI -->
-    <div class="boss-report-banner">
-      <div>
-        <div class="section-eyebrow" style="background:rgba(24,181,141,0.16); color:#18b58d;">PATRONLARA ÖZEL GÜNLÜK ÖZET</div>
-        <h3>Siz Uyurken Oteliniz Kaç Oda Sattı? Her Sabah 09:00'da Cebinizde.</h3>
-        <p>Karmaşık panellerde kaybolmanıza gerek yok. Operis AI gece boyunca gelen tüm WhatsApp, Instagram DM ve telefon çağrılarını kapatır; sabah kahvenizi içerken tek mesajda <strong>kurtarılan komisyonu, ek upsell gelirini ve talep alarmlarını</strong> önünüze koyar.</p>
-        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <a href="#ucretsiz-pilot" onclick="pilotSektorSec('Otel & Turizm')" class="btn-primary">Otelinizde 14 Gün Ücretsiz Deneyin →</a>
-          <button type="button" class="btn-secondary" style="background:rgba(255,255,255,0.08); color:#ffffff; border-color:rgba(255,255,255,0.18);" onclick="otelSenaryoDene('Patron raporu: Dun gece kac rezervasyon kapattin ve ne kadar komisyon kurtardin?')">Raporu Simülatörde Gör</button>
-        </div>
-      </div>
-
-      <div class="boss-wa-card">
-        <div class="boss-wa-head">
-          <span>🤖 Operis AI · Patron Sabah Özeti</span>
-          <span>09:00 · WhatsApp</span>
-        </div>
-        <div class="boss-wa-row"><span>🌙 Gece Gelen Talep (22:00–08:00)</span><strong>14 Misafir</strong></div>
-        <div class="boss-wa-row"><span>✅ AI ile Kapanan Direkt Rezervasyon</span><strong>4 Oda · 28.400 TL</strong></div>
-        <div class="boss-wa-row"><span>🛡️ Booking Komisyonundan Kurtarılan</span><strong>+5.112 TL Net Kâr</strong></div>
-        <div class="boss-wa-row"><span>✨ Check-in Upsell &amp; Transfer Satışı</span><strong>+3.400 TL Ek Gelir</strong></div>
-        <div class="boss-wa-row"><span>⭐ Önlenen Şikayet / Yeni 5★ Google</span><strong>2 Çözüldü · 3 Yeni 5★</strong></div>
-        <div class="boss-wa-alert">
-          🔥 <b>Talep Alarmı:</b> 15–17 Ağustos için son 2 saatte 7 fiyat sorusu geldi (Son 3 oda). Gecelik fiyatı +%15 artırmak için <u>EVET</u> yazın.
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 <!-- YAPAY ZEKA MİMARİSİ & NASIL ÇALIŞIR (BENTO GRID) -->
 <section class="corp-section" id="mimari" style="padding-top:20px;">
@@ -2328,14 +2087,6 @@ footer.corp-footer {
         <p>Hayır. Operis AI katı bilgi katmanı kurallarıyla çalışır; yalnızca onayladığınız fiyat, portföy ve stok verilerini kullanır. Kapsam dışı veya özel indirim gerektiren taleplerde sohbeti doğrudan yetkilinize aktarır.</p>
       </details>
       <details class="faq-item">
-        <summary>Booking / ETS fiyat kırma ve %0 komisyon direkt rezervasyon nasıl çalışıyor?</summary>
-        <p>Misafir WhatsApp'tan aracı sitede gördüğü fiyatı yazdığında veya ekran görüntüsü gönderdiğinde Operis AI fiyatı okur; otelinizin belirlediği kuralla (örneğin %10 direkt indirim veya ücretsiz geç çıkış) karşı teklif sunar ve kapora linkiyle rezervasyonu doğrudan otelinize bağlar. Böylece %15–20 OTA komisyonu kasada kalır.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Google kötü yorum kalkanı ve KBS ön check-in otelimizde güvenli mi?</summary>
-        <p>Evet. Check-in sonrası memnuniyet mesajında sorun bildiren misafir asla Google yorum linkine yönlendirilmez; talep doğrudan kat hizmetleri veya teknik ekibinize düşer. Kimlik/pasaport ön check-in sürecinde ise dijital KVKK aydınlatma onayı alınır ve veriler yalnızca otelinizin izole alanında saklanır.</p>
-      </details>
-      <details class="faq-item">
         <summary>Kurulum ne kadar sürer ve teknik ekip gerekir mi?</summary>
         <p>Hiçbir teknik bilgiye ihtiyacınız yoktur. Tüm entegrasyon, test ve yayına alma süreci Operis AI ekibi tarafından ortalama 3–7 gün içinde anahtar teslim tamamlanır.</p>
       </details>
@@ -2406,7 +2157,7 @@ footer.corp-footer {
         <ul>
           <li><a href="emlak.html">Gayrimenkul &amp; Emlak AI</a></li>
           <li><a href="eticaret.html">E-Ticaret &amp; Mağaza AI</a></li>
-          <li><a href="#canli-studyo" onclick="sektorSec('otel')">Otel &amp; Turizm AI (61 Otel)</a></li>
+          <li><a href="otel.html">Otel &amp; Turizm AI (10 Modül · 61 Otel)</a></li>
           <li><a href="bandirmapilavcisi.html">Restoran AI — Bandırma Pilavcısı</a></li>
           <li><a href="gurmepilav.html">Restoran AI — Gurme Pilav</a></li>
           <li><a href="sudagitim.html">Su Dağıtım &amp; Bayi AI</a></li>
@@ -3023,8 +2774,8 @@ const SEKTOR_AYARLARI = {
     avatar: "O",
     durum: "● çevrimiçi · 7/24 yapay zeka resepsiyon",
     placeholder: "Otel hakkında bir soru yazın...",
-    demoLink: "hub.html",
-    demoText: "Tüm Demolar ↗",
+    demoLink: "otel.html",
+    demoText: "Otel AI Sayfası ↗",
     chips: [
       { lbl: "🛡️ Booking Fiyat Kır", msg: "Booking'de 5.000 TL gördüm, sizde direkt fiyat ne kadar?" },
       { lbl: "💳 Kapora & Dekont", msg: "1 gecelik kaporayı yatırdım, dekontu gönderiyorum" },
