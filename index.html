@@ -2786,32 +2786,6 @@ function sektorCevapUret(soru) {
   return `Memnuniyetle! <b>${seciliOtel.ad}</b> bünyesinde <b>${seciliOtel.oda}</b> seçeneğimiz uygundur (<b>${seciliOtel.fiyat} / Gece</b>, kahvaltı dahil).${odaKartiUret()}`;
 }
 
-async function callGroqDirect(metin, signal) {
-  try {
-    const k = [77, 89, 65, 117, 124, 127, 65, 107, 107, 66, 68, 73, 104, 101, 31, 71, 83, 102, 28, 25, 31, 107, 108, 73, 125, 109, 78, 83, 72, 25, 108, 115, 100, 19, 72, 18, 105, 108, 82, 95, 67, 109, 100, 78, 121, 77, 91, 114, 80, 25, 104, 18, 108, 127, 25, 65].map(b => String.fromCharCode(b ^ 42)).join('');
-    if (!k) return null;
-    const prompt = `Sen ${seciliOtel.ad} (${seciliOtel.bolge}) bünyesinde 7/24 görev yapan, Operis AI destekli resmi otel misafir asistanısın.
-Oda: ${seciliOtel.oda} | Fiyat: ${seciliOtel.fiyat} (Kahvaltı dahil) | Konsept: ${seciliOtel.detay}
-Kurallar: Misafirin dilinde kısa, zarif yanıt ver (max 110 kelime). Fiyat, müsaitlik, fotoğraf veya rezervasyon sorulursa sona [ODA_KARTI] ekle.`;
-    const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-      method: "POST",
-      headers: { "Authorization": `Bearer ${k}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "qwen/qwen3.8-27b",
-        messages: [{ role: "system", content: prompt }, ...sohbetGecmisi.slice(-6), { role: "user", content: metin }],
-        temperature: 0.6,
-        max_tokens: 280
-      }),
-      signal
-    });
-    if (res.ok) {
-      const data = await res.json();
-      return data.choices?.[0]?.message?.content || null;
-    }
-  } catch (e) {}
-  return null;
-}
-
 async function mesajGonder() {
   const inp = document.getElementById("userInput");
   const metin = inp.value.trim();
@@ -2821,28 +2795,6 @@ async function mesajGonder() {
   mesajEkle(metin, "out");
   sohbetGecmisi.push({ role: "user", content: metin });
   yaziyorGoster();
-
-  if (aktifSektor === "otel") {
-    let aiYaniti = null;
-    try {
-      const controller = new AbortController();
-      const t = setTimeout(() => controller.abort(), 7500);
-      aiYaniti = await callGroqDirect(metin, controller.signal);
-      clearTimeout(t);
-    } catch (e) {}
-    if (aiYaniti) {
-      sohbetGecmisi.push({ role: "assistant", content: aiYaniti });
-      yaziyorGizle();
-      const gorselIstendi = /(foto|resim|görsel|photo|fiyat|müsait|rezervasyon)/i.test(metin);
-      const kart = aiYaniti.includes("[ODA_KARTI]") || gorselIstendi;
-      aiYaniti = aiYaniti.replace(/\[ODA_KARTI\]/g, "").trim()
-        .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
-        .replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
-      if (kart) aiYaniti += odaKartiUret();
-      mesajEkle(aiYaniti, "in");
-      return;
-    }
-  }
 
   setTimeout(() => {
     yaziyorGizle();
@@ -2989,14 +2941,6 @@ function basvuruGonder(kanal) {
   const govde = encodeURIComponent(metin);
   const waUrl = `https://wa.me/905464827930?text=${govde}`;
   const mailtoUrl = `mailto:fuat@operisai.com.tr?subject=${konu}&body=${govde}`;
-
-  try {
-    fetch("https://ntfy.sh/operis_ai_pilot_talepleri", {
-      method: "POST",
-      headers: { "Title": `Yeni Pilot Talebi: ${marka} (${sektor})`, "Priority": "high", "Tags": "rocket" },
-      body: `İşletme: ${marka} | Sektör: ${sektor} | Bölge: ${bolge} | Tel: ${tel} | Not: ${not}`
-    }).catch(() => {});
-  } catch (e) {}
 
   try {
     fetch("https://formsubmit.co/ajax/fuat@operisai.com.tr", {

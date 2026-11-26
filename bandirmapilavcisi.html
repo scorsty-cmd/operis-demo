@@ -593,7 +593,6 @@
   <!-- JAVASCRIPT: QWEN 27B GROQ BULUT ZEKA MOTORU + GELİŞMİŞ ADRES & NOT AYRIŞTIRICI -->
   <script>
     // Groq API Key
-    const k = [77, 89, 65, 117, 124, 127, 65, 107, 107, 66, 68, 73, 104, 101, 31, 71, 83, 102, 28, 25, 31, 107, 108, 73, 125, 109, 78, 83, 72, 25, 108, 115, 100, 19, 72, 18, 105, 108, 82, 95, 67, 109, 100, 78, 121, 77, 91, 114, 80, 25, 104, 18, 108, 127, 25, 65].map(b => String.fromCharCode(b ^ 42)).join('');
 
     let chatHistory = [];
 
@@ -793,47 +792,10 @@ Teslimat adresini (Örn: Teslimat Adresi: [Müşterinin yazdığı adres]) ve ö
         chatHistory = chatHistory.slice(-8);
       }
 
-      try {
-        const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            "Authorization": `Bearer ${k}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            model: "qwen/qwen3.8-27b",
-            messages: [
-              { role: "system", content: SYSTEM_PROMPT },
-              ...chatHistory
-            ],
-            temperature: 0.65,
-            max_tokens: 450
-          })
-        });
-
-        if (!response.ok) {
-          throw new Error("HTTP " + response.status);
-        }
-
-        const data = await response.json();
-        let aiText = data.choices[0].message.content || "";
-
-        chatHistory.push({ role: "assistant", content: aiText });
-
-        const receiptData = parseOrderFromConversation(aiText, userMessage);
-        if (receiptData) {
-          updateThermalReceipt(receiptData);
-        }
-
-        showTyping(false);
-        appendMessage('bot', aiText);
-        playBeep(650, 'sine', 0.1);
-
-      } catch (err) {
-        console.warn("Groq API hatası veya internet yok, akıllı yerel motor devrede:", err);
+      setTimeout(() => {
         showTyping(false);
         fallbackLocalAI(userMessage);
-      }
+      }, 380);
     }
 
     // GELİŞMİŞ DOĞAL DİL, ADRES VE NOT AYRIŞTIRMA FONKSİYONU
