@@ -13,12 +13,14 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg-cream: #f7f5f0;
   --bg-cream-alt: #f0ede5;
   --bg-card: #ffffff;
+  --bg-obsidian: #080c16;
+  --bg-obsidian-elev: #0e1526;
   --bg-navy: #0e1526;
   --bg-navy-soft: #162038;
   --accent: #0e8f5c;
@@ -33,6 +35,9 @@
   --text-muted: #647087;
   --border: rgba(14, 21, 38, 0.10);
   --border-strong: rgba(14, 21, 38, 0.16);
+  --hairline-dark: rgba(203, 213, 225, 0.14);
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --yay: cubic-bezier(0.2, 0.7, 0.2, 1);
   --shadow-sm: 0 4px 16px rgba(14, 21, 38, 0.04);
   --shadow-md: 0 14px 36px rgba(14, 21, 38, 0.07);
   --shadow-lg: 0 28px 64px rgba(14, 21, 38, 0.14);
@@ -76,11 +81,16 @@ header.navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(247, 245, 240, 0.86);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(247, 245, 240, 0.80);
+  backdrop-filter: saturate(1.2) blur(14px);
+  -webkit-backdrop-filter: saturate(1.2) blur(14px);
   border-bottom: 1px solid var(--border);
-  transition: box-shadow 0.25s ease;
+  transition: background 0.3s var(--yay), box-shadow 0.3s var(--yay), border-color 0.3s var(--yay);
+}
+header.navbar.navbar--scrolled {
+  background: rgba(247, 245, 240, 0.94);
+  box-shadow: 0 10px 30px -16px rgba(14, 21, 38, 0.18);
+  border-bottom-color: var(--border-strong);
 }
 .navbar-inner {
   max-width: 1220px;
@@ -99,10 +109,15 @@ header.navbar {
   color: var(--text-main);
 }
 .brand-logo {
-  width: 38px; height: 38px;
+  width: 40px; height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.6s var(--yay);
+  will-change: transform;
+}
+.brand:hover .brand-logo {
+  transform: rotate(12deg) scale(1.08);
 }
 .brand-logo img { width: 100%; height: 100%; object-fit: contain; }
 .brand-name {
@@ -678,16 +693,380 @@ section.corp-section {
 .section-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 9px;
   color: var(--accent);
+  font-family: var(--font-mono);
   font-size: 11.5px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   background: var(--accent-soft);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.nokta3 {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.nokta3 i {
+  display: block;
+  border-radius: 50%;
+  background: var(--accent-bright);
+}
+.nokta3 i:nth-child(1) { width: 3.5px; height: 3.5px; opacity: 0.52; }
+.nokta3 i:nth-child(2) { width: 5.5px; height: 5.5px; opacity: 0.78; }
+.nokta3 i:nth-child(3) { width: 7.5px; height: 7.5px; opacity: 1; }
+.h-muted { color: var(--text-muted); font-weight: 600; }
+.h-accent { color: var(--accent-bright); }
+.btn-arrow { display: inline-block; transition: transform 0.25s var(--yay); }
+.btn-primary:hover .btn-arrow,
+.btn-secondary:hover .btn-arrow,
+.path-row:hover .path-arrow { transform: translateX(4px); }
+.btn-primary:active, .btn-secondary:active, .btn-dark:active { transform: scale(0.98); }
+
+/* ===== 3-PATH EDITORIAL ROUTING (DOLUNAY-INSPIRED) ===== */
+.paths-section {
+  padding: 76px 0 42px;
+}
+.paths-list {
+  border-top: 1px solid var(--border-strong);
+}
+.path-row {
+  display: grid;
+  grid-template-columns: 76px 1fr 112px 150px;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 16px;
+  border-bottom: 1px solid var(--border-strong);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.3s var(--yay), padding-left 0.3s var(--yay);
+  border-radius: 10px;
+}
+.path-row:hover {
+  background: rgba(14, 21, 38, 0.032);
+  padding-left: 24px;
+}
+.path-idx {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+.path-content h3 {
+  font-size: clamp(20px, 2.3vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  color: var(--bg-navy);
+  line-height: 1.18;
+  margin-bottom: 6px;
+}
+.path-content p {
+  font-size: 14px;
+  color: var(--text-body);
+  max-width: 560px;
+  line-height: 1.55;
+}
+.path-medallion {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: var(--bg-obsidian);
+  border: 1px solid rgba(24, 181, 141, 0.32);
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  box-shadow: 0 12px 26px -12px rgba(14, 21, 38, 0.45);
+  transition: transform 0.45s var(--yay), border-color 0.35s var(--yay), box-shadow 0.35s var(--yay);
+}
+.path-row:hover .path-medallion {
+  transform: scale(1.07) rotate(8deg);
+  border-color: var(--accent-bright);
+  box-shadow: 0 16px 32px -10px rgba(24, 181, 141, 0.36);
+}
+.path-cta {
+  justify-self: end;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.path-arrow {
+  display: inline-block;
+  transition: transform 0.25s var(--yay);
+}
+
+/* ===== DARK OBSIDIAN 3D LOGO & 7/24 AI CORE SHOWCASE ===== */
+.core-3d-section {
+  background: var(--bg-obsidian);
+  color: #f4f2ec;
+  padding: 92px 0 84px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--hairline-dark);
+  border-bottom: 1px solid var(--hairline-dark);
+}
+.core-3d-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 24% 38%, rgba(24, 181, 141, 0.16), transparent 44%),
+    radial-gradient(circle at 82% 18%, rgba(2, 132, 199, 0.12), transparent 38%);
+  pointer-events: none;
+}
+.core-3d-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 0.96fr 1.04fr;
+  gap: 56px;
+  align-items: center;
+  padding-bottom: 64px;
+  border-bottom: 1px solid var(--hairline-dark);
+}
+.logo-stage {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+.logo-stage-glow {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(24, 181, 141, 0.26) 0%, rgba(14, 143, 92, 0.08) 45%, transparent 72%);
+  filter: blur(24px);
+  pointer-events: none;
+  animation: breatheGlow 5s ease-in-out infinite;
+}
+@keyframes breatheGlow {
+  0%, 100% { transform: scale(0.96); opacity: 0.78; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+#operis3dCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+.logo-stage-hint {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  background: rgba(14, 21, 38, 0.82);
+  border: 1px solid rgba(24, 181, 141, 0.28);
   padding: 5px 12px;
   border-radius: 999px;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+}
+.core-copy .section-eyebrow {
+  background: rgba(24, 181, 141, 0.12);
+  color: var(--accent-bright);
+  border: 1px solid rgba(24, 181, 141, 0.22);
+}
+.core-copy h2 {
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 800;
+  letter-spacing: -1.1px;
+  line-height: 1.12;
+  color: #f4f2ec;
+  margin-bottom: 16px;
+}
+.core-copy h2 .h-muted { color: #8a94a8; font-weight: 600; }
+.core-copy p {
+  color: #b7c0d0;
+  font-size: 15.5px;
+  line-height: 1.68;
+  margin-bottom: 26px;
+}
+
+/* Dotted Progress Bars (Dolunay-inspired) */
+.dot-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.dot-metric-row {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.dot-metric-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+.dot-metric-head strong {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--accent-bright);
+}
+.dot-bar {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  gap: 5px;
+  align-items: center;
+}
+.dot-bar span {
+  aspect-ratio: 1 / 1;
+  max-width: 7px;
+  width: 100%;
+  border-radius: 50%;
+  background: rgba(203, 213, 225, 0.16);
+}
+.dot-bar span.on {
+  background: var(--accent-bright);
+  box-shadow: 0 0 8px rgba(24, 181, 141, 0.55);
+}
+
+/* 7/24 Real Operis AI Module Team Row */
+.ai-team-wrap {
+  position: relative;
+  z-index: 1;
+  padding-top: 52px;
+}
+.ai-team-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.ai-team-label {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 8px;
+}
+.ai-team-head h3 {
+  font-size: clamp(21px, 2.4vw, 28px);
+  font-weight: 800;
+  color: #f4f2ec;
+  letter-spacing: -0.5px;
+}
+.ai-team-sub {
+  font-size: 13.5px;
+  color: #94a3b8;
+  max-width: 420px;
+}
+.ai-agents-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+.ai-agent-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--hairline-dark);
+  border-radius: 18px;
+  padding: 20px 12px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.3s var(--yay), border-color 0.3s var(--yay), background 0.3s var(--yay);
+}
+.ai-agent-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(24, 181, 141, 0.55);
+  background: rgba(24, 181, 141, 0.06);
+}
+.ai-agent-ring {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #10192d, #080c16);
+  border: 2px solid var(--accent-bright);
+  box-shadow: 0 0 0 4px rgba(24, 181, 141, 0.12), 0 10px 24px -10px rgba(24, 181, 141, 0.55);
+  display: grid;
+  place-items: center;
+  color: #e2e8f0;
+  position: relative;
+}
+.ai-agent-ring::after {
+  content: "";
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #34d399;
+  border: 2px solid var(--bg-obsidian);
+}
+.ai-agent-name {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #f4f2ec;
+  line-height: 1.2;
+}
+.ai-agent-role {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+/* ===== HALFTONE HORIZON FOOTER TRANSITION ===== */
+.halftone-horizon {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  background: linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-cream) 48%, var(--bg-navy) 48%, var(--bg-navy) 100%);
+  padding: 10px 0 0;
+}
+.halftone-horizon svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s var(--yay), transform 0.65s var(--yay);
+}
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up { opacity: 1; transform: none; transition: none; }
+  .logo-stage-glow { animation: none; }
 }
 .section-header h2 {
   font-size: clamp(26px, 3.2vw, 40px);
@@ -1543,21 +1922,26 @@ footer.corp-footer {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 980px) {
-  .hero-grid, .roi-grid, .apply-card, .boss-report-banner { grid-template-columns: 1fr; }
+  .hero-grid, .roi-grid, .apply-card, .boss-report-banner, .core-3d-grid { grid-template-columns: 1fr; }
   .sectors-grid, .pricing-grid, .footer-grid, .steps-inline, .innov-grid { grid-template-columns: 1fr; }
+  .ai-agents-grid { grid-template-columns: repeat(2, 1fr); }
+  .path-row { grid-template-columns: 52px 1fr; gap: 14px; padding: 22px 10px; }
+  .path-medallion { display: none; }
+  .path-cta { grid-column: 2; justify-self: start; }
   .bento-span-7, .bento-span-5, .bento-span-6, .bento-span-12 { grid-column: span 12; }
   .hero-metrics { grid-template-columns: repeat(2, 1fr); }
   .nav-links, .nav-actions .btn-secondary { display: none; }
   .mobile-toggle { display: inline-flex; }
-  section.corp-section { padding: 62px 0; }
+  section.corp-section, .core-3d-section { padding: 62px 0; }
   .roi-box, .apply-card, .boss-report-banner { padding: 26px 22px; }
+  .logo-stage { max-width: 310px; }
 }
 @media (max-width: 520px) {
   .form-grid { grid-template-columns: 1fr; }
   .sector-tabs { grid-template-columns: repeat(5, 1fr); }
   .sector-tab { font-size: 9.5px; padding: 6px 2px; }
   .navbar-inner { padding: 12px 16px; }
-  .navbar-inner .btn-primary { padding: 8px 13px; font-size: 12px; }
+  .navbar-inner .btn-primary { padding: 8px 13px; font-size: 12px; white-space: nowrap; }
   .container { padding: 0 16px; }
 }
 </style>
@@ -1610,12 +1994,12 @@ footer.corp-footer {
       <!-- SOL: SADE VE GÜÇLÜ KURUMSAL KONUMLANDIRMA -->
       <div>
         <div class="status-pill">
-          <span class="pulse-dot"></span>
-          <span>operisai.com.tr · Kurumsal Yapay Zeka Stüdyosu</span>
+          <span class="nokta3" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span style="font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;">operisai.com.tr · Kurumsal AI Stüdyosu</span>
         </div>
 
         <h1 class="hero-title">
-          İşletmeniz için 7/24 çalışan <span>otonom yapay zeka</span> sistemleri.
+          İşletmeniz için 7/24 çalışan <span>otonom yapay zeka</span> sistemleri<span class="h-accent">.</span>
         </h1>
 
         <p class="hero-desc">
@@ -1623,8 +2007,8 @@ footer.corp-footer {
         </p>
 
         <div class="hero-cta-group">
-          <a href="#ucretsiz-pilot" class="btn-primary">14 Gün Ücretsiz Pilot Başlat →</a>
-          <a href="#cozumler" class="btn-secondary">Tüm Hizmetleri İncele</a>
+          <a href="#ucretsiz-pilot" class="btn-primary">14 Gün Ücretsiz Pilot Başlat <span class="btn-arrow">→</span></a>
+          <a href="#ai-cekirdek" class="btn-secondary">3D AI Çekirdeğini İncele</a>
         </div>
 
         <div class="hero-metrics">
@@ -1717,12 +2101,77 @@ footer.corp-footer {
   </div>
 </div>
 
+<!-- 3 ÖLÇEK EDİTORYAL YÖNLENDİRME (SADECE GERÇEK OPERIS AI HİZMETLERİ) -->
+<section class="paths-section" id="olcekler">
+  <div class="container">
+    <div class="section-header reveal-up" style="text-align:left; margin:0 0 34px; max-width:740px;">
+      <div class="section-eyebrow"><span class="nokta3" aria-hidden="true"><i></i><i></i><i></i></span> İŞLETME ÖLÇEĞİNE GÖRE</div>
+      <h2>Hangi aşamada <span class="h-muted">olursanız olun</span><span class="h-accent">.</span></h2>
+      <p>Tek şubeli bir işletmeden çok şubeli kurumsal yapılara kadar, mevcut iş akışınıza doğrudan entegre olan gerçek yapay zeka sistemleri kuruyoruz.</p>
+    </div>
+
+    <div class="paths-list">
+      <a href="#canli-studyo" class="path-row reveal-up">
+        <span class="path-idx">01</span>
+        <div class="path-content">
+          <h3>Tek Şubeli İşletmeler</h3>
+          <p>Butik oteller, emlak ofisleri, restoranlar ve su bayileri için 7/24 WhatsApp &amp; sesli mesaj yanıtı, komisyonsuz rezervasyon ve 80mm mutfak fişi otomasyonu.</p>
+        </div>
+        <div class="path-medallion" aria-hidden="true">
+          <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
+            <circle cx="23" cy="23" r="15" stroke="#18b58d" stroke-width="1.6" stroke-dasharray="3 4" opacity="0.7"/>
+            <circle cx="23" cy="23" r="8" fill="#18b58d" opacity="0.22"/>
+            <circle cx="23" cy="23" r="4" fill="#18b58d"/>
+            <circle cx="34" cy="12" r="2.5" fill="#e2e8f0"/>
+          </svg>
+        </div>
+        <span class="path-cta">Canlı Test Et <span class="path-arrow">→</span></span>
+      </a>
+
+      <a href="#cozumler" class="path-row reveal-up">
+        <span class="path-idx">02</span>
+        <div class="path-content">
+          <h3>Büyüyen E-Ticaret &amp; Aktif Markalar</h3>
+          <p>Shopify, ikas, Ticimax, IdeaSoft ve WooCommerce mağazaları için WhatsApp + Instagram DM satış, canlı kargo takip, akıllı beden önerisi ve otomatik iade akışı.</p>
+        </div>
+        <div class="path-medallion" aria-hidden="true">
+          <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
+            <circle cx="15" cy="17" r="3.5" fill="#18b58d"/>
+            <circle cx="32" cy="15" r="4" fill="#e2e8f0"/>
+            <circle cx="23" cy="31" r="4.5" fill="#18b58d"/>
+            <path d="M18 16.5L28 15.5M16.8 20L21.2 27.2M30 18.5L25.5 27.5" stroke="#18b58d" stroke-width="1.4" stroke-dasharray="2 3" opacity="0.85"/>
+          </svg>
+        </div>
+        <span class="path-cta">Çözümleri Gör <span class="path-arrow">→</span></span>
+      </a>
+
+      <a href="#ucretsiz-pilot" class="path-row reveal-up">
+        <span class="path-idx">03</span>
+        <div class="path-content">
+          <h3>Çok Şubeli &amp; Kurumsal Yapılar</h3>
+          <p>Zincir oteller ve çok şubeli işletmeler için şube izolasyonlu bulut mimari, SIP destekli sesli telefon AI resepsiyonu, özel CRM/PMS API entegrasyonu ve günlük yönetici raporu.</p>
+        </div>
+        <div class="path-medallion" aria-hidden="true">
+          <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
+            <circle cx="23" cy="23" r="17" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="2 4" opacity="0.65"/>
+            <circle cx="23" cy="23" r="11" stroke="#18b58d" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <circle cx="23" cy="23" r="4.5" fill="#e2e8f0"/>
+            <circle cx="34" cy="23" r="2.2" fill="#18b58d"/>
+            <circle cx="12" cy="23" r="2.2" fill="#18b58d"/>
+          </svg>
+        </div>
+        <span class="path-cta">Özel Planlama <span class="path-arrow">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- TÜM HİZMETLERİMİZ (6 SEKTÖREL & KURUMSAL ÇÖZÜM) -->
 <section class="corp-section" id="cozumler">
   <div class="container">
-    <div class="section-header">
-      <div class="section-eyebrow">TÜM HİZMETLERİMİZ</div>
-      <h2>Her Sektörün İş Akışına Özel Yapay Zeka</h2>
+    <div class="section-header reveal-up">
+      <div class="section-eyebrow"><span class="nokta3" aria-hidden="true"><i></i><i></i><i></i></span> TÜM HİZMETLERİMİZ</div>
+      <h2>Her Sektörün İş Akışına <span class="h-muted">Özel Yapay Zeka</span><span class="h-accent">.</span></h2>
       <p>Tek kalıp botlar yerine; portföyünüzü, stoklarınızı, odalarınızı veya menünüzü birebir tanıyan ve somut gelir üreten dikey AI sistemleri.</p>
     </div>
 
@@ -1879,12 +2328,123 @@ footer.corp-footer {
 </section>
 
 
-<!-- YAPAY ZEKA MİMARİSİ & NASIL ÇALIŞIR (BENTO GRID) -->
-<section class="corp-section" id="mimari" style="padding-top:20px;">
+<!-- DARK OBSIDIAN: 3D İNTERAKTİF OPERIS AI AMBLEMİ & 7/24 GERÇEK AI MODÜL EKİBİ -->
+<section class="core-3d-section" id="ai-cekirdek">
   <div class="container">
-    <div class="section-header">
-      <div class="section-eyebrow">TEKNİK MİMARİ</div>
-      <h2>Kalıp Chatbot Değil, Kontrollü Kurumsal Yapay Zeka</h2>
+    <div class="core-3d-grid">
+      <!-- SOL: 60FPS 3D HALFTONE OPERIS AI AMBLEMİ (CANVAS 2D) -->
+      <div class="logo-stage reveal-up" id="operis3dStage" title="Operis AI 3D İnteraktif Amblem — Fareyi gezdirin veya tıklayın">
+        <div class="logo-stage-glow"></div>
+        <canvas id="operis3dCanvas" width="420" height="420" aria-label="Operis AI 3D Animasyonlu İnteraktif Logo"></canvas>
+        <div class="logo-stage-hint">3D İNTERAKTİF AMBLEM · DOKUN &amp; GEZDİR</div>
+      </div>
+
+      <!-- SAĞ: EDİTORYAL ANLATIM & NOKTALI PERFORMANS METRİKLERİ -->
+      <div class="core-copy reveal-up">
+        <div class="section-eyebrow"><span class="nokta3" aria-hidden="true"><i></i><i></i><i></i></span> OPERIS AI ÇEKİRDEĞİ</div>
+        <h2>Sıfır halüsinasyon<span class="h-accent">.</span><br><span class="h-muted">Gerçek operasyonel güç.</span></h2>
+        <p>Her işletme için izole çalışan Operis AI çekirdeği; yalnızca onaylı fiyat, stok, oda ve menü verilerinizi işler. Mesajı anlar, ses kaydını çözer, siparişi veya randevuyu doğrudan sisteminize aktarır.</p>
+
+        <div class="dot-metrics" aria-label="Operis AI Sistem Performans Metrikleri">
+          <div class="dot-metric-row">
+            <div class="dot-metric-head">
+              <span>İlk Yanıt Hızı (WhatsApp · DM · Web)</span>
+              <strong>&lt; 3 SANİYE · 96%</strong>
+            </div>
+            <div class="dot-bar" data-fill="23"></div>
+          </div>
+          <div class="dot-metric-row">
+            <div class="dot-metric-head">
+              <span>Onaylı Bilgi Katmanı &amp; Veri Doğruluğu</span>
+              <strong>%100 KONTROLLÜ</strong>
+            </div>
+            <div class="dot-bar" data-fill="24"></div>
+          </div>
+          <div class="dot-metric-row">
+            <div class="dot-metric-head">
+              <span>7/24 Kesintisiz Çalışma &amp; Çoklu Dil</span>
+              <strong>5 DİL · %99.9</strong>
+            </div>
+            <div class="dot-bar" data-fill="22"></div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#ucretsiz-pilot" class="btn-primary">14 Gün Ücretsiz Dene <span class="btn-arrow">→</span></a>
+          <a href="hub.html" class="btn-secondary" style="background:transparent; color:#f4f2ec; border-color:rgba(203,213,225,0.28);">7 Canlı Demoyu Gör</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7/24 ÇALIŞAN GERÇEK OPERIS AI MODÜL EKİBİ -->
+    <div class="ai-team-wrap reveal-up">
+      <div class="ai-team-head">
+        <div>
+          <div class="ai-team-label"><span class="nokta3" aria-hidden="true"><i></i><i></i><i></i></span> YAPAY ZEKA · 7/24 ÇALIŞAN OPERIS MODÜLLERİ</div>
+          <h3>İşletmenizde vardiya tutan <span style="color:#8a94a8; font-weight:600;">otonom AI ekibi</span><span class="h-accent">.</span></h3>
+        </div>
+        <p class="ai-team-sub">Sadece sohbet eden tek bir bot değil; her departmanın gerçek iş akışını üstlenen uzmanlaşmış 6 otonom modül.</p>
+      </div>
+
+      <div class="ai-agents-grid">
+        <div class="ai-agent-item">
+          <div class="ai-agent-ring" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#18b58d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9h.01M9 13h.01M9 17h.01"/></svg>
+          </div>
+          <div class="ai-agent-name">Resepsiyon AI</div>
+          <div class="ai-agent-role">Otel · Booking Kırıcı &amp; Kapora</div>
+        </div>
+
+        <div class="ai-agent-item">
+          <div class="ai-agent-ring" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#18b58d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/><path d="M9 20v-6h6v6"/></svg>
+          </div>
+          <div class="ai-agent-name">Portföy AI</div>
+          <div class="ai-agent-role">Emlak · Ön Eleme &amp; #EML CRM</div>
+        </div>
+
+        <div class="ai-agent-item">
+          <div class="ai-agent-ring" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#18b58d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
+          <div class="ai-agent-name">Mağaza AI</div>
+          <div class="ai-agent-role">E-Ticaret · Kargo &amp; Beden AI</div>
+        </div>
+
+        <div class="ai-agent-item">
+          <div class="ai-agent-ring" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#18b58d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          </div>
+          <div class="ai-agent-name">Mutfak POS AI</div>
+          <div class="ai-agent-role">Restoran · 80mm ESC/POS Fiş</div>
+        </div>
+
+        <div class="ai-agent-item">
+          <div class="ai-agent-ring" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#18b58d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </div>
+          <div class="ai-agent-name">Sesli Hat AI</div>
+          <div class="ai-agent-role">SIP Telefon &amp; Whisper STT</div>
+        </div>
+
+        <div class="ai-agent-item">
+          <div class="ai-agent-ring" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#18b58d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div class="ai-agent-name">Patron Rapor AI</div>
+          <div class="ai-agent-role">Sabah 09:00 Kâr &amp; Özet</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- YAPAY ZEKA MİMARİSİ & NASIL ÇALIŞIR (BENTO GRID) -->
+<section class="corp-section" id="mimari">
+  <div class="container">
+    <div class="section-header reveal-up">
+      <div class="section-eyebrow"><span class="nokta3" aria-hidden="true"><i></i><i></i><i></i></span> TEKNİK MİMARİ</div>
+      <h2>Kalıp Chatbot Değil, <span class="h-muted">Kontrollü Kurumsal AI</span><span class="h-accent">.</span></h2>
       <p>Sıkıcı "1'e basın" menüleri olmadan; gerçek veritabanınıza bağlı, halüsinasyon üretmeyen ve ekibinizle senkronize çalışan sistem mimarisi.</p>
     </div>
 
@@ -1960,9 +2520,9 @@ footer.corp-footer {
 <!-- ÇOKLU SEKTÖR AKILLI ROI HESAPLAYICI -->
 <section class="corp-section" id="roi-hesaplayici" style="padding-top:20px;">
   <div class="container">
-    <div class="section-header">
-      <div class="section-eyebrow">FİNANSAL ETKİ</div>
-      <h2>Sektörünüzde Yılda Ne Kadar Kazanç Sağlarsınız?</h2>
+    <div class="section-header reveal-up">
+      <div class="section-eyebrow"><span class="nokta3" aria-hidden="true"><i></i><i></i><i></i></span> FİNANSAL ETKİ</div>
+      <h2>Sektörünüzde Yılda <span class="h-muted">Ne Kadar Kazanç Sağlarsınız?</span></h2>
       <p>Sektörünüzü seçin, aracı komisyonlarından tasarruf ve gece/yoğun saatlerde kurtarılan ciroyu gerçek zamanlı hesaplayın.</p>
     </div>
 
@@ -2012,9 +2572,9 @@ footer.corp-footer {
 <!-- ŞEFFAF KURUMSAL PAKETLER -->
 <section class="corp-section" id="paketler" style="padding-top:20px;">
   <div class="container">
-    <div class="section-header">
-      <div class="section-eyebrow">PAKETLER</div>
-      <h2>İşletmenizin Ölçeğine Uygun Plan</h2>
+    <div class="section-header reveal-up">
+      <div class="section-eyebrow"><span class="nokta3" aria-hidden="true"><i></i><i></i><i></i></span> PAKETLER</div>
+      <h2>İşletmenizin Ölçeğine <span class="h-muted">Uygun Plan</span><span class="h-accent">.</span></h2>
       <p>Tüm planlarda 14 gün ücretsiz pilot ve anahtar teslim kurulum desteği dahildir.</p>
     </div>
 
@@ -2139,6 +2699,32 @@ footer.corp-footer {
     </div>
   </div>
 </section>
+
+<!-- HALFTONE HORIZON TRANSITION (DOLUNAY-INSPIRED) -->
+<div class="halftone-horizon" aria-hidden="true">
+  <svg viewBox="0 0 1440 84" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="operisOrbGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#18b58d"/>
+        <stop offset="65%" stop-color="#0e8f5c"/>
+        <stop offset="100%" stop-color="#0e1526"/>
+      </linearGradient>
+    </defs>
+    <circle cx="48" cy="42" r="2.2" fill="#18b58d" opacity="0.45"/>
+    <circle cx="116" cy="42" r="3.4" fill="#18b58d" opacity="0.52"/>
+    <circle cx="188" cy="42" r="4.8" fill="#18b58d" opacity="0.60"/>
+    <circle cx="266" cy="42" r="6.4" fill="#18b58d" opacity="0.68"/>
+    <circle cx="350" cy="42" r="8.2" fill="#18b58d" opacity="0.76"/>
+    <circle cx="442" cy="42" r="10.4" fill="#18b58d" opacity="0.84"/>
+    <circle cx="542" cy="42" r="13" fill="url(#operisOrbGrad)" opacity="0.90"/>
+    <circle cx="652" cy="42" r="16" fill="url(#operisOrbGrad)" opacity="0.94"/>
+    <circle cx="774" cy="42" r="19.5" fill="url(#operisOrbGrad)" opacity="0.96"/>
+    <circle cx="910" cy="42" r="23.5" fill="url(#operisOrbGrad)"/>
+    <circle cx="1062" cy="42" r="28" fill="url(#operisOrbGrad)"/>
+    <circle cx="1232" cy="42" r="33" fill="url(#operisOrbGrad)"/>
+    <circle cx="1410" cy="42" r="37" fill="url(#operisOrbGrad)"/>
+  </svg>
+</div>
 
 <!-- KURUMSAL FOOTER -->
 <footer class="corp-footer">
@@ -3457,6 +4043,365 @@ window.onload = () => {
 };
 
 document.addEventListener("keydown", e => { if (e.key === "Escape") fotoKapat(); });
+
+/* ===== SCROLL-REACTIVE NAVBAR, DOT BARS & REVEAL ===== */
+(function initEditorialUI() {
+  const nav = document.querySelector("header.navbar");
+  if (nav) {
+    const onScroll = () => nav.classList.toggle("navbar--scrolled", window.scrollY > 18);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  document.querySelectorAll(".dot-bar[data-fill]").forEach(bar => {
+    const fill = parseInt(bar.getAttribute("data-fill"), 10) || 20;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < 24; i++) {
+      const s = document.createElement("span");
+      if (i < fill) s.className = "on";
+      frag.appendChild(s);
+    }
+    bar.appendChild(frag);
+  });
+
+  const revealEls = document.querySelectorAll(".reveal-up");
+  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.classList.add("is-visible");
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add("is-visible"));
+  }
+})();
+
+/* ===== OPERIS AI 3D ANIMATED HALFTONE EMBLEM (ZERO-DEPENDENCY CANVAS 2D) ===== */
+(function initOperis3DLogo() {
+  const canvas = document.getElementById("operis3dCanvas");
+  const stage = document.getElementById("operis3dStage");
+  if (!canvas || !stage) return;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const points = [];
+  const GOLDEN_ANGLE = 2.399963229728653;
+
+  // 1) Operis Open Torus Arc (~282 deg) leaving upper-right opening for the emerald sphere
+  const R = 0.65;
+  const rTube = 0.145;
+  const startA = -0.10;
+  const endA = 4.92;
+  const arcSteps = 54;
+  const tubeSteps = 14;
+
+  for (let i = 0; i <= arcSteps; i++) {
+    const u = startA + (endA - startA) * (i / arcSteps);
+    const cosU = Math.cos(u), sinU = Math.sin(u);
+    for (let j = 0; j < tubeSteps; j++) {
+      const v = (j / tubeSteps) * Math.PI * 2;
+      const cosV = Math.cos(v), sinV = Math.sin(v);
+      const rad = R + rTube * cosV;
+      const x = rad * cosU;
+      const y = rad * sinU;
+      const z = rTube * sinV;
+      const nx = cosV * cosU;
+      const ny = cosV * sinU;
+      const nz = sinV;
+      points.push({ x, y, z, nx, ny, nz, type: 0, phase: (i * 0.19 + j * 0.43) });
+    }
+  }
+
+  // Rounded spherical end-caps at startA and endA
+  [startA, endA].forEach((capA, idx) => {
+    const cx = R * Math.cos(capA);
+    const cy = R * Math.sin(capA);
+    const dir = idx === 0 ? -1 : 1;
+    const tx = -Math.sin(capA) * dir;
+    const ty = Math.cos(capA) * dir;
+    const capCount = 46;
+    for (let k = 0; k < capCount; k++) {
+      const h = (k + 0.5) / capCount;
+      const phi = Math.acos(1 - h);
+      const theta = k * GOLDEN_ANGLE;
+      const sPhi = Math.sin(phi), cPhi = Math.cos(phi);
+      const lx = cPhi, ly = sPhi * Math.cos(theta), lz = sPhi * Math.sin(theta);
+      const nx = tx * lx + Math.cos(capA) * ly;
+      const ny = ty * lx + Math.sin(capA) * ly;
+      const nz = lz;
+      points.push({
+        x: cx + nx * rTube,
+        y: cy + ny * rTube,
+        z: nz * rTube,
+        nx, ny, nz,
+        type: 0,
+        phase: k * 0.31
+      });
+    }
+  });
+
+  // 2) Glowing Emerald Fibonacci Sphere in the upper-right opening
+  const orbCx = 0.49, orbCy = -0.47, orbCz = 0.04, orbR = 0.215;
+  const orbCount = 260;
+  for (let i = 0; i < orbCount; i++) {
+    const y0 = 1 - (i / (orbCount - 1)) * 2;
+    const rad = Math.sqrt(Math.max(0, 1 - y0 * y0));
+    const theta = GOLDEN_ANGLE * i;
+    const nx = Math.cos(theta) * rad;
+    const ny = y0;
+    const nz = Math.sin(theta) * rad;
+    points.push({
+      x: orbCx + nx * orbR,
+      y: orbCy + ny * orbR,
+      z: orbCz + nz * orbR,
+      nx, ny, nz,
+      type: 1,
+      phase: i * 0.17
+    });
+  }
+
+  // 3) Tilted 3D Dotted Orbital Ring
+  const orbitCount = 68;
+  const orbitR = 1.07;
+  const tiltX = 0.56, tiltZ = -0.34;
+  const cTx = Math.cos(tiltX), sTx = Math.sin(tiltX);
+  const cTz = Math.cos(tiltZ), sTz = Math.sin(tiltZ);
+  for (let i = 0; i < orbitCount; i++) {
+    const a = (i / orbitCount) * Math.PI * 2;
+    let ox = Math.cos(a) * orbitR;
+    let oy = 0;
+    let oz = Math.sin(a) * orbitR;
+    // Rotate around X then Z
+    const oy1 = oy * cTx - oz * sTx;
+    const oz1 = oy * sTx + oz * cTx;
+    const ox2 = ox * cTz - oy1 * sTz;
+    const oy2 = ox * sTz + oy1 * cTz;
+    points.push({
+      x: ox2, y: oy2, z: oz1,
+      nx: 0, ny: 0, nz: 1,
+      type: 2,
+      phase: a
+    });
+  }
+
+  // State & interaction
+  let width = 420, height = 420, dpr = 1;
+  let visible = true, rafId = null;
+  let pointerX = 0, pointerY = 0, pointerActive = false;
+  let smoothMx = 0, smoothMy = 0;
+  let ripple = 0, rippleX = 0, rippleY = 0;
+  const startTime = performance.now();
+
+  function resize() {
+    const rect = stage.getBoundingClientRect();
+    width = Math.max(220, rect.width);
+    height = Math.max(220, rect.height);
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  if ("ResizeObserver" in window) new ResizeObserver(resize).observe(stage);
+  else window.addEventListener("resize", resize);
+
+  stage.addEventListener("pointermove", e => {
+    const rect = stage.getBoundingClientRect();
+    pointerX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    pointerY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+    pointerActive = true;
+  });
+  stage.addEventListener("pointerleave", () => { pointerActive = false; });
+  stage.addEventListener("pointerdown", e => {
+    const rect = stage.getBoundingClientRect();
+    rippleX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    rippleY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+    ripple = 1.0;
+  });
+
+  // Directional light (top-right-front)
+  const Lx = 0.48, Ly = -0.52, Lz = 0.71;
+  const proj = new Array(points.length + 1);
+
+  function render(now) {
+    const t = reducedMotion ? 1.15 : (now - startTime) * 0.001;
+    smoothMx += ((pointerActive ? pointerX : 0) - smoothMx) * 0.08;
+    smoothMy += ((pointerActive ? pointerY : 0) - smoothMy) * 0.08;
+    if (ripple > 0.005) ripple *= 0.94; else ripple = 0;
+
+    // 3D sculptural tilt: keeps the iconic Operis "O + emerald orb" silhouette always recognizable while rotating in 3D depth
+    const rotY = Math.sin(t * 0.65) * 0.52 + smoothMx * 0.55;
+    const rotX = Math.cos(t * 0.48) * 0.24 - smoothMy * 0.42;
+    const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+    const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+
+    const cx = width * 0.5;
+    const cy = height * 0.5;
+    const scale = Math.min(width, height) * 0.39;
+    const fov = 3.2;
+
+    ctx.clearRect(0, 0, width, height);
+
+    let count = 0;
+    for (let i = 0; i < points.length; i++) {
+      const p = points[i];
+      let px = p.x, py = p.y, pz = p.z;
+
+      // Subtle breathing on emerald orb
+      if (p.type === 1 && !reducedMotion) {
+        const b = 1 + 0.045 * Math.sin(t * 2.2 + p.phase);
+        px = orbCx + (px - orbCx) * b;
+        py = orbCy + (py - orbCy) * b;
+        pz = orbCz + (pz - orbCz) * b;
+      }
+
+      // Rotate Y then X
+      const x1 = px * cosY + pz * sinY;
+      const z1 = -px * sinY + pz * cosY;
+      const y2 = py * cosX - z1 * sinX;
+      const z2 = py * sinX + z1 * cosX;
+
+      // Rotate normal
+      const nx1 = p.nx * cosY + p.nz * sinY;
+      const nz1 = -p.nx * sinY + p.nz * cosY;
+      const ny2 = p.ny * cosX - nz1 * sinX;
+      const nz2 = p.ny * sinX + nz1 * cosX;
+
+      const persp = fov / (fov - z2);
+      let sx = cx + x1 * scale * persp;
+      let sy = cy + y2 * scale * persp;
+
+      // Magnetic cursor repulsion
+      if (pointerActive && p.type !== 2) {
+        const mdx = (sx - cx) / scale - smoothMx * 0.95;
+        const mdy = (sy - cy) / scale - smoothMy * 0.95;
+        const md = Math.hypot(mdx, mdy);
+        if (md < 0.42 && md > 0.001) {
+          const push = (1 - md / 0.42) * 14;
+          sx += (mdx / md) * push;
+          sy += (mdy / md) * push;
+        }
+      }
+
+      // Click shockwave ripple
+      if (ripple > 0.01) {
+        const rdx = (sx - cx) / scale - rippleX;
+        const rdy = (sy - cy) / scale - rippleY;
+        const rd = Math.hypot(rdx, rdy);
+        const wave = Math.sin((rd - (1 - ripple) * 1.6) * 12) * ripple * 10;
+        if (rd > 0.001) {
+          sx += (rdx / rd) * wave;
+          sy += (rdy / rd) * wave;
+        }
+      }
+
+      const ndotl = Math.max(0, nx1 * Lx + ny2 * Ly + nz2 * Lz);
+      proj[count++] = { sx, sy, z: z2, persp, ndotl, type: p.type };
+    }
+
+    // Orbiting glowing emerald satellite along the tilted orbit
+    const satA = t * 1.15;
+    let sox = Math.cos(satA) * orbitR, soy = 0, soz = Math.sin(satA) * orbitR;
+    const soy1 = soy * cTx - soz * sTx;
+    const soz1 = soy * sTx + soz * cTx;
+    const sox2 = sox * cTz - soy1 * sTz;
+    const soy2 = sox * sTz + soy1 * cTz;
+    const sx1 = sox2 * cosY + soz1 * sinY;
+    const sz1 = -sox2 * sinY + soz1 * cosY;
+    const sy2 = soy2 * cosX - sz1 * sinX;
+    const sz2 = soy2 * sinX + sz1 * cosX;
+    const spersp = fov / (fov - sz2);
+    proj[count++] = {
+      sx: cx + sx1 * scale * spersp,
+      sy: cy + sy2 * scale * spersp,
+      z: sz2,
+      persp: spersp,
+      ndotl: 1,
+      type: 3
+    };
+
+    // Painter's depth sort (back to front)
+    proj.sort((a, b) => a.z - b.z);
+
+    for (let i = 0; i < count; i++) {
+      const q = proj[i];
+      const depthAlpha = Math.max(0.18, Math.min(1, (q.z + 1.15) * 0.56));
+
+      if (q.type === 0) {
+        // Open Torus Ring: deep obsidian-blue shadow -> crisp luminous ice-white highlight
+        const rad = (1.1 + q.ndotl * 2.15) * q.persp;
+        const rC = Math.round(38 + q.ndotl * 195);
+        const gC = Math.round(58 + q.ndotl * 188);
+        const bC = Math.round(98 + q.ndotl * 155);
+        ctx.fillStyle = `rgba(${rC},${gC},${bC},${(0.28 + q.ndotl * 0.72) * depthAlpha})`;
+        ctx.beginPath();
+        ctx.arc(q.sx, q.sy, rad, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (q.type === 1) {
+        // Glowing Emerald Sphere
+        const rad = (1.15 + q.ndotl * 2.2) * q.persp;
+        const rC = Math.round(12 + q.ndotl * 196);
+        const gC = Math.round(138 + q.ndotl * 112);
+        const bC = Math.round(100 + q.ndotl * 118);
+        ctx.fillStyle = `rgba(${rC},${gC},${bC},${(0.36 + q.ndotl * 0.64) * depthAlpha})`;
+        ctx.beginPath();
+        ctx.arc(q.sx, q.sy, rad, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (q.type === 2) {
+        // Dotted Orbital Ring
+        const rad = 1.25 * q.persp;
+        ctx.fillStyle = `rgba(24,181,141,${0.14 + depthAlpha * 0.36})`;
+        ctx.beginPath();
+        ctx.arc(q.sx, q.sy, rad, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        // Glowing Emerald Satellite
+        const halo = ctx.createRadialGradient(q.sx, q.sy, 1, q.sx, q.sy, 18 * q.persp);
+        halo.addColorStop(0, "rgba(167,243,208,0.95)");
+        halo.addColorStop(0.35, "rgba(24,181,141,0.55)");
+        halo.addColorStop(1, "rgba(24,181,141,0)");
+        ctx.fillStyle = halo;
+        ctx.beginPath();
+        ctx.arc(q.sx, q.sy, 18 * q.persp, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "#ecfdf5";
+        ctx.beginPath();
+        ctx.arc(q.sx, q.sy, 3.6 * q.persp, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    if (!reducedMotion && visible && !document.hidden) {
+      rafId = requestAnimationFrame(render);
+    } else {
+      rafId = null;
+    }
+  }
+
+  function start() {
+    if (!rafId) rafId = requestAnimationFrame(render);
+  }
+  function stop() {
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  }
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(entries => {
+      visible = entries[0].isIntersecting;
+      if (visible && !reducedMotion) start(); else stop();
+    }, { threshold: 0.05 }).observe(stage);
+  }
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && visible && !reducedMotion) start(); else stop();
+  });
+
+  render(startTime);
+})();
 </script>
 </body>
 </html>
